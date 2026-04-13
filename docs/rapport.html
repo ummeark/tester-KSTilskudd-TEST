@@ -170,11 +170,12 @@
       <a href="rapport.html" class="knapp aktiv">UU-rapport</a>
       <a href="monkey-rapport.html" class="knapp sekundær">Monkey-test</a>
       <a href="sikkerhet-rapport.html" class="knapp sekundær">Sikkerhetstest</a>
+      <a href="negativ-rapport.html" class="knapp sekundær">Negativ test</a>
       <a href="arkiv.html" class="knapp sekundær">Tidligere rapporter</a>
     </div>
   </div>
   <div class="score-kort">
-    <div class="score-sirkel middels">72</div>
+    <div class="score-sirkel middels">67</div>
     <div class="score-tekst"><strong>UU-score</strong><p>Basert på WCAG-brudd, døde lenker og manglende labels på tvers av 9 sider. Klikk på skjermdumper for å forstørre.</p></div>
   </div>
   <div class="seksjon" style="background:#f4ecdf;border-color:#e8dcc8;margin-bottom:1.5rem">
@@ -221,7 +222,7 @@
   <div class="kort-grid">
     <div class="kort ok"><div class="tall">9</div><div class="etikett">Sider testet</div></div>
     <div class="kort advarsel"><div class="tall">1</div><div class="etikett">WCAG-brudd</div><div class="undertekst">0 kritiske · 0 alvorlige</div></div>
-    <div class="kort kritisk"><div class="tall">5</div><div class="etikett">Døde lenker</div></div>
+    <div class="kort kritisk"><div class="tall">6</div><div class="etikett">Døde lenker</div></div>
     <div class="kort ok"><div class="tall">7</div><div class="etikett">Knapper testet</div><div class="undertekst">0 uten label</div></div>
     <div class="kort ok"><div class="tall">23</div><div class="etikett">Bilder testet</div><div class="undertekst">0 uten alt</div></div>
     <div class="kort ok"><div class="tall">2</div><div class="etikett">Skjemafelt</div><div class="undertekst">0 uten label</div></div>
@@ -292,7 +293,7 @@
           <table><thead><tr><th>Type</th><th>ID</th><th>Label</th><th>Status</th></tr></thead><tbody>
           <tr>
             <td><code>search</code></td>
-            <td><code>:mnx5fkge94i</code></td>
+            <td><code>:mnx5xoqxtro</code></td>
             <td>Finn tilskuddsordning(er) ved å søke på navn, sted og type osv.</td>
             <td>✅</td>
           </tr></tbody></table>
@@ -393,7 +394,7 @@
           <table><thead><tr><th>Type</th><th>ID</th><th>Label</th><th>Status</th></tr></thead><tbody>
           <tr>
             <td><code>search</code></td>
-            <td><code>:mnx5flumt66</code></td>
+            <td><code>:mnx5xq6q651</code></td>
             <td>Finn tilskuddsordning(er) ved å søke på navn, sted og type osv.</td>
             <td>✅</td>
           </tr></tbody></table>
@@ -906,7 +907,7 @@
         <div class="side-score-badges">
           
           
-          
+          <span class="badge dead">1 døde lenker</span>
         </div>
       </div>
 
@@ -918,6 +919,25 @@
 
       <!-- Døde lenker med skjermdump -->
       
+      <div class="wcag-seksjon">
+        <h3>🔗 Døde lenker (1)</h3>
+        
+          <div class="brudd-kort" style="border-left-color:#6c757d">
+            <div class="brudd-header">
+              <div><span class="badge dead">503</span> <span>Sikkerhet og personvern</span></div>
+            </div>
+            <code class="node-selector">https://www.norge.no/nb/personopplysninger-nar-du-logger-inn/61</code>
+            
+            <div class="skjermdump-gruppe">
+              <div class="skjermdump-wrapper">
+                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
+                <a href="skjermbilder/s9-doede-lenker-side.png" target="_blank">
+                  <img src="skjermbilder/s9-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
+                </a>
+              </div>
+            </div>
+          </div>
+      </div>
 
       <!-- Artefakter -->
       <div class="artefakt-grid">
@@ -999,7 +1019,12 @@
         
         <div class="artefakt-kort">
           <h3>🔗 Lenker sjekket (16)</h3>
-          <p class="ok-tekst">✅ Ingen døde lenker</p>
+          <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
+            <tr>
+              <td><span class="badge dead">503</span></td>
+              <td>Sikkerhet og personvern</td>
+              <td style="font-size:0.75rem;word-break:break-all">https://www.norge.no/nb/personopplysninger-nar-du-logger-inn/61</td>
+            </tr></tbody></table>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@
     "alvorlige": 0,
     "moderate": 1,
     "mindre": 0,
-    "dødelenker": 5,
+    "dødelenker": 6,
     "knapper": 7,
     "knappUtenLabel": 0,
     "bilder": 23,
@@ -91,7 +91,7 @@
       "skjemafelt": [
         {
           "type": "search",
-          "id": ":mnx5fkge94i",
+          "id": ":mnx5xoqxtro",
           "navn": "search",
           "labelTekst": "Finn tilskuddsordning(er) ved å søke på navn, sted og type osv.",
           "påkrevd": false,
@@ -281,7 +281,7 @@
       "skjemafelt": [
         {
           "type": "search",
-          "id": ":mnx5flumt66",
+          "id": ":mnx5xq6q651",
           "navn": "",
           "labelTekst": "Finn tilskuddsordning(er) ved å søke på navn, sted og type osv.",
           "påkrevd": false,
@@ -1619,7 +1619,20 @@
       },
       "lenker": {
         "totalt": 16,
-        "døde": [],
+        "døde": [
+          {
+            "tekst": "Sikkerhet og personvern",
+            "href": "https://www.norge.no/nb/personopplysninger-nar-du-logger-inn/61",
+            "intern": false,
+            "harTekst": true,
+            "status": 503,
+            "ok": false,
+            "bilder": {
+              "nærbilde": null,
+              "helside": "skjermbilder/s9-doede-lenker-side.png"
+            }
+          }
+        ],
         "tomTekst": [],
         "alle": [
           {
@@ -1723,8 +1736,12 @@
             "href": "https://www.norge.no/nb/personopplysninger-nar-du-logger-inn/61",
             "intern": false,
             "harTekst": true,
-            "status": 200,
-            "ok": true
+            "status": 503,
+            "ok": false,
+            "bilder": {
+              "nærbilde": null,
+              "helside": "skjermbilder/s9-doede-lenker-side.png"
+            }
           },
           {
             "tekst": "Slik skaffer du deg elektronisk ID",

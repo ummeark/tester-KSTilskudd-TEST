@@ -37,6 +37,10 @@ npm run monkey >> "$LOG_FIL" 2>&1
 echo "[$DATO $(date +%H:%M:%S)] Kjører npm run sikkerhet..." >> "$LOG_FIL"
 npm run sikkerhet >> "$LOG_FIL" 2>&1
 
+# Kjør negativ testing
+echo "[$DATO $(date +%H:%M:%S)] Kjører npm run negativ..." >> "$LOG_FIL"
+npm run negativ >> "$LOG_FIL" 2>&1
+
 # Generer arkiv
 echo "[$DATO $(date +%H:%M:%S)] Kjører npm run arkiv..." >> "$LOG_FIL"
 npm run arkiv >> "$LOG_FIL" 2>&1
@@ -46,6 +50,7 @@ if [ -d "$REPO_DIR/rapporter/$DATO" ]; then
   cp "$REPO_DIR/rapporter/$DATO/rapport.html" "$REPO_DIR/docs/rapport.html"
   cp "$REPO_DIR/rapporter/$DATO/monkey-rapport.html" "$REPO_DIR/docs/monkey-rapport.html" 2>/dev/null || true
   cp "$REPO_DIR/rapporter/$DATO/sikkerhet-rapport.html" "$REPO_DIR/docs/sikkerhet-rapport.html" 2>/dev/null || true
+  cp "$REPO_DIR/rapporter/$DATO/negativ-rapport.html" "$REPO_DIR/docs/negativ-rapport.html" 2>/dev/null || true
   if [ -d "$REPO_DIR/rapporter/$DATO/skjermbilder" ]; then
     rm -rf "$REPO_DIR/docs/skjermbilder"
     cp -r "$REPO_DIR/rapporter/$DATO/skjermbilder" "$REPO_DIR/docs/skjermbilder"

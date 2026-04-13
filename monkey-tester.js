@@ -422,6 +422,7 @@ const html = `<!DOCTYPE html>
       <a href="rapport.html" class="knapp sekundær">UU-rapport</a>
       <a href="monkey-rapport.html" class="knapp aktiv">Monkey-test</a>
       <a href="sikkerhet-rapport.html" class="knapp sekundær">Sikkerhetstest</a>
+      <a href="negativ-rapport.html" class="knapp sekundær">Negativ test</a>
       <a href="arkiv.html" class="knapp sekundær">Tidligere rapporter</a>
     </div>
   </div>
