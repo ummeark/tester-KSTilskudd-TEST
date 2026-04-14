@@ -624,6 +624,12 @@ const html = `<!DOCTYPE html>
 </html>`;
 
 fs.writeFileSync(path.join(rapportDir, 'monkey-rapport.html'), html);
+
+// Lagre tidsstemplet kopi for arkiv (bevarer alle kjøringer samme dag)
+const tidFil = tidspunkt.replace(':', '-');
+fs.copyFileSync(path.join(rapportDir, 'monkey-resultat.json'), path.join(rapportDir, `monkey-resultat-${tidFil}.json`));
+fs.copyFileSync(path.join(rapportDir, 'monkey-rapport.html'), path.join(rapportDir, `monkey-rapport-${tidFil}.html`));
+
 console.log(`\n📁 Monkey-rapport: ${path.join(rapportDir, 'monkey-rapport.html')}`);
 
 // Åpne rapporten

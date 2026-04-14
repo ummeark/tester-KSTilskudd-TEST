@@ -341,6 +341,11 @@ fs.writeFileSync(path.join(rapportDir, 'resultat.json'), JSON.stringify({ url: S
 // Generer HTML
 fs.writeFileSync(path.join(rapportDir, 'uu-rapport.html'), genererRapport(START_URL, dato, tidspunkt, totalt, sideResultater));
 
+// Lagre tidsstemplet kopi for arkiv (bevarer alle kjøringer samme dag)
+const tidFil = tidspunkt.replace(':', '-');
+fs.copyFileSync(path.join(rapportDir, 'resultat.json'), path.join(rapportDir, `resultat-${tidFil}.json`));
+fs.copyFileSync(path.join(rapportDir, 'uu-rapport.html'), path.join(rapportDir, `uu-rapport-${tidFil}.html`));
+
 // Terminal
 console.log('\n' + '━'.repeat(60));
 console.log(`📊 RAPPORT – ${START_URL}`);

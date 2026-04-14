@@ -691,5 +691,11 @@ const html = `<!DOCTYPE html>
 </html>`;
 
 fs.writeFileSync(path.join(rapportDir, 'negativ-rapport.html'), html);
+
+// Lagre tidsstemplet kopi for arkiv (bevarer alle kjøringer samme dag)
+const tidFil = tidspunkt.replace(':', '-');
+fs.copyFileSync(path.join(rapportDir, 'negativ-resultat.json'), path.join(rapportDir, `negativ-resultat-${tidFil}.json`));
+fs.copyFileSync(path.join(rapportDir, 'negativ-rapport.html'), path.join(rapportDir, `negativ-rapport-${tidFil}.html`));
+
 console.log(`\n📁 Negativ-rapport: ${path.join(rapportDir, 'negativ-rapport.html')}`);
 exec(`open "${path.join(rapportDir, 'negativ-rapport.html')}"`);

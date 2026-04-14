@@ -1,0 +1,90 @@
+{
+  "url": "https://tilskudd.fiks.test.ks.no/",
+  "dato": "2026-04-14",
+  "totalt": {
+    "iterasjoner": 60,
+    "siderBesøkt": 7,
+    "jsErrors": 1,
+    "konsollFeil": 0,
+    "nettverksFeil": 0,
+    "kritiske": 5,
+    "alvorlige": 1,
+    "varighet": 46
+  },
+  "score": 0,
+  "jsErrors": [
+    {
+      "melding": "Minified React error #419; visit https://react.dev/errors/419 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+      "stack": "",
+      "url": "https://tilskudd.fiks.test.ks.no/ordninger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0",
+      "tid": "2026-04-14T12:50:29.048Z"
+    }
+  ],
+  "konsollFeil": [],
+  "nettverksFeil": [],
+  "interaksjoner": [
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://tilskudd.fiks.test.ks.no/ordninger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0",
+      "handling": "Klikket lenke: \"Punktlig Viktig Hund DaKommunalt næringsfond Kristiansund 20\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-4.png",
+      "tid": "2026-04-14T12:50:27.551Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter navigasjon: inneholder \"500\"",
+      "url": "https://tilskudd.fiks.test.ks.no/ordninger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0",
+      "handling": "Gikk tilbake (browser back)",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-5.png",
+      "tid": "2026-04-14T12:50:29.596Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://tilskudd.fiks.test.ks.no/ordninger/b39a60ca-08e4-476c-88a1-a78fe3cd7983",
+      "handling": "Klikket lenke: \"Punktlig Viktig Hund DaStimuleringsmidler til internasjonalt\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-7.png",
+      "tid": "2026-04-14T12:50:32.444Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://tilskudd.fiks.test.ks.no/ordninger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0",
+      "handling": "Klikket lenke: \"Punktlig Viktig Hund DaKommunalt næringsfond Kristiansund 20\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-8.png",
+      "tid": "2026-04-14T12:50:34.207Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://tilskudd.fiks.test.ks.no/ordninger/553b5d8c-209e-410e-88c6-a6cb79d714dc",
+      "handling": "Klikket lenke: \"Skånsom Impulsiv Tiger AsForskning og innovasjon i bedrift\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-11.png",
+      "tid": "2026-04-14T12:50:48.138Z"
+    },
+    {
+      "type": "skjema-validering",
+      "alvorlighet": "alvorlig",
+      "melding": "500 tilfeldige bokstaver reflekteres ukontrollert i HTML",
+      "url": "https://tilskudd.fiks.test.ks.no/ordninger?searchString=BZDwgQpoiTiwhcEQzEvCBJPtInQTfnLOfyBJbNkPZWFEcTWJBKHMfbQJPHghgoNCteFnvZpxIUaIPZMZMiWTKUEzpdwSqAcRCYScoPZBapCSVHwAGYvsEPsXwABBIAhmIPJFqnAwuvlHsEHFdJdwHCZzXzVYgkNsCfxtEzbMlXqZKMkyYCevNZZIfEdVWnplTauoGXheJjsLyzWuJOMNbwDIHJXriRERPuSYyCizUaFabWEtfTuZXgVZikLWYHLAbAhJkHVcSpEDOXwbHZBlnHmbStXVhOBFGUQDHlUTgRqTXnXVPXoWsjhdwUTmesQEDvaWjLwRxEHqeLRBwpVchAzJxitnuFqIKFgeIqptQikYrIzjdORsecifOIMgIVYcrjeSNgxrmFoYfMlKBPklKKxPdpCJKMHmAqvZaXQVmSQFXJUKTGalBwEEVKhKPYfyJOapiKgycosikJdFDTOIaCnDWxTlpQyaRcNiRgvLkphOPuQmGjtt&currentPage=1&pageSize=10",
+      "handling": "lang tilfeldig tekst (500 tegn)",
+      "skjermdump": "skjermbilder-monkey/monkey-lang-tekst-reflektert-500-13.png",
+      "tid": "2026-04-14T12:50:57.090Z"
+    }
+  ],
+  "besøkte": [
+    "https://tilskudd.fiks.test.ks.no/",
+    "https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10",
+    "https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10&searchString=%3Cb%3Ebold%3C%2Fb%3E",
+    "https://tilskudd.fiks.test.ks.no/ordninger?searchString=%3Cb%3Ebold%3C%2Fb%3E&currentPage=1&pageSize=10",
+    "https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10&searchString=%220%22",
+    "https://tilskudd.fiks.test.ks.no/ordninger/72ad6a5b-3819-446b-881d-eed1d5dd9ed6",
+    "https://login.test.idporten.no/authorize/selector"
+  ]
+}

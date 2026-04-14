@@ -12,13 +12,10 @@ const datoer = fs.readdirSync(rapportDir)
   .sort()
   .reverse(); // Nyeste først
 
-// --- Les resultater per testtype ---
+// --- Les resultater per testtype (støtter flere kjøringer per dag) ---
 
-function lesUU(dato) {
-  const fil = path.join(rapportDir, dato, 'resultat.json');
-  if (!fs.existsSync(fil)) return null;
-  const json = JSON.parse(fs.readFileSync(fil, 'utf-8'));
-  const t = json.totalt || {
+function parseUUJson(json) {
+  const totalt = json.totalt || {
     sider: 1,
     wcagBrudd: json.wcag?.brudd || 0,
     kritiske: json.wcag?.kritiske || 0,
@@ -31,37 +28,88 @@ function lesUU(dato) {
     feltUtenLabel: Array.isArray(json.skjema) ? json.skjema.filter(f => !f.harLabel).length : 0,
   };
   const score = Math.max(0, 100
-    - (t.kritiske || 0) * 15 - (t.alvorlige || 0) * 8 - (t.moderate || 0) * 3 - (t.mindre || 0)
-    - (t.dødelenker || 0) * 5 - (t.knappUtenLabel || 0) * 4 - (t.bilderUtenAlt || 0) * 4 - (t.feltUtenLabel || 0) * 4
+    - (totalt.kritiske || 0) * 15 - (totalt.alvorlige || 0) * 8 - (totalt.moderate || 0) * 3 - (totalt.mindre || 0)
+    - (totalt.dødelenker || 0) * 5 - (totalt.knappUtenLabel || 0) * 4 - (totalt.bilderUtenAlt || 0) * 4 - (totalt.feltUtenLabel || 0) * 4
   );
-  return { dato, score, totalt: t };
+  return { score, totalt };
 }
 
-function lesMonkey(dato) {
-  const fil = path.join(rapportDir, dato, 'monkey-resultat.json');
-  if (!fs.existsSync(fil)) return null;
-  const json = JSON.parse(fs.readFileSync(fil, 'utf-8'));
-  return { dato, score: json.score, totalt: json.totalt };
+function lesAlleUU(dato) {
+  const datoDir = path.join(rapportDir, dato);
+  const tidsfiler = fs.readdirSync(datoDir)
+    .filter(f => /^resultat-\d{2}-\d{2}\.json$/.test(f))
+    .sort().reverse();
+  if (tidsfiler.length === 0) {
+    const fil = path.join(datoDir, 'resultat.json');
+    if (!fs.existsSync(fil)) return [];
+    const { score, totalt } = parseUUJson(JSON.parse(fs.readFileSync(fil, 'utf-8')));
+    return [{ dato, tidspunkt: null, score, totalt, rapportFil: 'uu-rapport.html' }];
+  }
+  return tidsfiler.map(filnavn => {
+    const tidFil = filnavn.replace('resultat-', '').replace('.json', '');
+    const { score, totalt } = parseUUJson(JSON.parse(fs.readFileSync(path.join(datoDir, filnavn), 'utf-8')));
+    return { dato, tidspunkt: tidFil.replace('-', ':'), score, totalt, rapportFil: `uu-rapport-${tidFil}.html` };
+  });
 }
 
-function lesSikkerhet(dato) {
-  const fil = path.join(rapportDir, dato, 'sikkerhet-resultat.json');
-  if (!fs.existsSync(fil)) return null;
-  const json = JSON.parse(fs.readFileSync(fil, 'utf-8'));
-  return { dato, score: json.score, totalt: json.totalt };
+function lesAlleMonkey(dato) {
+  const datoDir = path.join(rapportDir, dato);
+  const tidsfiler = fs.readdirSync(datoDir)
+    .filter(f => /^monkey-resultat-\d{2}-\d{2}\.json$/.test(f))
+    .sort().reverse();
+  if (tidsfiler.length === 0) {
+    const fil = path.join(datoDir, 'monkey-resultat.json');
+    if (!fs.existsSync(fil)) return [];
+    const json = JSON.parse(fs.readFileSync(fil, 'utf-8'));
+    return [{ dato, tidspunkt: null, score: json.score, totalt: json.totalt, rapportFil: 'monkey-rapport.html' }];
+  }
+  return tidsfiler.map(filnavn => {
+    const tidFil = filnavn.replace('monkey-resultat-', '').replace('.json', '');
+    const json = JSON.parse(fs.readFileSync(path.join(datoDir, filnavn), 'utf-8'));
+    return { dato, tidspunkt: tidFil.replace('-', ':'), score: json.score, totalt: json.totalt, rapportFil: `monkey-rapport-${tidFil}.html` };
+  });
 }
 
-function lesNegativ(dato) {
-  const fil = path.join(rapportDir, dato, 'negativ-resultat.json');
-  if (!fs.existsSync(fil)) return null;
-  const json = JSON.parse(fs.readFileSync(fil, 'utf-8'));
-  return { dato, score: json.score, totalt: json.totalt };
+function lesAlleSikkerhet(dato) {
+  const datoDir = path.join(rapportDir, dato);
+  const tidsfiler = fs.readdirSync(datoDir)
+    .filter(f => /^sikkerhet-resultat-\d{2}-\d{2}\.json$/.test(f))
+    .sort().reverse();
+  if (tidsfiler.length === 0) {
+    const fil = path.join(datoDir, 'sikkerhet-resultat.json');
+    if (!fs.existsSync(fil)) return [];
+    const json = JSON.parse(fs.readFileSync(fil, 'utf-8'));
+    return [{ dato, tidspunkt: null, score: json.score, totalt: json.totalt, rapportFil: 'sikkerhet-rapport.html' }];
+  }
+  return tidsfiler.map(filnavn => {
+    const tidFil = filnavn.replace('sikkerhet-resultat-', '').replace('.json', '');
+    const json = JSON.parse(fs.readFileSync(path.join(datoDir, filnavn), 'utf-8'));
+    return { dato, tidspunkt: tidFil.replace('-', ':'), score: json.score, totalt: json.totalt, rapportFil: `sikkerhet-rapport-${tidFil}.html` };
+  });
 }
 
-const uu      = datoer.map(lesUU).filter(Boolean);
-const monkey  = datoer.map(lesMonkey).filter(Boolean);
-const sikkerhet = datoer.map(lesSikkerhet).filter(Boolean);
-const negativ = datoer.map(lesNegativ).filter(Boolean);
+function lesAlleNegativ(dato) {
+  const datoDir = path.join(rapportDir, dato);
+  const tidsfiler = fs.readdirSync(datoDir)
+    .filter(f => /^negativ-resultat-\d{2}-\d{2}\.json$/.test(f))
+    .sort().reverse();
+  if (tidsfiler.length === 0) {
+    const fil = path.join(datoDir, 'negativ-resultat.json');
+    if (!fs.existsSync(fil)) return [];
+    const json = JSON.parse(fs.readFileSync(fil, 'utf-8'));
+    return [{ dato, tidspunkt: null, score: json.score, totalt: json.totalt, rapportFil: 'negativ-rapport.html' }];
+  }
+  return tidsfiler.map(filnavn => {
+    const tidFil = filnavn.replace('negativ-resultat-', '').replace('.json', '');
+    const json = JSON.parse(fs.readFileSync(path.join(datoDir, filnavn), 'utf-8'));
+    return { dato, tidspunkt: tidFil.replace('-', ':'), score: json.score, totalt: json.totalt, rapportFil: `negativ-rapport-${tidFil}.html` };
+  });
+}
+
+const uu        = datoer.flatMap(lesAlleUU);
+const monkey    = datoer.flatMap(lesAlleMonkey);
+const sikkerhet = datoer.flatMap(lesAlleSikkerhet);
+const negativ   = datoer.flatMap(lesAlleNegativ);
 
 // --- Kopier rapporter til docs/arkiv/ ---
 
@@ -75,15 +123,13 @@ for (const dato of datoer) {
   const måldir = path.join(arkivDir, dato);
   fs.mkdirSync(måldir, { recursive: true });
 
-  for (const fil of rapportFiler) {
-    const src = path.join(kildedir, fil);
-    if (fs.existsSync(src)) {
-      let html = fs.readFileSync(src, 'utf-8');
-      html = html.replace(/src="skjermbilder\//g, `src="../${dato}/skjermbilder/`);
-      html = html.replace(/href="skjermbilder\//g, `href="../${dato}/skjermbilder/`);
-      fs.writeFileSync(path.join(måldir, fil), html);
-    }
-  }
+  // Kopier alle HTML-rapporter (inkl. tidsstemplede varianter)
+  fs.readdirSync(kildedir).filter(f => f.endsWith('.html')).forEach(fil => {
+    let html = fs.readFileSync(path.join(kildedir, fil), 'utf-8');
+    html = html.replace(/src="skjermbilder\//g, `src="../${dato}/skjermbilder/`);
+    html = html.replace(/href="skjermbilder\//g, `href="../${dato}/skjermbilder/`);
+    fs.writeFileSync(path.join(måldir, fil), html);
+  });
 
   // Kopier skjermbilder
   for (const skjermNavn of ['skjermbilder', 'skjermbilder-monkey', 'skjermbilder-negativ', 'skjermbilder-sikkerhet']) {
@@ -126,61 +172,26 @@ if (sisteDato) {
 
 function scoreKlasse(s) { return s >= 80 ? 'god' : s >= 50 ? 'middels' : 'dårlig'; }
 
-function trendPil(liste, i) {
-  if (i >= liste.length - 1) return '';
-  const diff = liste[i].score - liste[i + 1].score;
+const norskDato = (dato) => new Date(dato).toLocaleDateString('nb-NO', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+function trendPil(nyScore, gammelScore) {
+  const diff = nyScore - gammelScore;
   if (diff > 0) return `<span class="trend opp">↑ +${diff}</span>`;
   if (diff < 0) return `<span class="trend ned">↓ ${diff}</span>`;
   return `<span class="trend lik">→ 0</span>`;
 }
 
-const norskDato = (dato) => new Date(dato).toLocaleDateString('nb-NO', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-
-function grafHTML(liste, rapportFil) {
-  if (liste.length === 0) return '<p style="color:#9ca3af;font-size:0.82rem">Ingen data ennå.</p>';
+function grafHTML(sistePerDato) {
+  if (sistePerDato.length === 0) return '<p style="color:#9ca3af;font-size:0.82rem">Ingen data ennå.</p>';
   return `<div class="graf">
-    ${[...liste].reverse().map(r => `
+    ${[...sistePerDato].reverse().map(r => `
       <div class="søyle-wrapper" title="${r.dato}: ${r.score} poeng">
-        <a href="arkiv/${r.dato}/${rapportFil}" style="width:100%;display:flex;flex-direction:column;align-items:center;flex:1;justify-content:flex-end">
+        <a href="arkiv/${r.dato}/${r.rapportFil}" style="width:100%;display:flex;flex-direction:column;align-items:center;flex:1;justify-content:flex-end">
           <div class="søyle ${scoreKlasse(r.score)}" style="height:${r.score}%"></div>
         </a>
         <span class="søyle-dato">${r.dato.slice(5)}</span>
       </div>`).join('')}
   </div>`;
-}
-
-function radHTML(r, i, liste, rapportFil, nøkkeltallFn) {
-  return `
-  <a class="rapport-rad ${scoreKlasse(r.score)}" href="arkiv/${r.dato}/${rapportFil}">
-    <div class="score-boble ${scoreKlasse(r.score)}">${r.score}</div>
-    <div class="dato-info">
-      <h3>${norskDato(r.dato)}</h3>
-      <p>${r.dato} &nbsp; ${trendPil(liste, i)}</p>
-    </div>
-    <div class="nøkkeltall">${nøkkeltallFn(r)}</div>
-    <div class="åpne-knapp">Se rapport →</div>
-  </a>`;
-}
-
-function seksjonHTML(tittel, ikon, liste, rapportFil, sisteRapportLenke, nøkkeltallFn) {
-  return `
-  <section class="testtype-seksjon">
-    <div class="seksjon-header">
-      <span class="seksjon-ikon">${ikon}</span>
-      <h2>${tittel}</h2>
-      <span class="seksjon-antall">${liste.length} kjøringer</span>
-      <a href="${sisteRapportLenke}" class="seksjon-lenke">Siste rapport →</a>
-    </div>
-    <div class="trend-graf">
-      <div class="graf-tittel">Score-utvikling</div>
-      ${grafHTML(liste, rapportFil)}
-    </div>
-    <div class="rapport-liste">
-      ${liste.length === 0
-        ? '<p style="color:#9ca3af;font-size:0.82rem;padding:1rem 0">Ingen rapporter ennå.</p>'
-        : liste.map((r, i) => radHTML(r, i, liste, rapportFil, nøkkeltallFn)).join('')}
-    </div>
-  </section>`;
 }
 
 // --- Nøkkeltall per testtype ---
@@ -205,7 +216,78 @@ const negativNøkkel = r => `
   <span>${r.totalt.advarsel > 0 ? `<b class="rød">Advarsler ${r.totalt.advarsel}</b>` : '<span class="grønn">Ingen advarsler</span>'}</span>
   <span>${r.totalt.feil > 0 ? `<b class="rød">Feil ${r.totalt.feil}</b>` : '<span class="grønn">Ingen feil</span>'}</span>`;
 
-// --- Generer HTML ---
+// --- Seksjon per testtype med nedtrekk for flere kjøringer samme dag ---
+
+function seksjonHTML(tittel, ikon, alleRuns, sisteRapportLenke, nøkkeltallFn) {
+  // Grupper etter dato (rekkefølgen er allerede nyeste dato først)
+  const datoMap = new Map();
+  for (const r of alleRuns) {
+    if (!datoMap.has(r.dato)) datoMap.set(r.dato, []);
+    datoMap.get(r.dato).push(r);
+  }
+  const datoer = [...datoMap.keys()];
+  const sistePerDato = datoer.map(d => datoMap.get(d)[0]);
+
+  const raderHTML = datoer.map((dato, i) => {
+    const runs = datoMap.get(dato);
+    const siste = runs[0];
+    const tidligere = runs.slice(1);
+    const forrige = sistePerDato[i + 1];
+    const trend = forrige ? trendPil(siste.score, forrige.score) : '';
+    const tidTekst = siste.tidspunkt ? ` · ${siste.tidspunkt}` : '';
+
+    const tidligereHTML = tidligere.length === 0 ? '' : `
+    <details class="tidl-gruppe">
+      <summary class="tidl-summary">
+        <span class="tidl-chevron">▶</span>
+        ${tidligere.length} tidligere kjøring${tidligere.length > 1 ? 'er' : ''} samme dag
+      </summary>
+      ${tidligere.map(r => `
+      <a class="rapport-rad ${scoreKlasse(r.score)} tidl-rad" href="arkiv/${dato}/${r.rapportFil}">
+        <div class="score-boble ${scoreKlasse(r.score)}">${r.score}</div>
+        <div class="dato-info">
+          <h3>${r.tidspunkt || dato}</h3>
+          <p>Tidligere kjøring</p>
+        </div>
+        <div class="nøkkeltall">${nøkkeltallFn(r)}</div>
+        <div class="åpne-knapp">Se rapport →</div>
+      </a>`).join('')}
+    </details>`;
+
+    return `
+    <a class="rapport-rad ${scoreKlasse(siste.score)}" href="arkiv/${dato}/${siste.rapportFil}">
+      <div class="score-boble ${scoreKlasse(siste.score)}">${siste.score}</div>
+      <div class="dato-info">
+        <h3>${norskDato(dato)}</h3>
+        <p>${dato}${tidTekst} &nbsp; ${trend}</p>
+      </div>
+      <div class="nøkkeltall">${nøkkeltallFn(siste)}</div>
+      <div class="åpne-knapp">Se rapport →</div>
+    </a>
+    ${tidligereHTML}`;
+  }).join('');
+
+  return `
+  <section class="testtype-seksjon">
+    <div class="seksjon-header">
+      <span class="seksjon-ikon">${ikon}</span>
+      <h2>${tittel}</h2>
+      <span class="seksjon-antall">${datoer.length} kjøringer</span>
+      <a href="${sisteRapportLenke}" class="seksjon-lenke">Siste rapport →</a>
+    </div>
+    <div class="trend-graf">
+      <div class="graf-tittel">Score-utvikling</div>
+      ${grafHTML(sistePerDato)}
+    </div>
+    <div class="rapport-liste">
+      ${datoer.length === 0
+        ? '<p style="color:#9ca3af;font-size:0.82rem;padding:1rem 0">Ingen rapporter ennå.</p>'
+        : raderHTML}
+    </div>
+  </section>`;
+}
+
+// --- Generer arkiv HTML ---
 
 const arkivHTML = `<!DOCTYPE html>
 <html lang="no">
@@ -224,8 +306,6 @@ const arkivHTML = `<!DOCTYPE html>
   header p { opacity: 0.5; font-size: 0.82rem; margin-top: 0.3rem; }
 
   .rapport-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 2px solid #f4ecdf; flex-wrap: wrap; }
-  .rapport-header h1 { font-size: 1.5rem; font-weight: 700; color: #0a1355; letter-spacing: -.01em; }
-  .rapport-header .meta { font-size: .85rem; color: #6b7280; margin-top: .4rem; }
   .nav-knapper { display: flex; gap: .6rem; flex-wrap: wrap; align-items: flex-start; }
   .knapp { display: inline-block; padding: .5rem 1.2rem; background: #0a1355; color: white; border-radius: 100px; font-size: .82rem; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background .15s; }
   .knapp:hover { background: #2b3285; }
@@ -285,9 +365,20 @@ const arkivHTML = `<!DOCTYPE html>
   .trend.ned { color: #c53030; }
   .trend.lik { color: #9ca3af; }
 
+  /* Tidligere kjøringer samme dag */
+  .tidl-gruppe { border-top: 1px dashed #e5e3de; }
+  .tidl-summary { display: flex; align-items: center; gap: 0.4rem; padding: 0.55rem 1.6rem; font-size: 0.76rem; color: #9ca3af; cursor: pointer; list-style: none; user-select: none; transition: background .15s; }
+  .tidl-summary:hover { background: #faf6f0; color: #0a1355; }
+  .tidl-summary::-webkit-details-marker { display: none; }
+  .tidl-chevron { font-size: 0.55rem; transition: transform .2s; }
+  details[open] > .tidl-summary .tidl-chevron { transform: rotate(90deg); }
+  .tidl-rad { border-left-style: dashed; opacity: 0.75; }
+  .tidl-rad:hover { opacity: 1; }
+
   footer { text-align: center; padding: 2.5rem; color: #9ca3af; font-size: 0.78rem; border-top: 1px solid #f1f0ee; margin-top: 1rem; }
 
   @media (max-width: 640px) {
+    .container { padding: 0 1rem; }
     .rapport-rad { grid-template-columns: auto 1fr auto; }
     .nøkkeltall { display: none; }
   }
@@ -314,10 +405,10 @@ const arkivHTML = `<!DOCTYPE html>
     </div>
   </div>
 
-  ${seksjonHTML('UU-test (WCAG / tilgjengelighet)', '♿', uu, 'uu-rapport.html', 'uu-rapport.html', uuNøkkel)}
-  ${seksjonHTML('Monkey-test', '🐒', monkey, 'monkey-rapport.html', 'monkey-rapport.html', monkeyNøkkel)}
-  ${seksjonHTML('Sikkerhetstest', '🔐', sikkerhet, 'sikkerhet-rapport.html', 'sikkerhet-rapport.html', sikkerhetNøkkel)}
-  ${seksjonHTML('Negativ test', '🧪', negativ, 'negativ-rapport.html', 'negativ-rapport.html', negativNøkkel)}
+  ${seksjonHTML('UU-test (WCAG / tilgjengelighet)', '♿', uu, 'uu-rapport.html', uuNøkkel)}
+  ${seksjonHTML('Monkey-test', '🐒', monkey, 'monkey-rapport.html', monkeyNøkkel)}
+  ${seksjonHTML('Sikkerhetstest', '🔐', sikkerhet, 'sikkerhet-rapport.html', sikkerhetNøkkel)}
+  ${seksjonHTML('Negativ test', '🧪', negativ, 'negativ-rapport.html', negativNøkkel)}
 
 </div>
 <footer>KS Tilskudd · Testrapporter · axe-core + Playwright</footer>
@@ -326,7 +417,7 @@ const arkivHTML = `<!DOCTYPE html>
 
 fs.writeFileSync(path.join(docsDir, 'arkiv.html'), arkivHTML);
 console.log(`✅ Arkiv generert → docs/arkiv.html`);
-console.log(`   UU: ${uu.length} | Monkey: ${monkey.length} | Sikkerhet: ${sikkerhet.length} | Negativ: ${negativ.length}`);
+console.log(`   Datoer: ${datoer.length} | UU: ${uu.length} | Monkey: ${monkey.length} | Sikkerhet: ${sikkerhet.length} | Negativ: ${negativ.length}`);
 
 // --- Generer dashboard (rapport.html) ---
 

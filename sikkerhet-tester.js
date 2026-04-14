@@ -592,5 +592,11 @@ const html = `<!DOCTYPE html>
 </html>`;
 
 fs.writeFileSync(path.join(rapportDir, 'sikkerhet-rapport.html'), html);
+
+// Lagre tidsstemplet kopi for arkiv (bevarer alle kjøringer samme dag)
+const tidFil = tidspunkt.replace(':', '-');
+fs.copyFileSync(path.join(rapportDir, 'sikkerhet-resultat.json'), path.join(rapportDir, `sikkerhet-resultat-${tidFil}.json`));
+fs.copyFileSync(path.join(rapportDir, 'sikkerhet-rapport.html'), path.join(rapportDir, `sikkerhet-rapport-${tidFil}.html`));
+
 console.log(`\n📁 Sikkerhetsrapport: ${path.join(rapportDir, 'sikkerhet-rapport.html')}`);
 exec(`open "${path.join(rapportDir, 'sikkerhet-rapport.html')}"`);

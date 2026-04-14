@@ -1,0 +1,50 @@
+[main 89fd3f4] Daglig UU-rapport 2026-04-14 [skip ci]
+ 64 files changed, 6031 insertions(+), 92 deletions(-)
+ create mode 100644 docs/arkiv/2026-04-13/skjermbilder/s9-doede-lenker-side.png
+ create mode 100644 docs/arkiv/2026-04-14/rapport.html
+ rename docs/{skjermbilder => arkiv/2026-04-14}/skjermbilder/s2-page-has-heading-one-0-element.png (100%)
+ rename docs/{skjermbilder => arkiv/2026-04-14}/skjermbilder/s2-page-has-heading-one-0-side.png (100%)
+ rename docs/{skjermbilder => arkiv/2026-04-14}/skjermbilder/s4-doede-lenker-side.png (100%)
+ rename docs/{skjermbilder => arkiv/2026-04-14}/skjermbilder/s5-doede-lenker-side.png (100%)
+ rename docs/{skjermbilder => arkiv/2026-04-14}/skjermbilder/s6-doede-lenker-side.png (100%)
+ rename docs/{skjermbilder => arkiv/2026-04-14}/skjermbilder/s7-doede-lenker-side.png (100%)
+ rename docs/{skjermbilder => arkiv/2026-04-14}/skjermbilder/s8-doede-lenker-side.png (100%)
+ delete mode 100644 docs/skjermbilder-monkey/monkey-feilside-6.png
+ delete mode 100644 docs/skjermbilder/s1-region-0-element.png
+ delete mode 100644 docs/skjermbilder/s1-region-0-side.png
+ delete mode 100644 docs/skjermbilder/s2-region-1-element.png
+ delete mode 100644 docs/skjermbilder/s4-region-0-element.png
+ delete mode 100644 docs/skjermbilder/s4-region-0-side.png
+ delete mode 100644 docs/skjermbilder/s5-region-0-element.png
+ delete mode 100644 docs/skjermbilder/s6-region-0-element.png
+ delete mode 100644 docs/skjermbilder/s6-region-0-side.png
+ delete mode 100644 docs/skjermbilder/s7-region-0-element.png
+ delete mode 100644 docs/skjermbilder/s8-region-0-element.png
+ create mode 100644 rapporter/2026-04-14/monkey-rapport.html
+ create mode 100644 rapporter/2026-04-14/monkey-resultat.json
+ create mode 100644 rapporter/2026-04-14/negativ-rapport.html
+ create mode 100644 rapporter/2026-04-14/negativ-resultat.json
+ create mode 100644 rapporter/2026-04-14/rapport.html
+ create mode 100644 rapporter/2026-04-14/resultat.json
+ create mode 100644 rapporter/2026-04-14/sikkerhet-rapport.html
+ create mode 100644 rapporter/2026-04-14/sikkerhet-resultat.json
+ rename docs/skjermbilder/s7-region-0-side.png => rapporter/2026-04-14/skjermbilder-monkey/monkey-feilside-2.png (79%)
+ rename docs/skjermbilder-monkey/monkey-pre-submit-7.png => rapporter/2026-04-14/skjermbilder-monkey/monkey-pre-submit-1.png (100%)
+ rename docs/skjermbilder-monkey/monkey-pre-submit-2.png => rapporter/2026-04-14/skjermbilder-monkey/monkey-pre-submit-3.png (87%)
+ rename docs/skjermbilder-monkey/monkey-pre-submit-8.png => rapporter/2026-04-14/skjermbilder-monkey/monkey-pre-submit-4.png (88%)
+ create mode 100644 rapporter/2026-04-14/skjermbilder-monkey/monkey-pre-submit-5.png
+ create mode 100644 rapporter/2026-04-14/skjermbilder-negativ/negativ-mobil-5.png
+ create mode 100644 rapporter/2026-04-14/skjermbilder-negativ/negativ-url-ingen-feilside-1.png
+ create mode 100644 rapporter/2026-04-14/skjermbilder-negativ/negativ-url-ingen-feilside-2.png
+ create mode 100644 rapporter/2026-04-14/skjermbilder-negativ/negativ-url-ingen-feilside-3.png
+ create mode 100644 rapporter/2026-04-14/skjermbilder-negativ/negativ-url-ingen-feilside-4.png
+ create mode 100644 rapporter/2026-04-14/skjermbilder/s2-page-has-heading-one-0-element.png
+ rename docs/skjermbilder/s2-region-1-side.png => rapporter/2026-04-14/skjermbilder/s2-page-has-heading-one-0-side.png (86%)
+ rename docs/skjermbilder-monkey/monkey-feilside-1.png => rapporter/2026-04-14/skjermbilder/s4-doede-lenker-side.png (100%)
+ rename docs/skjermbilder/s5-region-0-side.png => rapporter/2026-04-14/skjermbilder/s5-doede-lenker-side.png (76%)
+ rename docs/skjermbilder-monkey/monkey-feilside-4.png => rapporter/2026-04-14/skjermbilder/s6-doede-lenker-side.png (100%)
+ create mode 100644 rapporter/2026-04-14/skjermbilder/s7-doede-lenker-side.png
+ rename docs/skjermbilder/s8-region-0-side.png => rapporter/2026-04-14/skjermbilder/s8-doede-lenker-side.png (85%)
+ create mode 100644 rapporter/kjoring.log
+ create mode 100644 rapporter/launchd-stderr.log
+ create mode 100644 rapporter/launchd-stdout.log
