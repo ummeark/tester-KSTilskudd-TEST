@@ -627,21 +627,6 @@ const html = `<!DOCTYPE html>
     </div>
   </div>
 
-  <div class="score-kort">
-    <div class="score-sirkel ${scoreKlasse}">${score}</div>
-    <div class="score-tekst">
-      <strong>Robusthetsscore</strong>
-      <p>${bestått} av ${tester.length} tester bestått. ${feil} feil og ${advarsel} advarsler på tvers av ${Object.keys(KATEGORIER).length} testkategorier.</p>
-    </div>
-  </div>
-
-  <div class="kort-grid">
-    <div class="kort ok"><div class="tall">${tester.length}</div><div class="etikett">Tester totalt</div></div>
-    <div class="kort ok"><div class="tall">${bestått}</div><div class="etikett">Bestått</div></div>
-    <div class="kort ${advarsel > 0 ? 'advarsel' : 'ok'}"><div class="tall">${advarsel}</div><div class="etikett">Advarsler</div></div>
-    <div class="kort ${feil > 0 ? 'kritisk' : 'ok'}"><div class="tall">${feil}</div><div class="etikett">Feil</div></div>
-  </div>
-
   <div class="seksjon" style="background:#f4ecdf;border-color:#e8dcc8;margin-bottom:1.5rem">
     <div class="seksjon-tittel">Hva er negativ testing?</div>
     <p style="font-size:.88rem;line-height:1.7;color:#374151;margin-bottom:1rem">
@@ -681,6 +666,20 @@ const html = `<!DOCTYPE html>
         </ul>
       </div>
     </div>
+  </div>
+  <div class="score-kort">
+    <div class="score-sirkel ${scoreKlasse}">${score}</div>
+    <div class="score-tekst">
+      <strong>Robusthetsscore</strong>
+      <p>${bestått} av ${tester.length} tester bestått. ${feil} feil og ${advarsel} advarsler på tvers av ${Object.keys(KATEGORIER).length} testkategorier.</p>
+    </div>
+  </div>
+
+  <div class="kort-grid">
+    <div class="kort ok"><div class="tall">${tester.length}</div><div class="etikett">Tester totalt</div></div>
+    <div class="kort ok"><div class="tall">${bestått}</div><div class="etikett">Bestått</div></div>
+    <div class="kort ${advarsel > 0 ? 'advarsel' : 'ok'}"><div class="tall">${advarsel}</div><div class="etikett">Advarsler</div></div>
+    <div class="kort ${feil > 0 ? 'kritisk' : 'ok'}"><div class="tall">${feil}</div><div class="etikett">Feil</div></div>
   </div>
 
   ${seksjoner}

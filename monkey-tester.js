@@ -429,14 +429,6 @@ const html = `<!DOCTYPE html>
     </div>
   </div>
 
-  <div class="score-kort">
-    <div class="score-sirkel ${scoreKlasse}">${score}</div>
-    <div class="score-tekst">
-      <strong>Robusthetsscore</strong>
-      <p>Basert på JS-feil, nettverksfeil og kritiske funn etter ${ITERASJONER} tilfeldige interaksjoner på ${besøkte.size} sider. Lavere score indikerer ustabilitet.</p>
-    </div>
-  </div>
-
   <div class="seksjon" style="background:#f4ecdf;border-color:#e8dcc8;margin-bottom:1.5rem">
     <div class="seksjon-tittel">Hva er monkey-testing?</div>
     <p style="font-size:.88rem;line-height:1.7;color:#374151;margin-bottom:1rem">
@@ -475,6 +467,13 @@ const html = `<!DOCTYPE html>
           <li>Ugyldig e-postadresse</li>
         </ul>
       </div>
+    </div>
+  </div>
+  <div class="score-kort">
+    <div class="score-sirkel ${scoreKlasse}">${score}</div>
+    <div class="score-tekst">
+      <strong>Robusthetsscore</strong>
+      <p>Basert på JS-feil, nettverksfeil og kritiske funn etter ${ITERASJONER} tilfeldige interaksjoner på ${besøkte.size} sider. Lavere score indikerer ustabilitet.</p>
     </div>
   </div>
 

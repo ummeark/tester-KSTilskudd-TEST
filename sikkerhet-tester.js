@@ -528,22 +528,6 @@ const html = `<!DOCTYPE html>
     </div>
   </div>
 
-  <div class="score-kort">
-    <div class="score-sirkel ${scoreKlasse}">${score}</div>
-    <div class="score-tekst">
-      <strong>Sikkerhetsscore</strong>
-      <p>Basert på ${kritiske + alvorlige + middels + lave} funn fordelt på ${Object.keys(KATEGORIER).length} testområder. Testen er passiv og ikke-destruktiv.</p>
-    </div>
-  </div>
-
-  <div class="kort-grid">
-    <div class="kort ${kritiske > 0 ? 'kritisk' : 'ok'}"><div class="tall">${kritiske}</div><div class="etikett">Kritiske</div></div>
-    <div class="kort ${alvorlige > 0 ? 'advarsel' : 'ok'}"><div class="tall">${alvorlige}</div><div class="etikett">Alvorlige</div></div>
-    <div class="kort ${middels > 0 ? 'advarsel' : 'ok'}"><div class="tall">${middels}</div><div class="etikett">Moderate</div></div>
-    <div class="kort ${lave > 0 ? 'nøytral' : 'ok'}"><div class="tall">${lave}</div><div class="etikett">Lave</div></div>
-    <div class="kort ok"><div class="tall">${ok}</div><div class="etikett">Bestått</div></div>
-  </div>
-
   <div class="seksjon" style="background:#f4ecdf;border-color:#e8dcc8;margin-bottom:1.5rem">
     <div class="seksjon-tittel">Hva er sikkerhetstesting?</div>
     <p style="font-size:.88rem;line-height:1.7;color:#374151;margin-bottom:1rem">
@@ -582,6 +566,21 @@ const html = `<!DOCTYPE html>
         </ul>
       </div>
     </div>
+  </div>
+  <div class="score-kort">
+    <div class="score-sirkel ${scoreKlasse}">${score}</div>
+    <div class="score-tekst">
+      <strong>Sikkerhetsscore</strong>
+      <p>Basert på ${kritiske + alvorlige + middels + lave} funn fordelt på ${Object.keys(KATEGORIER).length} testområder. Testen er passiv og ikke-destruktiv.</p>
+    </div>
+  </div>
+
+  <div class="kort-grid">
+    <div class="kort ${kritiske > 0 ? 'kritisk' : 'ok'}"><div class="tall">${kritiske}</div><div class="etikett">Kritiske</div></div>
+    <div class="kort ${alvorlige > 0 ? 'advarsel' : 'ok'}"><div class="tall">${alvorlige}</div><div class="etikett">Alvorlige</div></div>
+    <div class="kort ${middels > 0 ? 'advarsel' : 'ok'}"><div class="tall">${middels}</div><div class="etikett">Moderate</div></div>
+    <div class="kort ${lave > 0 ? 'nøytral' : 'ok'}"><div class="tall">${lave}</div><div class="etikett">Lave</div></div>
+    <div class="kort ok"><div class="tall">${ok}</div><div class="etikett">Bestått</div></div>
   </div>
 
   ${seksjoner}
