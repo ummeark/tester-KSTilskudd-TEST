@@ -45,22 +45,6 @@ npm run negativ >> "$LOG_FIL" 2>&1
 echo "[$DATO $(date +%H:%M:%S)] Kjører npm run arkiv..." >> "$LOG_FIL"
 npm run arkiv >> "$LOG_FIL" 2>&1
 
-# Kopier siste rapporter til docs/
-if [ -d "$REPO_DIR/rapporter/$DATO" ]; then
-  cp "$REPO_DIR/rapporter/$DATO/rapport.html" "$REPO_DIR/docs/rapport.html"
-  cp "$REPO_DIR/rapporter/$DATO/monkey-rapport.html" "$REPO_DIR/docs/monkey-rapport.html" 2>/dev/null || true
-  cp "$REPO_DIR/rapporter/$DATO/sikkerhet-rapport.html" "$REPO_DIR/docs/sikkerhet-rapport.html" 2>/dev/null || true
-  cp "$REPO_DIR/rapporter/$DATO/negativ-rapport.html" "$REPO_DIR/docs/negativ-rapport.html" 2>/dev/null || true
-  if [ -d "$REPO_DIR/rapporter/$DATO/skjermbilder" ]; then
-    rm -rf "$REPO_DIR/docs/skjermbilder"
-    cp -r "$REPO_DIR/rapporter/$DATO/skjermbilder" "$REPO_DIR/docs/skjermbilder"
-  fi
-  if [ -d "$REPO_DIR/rapporter/$DATO/skjermbilder-monkey" ]; then
-    rm -rf "$REPO_DIR/docs/skjermbilder-monkey"
-    cp -r "$REPO_DIR/rapporter/$DATO/skjermbilder-monkey" "$REPO_DIR/docs/skjermbilder-monkey"
-  fi
-fi
-
 # Git commit og push
 git config user.name "UU-tester bot"
 git config user.email "bot@github.com"

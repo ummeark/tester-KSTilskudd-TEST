@@ -1,0 +1,31 @@
+{
+  "url": "https://tilskudd.fiks.test.ks.no/",
+  "dato": "2026-04-16",
+  "totalt": {
+    "iterasjoner": 60,
+    "siderBesøkt": 10,
+    "jsErrors": 0,
+    "konsollFeil": 0,
+    "nettverksFeil": 0,
+    "kritiske": 0,
+    "alvorlige": 0,
+    "varighet": 31
+  },
+  "score": 100,
+  "jsErrors": [],
+  "konsollFeil": [],
+  "nettverksFeil": [],
+  "interaksjoner": [],
+  "besøkte": [
+    "https://tilskudd.fiks.test.ks.no/",
+    "https://tilskudd.fiks.test.ks.no/ordninger?searchString=&currentPage=1&pageSize=10",
+    "https://tilskudd.fiks.test.ks.no/ordninger?searchString=%21%40%23%24%25%26*%28%29&currentPage=1&pageSize=10",
+    "https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10",
+    "https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10&searchString=%21%40%23%24%25%26*%28%29",
+    "https://tilskudd.fiks.test.ks.no/ordninger/7082abd8-4f23-43e9-adce-c4762b848b81",
+    "https://tilskudd.fiks.test.ks.no/ordninger?searchString=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&currentPage=1&pageSize=10",
+    "https://tilskudd.fiks.test.ks.no/ordninger?searchString=%22-1%22&currentPage=1&pageSize=10",
+    "https://login.test.idporten.no/authorize/selector",
+    "https://tilskudd.fiks.test.ks.no/ordninger?searchString=Test+bruker&currentPage=1&pageSize=10"
+  ]
+}
