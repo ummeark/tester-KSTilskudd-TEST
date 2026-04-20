@@ -1,0 +1,17 @@
+[main 553743a] Daglig UU-rapport 2026-04-21 [skip ci]
+ 34 files changed, 11399 insertions(+), 242 deletions(-)
+ create mode 100644 docs/arkiv/2026-04-20/monkey-rapport-00-16.html
+ create mode 100644 docs/arkiv/2026-04-20/negativ-rapport-00-17.html
+ create mode 100644 docs/arkiv/2026-04-20/sikkerhet-rapport-00-17.html
+ create mode 100644 docs/arkiv/2026-04-20/uu-rapport-00-16.html
+ create mode 100644 docs/arkiv/2026-04-20/uu-rapport-13-08.html
+ create mode 100644 rapporter/2026-04-20/monkey-rapport-00-16.html
+ create mode 100644 rapporter/2026-04-20/monkey-resultat-00-16.json
+ create mode 100644 rapporter/2026-04-20/negativ-rapport-00-17.html
+ create mode 100644 rapporter/2026-04-20/negativ-resultat-00-17.json
+ create mode 100644 rapporter/2026-04-20/resultat-00-16.json
+ create mode 100644 rapporter/2026-04-20/resultat-13-08.json
+ create mode 100644 rapporter/2026-04-20/sikkerhet-rapport-00-17.html
+ create mode 100644 rapporter/2026-04-20/sikkerhet-resultat-00-17.json
+ create mode 100644 rapporter/2026-04-20/uu-rapport-00-16.html
+ create mode 100644 rapporter/2026-04-20/uu-rapport-13-08.html
