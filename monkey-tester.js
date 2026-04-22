@@ -574,6 +574,23 @@ const html = `<!DOCTYPE html>
     </div>
     <p style="font-size:.78rem;color:#6b7280;font-family:ui-monospace,monospace">Score = maks(0, 100 − sum av trekk) &nbsp;·&nbsp; <span style="color:#07604f;font-weight:600">Grønn ≥ 80</span> &nbsp;·&nbsp; <span style="color:#b8860b;font-weight:600">Gul 50–79</span> &nbsp;·&nbsp; <span style="color:#c53030;font-weight:600">Rød &lt; 50</span></p>
   </div>
+  <details style="margin-top:2rem;border:1px solid #e5e3de;border-radius:.5rem;padding:1rem 1.2rem;background:#fafaf9">
+    <summary style="cursor:pointer;font-size:.88rem;font-weight:600;color:#374151;user-select:none">Alle tester som kjøres (${ITERASJONER} tilfeldige handlinger) ▾</summary>
+    <div style="margin-top:1rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem;font-size:.82rem">
+      <div>
+        <div style="font-weight:600;color:#0a1355;margin-bottom:.4rem">🖱️ Interaksjon</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.2rem">
+          ${['Klikk på tilfeldig lenke','Klikk på tilfeldig knapp','Dobbeltklikk på element','Høyreklikk på element','Utfylling av skjemafelt (tilfeldig tekst, tall, spesialtegn, lang tekst)'].map(n => `<li style="color:#374151">· ${n}</li>`).join('')}
+        </ul>
+      </div>
+      <div>
+        <div style="font-weight:600;color:#0a1355;margin-bottom:.4rem">🧭 Navigasjon &amp; layout</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.2rem">
+          ${['Frem- og tilbake-navigasjon (browser back/forward)','Skrolling (opp og ned)','Endring av vindusstørrelse','Sjekk for JS-feil og nettverksfeil etter handling','Sjekk for feilsider (4xx / 5xx) etter navigasjon'].map(n => `<li style="color:#374151">· ${n}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  </details>
   <footer>KS Tilskudd · Monkey-tester · Playwright · ${dato} ${tidspunkt}</footer>
 </div>
 </body>

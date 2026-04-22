@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Negativ testrapport – 2026-04-22 13:11</title>
+<title>Negativ testrapport – 2026-04-22 13:34</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:system-ui,-apple-system,sans-serif;background:#faf6f0;color:#0f0e17;display:flex;min-height:100vh}
@@ -71,7 +71,7 @@
   <div class="sidemeny-header">
     <div class="sidemeny-logo">KS Tilskudd · Negativ testing</div>
     <div class="env-badge">TEST-MILJØ · v0.4.3</div>
-    <h1>Negativ testrapport <span>2026-04-22 13:11 · 23 tester</span></h1>
+    <h1>Negativ testrapport <span>2026-04-22 13:34 · 23 tester</span></h1>
   </div>
   <ul><li><a href="#skjema" class="sidenav-link ok">
     <span class="sidenavn">📝 Skjema-validering</span>
@@ -94,7 +94,7 @@
   <div class="rapport-header">
     <div>
       <h1>Negativ testrapport</h1>
-      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-04-22 13:11 · 23 tester · 29s · Chromium 147</div>
+      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-04-22 13:34 · 23 tester · 29s · Chromium 147</div>
     </div>
     <div class="nav-knapper">
       <a href="rapport.html" class="knapp sekundær">Forside</a>
@@ -691,7 +691,43 @@
     </div>
     <p style="font-size:.78rem;color:#6b7280;font-family:ui-monospace,monospace">Score = maks(0, 100 − sum av trekk) &nbsp;·&nbsp; <span style="color:#07604f;font-weight:600">Grønn ≥ 80</span> &nbsp;·&nbsp; <span style="color:#b8860b;font-weight:600">Gul 50–79</span> &nbsp;·&nbsp; <span style="color:#c53030;font-weight:600">Rød &lt; 50</span></p>
   </div>
-  <footer>KS Tilskudd · Negativ testing · Playwright · 2026-04-22 13:11</footer>
+  <details style="margin-top:2rem;border:1px solid #e5e3de;border-radius:.5rem;padding:1rem 1.2rem;background:#fafaf9">
+    <summary style="cursor:pointer;font-size:.88rem;font-weight:600;color:#374151;user-select:none">Alle tester som kjøres (23) ▾</summary>
+    <div style="margin-top:1rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem;font-size:.82rem">
+      
+          <div>
+            <div style="font-weight:600;color:#0a1355;margin-bottom:.4rem">Skjema</div>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.2rem">
+              <li style="color:#374151">· Tom søkeinnsending</li><li style="color:#374151">· Søk med ekstremt lang tekst (2000 tegn)</li><li style="color:#374151">· Søk med spesialtegn</li><li style="color:#374151">· Søk med kun mellomrom</li><li style="color:#374151">· Søk med norske tegn (æøå)</li><li style="color:#374151">· SQL-lignende søketekst</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-weight:600;color:#0a1355;margin-bottom:.4rem">URL-manipulering</div>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.2rem">
+              <li style="color:#374151">· Ukjent side</li><li style="color:#374151">· Ugyldig UUID i URL</li><li style="color:#374151">· Null-UUID</li><li style="color:#374151">· Path traversal-forsøk</li><li style="color:#374151">· Kodet path traversal</li><li style="color:#374151">· Ugyldig søknads-ID</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-weight:600;color:#0a1355;margin-bottom:.4rem">Navigasjon</div>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.2rem">
+              <li style="color:#374151">· Direkte tilgang til søknadsskjema uten forside</li><li style="color:#374151">· Browser tilbake fra søknadsskjema</li><li style="color:#374151">· Rask frem-og-tilbake-navigasjon (5x)</li><li style="color:#374151">· Dobbelt-klikk på handlingsknapp</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-weight:600;color:#0a1355;margin-bottom:.4rem">Nettleser</div>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.2rem">
+              <li style="color:#374151">· Sideoppdatering (F5) under søknad</li><li style="color:#374151">· Siden uten JavaScript</li><li style="color:#374151">· Smal mobilvisning (320px bredde)</li><li style="color:#374151">· Stor skjerm (3840×2160)</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-weight:600;color:#0a1355;margin-bottom:.4rem">Sesjon</div>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.2rem">
+              <li style="color:#374151">· Last side etter sletting av alle cookies</li><li style="color:#374151">· Last side etter tømming av localStorage</li><li style="color:#374151">· Direkte tilgang til "Min side" uten innlogging</li>
+            </ul>
+          </div>
+    </div>
+  </details>
+  <footer>KS Tilskudd · Negativ testing · Playwright · 2026-04-22 13:34</footer>
 </div>
 </body>
 </html>
