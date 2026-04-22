@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ytelsesrapport – 2026-04-22 15:24</title>
+<title>Ytelsesrapport – 2026-04-22 15:34</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:system-ui,-apple-system,sans-serif;background:#faf6f0;color:#0f0e17;display:flex;min-height:100vh}
@@ -46,6 +46,28 @@
   .kort .etikett{font-size:.7rem;color:#6b7280;text-transform:uppercase;letter-spacing:.05em}
   .seksjon{background:white;border:1px solid #f1f0ee;padding:2rem;margin-bottom:1.2rem;box-shadow:0 1px 4px rgba(10,19,85,.06)}
   .seksjon-tittel{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid #f4ecdf}
+  .tabell-wrapper{background:white;border:1px solid #f1f0ee;box-shadow:0 1px 4px rgba(10,19,85,.06);overflow-x:auto;margin-bottom:1.5rem}
+  table{width:100%;border-collapse:collapse;font-size:.83rem}
+  th{background:#0a1355;color:white;padding:.7rem 1rem;text-align:left;font-weight:600;font-size:.75rem;white-space:nowrap}
+  th small{display:block;font-weight:400;opacity:.6;font-size:.65rem;margin-top:1px}
+  td{padding:.65rem 1rem;border-bottom:1px solid #f4f3f1;vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#faf6f0}
+  td.url-col{max-width:260px}
+  td.url-col a{color:#0a1355;text-decoration:none;font-weight:500}
+  td.url-col a:hover{text-decoration:underline}
+  td.url-col small{color:#9ca3af;font-size:.72rem;display:block;margin-top:2px;word-break:break-all}
+  td.score-col{font-weight:700;font-size:1rem;text-align:center;min-width:60px}
+  td.score-col.god{color:white;background:#07604f}
+  td.score-col.middels{color:#0a1355;background:#f3dda2}
+  td.score-col.dårlig{color:white;background:#c53030}
+  td.god{color:#07604f;font-weight:600}
+  td.middels{color:#b8860b;font-weight:600}
+  td.dårlig{color:#c53030;font-weight:600}
+  .forklaring{font-size:.78rem;color:#6b7280;display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}
+  .forklaring .god::before{content:'● ';color:#07604f}
+  .forklaring .middels::before{content:'● ';color:#b8860b}
+  .forklaring .dårlig::before{content:'● ';color:#c53030}
   footer{text-align:center;padding:2.5rem;color:#9ca3af;font-size:.78rem;border-top:1px solid #f1f0ee;margin-top:2rem}
 </style>
 </head>
@@ -54,7 +76,7 @@
   <div class="sidemeny-header">
     <div class="sidemeny-logo">KS Tilskudd · Ytelsestester</div>
     <div class="env-badge">TEST-MILJØ</div>
-    <h1>Ytelsesrapport <span>2026-04-22 15:24</span></h1>
+    <h1>Ytelsesrapport <span>2026-04-22 15:34</span></h1>
   </div>
   <ul><li><a href="#side-0" class="sidenav-link ok">
     <span class="sidenavn">KS Tilskudd - Hjem</span>
@@ -89,7 +111,7 @@
   <div class="rapport-header">
     <div>
       <h1>Ytelsesrapport</h1>
-      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-04-22 15:24 · 9 sider analysert · Playwright Chromium</div>
+      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-04-22 15:34 · 9 sider analysert · Playwright Chromium</div>
     </div>
     <div class="nav-knapper">
       <a href="rapport.html" class="knapp sekundær">Forside</a>
@@ -152,19 +174,19 @@
   <div class="kort-grid">
     <div class="kort ok">
       <div class="etikett">Snitt LCP</div>
-      <div class="tall">233 ms</div>
+      <div class="tall">267 ms</div>
     </div>
     <div class="kort ok">
       <div class="etikett">Snitt FCP</div>
-      <div class="tall">148 ms</div>
+      <div class="tall">161 ms</div>
     </div>
     <div class="kort ok">
       <div class="etikett">Snitt TTFB</div>
-      <div class="tall">76 ms</div>
+      <div class="tall">92 ms</div>
     </div>
     <div class="kort ok">
       <div class="etikett">Snitt lastetid</div>
-      <div class="tall">163 ms</div>
+      <div class="tall">314 ms</div>
     </div>
     <div class="kort advarsel">
       <div class="etikett">Total størrelse</div>
@@ -176,330 +198,144 @@
     </div>
   </div>
 
-  
-  <div class="seksjon" id="side-0" style="margin-bottom:1.2rem">
-    <div class="seksjon-tittel">KS Tilskudd - Hjem</div>
-    <p style="font-size:.82rem;color:#6b7280;margin-bottom:1rem;word-break:break-all">
-      <a href="https://tilskudd.fiks.test.ks.no/" target="_blank" style="color:#07604f;text-decoration:none">https://tilskudd.fiks.test.ks.no/</a>
-    </p>
-    <div class="kort-grid">
-      <div class="kort nøytral">
-        <div class="etikett">Score</div>
-        <div class="tall" style="color:#07604f">100</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">LCP</div>
-        <div class="tall">276 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">FCP</div>
-        <div class="tall">252 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">TTFB</div>
-        <div class="tall">39 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Lastetid</div>
-        <div class="tall">262 ms</div>
-      </div>
-      <div class="kort advarsel">
-        <div class="etikett">Størrelse</div>
-        <div class="tall">1.1 MB</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Forespørsler</div>
-        <div class="tall">18</div>
-      </div>
-    </div>
+  <div class="tabell-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Side</th>
+          <th>Score</th>
+          <th>LCP<small>mål &lt; 2,5 s</small></th>
+          <th>FCP<small>mål &lt; 1,8 s</small></th>
+          <th>TTFB<small>mål &lt; 800 ms</small></th>
+          <th>Lastetid<small>mål &lt; 3 s</small></th>
+          <th>Størrelse<small>mål &lt; 1 MB</small></th>
+          <th>Forespørsler<small>mål &lt; 50</small></th>
+        </tr>
+      </thead>
+      <tbody>
+  <tr id="side-0">
+    <td class="url-col">
+      <a href="https://tilskudd.fiks.test.ks.no/" target="_blank">KS Tilskudd - Hjem</a>
+      <small>https://tilskudd.fiks.test.ks.no/</small>
+    </td>
+    <td class="score-col god">100</td>
+    <td class="god">368 ms</td>
+    <td class="god">320 ms</td>
+    <td class="god">103 ms</td>
+    <td class="god">356 ms</td>
+    <td class="middels">1.1 MB</td>
+    <td class="god">18</td>
+  </tr>
+  <tr id="side-1">
+    <td class="url-col">
+      <a href="https://tilskudd.fiks.test.ks.no/ordninger" target="_blank">KS Tilskudd - Ordninger</a>
+      <small>https://tilskudd.fiks.test.ks.no/ordninger</small>
+    </td>
+    <td class="score-col god">100</td>
+    <td class="god">756 ms</td>
+    <td class="god">192 ms</td>
+    <td class="god">133 ms</td>
+    <td class="god">205 ms</td>
+    <td class="god">14 KB</td>
+    <td class="god">23</td>
+  </tr>
+  <tr id="side-2">
+    <td class="url-col">
+      <a href="https://tilskudd.fiks.test.ks.no/minside" target="_blank">ID-porten</a>
+      <small>https://tilskudd.fiks.test.ks.no/minside</small>
+    </td>
+    <td class="score-col god">100</td>
+    <td class="god">172 ms</td>
+    <td class="god">172 ms</td>
+    <td class="god">13 ms</td>
+    <td class="god">1.5 s</td>
+    <td class="god">52 KB</td>
+    <td class="god">13</td>
+  </tr>
+  <tr id="side-3">
+    <td class="url-col">
+      <a href="https://tilskudd.fiks.test.ks.no/ordninger/553b5d8c-209e-410e-88c6-a6cb79d714dc" target="_blank">KS Tilskudd</a>
+      <small>https://tilskudd.fiks.test.ks.no/ordninger/553b5d8c-209e-410e-88c6-a6cb79d714dc</small>
+    </td>
+    <td class="score-col god">100</td>
+    <td class="god">212 ms</td>
+    <td class="god">112 ms</td>
+    <td class="god">83 ms</td>
+    <td class="god">127 ms</td>
+    <td class="god">113 KB</td>
+    <td class="god">22</td>
+  </tr>
+  <tr id="side-4">
+    <td class="url-col">
+      <a href="https://tilskudd.fiks.test.ks.no/ordninger/7082abd8-4f23-43e9-adce-c4762b848b81" target="_blank">KS Tilskudd</a>
+      <small>https://tilskudd.fiks.test.ks.no/ordninger/7082abd8-4f23-43e9-adce-c4762b848b81</small>
+    </td>
+    <td class="score-col god">100</td>
+    <td class="god">176 ms</td>
+    <td class="god">120 ms</td>
+    <td class="god">100 ms</td>
+    <td class="god">119 ms</td>
+    <td class="god">0 KB</td>
+    <td class="god">22</td>
+  </tr>
+  <tr id="side-5">
+    <td class="url-col">
+      <a href="https://tilskudd.fiks.test.ks.no/ordninger/b39a60ca-08e4-476c-88a1-a78fe3cd7983" target="_blank">KS Tilskudd</a>
+      <small>https://tilskudd.fiks.test.ks.no/ordninger/b39a60ca-08e4-476c-88a1-a78fe3cd7983</small>
+    </td>
+    <td class="score-col god">100</td>
+    <td class="god">236 ms</td>
+    <td class="god">172 ms</td>
+    <td class="god">151 ms</td>
+    <td class="god">195 ms</td>
+    <td class="god">0 KB</td>
+    <td class="god">22</td>
+  </tr>
+  <tr id="side-6">
+    <td class="url-col">
+      <a href="https://tilskudd.fiks.test.ks.no/ordninger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0" target="_blank">KS Tilskudd</a>
+      <small>https://tilskudd.fiks.test.ks.no/ordninger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0</small>
+    </td>
+    <td class="score-col god">100</td>
+    <td class="god">180 ms</td>
+    <td class="god">120 ms</td>
+    <td class="god">101 ms</td>
+    <td class="god">121 ms</td>
+    <td class="god">0 KB</td>
+    <td class="god">22</td>
+  </tr>
+  <tr id="side-7">
+    <td class="url-col">
+      <a href="https://tilskudd.fiks.test.ks.no/ordninger/72ad6a5b-3819-446b-881d-eed1d5dd9ed6" target="_blank">KS Tilskudd</a>
+      <small>https://tilskudd.fiks.test.ks.no/ordninger/72ad6a5b-3819-446b-881d-eed1d5dd9ed6</small>
+    </td>
+    <td class="score-col god">100</td>
+    <td class="god">208 ms</td>
+    <td class="god">152 ms</td>
+    <td class="god">130 ms</td>
+    <td class="god">151 ms</td>
+    <td class="god">0 KB</td>
+    <td class="god">22</td>
+  </tr>
+  <tr id="side-8">
+    <td class="url-col">
+      <a href="https://tilskudd.fiks.test.ks.no/soknad/opprett" target="_blank">ID-porten</a>
+      <small>https://tilskudd.fiks.test.ks.no/soknad/opprett</small>
+    </td>
+    <td class="score-col god">100</td>
+    <td class="god">92 ms</td>
+    <td class="god">92 ms</td>
+    <td class="god">14 ms</td>
+    <td class="god">93 ms</td>
+    <td class="god">0 KB</td>
+    <td class="god">13</td>
+  </tr></tbody>
+    </table>
   </div>
-  <div class="seksjon" id="side-1" style="margin-bottom:1.2rem">
-    <div class="seksjon-tittel">KS Tilskudd - Ordninger</div>
-    <p style="font-size:.82rem;color:#6b7280;margin-bottom:1rem;word-break:break-all">
-      <a href="https://tilskudd.fiks.test.ks.no/ordninger" target="_blank" style="color:#07604f;text-decoration:none">https://tilskudd.fiks.test.ks.no/ordninger</a>
-    </p>
-    <div class="kort-grid">
-      <div class="kort nøytral">
-        <div class="etikett">Score</div>
-        <div class="tall" style="color:#07604f">100</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">LCP</div>
-        <div class="tall">624 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">FCP</div>
-        <div class="tall">176 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">TTFB</div>
-        <div class="tall">73 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Lastetid</div>
-        <div class="tall">190 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Størrelse</div>
-        <div class="tall">14 KB</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Forespørsler</div>
-        <div class="tall">23</div>
-      </div>
-    </div>
-  </div>
-  <div class="seksjon" id="side-2" style="margin-bottom:1.2rem">
-    <div class="seksjon-tittel">ID-porten</div>
-    <p style="font-size:.82rem;color:#6b7280;margin-bottom:1rem;word-break:break-all">
-      <a href="https://tilskudd.fiks.test.ks.no/minside" target="_blank" style="color:#07604f;text-decoration:none">https://tilskudd.fiks.test.ks.no/minside</a>
-    </p>
-    <div class="kort-grid">
-      <div class="kort nøytral">
-        <div class="etikett">Score</div>
-        <div class="tall" style="color:#07604f">100</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">LCP</div>
-        <div class="tall">164 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">FCP</div>
-        <div class="tall">164 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">TTFB</div>
-        <div class="tall">13 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Lastetid</div>
-        <div class="tall">241 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Størrelse</div>
-        <div class="tall">52 KB</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Forespørsler</div>
-        <div class="tall">13</div>
-      </div>
-    </div>
-  </div>
-  <div class="seksjon" id="side-3" style="margin-bottom:1.2rem">
-    <div class="seksjon-tittel">KS Tilskudd</div>
-    <p style="font-size:.82rem;color:#6b7280;margin-bottom:1rem;word-break:break-all">
-      <a href="https://tilskudd.fiks.test.ks.no/ordninger/553b5d8c-209e-410e-88c6-a6cb79d714dc" target="_blank" style="color:#07604f;text-decoration:none">https://tilskudd.fiks.test.ks.no/ordninger/553b5d8c-209e-410e-88c6-a6cb79d714dc</a>
-    </p>
-    <div class="kort-grid">
-      <div class="kort nøytral">
-        <div class="etikett">Score</div>
-        <div class="tall" style="color:#07604f">100</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">LCP</div>
-        <div class="tall">208 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">FCP</div>
-        <div class="tall">140 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">TTFB</div>
-        <div class="tall">99 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Lastetid</div>
-        <div class="tall">156 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Størrelse</div>
-        <div class="tall">113 KB</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Forespørsler</div>
-        <div class="tall">22</div>
-      </div>
-    </div>
-  </div>
-  <div class="seksjon" id="side-4" style="margin-bottom:1.2rem">
-    <div class="seksjon-tittel">KS Tilskudd</div>
-    <p style="font-size:.82rem;color:#6b7280;margin-bottom:1rem;word-break:break-all">
-      <a href="https://tilskudd.fiks.test.ks.no/ordninger/7082abd8-4f23-43e9-adce-c4762b848b81" target="_blank" style="color:#07604f;text-decoration:none">https://tilskudd.fiks.test.ks.no/ordninger/7082abd8-4f23-43e9-adce-c4762b848b81</a>
-    </p>
-    <div class="kort-grid">
-      <div class="kort nøytral">
-        <div class="etikett">Score</div>
-        <div class="tall" style="color:#07604f">100</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">LCP</div>
-        <div class="tall">224 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">FCP</div>
-        <div class="tall">164 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">TTFB</div>
-        <div class="tall">143 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Lastetid</div>
-        <div class="tall">161 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Størrelse</div>
-        <div class="tall">0 KB</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Forespørsler</div>
-        <div class="tall">22</div>
-      </div>
-    </div>
-  </div>
-  <div class="seksjon" id="side-5" style="margin-bottom:1.2rem">
-    <div class="seksjon-tittel">KS Tilskudd</div>
-    <p style="font-size:.82rem;color:#6b7280;margin-bottom:1rem;word-break:break-all">
-      <a href="https://tilskudd.fiks.test.ks.no/ordninger/b39a60ca-08e4-476c-88a1-a78fe3cd7983" target="_blank" style="color:#07604f;text-decoration:none">https://tilskudd.fiks.test.ks.no/ordninger/b39a60ca-08e4-476c-88a1-a78fe3cd7983</a>
-    </p>
-    <div class="kort-grid">
-      <div class="kort nøytral">
-        <div class="etikett">Score</div>
-        <div class="tall" style="color:#07604f">100</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">LCP</div>
-        <div class="tall">164 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">FCP</div>
-        <div class="tall">104 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">TTFB</div>
-        <div class="tall">88 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Lastetid</div>
-        <div class="tall">102 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Størrelse</div>
-        <div class="tall">0 KB</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Forespørsler</div>
-        <div class="tall">22</div>
-      </div>
-    </div>
-  </div>
-  <div class="seksjon" id="side-6" style="margin-bottom:1.2rem">
-    <div class="seksjon-tittel">KS Tilskudd</div>
-    <p style="font-size:.82rem;color:#6b7280;margin-bottom:1rem;word-break:break-all">
-      <a href="https://tilskudd.fiks.test.ks.no/ordninger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0" target="_blank" style="color:#07604f;text-decoration:none">https://tilskudd.fiks.test.ks.no/ordninger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0</a>
-    </p>
-    <div class="kort-grid">
-      <div class="kort nøytral">
-        <div class="etikett">Score</div>
-        <div class="tall" style="color:#07604f">100</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">LCP</div>
-        <div class="tall">172 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">FCP</div>
-        <div class="tall">116 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">TTFB</div>
-        <div class="tall">94 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Lastetid</div>
-        <div class="tall">133 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Størrelse</div>
-        <div class="tall">0 KB</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Forespørsler</div>
-        <div class="tall">22</div>
-      </div>
-    </div>
-  </div>
-  <div class="seksjon" id="side-7" style="margin-bottom:1.2rem">
-    <div class="seksjon-tittel">KS Tilskudd</div>
-    <p style="font-size:.82rem;color:#6b7280;margin-bottom:1rem;word-break:break-all">
-      <a href="https://tilskudd.fiks.test.ks.no/ordninger/72ad6a5b-3819-446b-881d-eed1d5dd9ed6" target="_blank" style="color:#07604f;text-decoration:none">https://tilskudd.fiks.test.ks.no/ordninger/72ad6a5b-3819-446b-881d-eed1d5dd9ed6</a>
-    </p>
-    <div class="kort-grid">
-      <div class="kort nøytral">
-        <div class="etikett">Score</div>
-        <div class="tall" style="color:#07604f">100</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">LCP</div>
-        <div class="tall">188 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">FCP</div>
-        <div class="tall">140 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">TTFB</div>
-        <div class="tall">117 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Lastetid</div>
-        <div class="tall">137 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Størrelse</div>
-        <div class="tall">0 KB</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Forespørsler</div>
-        <div class="tall">22</div>
-      </div>
-    </div>
-  </div>
-  <div class="seksjon" id="side-8" style="margin-bottom:1.2rem">
-    <div class="seksjon-tittel">ID-porten</div>
-    <p style="font-size:.82rem;color:#6b7280;margin-bottom:1rem;word-break:break-all">
-      <a href="https://tilskudd.fiks.test.ks.no/soknad/opprett" target="_blank" style="color:#07604f;text-decoration:none">https://tilskudd.fiks.test.ks.no/soknad/opprett</a>
-    </p>
-    <div class="kort-grid">
-      <div class="kort nøytral">
-        <div class="etikett">Score</div>
-        <div class="tall" style="color:#07604f">100</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">LCP</div>
-        <div class="tall">76 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">FCP</div>
-        <div class="tall">76 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">TTFB</div>
-        <div class="tall">14 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Lastetid</div>
-        <div class="tall">81 ms</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Størrelse</div>
-        <div class="tall">0 KB</div>
-      </div>
-      <div class="kort ok">
-        <div class="etikett">Forespørsler</div>
-        <div class="tall">13</div>
-      </div>
-    </div>
+  <div class="forklaring">
+    <span class="god">God (innenfor mål)</span>
+    <span class="middels">Middels (nær grensen)</span>
+    <span class="dårlig">Bør forbedres (over grense)</span>
   </div>
 
   <footer>KS Tilskudd · Ytelsestest · Playwright Chromium</footer>

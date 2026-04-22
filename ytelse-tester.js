@@ -177,44 +177,21 @@ const sideNavLenker = sideResultater.map((side, i) => {
   </a></li>`;
 }).join('');
 
-// Per-side-seksjoner i hoveddelen
-const sideSeksjoner = sideResultater.map((side, i) => `
-  <div class="seksjon" id="side-${i}" style="margin-bottom:1.2rem">
-    <div class="seksjon-tittel">${side.tittel}</div>
-    <p style="font-size:.82rem;color:#6b7280;margin-bottom:1rem;word-break:break-all">
-      <a href="${side.url}" target="_blank" style="color:#07604f;text-decoration:none">${side.url}</a>
-    </p>
-    <div class="kort-grid">
-      <div class="kort nøytral">
-        <div class="etikett">Score</div>
-        <div class="tall" style="${scoreKlasse(side.score) === 'god' ? 'color:#07604f' : scoreKlasse(side.score) === 'middels' ? 'color:#b8860b' : 'color:#c53030'}">${side.score}</div>
-      </div>
-      <div class="kort ${kortKlasse(fargeLCP(side.lcp))}">
-        <div class="etikett">LCP</div>
-        <div class="tall">${visTid(side.lcp)}</div>
-      </div>
-      <div class="kort ${kortKlasse(fargeFCP(side.fcp))}">
-        <div class="etikett">FCP</div>
-        <div class="tall">${visTid(side.fcp)}</div>
-      </div>
-      <div class="kort ${kortKlasse(fargeTTFB(side.ttfb))}">
-        <div class="etikett">TTFB</div>
-        <div class="tall">${visTid(side.ttfb)}</div>
-      </div>
-      <div class="kort ${kortKlasse(fargeLoad(side.load))}">
-        <div class="etikett">Lastetid</div>
-        <div class="tall">${visTid(side.load)}</div>
-      </div>
-      <div class="kort ${kortKlasse(fargeStr(side.sizeKB))}">
-        <div class="etikett">Størrelse</div>
-        <div class="tall">${visStr(side.sizeKB)}</div>
-      </div>
-      <div class="kort ${kortKlasse(fargeReq(side.requests))}">
-        <div class="etikett">Forespørsler</div>
-        <div class="tall">${side.requests}</div>
-      </div>
-    </div>
-  </div>`).join('');
+// Tabellrader per side
+const tabellRader = sideResultater.map((side, i) => `
+  <tr id="side-${i}">
+    <td class="url-col">
+      <a href="${side.url}" target="_blank">${side.tittel}</a>
+      <small>${side.url}</small>
+    </td>
+    <td class="score-col ${scoreKlasse(side.score)}">${side.score}</td>
+    <td class="${fargeLCP(side.lcp)}">${visTid(side.lcp)}</td>
+    <td class="${fargeFCP(side.fcp)}">${visTid(side.fcp)}</td>
+    <td class="${fargeTTFB(side.ttfb)}">${visTid(side.ttfb)}</td>
+    <td class="${fargeLoad(side.load)}">${visTid(side.load)}</td>
+    <td class="${fargeStr(side.sizeKB)}">${visStr(side.sizeKB)}</td>
+    <td class="${fargeReq(side.requests)}">${side.requests}</td>
+  </tr>`).join('');
 
 const rapportHTML = `<!DOCTYPE html>
 <html lang="no">
@@ -264,6 +241,28 @@ const rapportHTML = `<!DOCTYPE html>
   .kort .etikett{font-size:.7rem;color:#6b7280;text-transform:uppercase;letter-spacing:.05em}
   .seksjon{background:white;border:1px solid #f1f0ee;padding:2rem;margin-bottom:1.2rem;box-shadow:0 1px 4px rgba(10,19,85,.06)}
   .seksjon-tittel{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid #f4ecdf}
+  .tabell-wrapper{background:white;border:1px solid #f1f0ee;box-shadow:0 1px 4px rgba(10,19,85,.06);overflow-x:auto;margin-bottom:1.5rem}
+  table{width:100%;border-collapse:collapse;font-size:.83rem}
+  th{background:#0a1355;color:white;padding:.7rem 1rem;text-align:left;font-weight:600;font-size:.75rem;white-space:nowrap}
+  th small{display:block;font-weight:400;opacity:.6;font-size:.65rem;margin-top:1px}
+  td{padding:.65rem 1rem;border-bottom:1px solid #f4f3f1;vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#faf6f0}
+  td.url-col{max-width:260px}
+  td.url-col a{color:#0a1355;text-decoration:none;font-weight:500}
+  td.url-col a:hover{text-decoration:underline}
+  td.url-col small{color:#9ca3af;font-size:.72rem;display:block;margin-top:2px;word-break:break-all}
+  td.score-col{font-weight:700;font-size:1rem;text-align:center;min-width:60px}
+  td.score-col.god{color:white;background:#07604f}
+  td.score-col.middels{color:#0a1355;background:#f3dda2}
+  td.score-col.dårlig{color:white;background:#c53030}
+  td.god{color:#07604f;font-weight:600}
+  td.middels{color:#b8860b;font-weight:600}
+  td.dårlig{color:#c53030;font-weight:600}
+  .forklaring{font-size:.78rem;color:#6b7280;display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}
+  .forklaring .god::before{content:'● ';color:#07604f}
+  .forklaring .middels::before{content:'● ';color:#b8860b}
+  .forklaring .dårlig::before{content:'● ';color:#c53030}
   footer{text-align:center;padding:2.5rem;color:#9ca3af;font-size:.78rem;border-top:1px solid #f1f0ee;margin-top:2rem}
 </style>
 </head>
@@ -367,7 +366,28 @@ const rapportHTML = `<!DOCTYPE html>
     </div>
   </div>
 
-  ${sideSeksjoner}
+  <div class="tabell-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Side</th>
+          <th>Score</th>
+          <th>LCP<small>mål &lt; 2,5 s</small></th>
+          <th>FCP<small>mål &lt; 1,8 s</small></th>
+          <th>TTFB<small>mål &lt; 800 ms</small></th>
+          <th>Lastetid<small>mål &lt; 3 s</small></th>
+          <th>Størrelse<small>mål &lt; 1 MB</small></th>
+          <th>Forespørsler<small>mål &lt; 50</small></th>
+        </tr>
+      </thead>
+      <tbody>${tabellRader}</tbody>
+    </table>
+  </div>
+  <div class="forklaring">
+    <span class="god">God (innenfor mål)</span>
+    <span class="middels">Middels (nær grensen)</span>
+    <span class="dårlig">Bør forbedres (over grense)</span>
+  </div>
 
   <footer>KS Tilskudd · Ytelsestest · Playwright Chromium</footer>
 </div>
