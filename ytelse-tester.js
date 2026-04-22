@@ -158,170 +158,219 @@ console.log(`📄 JSON lagret → rapporter/${dato}/ytelse-resultat.json`);
 
 // ── Generer HTML-rapport ──────────────────────────────────────────────────────
 
-const tabellRader = sideResultater.map(side => `
-  <tr>
-    <td class="url-col">
-      <a href="${side.url}" target="_blank">${side.tittel}</a>
-      <small>${side.url}</small>
-    </td>
-    <td class="score-col ${scoreKlasse(side.score)}">${side.score}</td>
-    <td class="${fargeLCP(side.lcp)}">${visTid(side.lcp)}</td>
-    <td class="${fargeFCP(side.fcp)}">${visTid(side.fcp)}</td>
-    <td class="${fargeTTFB(side.ttfb)}">${visTid(side.ttfb)}</td>
-    <td class="${fargeLoad(side.load)}">${visTid(side.load)}</td>
-    <td class="${fargeStr(side.sizeKB)}">${visStr(side.sizeKB)}</td>
-    <td class="${fargeReq(side.requests)}">${side.requests}</td>
-  </tr>`).join('');
+// Hjelpefunksjon: konverter god/middels/dårlig til kort-klasse ok/advarsel/kritisk
+function kortKlasse(farge) {
+  if (farge === 'god') return 'ok';
+  if (farge === 'middels') return 'advarsel';
+  return 'kritisk';
+}
+
+// Sidebar-lenker for hver analysert side
+const sideNavLenker = sideResultater.map((side, i) => {
+  const sk = scoreKlasse(side.score);
+  const navKlasse = sk === 'god' ? 'ok' : sk === 'middels' ? 'har-brudd' : 'har-kritiske';
+  const anker = `side-${i}`;
+  const kortNavn = side.tittel.length > 28 ? side.tittel.slice(0, 26) + '…' : side.tittel;
+  return `<li><a href="#${anker}" class="sidenav-link ${navKlasse}">
+    <span class="sidenavn">${kortNavn}</span>
+    <span class="side-badge">Score: ${side.score}</span>
+  </a></li>`;
+}).join('');
+
+// Per-side-seksjoner i hoveddelen
+const sideSeksjoner = sideResultater.map((side, i) => `
+  <div class="seksjon" id="side-${i}" style="margin-bottom:1.2rem">
+    <div class="seksjon-tittel">${side.tittel}</div>
+    <p style="font-size:.82rem;color:#6b7280;margin-bottom:1rem;word-break:break-all">
+      <a href="${side.url}" target="_blank" style="color:#07604f;text-decoration:none">${side.url}</a>
+    </p>
+    <div class="kort-grid">
+      <div class="kort nøytral">
+        <div class="etikett">Score</div>
+        <div class="tall" style="${scoreKlasse(side.score) === 'god' ? 'color:#07604f' : scoreKlasse(side.score) === 'middels' ? 'color:#b8860b' : 'color:#c53030'}">${side.score}</div>
+      </div>
+      <div class="kort ${kortKlasse(fargeLCP(side.lcp))}">
+        <div class="etikett">LCP</div>
+        <div class="tall">${visTid(side.lcp)}</div>
+      </div>
+      <div class="kort ${kortKlasse(fargeFCP(side.fcp))}">
+        <div class="etikett">FCP</div>
+        <div class="tall">${visTid(side.fcp)}</div>
+      </div>
+      <div class="kort ${kortKlasse(fargeTTFB(side.ttfb))}">
+        <div class="etikett">TTFB</div>
+        <div class="tall">${visTid(side.ttfb)}</div>
+      </div>
+      <div class="kort ${kortKlasse(fargeLoad(side.load))}">
+        <div class="etikett">Lastetid</div>
+        <div class="tall">${visTid(side.load)}</div>
+      </div>
+      <div class="kort ${kortKlasse(fargeStr(side.sizeKB))}">
+        <div class="etikett">Størrelse</div>
+        <div class="tall">${visStr(side.sizeKB)}</div>
+      </div>
+      <div class="kort ${kortKlasse(fargeReq(side.requests))}">
+        <div class="etikett">Forespørsler</div>
+        <div class="tall">${side.requests}</div>
+      </div>
+    </div>
+  </div>`).join('');
 
 const rapportHTML = `<!DOCTYPE html>
 <html lang="no">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ytelsesrapport ${dato} – KS Tilskudd</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ytelsesrapport – ${dato} ${tidspunkt}</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: system-ui, -apple-system, sans-serif; background: #faf6f0; color: #0f0e17; min-height: 100vh; }
-
-  header { background: #0a1355; color: white; padding: 1.6rem 2.5rem; }
-  .header-inner { max-width: 1200px; margin: 0 auto; }
-  .header-merkevare { font-size: 0.72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: 0.45; margin-bottom: .4rem; }
-  .env-badge { display: inline-block; font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: rgba(255,255,255,.18); color: white; padding: .25rem .7rem; border-radius: 100px; margin-bottom: .4rem; }
-  header h1 { font-size: 1.4rem; font-weight: 700; }
-  header p { opacity: 0.5; font-size: 0.82rem; margin-top: 0.3rem; }
-
-  .container { max-width: 1200px; margin: 2.5rem auto; padding: 0 2rem; }
-
-  .nav-knapper { display: flex; gap: .6rem; flex-wrap: wrap; align-items: flex-start; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 2px solid #f4ecdf; }
-  .knapp { display: inline-block; padding: .5rem 1.2rem; background: #0a1355; color: white; border-radius: 100px; font-size: .82rem; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background .15s; }
-  .knapp:hover { background: #2b3285; }
-  .knapp.aktiv { background: #07604f; pointer-events: none; }
-  .knapp.sekundær { background: transparent; border: 1px solid #0a1355; color: #0a1355; }
-  .knapp.sekundær:hover { background: #f4ecdf; }
-
-  .samlet { background: white; border: 1px solid #f1f0ee; padding: 1.6rem 2rem; margin-bottom: 1.5rem; box-shadow: 0 1px 4px rgba(10,19,85,.06); display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
-  .samlet-score { font-size: 3.5rem; font-weight: 800; line-height: 1; }
-  .samlet-score.god { color: #07604f; }
-  .samlet-score.middels { color: #b8860b; }
-  .samlet-score.dårlig { color: #c53030; }
-  .samlet-tekst h2 { font-size: 1rem; font-weight: 700; color: #0a1355; }
-  .samlet-tekst p { font-size: 0.82rem; color: #6b7280; margin-top: 0.3rem; }
-
-  .snitt-rad { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
-  .snitt-kort { background: white; border: 1px solid #f1f0ee; padding: 1rem 1.4rem; flex: 1; min-width: 130px; box-shadow: 0 1px 4px rgba(10,19,85,.06); }
-  .snitt-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #9ca3af; margin-bottom: 0.4rem; }
-  .snitt-verdi { font-size: 1.3rem; font-weight: 700; }
-  .snitt-verdi.god { color: #07604f; }
-  .snitt-verdi.middels { color: #b8860b; }
-  .snitt-verdi.dårlig { color: #c53030; }
-
-  .tabell-wrapper { background: white; border: 1px solid #f1f0ee; box-shadow: 0 1px 4px rgba(10,19,85,.06); overflow-x: auto; margin-bottom: 1rem; }
-  table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
-  th { background: #0a1355; color: white; padding: .7rem 1rem; text-align: left; font-weight: 600; font-size: 0.75rem; white-space: nowrap; }
-  th small { display: block; font-weight: 400; opacity: 0.6; font-size: 0.65rem; margin-top: 1px; }
-  td { padding: .65rem 1rem; border-bottom: 1px solid #f4f3f1; vertical-align: middle; }
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: #faf6f0; }
-  td.url-col { max-width: 280px; }
-  td.url-col a { color: #0a1355; text-decoration: none; font-weight: 500; }
-  td.url-col a:hover { text-decoration: underline; }
-  td.url-col small { color: #9ca3af; font-size: 0.72rem; display: block; margin-top: 2px; word-break: break-all; }
-  td.score-col { font-weight: 700; font-size: 1rem; text-align: center; min-width: 60px; }
-  td.god { color: #07604f; font-weight: 600; }
-  td.middels { color: #b8860b; font-weight: 600; }
-  td.dårlig { color: #c53030; font-weight: 600; }
-  td.score-col.god { color: white; background: #07604f; }
-  td.score-col.middels { color: #0a1355; background: #f3dda2; }
-  td.score-col.dårlig { color: white; background: #c53030; }
-
-  .forklaring { font-size: 0.78rem; color: #6b7280; display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
-  .forklaring .god::before    { content: '● '; color: #07604f; }
-  .forklaring .middels::before { content: '● '; color: #b8860b; }
-  .forklaring .dårlig::before  { content: '● '; color: #c53030; }
-
-  footer { text-align: center; padding: 2.5rem; color: #9ca3af; font-size: 0.78rem; border-top: 1px solid #f1f0ee; margin-top: 2rem; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,-apple-system,sans-serif;background:#faf6f0;color:#0f0e17;display:flex;min-height:100vh}
+  .sidemeny{width:272px;min-width:272px;background:#0a1355;color:white;padding:0;overflow-y:auto;position:sticky;top:0;height:100vh;display:flex;flex-direction:column}
+  .sidemeny-header{padding:1.2rem 1.4rem;border-bottom:1px solid rgba(255,255,255,.1)}
+  .sidemeny-logo{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.45;margin-bottom:.5rem}
+  .env-badge{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.18);color:white;padding:.25rem .7rem;border-radius:100px;margin-top:.5rem}
+  .sidemeny h1{font-size:.95rem;font-weight:600;line-height:1.3}
+  .sidemeny h1 span{display:block;font-size:.72rem;opacity:.45;margin-top:.3rem;font-weight:400}
+  .sidemeny ul{list-style:none;flex:1;overflow-y:auto;padding:.5rem 0}
+  .sidenav-link{display:block;padding:.65rem 1.4rem;text-decoration:none;color:rgba(255,255,255,.65);border-left:3px solid transparent;transition:background .15s,color .15s}
+  .sidenav-link:hover{background:rgba(255,255,255,.07);color:white}
+  .sidenav-link.har-kritiske{border-color:#fc8181}
+  .sidenav-link.har-brudd{border-color:#f3dda2}
+  .sidenav-link.ok{border-color:#abd1b1}
+  .sidenavn{display:block;font-size:.84rem;font-weight:500}
+  .side-badge{display:block;font-size:.68rem;margin-top:.2rem;opacity:.6}
+  .hoveddel{flex:1;padding:2.5rem 3rem;overflow-y:auto;max-width:1060px}
+  .rapport-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:2px solid #f4ecdf;flex-wrap:wrap}
+  .rapport-header h1{font-size:1.5rem;font-weight:700;color:#0a1355;letter-spacing:-.01em}
+  .rapport-header .meta{font-size:.85rem;color:#6b7280;margin-top:.4rem}
+  .rapport-header .meta a{color:#07604f;text-decoration:none}
+  .nav-knapper{display:flex;gap:.6rem;flex-wrap:wrap;align-items:flex-start}
+  .knapp{display:inline-block;padding:.5rem 1.2rem;background:#0a1355;color:white;border-radius:100px;font-size:.82rem;font-weight:500;text-decoration:none;white-space:nowrap;transition:background .15s}
+  .knapp:hover{background:#2b3285}
+  .knapp.aktiv{background:#07604f;pointer-events:none}
+  .knapp.sekundær{background:transparent;border:1px solid #0a1355;color:#0a1355}
+  .knapp.sekundær:hover{background:#f4ecdf}
+  .score-kort{background:white;border:1px solid #f1f0ee;padding:1.8rem 2rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:2rem;box-shadow:0 1px 4px rgba(10,19,85,.06)}
+  .score-sirkel{width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:700;flex-shrink:0}
+  .score-sirkel.god{background:#07604f;color:white}
+  .score-sirkel.middels{background:#f3dda2;color:#0a1355}
+  .score-sirkel.dårlig{background:#c53030;color:white}
+  .score-tekst strong{color:#0a1355;font-size:1rem}
+  .score-tekst p{color:#6b7280;font-size:.87rem;margin-top:.35rem;line-height:1.5}
+  .kort-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:.8rem;margin-bottom:2rem}
+  .kort{background:white;padding:1.2rem 1rem;border:1px solid #f1f0ee;border-left:4px solid #e5e3de;box-shadow:0 1px 4px rgba(10,19,85,.06)}
+  .kort.kritisk{border-left-color:#c53030}.kort.advarsel{border-left-color:#b8860b}.kort.ok{border-left-color:#07604f}.kort.nøytral{border-left-color:#2b3285}
+  .kort .tall{font-size:2rem;font-weight:700;margin:.3rem 0;color:#0a1355}
+  .kort .etikett{font-size:.7rem;color:#6b7280;text-transform:uppercase;letter-spacing:.05em}
+  .seksjon{background:white;border:1px solid #f1f0ee;padding:2rem;margin-bottom:1.2rem;box-shadow:0 1px 4px rgba(10,19,85,.06)}
+  .seksjon-tittel{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid #f4ecdf}
+  footer{text-align:center;padding:2.5rem;color:#9ca3af;font-size:.78rem;border-top:1px solid #f1f0ee;margin-top:2rem}
 </style>
 </head>
 <body>
-<header>
-  <div class="header-inner">
-    <div class="header-merkevare">KS Tilskudd · Ytelsestest</div>
+<nav class="sidemeny">
+  <div class="sidemeny-header">
+    <div class="sidemeny-logo">KS Tilskudd · Ytelsestester</div>
     <div class="env-badge">TEST-MILJØ</div>
-    <h1>Ytelsesrapport</h1>
-    <p>${dato} ${tidspunkt} · ${START_URL}</p>
+    <h1>Ytelsesrapport <span>${dato} ${tidspunkt}</span></h1>
   </div>
-</header>
-<div class="container">
-  <div class="nav-knapper">
-    <a href="rapport.html" class="knapp sekundær">Forside</a>
-    <a href="uu-rapport.html" class="knapp sekundær">UU-rapport</a>
-    <a href="monkey-rapport.html" class="knapp sekundær">Monkey-test</a>
-    <a href="sikkerhet-rapport.html" class="knapp sekundær">Sikkerhetstest</a>
-    <a href="negativ-rapport.html" class="knapp sekundær">Negativ test</a>
-    <a href="ytelse-rapport.html" class="knapp aktiv">Ytelsestest</a>
-    <a href="arkiv.html" class="knapp sekundær">Arkiv</a>
-  </div>
-
-  <div class="samlet">
-    <div class="samlet-score ${scoreKlasse(samletScore)}">${samletScore}</div>
-    <div class="samlet-tekst">
-      <h2>Ytelsesscore – ${START_URL}</h2>
-      <p>${n} sider analysert · Vektet snitt: LCP 40 %, FCP 20 %, TTFB 20 %, Lastetid 20 %</p>
+  <ul>${sideNavLenker}</ul>
+</nav>
+<div class="hoveddel">
+  <div class="rapport-header">
+    <div>
+      <h1>Ytelsesrapport</h1>
+      <div class="meta"><a href="${START_URL}" target="_blank">${START_URL}</a> · ${dato} ${tidspunkt} · ${n} sider analysert · Playwright Chromium</div>
+    </div>
+    <div class="nav-knapper">
+      <a href="rapport.html" class="knapp sekundær">Forside</a>
+      <a href="uu-rapport.html" class="knapp sekundær">UU-rapport</a>
+      <a href="monkey-rapport.html" class="knapp sekundær">Monkey-test</a>
+      <a href="sikkerhet-rapport.html" class="knapp sekundær">Sikkerhetstest</a>
+      <a href="negativ-rapport.html" class="knapp sekundær">Negativ test</a>
+      <a href="ytelse-rapport.html" class="knapp aktiv">Ytelsestest</a>
+      <a href="arkiv.html" class="knapp sekundær">Tidligere rapporter</a>
     </div>
   </div>
 
-  <div class="snitt-rad">
-    <div class="snitt-kort">
-      <div class="snitt-label">Snitt LCP</div>
-      <div class="snitt-verdi ${fargeLCP(snittLCP)}">${visTid(snittLCP)}</div>
-    </div>
-    <div class="snitt-kort">
-      <div class="snitt-label">Snitt FCP</div>
-      <div class="snitt-verdi ${fargeFCP(snittFCP)}">${visTid(snittFCP)}</div>
-    </div>
-    <div class="snitt-kort">
-      <div class="snitt-label">Snitt TTFB</div>
-      <div class="snitt-verdi ${fargeTTFB(snittTTFB)}">${visTid(snittTTFB)}</div>
-    </div>
-    <div class="snitt-kort">
-      <div class="snitt-label">Snitt lastetid</div>
-      <div class="snitt-verdi ${fargeLoad(snittLoad)}">${visTid(snittLoad)}</div>
-    </div>
-    <div class="snitt-kort">
-      <div class="snitt-label">Total datastørrelse</div>
-      <div class="snitt-verdi ${fargeStr(totalSizeKB)}">${visStr(totalSizeKB)}</div>
-    </div>
-    <div class="snitt-kort">
-      <div class="snitt-label">Totale forespørsler</div>
-      <div class="snitt-verdi ${fargeReq(totalReq)}">${totalReq}</div>
+  <div class="seksjon" style="background:#f4ecdf;border-color:#e8dcc8;margin-bottom:1.5rem">
+    <div class="seksjon-tittel">Hva er ytelsestesting?</div>
+    <p style="font-size:.88rem;line-height:1.7;color:#374151;margin-bottom:1rem">
+      Ytelsestesten crawler applikasjonen og måler nøkkelberegninger for lastetid og brukeropplevelse på hver side.
+      Testene kjøres med Playwright Chromium i et kontrollert miljø og gir et objektivt bilde av ytelsen.
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;font-size:.83rem">
+      <div>
+        <strong style="color:#0a1355;display:block;margin-bottom:.3rem">Hva måles</strong>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.25rem;color:#374151">
+          <li>⏱ LCP – Largest Contentful Paint</li>
+          <li>🖼 FCP – First Contentful Paint</li>
+          <li>📡 TTFB – Time To First Byte</li>
+          <li>⚡ Lastetid (load-event)</li>
+          <li>📦 Datastørrelse og antall forespørsler</li>
+        </ul>
+      </div>
+      <div>
+        <strong style="color:#0a1355;display:block;margin-bottom:.3rem">Terskelverdier</strong>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.25rem;color:#374151">
+          <li>LCP: ≤ 2,5 s god · ≤ 4 s middels · &gt; 4 s dårlig</li>
+          <li>FCP: ≤ 1,8 s god · ≤ 3 s middels · &gt; 3 s dårlig</li>
+          <li>TTFB: ≤ 800 ms god · ≤ 1,8 s middels · &gt; 1,8 s dårlig</li>
+          <li>Lastetid: ≤ 3 s god · ≤ 6 s middels · &gt; 6 s dårlig</li>
+        </ul>
+      </div>
+      <div>
+        <strong style="color:#0a1355;display:block;margin-bottom:.3rem">Scoringsvekter</strong>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.25rem;color:#374151">
+          <li>LCP: 40 % av totalscoren</li>
+          <li>FCP: 20 % av totalscoren</li>
+          <li>TTFB: 20 % av totalscoren</li>
+          <li>Lastetid: 20 % av totalscoren</li>
+        </ul>
+      </div>
     </div>
   </div>
 
-  <div class="tabell-wrapper">
-    <table>
-      <thead>
-        <tr>
-          <th>Side</th>
-          <th>Score</th>
-          <th>LCP<small>mål &lt; 2,5 s</small></th>
-          <th>FCP<small>mål &lt; 1,8 s</small></th>
-          <th>TTFB<small>mål &lt; 800 ms</small></th>
-          <th>Lastetid<small>mål &lt; 3 s</small></th>
-          <th>Størrelse<small>mål &lt; 1 MB</small></th>
-          <th>Forespørsler<small>mål &lt; 50</small></th>
-        </tr>
-      </thead>
-      <tbody>${tabellRader}</tbody>
-    </table>
+  <div class="score-kort">
+    <div class="score-sirkel ${scoreKlasse(samletScore)}">${samletScore}</div>
+    <div class="score-tekst">
+      <strong>Samlet ytelsesscore – ${START_URL}</strong>
+      <p>${n} sider analysert · Vektet snitt: LCP 40 %, FCP 20 %, TTFB 20 %, Lastetid 20 %<br>
+      ${samletScore >= 80 ? 'God ytelse – applikasjonen laster raskt og gir en god brukeropplevelse.' : samletScore >= 50 ? 'Middels ytelse – det er rom for forbedringer på enkelte sider.' : 'Dårlig ytelse – applikasjonen bør optimaliseres for bedre lastetider.'}</p>
+    </div>
   </div>
 
-  <div class="forklaring">
-    <span class="god">God (innenfor mål)</span>
-    <span class="middels">Middels (nær grensen)</span>
-    <span class="dårlig">Bør forbedres (over grense)</span>
+  <div class="kort-grid">
+    <div class="kort ${kortKlasse(fargeLCP(snittLCP))}">
+      <div class="etikett">Snitt LCP</div>
+      <div class="tall">${visTid(snittLCP)}</div>
+    </div>
+    <div class="kort ${kortKlasse(fargeFCP(snittFCP))}">
+      <div class="etikett">Snitt FCP</div>
+      <div class="tall">${visTid(snittFCP)}</div>
+    </div>
+    <div class="kort ${kortKlasse(fargeTTFB(snittTTFB))}">
+      <div class="etikett">Snitt TTFB</div>
+      <div class="tall">${visTid(snittTTFB)}</div>
+    </div>
+    <div class="kort ${kortKlasse(fargeLoad(snittLoad))}">
+      <div class="etikett">Snitt lastetid</div>
+      <div class="tall">${visTid(snittLoad)}</div>
+    </div>
+    <div class="kort ${kortKlasse(fargeStr(totalSizeKB))}">
+      <div class="etikett">Total størrelse</div>
+      <div class="tall">${visStr(totalSizeKB)}</div>
+    </div>
+    <div class="kort ${kortKlasse(fargeReq(totalReq))}">
+      <div class="etikett">Totalt forespørsler</div>
+      <div class="tall">${totalReq}</div>
+    </div>
   </div>
+
+  ${sideSeksjoner}
+
+  <footer>KS Tilskudd · Ytelsestest · Playwright Chromium</footer>
 </div>
-<footer>KS Tilskudd · Ytelsestest · Playwright Chromium</footer>
 </body>
 </html>`;
 
