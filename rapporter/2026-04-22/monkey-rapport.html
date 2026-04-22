@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Monkey-testrapport – 2026-04-22 13:33</title>
+<title>Monkey-testrapport – 2026-04-22 15:46</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:system-ui,-apple-system,sans-serif;background:#faf6f0;color:#0f0e17;display:flex;min-height:100vh}
@@ -80,14 +80,14 @@
   <div class="sidemeny-header">
     <div class="sidemeny-logo">KS Tilskudd · Monkey-tester</div>
     <div class="env-badge">TEST-MILJØ · v0.4.3</div>
-    <h1>Monkey-testrapport <span>2026-04-22 13:33 · 60 iterasjoner</span></h1>
+    <h1>Monkey-testrapport <span>2026-04-22 15:46 · 60 iterasjoner</span></h1>
   </div>
   <ul><li><a href="#sammendrag" class="sidenav-link ">
     <span class="sidenavn">Sammendrag</span>
     <span class="side-badge"> funn</span>
-  </a></li><li><a href="#js-feil" class="sidenav-link har-kritiske">
+  </a></li><li><a href="#js-feil" class="sidenav-link ok">
     <span class="sidenavn">JS-feil</span>
-    <span class="side-badge">1 funn</span>
+    <span class="side-badge">0 funn</span>
   </a></li><li><a href="#konsoll" class="sidenav-link ok">
     <span class="sidenavn">Konsoll-feil</span>
     <span class="side-badge">0 funn</span>
@@ -96,7 +96,7 @@
     <span class="side-badge">0 funn</span>
   </a></li><li><a href="#interaksjoner" class="sidenav-link har-kritiske">
     <span class="sidenavn">Interaksjonsfunn</span>
-    <span class="side-badge">2 funn</span>
+    <span class="side-badge">1 funn</span>
   </a></li><li><a href="#sider" class="sidenav-link ">
     <span class="sidenavn">Sider besøkt</span>
     <span class="side-badge">11 funn</span>
@@ -106,7 +106,7 @@
   <div class="rapport-header">
     <div>
       <h1>Monkey-testrapport</h1>
-      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-04-22 13:33 · 34s · 60 tilfeldige handlinger · Chromium 147</div>
+      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-04-22 15:46 · 33s · 60 tilfeldige handlinger · Chromium 147</div>
     </div>
     <div class="nav-knapper">
       <a href="rapport.html" class="knapp sekundær">Forside</a>
@@ -114,6 +114,7 @@
       <a href="monkey-rapport.html" class="knapp aktiv">Monkey-test</a>
       <a href="sikkerhet-rapport.html" class="knapp sekundær">Sikkerhetstest</a>
       <a href="negativ-rapport.html" class="knapp sekundær">Negativ test</a>
+      <a href="ytelse-rapport.html" class="knapp sekundær">Ytelsestest</a>
       <a href="arkiv.html" class="knapp sekundær">Tidligere rapporter</a>
     </div>
   </div>
@@ -159,7 +160,7 @@
     </div>
   </div>
   <div class="score-kort">
-    <div class="score-sirkel middels">52</div>
+    <div class="score-sirkel god">80</div>
     <div class="score-tekst">
       <strong>Robusthetsscore</strong>
       <p>Basert på JS-feil, nettverksfeil og kritiske funn etter 60 tilfeldige interaksjoner på 11 sider. Lavere score indikerer ustabilitet.</p>
@@ -169,25 +170,16 @@
   <div class="kort-grid">
     <div class="kort ok"><div class="tall">60</div><div class="etikett">Iterasjoner</div></div>
     <div class="kort ok"><div class="tall">11</div><div class="etikett">Sider besøkt</div></div>
-    <div class="kort kritisk"><div class="tall">1</div><div class="etikett">JS-feil</div></div>
+    <div class="kort ok"><div class="tall">0</div><div class="etikett">JS-feil</div></div>
     <div class="kort ok"><div class="tall">0</div><div class="etikett">Konsoll-feil</div></div>
     <div class="kort ok"><div class="tall">0</div><div class="etikett">Nettverksfeil</div></div>
-    <div class="kort kritisk"><div class="tall">2</div><div class="etikett">Kritiske funn</div></div>
+    <div class="kort kritisk"><div class="tall">1</div><div class="etikett">Kritiske funn</div></div>
   </div>
 
   <!-- JS-feil -->
   <div class="seksjon" id="js-feil">
-    <div class="seksjon-tittel">JS-feil (1)</div>
-    
-        <div class="brudd-kort" style="border-left-color:#c53030">
-          <div class="brudd-header">
-            <span class="badge kritisk">JS-feil</span>
-            <span class="brudd-teller">11:33:56</span>
-          </div>
-          <p class="regel-desc">Minified React error #419; visit https://react.dev/errors/419 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.</p>
-          <div class="node-info"><span class="node-selector">https://tilskudd.fiks.test.ks.no/ordninger/7082abd8-4f23-43e9-adce-c4762b848b81</span></div>
-          
-        </div>
+    <div class="seksjon-tittel">JS-feil (0)</div>
+    <div class="wcag-ok">Ingen ubehandlede JavaScript-feil oppdaget</div>
   </div>
 
   <!-- Konsoll-feil -->
@@ -204,7 +196,7 @@
 
   <!-- Interaksjonsfunn -->
   <div class="seksjon" id="interaksjoner">
-    <div class="seksjon-tittel">Interaksjonsfunn (2)</div>
+    <div class="seksjon-tittel">Interaksjonsfunn (1)</div>
     
   <div class="brudd-kort" style="border-left-color:#c53030">
     <div class="brudd-header">
@@ -212,7 +204,7 @@
         <span class="badge kritisk">kritisk</span>
         <span class="regel-desc">Feilside etter klikk: inneholder "500"</span>
       </div>
-      <span class="brudd-teller">11:33:42</span>
+      <span class="brudd-teller">13:47:11</span>
     </div>
     <p class="brudd-hjelp">Handling: Klikket lenke: "Punktlig Viktig Hund DaKommunalt næringsfond Kristiansund 20"</p>
     <div class="node-info"><span class="node-selector">https://tilskudd.fiks.test.ks.no/ordninger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0</span></div>
@@ -220,28 +212,8 @@
     <div class="skjermdump-gruppe">
       <div class="skjermdump-wrapper">
         <p class="skjermdump-label">Skjermdump ved funn</p>
-        <a href="skjermbilder-monkey/monkey-feilside-1.png" target="_blank">
-          <img src="skjermbilder-monkey/monkey-feilside-1.png" alt="Skjermdump" class="skjermdump helside" loading="lazy">
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="brudd-kort" style="border-left-color:#c53030">
-    <div class="brudd-header">
-      <div>
-        <span class="badge kritisk">kritisk</span>
-        <span class="regel-desc">Feilside etter klikk: inneholder "500"</span>
-      </div>
-      <span class="brudd-teller">11:34:13</span>
-    </div>
-    <p class="brudd-hjelp">Handling: Klikket lenke: "Skånsom Impulsiv Tiger AsForskning og innovasjon i bedrift"</p>
-    <div class="node-info"><span class="node-selector">https://tilskudd.fiks.test.ks.no/ordninger/553b5d8c-209e-410e-88c6-a6cb79d714dc</span></div>
-    
-    <div class="skjermdump-gruppe">
-      <div class="skjermdump-wrapper">
-        <p class="skjermdump-label">Skjermdump ved funn</p>
-        <a href="skjermbilder-monkey/monkey-feilside-8.png" target="_blank">
-          <img src="skjermbilder-monkey/monkey-feilside-8.png" alt="Skjermdump" class="skjermdump helside" loading="lazy">
+        <a href="skjermbilder-monkey/monkey-feilside-3.png" target="_blank">
+          <img src="skjermbilder-monkey/monkey-feilside-3.png" alt="Skjermdump" class="skjermdump helside" loading="lazy">
         </a>
       </div>
     </div>
@@ -252,7 +224,7 @@
   <div class="seksjon" id="sider">
     <div class="seksjon-tittel">Sider besøkt (11)</div>
     <ul class="url-liste">
-      <li title="about:blank">about:blank</li><li title="https://tilskudd.fiks.test.ks.no/">https://tilskudd.fiks.test.ks.no/</li><li title="https://tilskudd.fiks.test.ks.no/ordninger/7082abd8-4f23-43e9-adce-c4762b848b81">https://tilskudd.fiks.test.ks.no/ordninger/7082abd8-4f23-43e9-adce-c4762b848b81</li><li title="https://tilskudd.fiks.test.ks.no/ordninger/72ad6a5b-3819-446b-881d-eed1d5dd9ed6">https://tilskudd.fiks.test.ks.no/ordninger/72ad6a5b-3819-446b-881d-eed1d5dd9ed6</li><li title="https://tilskudd.fiks.test.ks.no/ordninger/b39a60ca-08e4-476c-88a1-a78fe3cd7983">https://tilskudd.fiks.test.ks.no/ordninger/b39a60ca-08e4-476c-88a1-a78fe3cd7983</li><li title="https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10">https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10</li><li title="https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10&searchString=%21%40%23%24%25%26*%28%29">https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10&searchString=%21%40%23%24%25%26*%28%29</li><li title="https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10&searchString=null+undefined+NaN">https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10&searchString=null+undefined+NaN</li><li title="https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10&searchString=skbnmmb5w3+h1zhclwqbqg+r7mhfoisz8+pxusfyjl4rj+hueo8bamlu+1qoodygwz8a+s6bq0iuo5tc+kkku6xpohro">https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10&searchString=skbnmmb5w3+h1zhclwqbqg+r7mhfoisz8+pxusfyjl4rj+hueo8bamlu+1qoodygwz8a+s6bq0iuo5tc+kkku6xpohro</li><li title="https://tilskudd.fiks.test.ks.no/ordninger?searchString=%21%40%23%24%25%26*%28%29&currentPage=1&pageSize=10">https://tilskudd.fiks.test.ks.no/ordninger?searchString=%21%40%23%24%25%26*%28%29&currentPage=1&pageSize=10</li><li title="https://tilskudd.fiks.test.ks.no/ordninger?searchString=Test+bruker&currentPage=1&pageSize=10">https://tilskudd.fiks.test.ks.no/ordninger?searchString=Test+bruker&currentPage=1&pageSize=10</li>
+      <li title="about:blank">about:blank</li><li title="https://login.test.idporten.no/authorize/selector">https://login.test.idporten.no/authorize/selector</li><li title="https://tilskudd.fiks.test.ks.no/">https://tilskudd.fiks.test.ks.no/</li><li title="https://tilskudd.fiks.test.ks.no/ordninger/7082abd8-4f23-43e9-adce-c4762b848b81">https://tilskudd.fiks.test.ks.no/ordninger/7082abd8-4f23-43e9-adce-c4762b848b81</li><li title="https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10">https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10</li><li title="https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10&searchString=%220%22">https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10&searchString=%220%22</li><li title="https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10&searchString=Test+bruker">https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10&searchString=Test+bruker</li><li title="https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10&searchString=null+undefined+NaN">https://tilskudd.fiks.test.ks.no/ordninger?currentPage=1&pageSize=10&searchString=null+undefined+NaN</li><li title="https://tilskudd.fiks.test.ks.no/ordninger?searchString=%220%22&currentPage=1&pageSize=10">https://tilskudd.fiks.test.ks.no/ordninger?searchString=%220%22&currentPage=1&pageSize=10</li><li title="https://tilskudd.fiks.test.ks.no/ordninger?searchString=%3Cb%3Ebold%3C%2Fb%3E&currentPage=1&pageSize=10">https://tilskudd.fiks.test.ks.no/ordninger?searchString=%3Cb%3Ebold%3C%2Fb%3E&currentPage=1&pageSize=10</li><li title="https://tilskudd.fiks.test.ks.no/ordninger?searchString=null+undefined+NaN&currentPage=1&pageSize=10">https://tilskudd.fiks.test.ks.no/ordninger?searchString=null+undefined+NaN&currentPage=1&pageSize=10</li>
     </ul>
   </div>
 
@@ -284,7 +256,7 @@
       </div>
     </div>
   </details>
-  <footer>KS Tilskudd · Monkey-tester · Playwright · 2026-04-22 13:33</footer>
+  <footer>KS Tilskudd · Monkey-tester · Playwright · 2026-04-22 15:46</footer>
 </div>
 </body>
 </html>
