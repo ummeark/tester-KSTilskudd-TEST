@@ -1,11 +1,21 @@
 /**
- * Genererer 30 deterministiske testdata-rader for KS Tilskudd.
- * Output: testdata/tilskudd-testdata.json
+ * Genererer testdata for KS Tilskudd.
+ * Output: testdata/tilskudd-testdata.json + docs/testdata-hub.html
  *
  * Kjør: node testdata/generer-testdata.js
  *
+ * Datasettet består av to deler:
+ *   1. EXCEL_ORDNINGER (10 rader) – hentet direkte fra "Datasett - tilskudd.xlsx"
+ *      Disse er reelle testordninger fra Excel-filen og vises øverst.
+ *      Kilde: kilde-feltet er satt til "Datasett - tilskudd.xlsx".
+ *
+ *   2. GENERERTE_ORDNINGER (30 rader) – deterministisk generert vokabular
+ *      Basert på mønstre fra Excel-filen (region-koder, org.nr-format,
+ *      OrdningId-struktur, næringskategorier og beskrivelsesmaler).
+ *      UUID-er er avledet fra sha256-hash av ordningId.
+ *      Kilde: kilde-feltet er satt til "Generert".
+ *
  * Deterministisk: samme input gir alltid samme output.
- * UUID-er er avledet fra sha256 av et fast seed-streng.
  */
 
 import { createHash } from 'crypto';
@@ -21,6 +31,20 @@ function uuid(seed) {
   return [h.slice(0,8), h.slice(8,12), `4${h.slice(13,16)}`,
     `${['8','9','a','b'][parseInt(h[16],16)%4]}${h.slice(17,20)}`, h.slice(20,32)].join('-');
 }
+
+// ── Ordninger hentet fra Datasett - tilskudd.xlsx ────────────────────────────
+const EXCEL_ORDNINGER = [
+  { tilskuddsordningId:'553b5d8c-209e-410e-88c6-a6cb79d714dc', ordningId:'XTO-100001', tittel:'Kommunalt næringsfond Hardanger 2026', kortBeskrivelse:'Fond for utvikling av næringslivet i Hardanger med vekt på grønn industri, reiseliv og teknologiske løsninger.', status:'AKTIV', regionsnivaa:'', region:'Vestland', satsingsomraade:'', naeringer:['Hotellvirksomhet','Restaurantvirksomhet'], soeknadsfrist:'2025-10-15', mottakerStorrelse:['Lite foretak','Mellomstort foretak'], forvalter:{ organisasjonsnummer:'314006690', navn:'ORDENTLIG FLAT OTER', rolleType:'FORVALTER', kontaktEpost:'' }, publisertFra:'', publisertTil:'2025-10-15', soknadsramme:0, avsnitt:[{ overskrift:'Om ordningen', innhold:'<p>Fond for utvikling av næringslivet i Hardanger med vekt på grønn industri, reiseliv og teknologiske løsninger.</p>' }], kilde:'Datasett - tilskudd.xlsx' },
+  { tilskuddsordningId:'7082abd8-4f23-43e9-adce-c4762b848b81', ordningId:'TO-100002', tittel:'Kommunalt næringsfond Sognefjorden 2026', kortBeskrivelse:'Støtteordning for utvikling av næringslivet i Sognefjorden, med fokus på maritim innovasjon og naturbasert turisme.', status:'AKTIV', regionsnivaa:'', region:'Vestland', satsingsomraade:'', naeringer:['Akvakultur','Produksjon av vegetabilske og animalske oljer og fettstoffer','Hotellvirksomhet','Tjenester tilknyttet informasjonsteknologi'], soeknadsfrist:'2025-09-20', mottakerStorrelse:['Lite foretak','Mellomstort foretak'], forvalter:{ organisasjonsnummer:'314087992', navn:'OPTIMISTISK SEIN OTER', rolleType:'FORVALTER', kontaktEpost:'' }, publisertFra:'', publisertTil:'2025-09-20', soknadsramme:0, avsnitt:[{ overskrift:'Om ordningen', innhold:'<p>Støtteordning for utvikling av næringslivet i Sognefjorden, med fokus på maritim innovasjon og naturbasert turisme.</p>' }], kilde:'Datasett - tilskudd.xlsx' },
+  { tilskuddsordningId:'b39a60ca-08e4-476c-88a1-a78fe3cd7983', ordningId:'TO-100003', tittel:'Regionalt utviklingsfond Trondheim 2026', kortBeskrivelse:'Fond for å styrke innovasjon, forskning og teknologidrevet næringsutvikling i Trondheim-regionen.', status:'AKTIV', regionsnivaa:'', region:'Trøndelag', satsingsomraade:'', naeringer:['IT-tjenester','Databehandling og web-portaler','FoU innen naturvitenskap og teknikk','Administrativ rådgivning'], soeknadsfrist:'2025-11-30', mottakerStorrelse:['Mellomstort foretak','Stort foretak'], forvalter:{ organisasjonsnummer:'313680568', navn:'RAFFINERT PRAKTISK OTER', rolleType:'FORVALTER', kontaktEpost:'' }, publisertFra:'', publisertTil:'2025-11-30', soknadsramme:0, avsnitt:[{ overskrift:'Om ordningen', innhold:'<p>Fond for å styrke innovasjon, forskning og teknologidrevet næringsutvikling i Trondheim-regionen.</p>' }], kilde:'Datasett - tilskudd.xlsx' },
+  { tilskuddsordningId:'cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0', ordningId:'TO-100004', tittel:'Kommunalt næringsfond Alta 2026', kortBeskrivelse:'Støtte til næringsprosjekter i Alta med fokus på energi, logistikk og kompetansebygging.', status:'AKTIV', regionsnivaa:'', region:'Finnmark', satsingsomraade:'', naeringer:['Produksjon og distribusjon av elektrisitet','Godstransport med jernbane','IT-tjenester','Hotellvirksomhet'], soeknadsfrist:'2025-08-31', mottakerStorrelse:['Lite foretak','Mellomstort foretak'], forvalter:{ organisasjonsnummer:'310837482', navn:'ORIGINAL MODERAT OTER', rolleType:'FORVALTER', kontaktEpost:'' }, publisertFra:'', publisertTil:'2025-08-31', soknadsramme:0, avsnitt:[{ overskrift:'Om ordningen', innhold:'<p>Støtte til næringsprosjekter i Alta med fokus på energi, logistikk og kompetansebygging.</p>' }], kilde:'Datasett - tilskudd.xlsx' },
+  { tilskuddsordningId:'72ad6a5b-3819-446b-881d-eed1d5dd9ed6', ordningId:'TO-100005', tittel:'Næringsfond Kristiansand Innovasjon 2026', kortBeskrivelse:'Støtteordning for innovasjons- og teknologiprosjekter i Kristiansand.', status:'AKTIV', regionsnivaa:'', region:'Agder', satsingsomraade:'', naeringer:['IT-tjenester','Databehandling og web-portaler','Administrativ rådgivning','Restaurantvirksomhet'], soeknadsfrist:'2025-11-10', mottakerStorrelse:['Lite foretak','Mellomstort foretak','Stort foretak'], forvalter:{ organisasjonsnummer:'310940240', navn:'EMPIRISK OPPBLÅST OTER', rolleType:'FORVALTER', kontaktEpost:'' }, publisertFra:'', publisertTil:'2025-11-10', soknadsramme:0, avsnitt:[{ overskrift:'Om ordningen', innhold:'<p>Støtteordning for innovasjons- og teknologiprosjekter i Kristiansand.</p>' }], kilde:'Datasett - tilskudd.xlsx' },
+  { tilskuddsordningId:'553b5d8c-209e-410e-88c6-a6cb79d714dc', ordningId:'32-FORINNBE-2026', tittel:'Forskning og innovasjon i bedrift', kortBeskrivelse:'Formålet med ordningen er å stimulere til at bedrifter gjennom forskning og innovasjon øker sitt verdiskapingspotensial og sin konkurransekraft.', status:'AKTIV', regionsnivaa:'32', region:'Akershus', satsingsomraade:'Klima, miljø og energi, Helse og omsorg, By-, steds- og regionsutvikling', naeringer:['Alle'], soeknadsfrist:'2026-05-04', mottakerStorrelse:['Lite foretak','Mellomstort foretak'], forvalter:{ organisasjonsnummer:'930580783', navn:'AKERSHUS FYLKESKOMMUNE', rolleType:'FORVALTER', kontaktEpost:'' }, publisertFra:'', publisertTil:'2026-05-04', soknadsramme:10000000, avsnitt:[{ overskrift:'Om ordningen', innhold:'<p>Ordningen retter seg mot små og mellomstore bedrifter i Akershus som vil ta i bruk forskning for å utvikle nye produkter og løsninger. Tilskuddet kan dekke inntil 50 % av godkjente prosjektkostnader, maks kr 750 000 per bedrift. Total ramme 2026: kr 10 000 000.</p>' }], kilde:'Datasett - tilskudd.xlsx' },
+  { tilskuddsordningId:'7082abd8-4f23-43e9-adce-c4762b848b81', ordningId:'46-BIOMIDL-2026', tittel:'BIO-midlar 2026', kortBeskrivelse:'Vestland fylkeskommune lyser ut 5 225 000 kroner til bedriftsintern opplæring (BIO) ekstraordinære opplæringstiltak i 2026.', status:'AKTIV', regionsnivaa:'46', region:'Vestland', satsingsomraade:'Grøn omstilling, inkludering, forsvar og beredskap, digital kompetanse', naeringer:['Alle'], soeknadsfrist:'2026-12-10', mottakerStorrelse:['Lite foretak','Mellomstort foretak','Stort foretak'], forvalter:{ organisasjonsnummer:'821311632', navn:'VESTLAND FYLKESKOMMUNE', rolleType:'FORVALTER', kontaktEpost:'' }, publisertFra:'', publisertTil:'2026-12-10', soknadsramme:5225000, avsnitt:[{ overskrift:'Om ordningen', innhold:'<p>Støtte til ekstraordinære opplæringstiltak (BIO) koblet til et konkret omstillingsprosjekt. Maks kr 250 000 per søknad, kr 40 000 per deltaker. Fortløpende behandling til midlene er brukt. Bedriften må være min. 2 år gammel.</p>' }], kilde:'Datasett - tilskudd.xlsx' },
+  { tilskuddsordningId:'b39a60ca-08e4-476c-88a1-a78fe3cd7983', ordningId:'31-STIMINTE-2026', tittel:'Stimuleringsmidler til internasjonalt samarbeid i Østfold', kortBeskrivelse:'Støtte til aktører i Østfold som vil gjennomføre søknadsprosesser mot EU-programmer som Horisont Europa, Kreativt Europa og Erasmus+.', status:'AKTIV', regionsnivaa:'31', region:'Østfold', satsingsomraade:'Kompetanseheving', naeringer:['Kommuner','Næringsklynger og nettverk','Forskningsmiljøer','Frivillig sektor','Kulturaktører','Universiteter og høyskoler'], soeknadsfrist:'2026-04-10', mottakerStorrelse:['Lite foretak','Mellomstort foretak','Stort foretak'], forvalter:{ organisasjonsnummer:'930580694', navn:'ØSTFOLD FYLKESKOMMUNE', rolleType:'FORVALTER', kontaktEpost:'espenho@ofk.no' }, publisertFra:'', publisertTil:'2026-04-10', soknadsramme:1000000, avsnitt:[{ overskrift:'Om ordningen', innhold:'<p>Formålet er å sette aktører i stand til å gjennomføre søknadsprosesser mot EU-programmer. Støtten kan utgjøre maks 50 % av forprosjektkostnaden, begrenset til kr 100 000. Krav om 50 % egenfinansiering.</p>' }], kilde:'Datasett - tilskudd.xlsx' },
+  { tilskuddsordningId:'cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0', ordningId:'1505-KOMMNAER-2026', tittel:'Kommunalt næringsfond Kristiansund 2026', kortBeskrivelse:'Kommunalt næringsfond for bedrifter og nyetablerere i Kristiansund. Støtten skal utløse nye arbeidsplasser eller sikre eksisterende.', status:'AKTIV', regionsnivaa:'1505', region:'Møre og Romsdal', satsingsomraade:'bedrifter og nyetablerere', naeringer:['Alle'], soeknadsfrist:'2026-10-01', mottakerStorrelse:['Lite foretak','Mellomstort foretak','Stort foretak'], forvalter:{ organisasjonsnummer:'940373661', navn:'KRISTIANSUND KOMMUNE', rolleType:'FORVALTER', kontaktEpost:'postmottak@kristiansund.kommune.no' }, publisertFra:'', publisertTil:'2026-10-01', soknadsramme:0, avsnitt:[{ overskrift:'Om ordningen', innhold:'<p>Søknad via www.regionalforvaltning.no. Maks 50 % av kostnadene kan finansieres fra fondet. To søknadsfrister per år: 1. april og 1. oktober.</p>' }], kilde:'Datasett - tilskudd.xlsx' },
+  { tilskuddsordningId:'72ad6a5b-3819-446b-881d-eed1d5dd9ed6', ordningId:'55-ARKT2030-2026', tittel:'Arktis 2030', kortBeskrivelse:'Troms, Nordland og Finnmark fylkeskommuner lyser ut 80 millioner kroner til hovedprosjekter over tilskuddsordningen Arktis 2030 i 2026.', status:'AKTIV', regionsnivaa:'55', region:'Nordland, Troms og Finnmark', satsingsomraade:'Kunnskap, infrastruktur, miljøvern, sikkerhet, beredskap og klimaendringer', naeringer:['Næringsliv i klynger og nettverk','Interesseorganisasjoner','Offentlige aktører','Kunnskapsmiljø i Nord-Norge'], soeknadsfrist:'2026-03-31', mottakerStorrelse:['Lite foretak','Mellomstort foretak','Stort foretak'], forvalter:{ organisasjonsnummer:'930068128', navn:'TROMS FYLKESKOMMUNE', rolleType:'FORVALTER', kontaktEpost:'' }, publisertFra:'', publisertTil:'2026-03-31', soknadsramme:80000000, avsnitt:[{ overskrift:'Om ordningen', innhold:'<p>80 mill. kroner til hovedprosjekter i arktiske strøk. Midlene er tildelt over statsbudsjettet av Kommunal- og distriktsdepartementet. Mer informasjon på Troms fylkeskommune sine nettsider.</p>' }], kilde:'Datasett - tilskudd.xlsx' },
+];
 
 // ── Vokabular ─────────────────────────────────────────────────────────────────
 
@@ -488,10 +512,14 @@ const rader = ARKETYPER.map((ark, i) => {
   };
 });
 
+// ── Kombiner Excel-ordninger + genererte ordninger ────────────────────────────
+const genererteMedKilde = rader.map(r => ({ ...r, kilde: 'Generert' }));
+const alleOrdninger = [...EXCEL_ORDNINGER, ...genererteMedKilde];
+
 // ── Skriv testdata JSON ───────────────────────────────────────────────────────
 const utFil = join(__dirname, 'tilskudd-testdata.json');
-writeFileSync(utFil, JSON.stringify(rader, null, 2), 'utf-8');
-console.log(`✓ Genererte ${rader.length} rader → ${utFil}`);
+writeFileSync(utFil, JSON.stringify(alleOrdninger, null, 2), 'utf-8');
+console.log(`✓ ${EXCEL_ORDNINGER.length} Excel + ${genererteMedKilde.length} genererte = ${alleOrdninger.length} rader → ${utFil}`);
 
 // ── Injiser i testdata-hub.html ───────────────────────────────────────────────
 const htmlFil = join(__dirname, '..', 'docs', 'testdata-hub.html');
@@ -499,7 +527,7 @@ let html = readFileSync(htmlFil, 'utf-8');
 // Erstatt alt mellom de to markørene (eller første placeholder)
 html = html.replace(
   /const TESTDATA = [\s\S]*?;(\s*\n)/,
-  `const TESTDATA = ${JSON.stringify(rader, null, 2)};\n`
+  `const TESTDATA = ${JSON.stringify(alleOrdninger, null, 2)};\n`
 );
 writeFileSync(htmlFil, html, 'utf-8');
 console.log(`✓ Injiserte testdata i docs/testdata-hub.html`);

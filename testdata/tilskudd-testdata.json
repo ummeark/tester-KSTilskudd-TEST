@@ -1,5 +1,371 @@
 [
   {
+    "tilskuddsordningId": "553b5d8c-209e-410e-88c6-a6cb79d714dc",
+    "ordningId": "XTO-100001",
+    "tittel": "Kommunalt næringsfond Hardanger 2026",
+    "kortBeskrivelse": "Fond for utvikling av næringslivet i Hardanger med vekt på grønn industri, reiseliv og teknologiske løsninger.",
+    "status": "AKTIV",
+    "regionsnivaa": "",
+    "region": "Vestland",
+    "satsingsomraade": "",
+    "naeringer": [
+      "Hotellvirksomhet",
+      "Restaurantvirksomhet"
+    ],
+    "soeknadsfrist": "2025-10-15",
+    "mottakerStorrelse": [
+      "Lite foretak",
+      "Mellomstort foretak"
+    ],
+    "forvalter": {
+      "organisasjonsnummer": "314006690",
+      "navn": "ORDENTLIG FLAT OTER",
+      "rolleType": "FORVALTER",
+      "kontaktEpost": ""
+    },
+    "publisertFra": "",
+    "publisertTil": "2025-10-15",
+    "soknadsramme": 0,
+    "avsnitt": [
+      {
+        "overskrift": "Om ordningen",
+        "innhold": "<p>Fond for utvikling av næringslivet i Hardanger med vekt på grønn industri, reiseliv og teknologiske løsninger.</p>"
+      }
+    ],
+    "kilde": "Datasett - tilskudd.xlsx"
+  },
+  {
+    "tilskuddsordningId": "7082abd8-4f23-43e9-adce-c4762b848b81",
+    "ordningId": "TO-100002",
+    "tittel": "Kommunalt næringsfond Sognefjorden 2026",
+    "kortBeskrivelse": "Støtteordning for utvikling av næringslivet i Sognefjorden, med fokus på maritim innovasjon og naturbasert turisme.",
+    "status": "AKTIV",
+    "regionsnivaa": "",
+    "region": "Vestland",
+    "satsingsomraade": "",
+    "naeringer": [
+      "Akvakultur",
+      "Produksjon av vegetabilske og animalske oljer og fettstoffer",
+      "Hotellvirksomhet",
+      "Tjenester tilknyttet informasjonsteknologi"
+    ],
+    "soeknadsfrist": "2025-09-20",
+    "mottakerStorrelse": [
+      "Lite foretak",
+      "Mellomstort foretak"
+    ],
+    "forvalter": {
+      "organisasjonsnummer": "314087992",
+      "navn": "OPTIMISTISK SEIN OTER",
+      "rolleType": "FORVALTER",
+      "kontaktEpost": ""
+    },
+    "publisertFra": "",
+    "publisertTil": "2025-09-20",
+    "soknadsramme": 0,
+    "avsnitt": [
+      {
+        "overskrift": "Om ordningen",
+        "innhold": "<p>Støtteordning for utvikling av næringslivet i Sognefjorden, med fokus på maritim innovasjon og naturbasert turisme.</p>"
+      }
+    ],
+    "kilde": "Datasett - tilskudd.xlsx"
+  },
+  {
+    "tilskuddsordningId": "b39a60ca-08e4-476c-88a1-a78fe3cd7983",
+    "ordningId": "TO-100003",
+    "tittel": "Regionalt utviklingsfond Trondheim 2026",
+    "kortBeskrivelse": "Fond for å styrke innovasjon, forskning og teknologidrevet næringsutvikling i Trondheim-regionen.",
+    "status": "AKTIV",
+    "regionsnivaa": "",
+    "region": "Trøndelag",
+    "satsingsomraade": "",
+    "naeringer": [
+      "IT-tjenester",
+      "Databehandling og web-portaler",
+      "FoU innen naturvitenskap og teknikk",
+      "Administrativ rådgivning"
+    ],
+    "soeknadsfrist": "2025-11-30",
+    "mottakerStorrelse": [
+      "Mellomstort foretak",
+      "Stort foretak"
+    ],
+    "forvalter": {
+      "organisasjonsnummer": "313680568",
+      "navn": "RAFFINERT PRAKTISK OTER",
+      "rolleType": "FORVALTER",
+      "kontaktEpost": ""
+    },
+    "publisertFra": "",
+    "publisertTil": "2025-11-30",
+    "soknadsramme": 0,
+    "avsnitt": [
+      {
+        "overskrift": "Om ordningen",
+        "innhold": "<p>Fond for å styrke innovasjon, forskning og teknologidrevet næringsutvikling i Trondheim-regionen.</p>"
+      }
+    ],
+    "kilde": "Datasett - tilskudd.xlsx"
+  },
+  {
+    "tilskuddsordningId": "cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0",
+    "ordningId": "TO-100004",
+    "tittel": "Kommunalt næringsfond Alta 2026",
+    "kortBeskrivelse": "Støtte til næringsprosjekter i Alta med fokus på energi, logistikk og kompetansebygging.",
+    "status": "AKTIV",
+    "regionsnivaa": "",
+    "region": "Finnmark",
+    "satsingsomraade": "",
+    "naeringer": [
+      "Produksjon og distribusjon av elektrisitet",
+      "Godstransport med jernbane",
+      "IT-tjenester",
+      "Hotellvirksomhet"
+    ],
+    "soeknadsfrist": "2025-08-31",
+    "mottakerStorrelse": [
+      "Lite foretak",
+      "Mellomstort foretak"
+    ],
+    "forvalter": {
+      "organisasjonsnummer": "310837482",
+      "navn": "ORIGINAL MODERAT OTER",
+      "rolleType": "FORVALTER",
+      "kontaktEpost": ""
+    },
+    "publisertFra": "",
+    "publisertTil": "2025-08-31",
+    "soknadsramme": 0,
+    "avsnitt": [
+      {
+        "overskrift": "Om ordningen",
+        "innhold": "<p>Støtte til næringsprosjekter i Alta med fokus på energi, logistikk og kompetansebygging.</p>"
+      }
+    ],
+    "kilde": "Datasett - tilskudd.xlsx"
+  },
+  {
+    "tilskuddsordningId": "72ad6a5b-3819-446b-881d-eed1d5dd9ed6",
+    "ordningId": "TO-100005",
+    "tittel": "Næringsfond Kristiansand Innovasjon 2026",
+    "kortBeskrivelse": "Støtteordning for innovasjons- og teknologiprosjekter i Kristiansand.",
+    "status": "AKTIV",
+    "regionsnivaa": "",
+    "region": "Agder",
+    "satsingsomraade": "",
+    "naeringer": [
+      "IT-tjenester",
+      "Databehandling og web-portaler",
+      "Administrativ rådgivning",
+      "Restaurantvirksomhet"
+    ],
+    "soeknadsfrist": "2025-11-10",
+    "mottakerStorrelse": [
+      "Lite foretak",
+      "Mellomstort foretak",
+      "Stort foretak"
+    ],
+    "forvalter": {
+      "organisasjonsnummer": "310940240",
+      "navn": "EMPIRISK OPPBLÅST OTER",
+      "rolleType": "FORVALTER",
+      "kontaktEpost": ""
+    },
+    "publisertFra": "",
+    "publisertTil": "2025-11-10",
+    "soknadsramme": 0,
+    "avsnitt": [
+      {
+        "overskrift": "Om ordningen",
+        "innhold": "<p>Støtteordning for innovasjons- og teknologiprosjekter i Kristiansand.</p>"
+      }
+    ],
+    "kilde": "Datasett - tilskudd.xlsx"
+  },
+  {
+    "tilskuddsordningId": "553b5d8c-209e-410e-88c6-a6cb79d714dc",
+    "ordningId": "32-FORINNBE-2026",
+    "tittel": "Forskning og innovasjon i bedrift",
+    "kortBeskrivelse": "Formålet med ordningen er å stimulere til at bedrifter gjennom forskning og innovasjon øker sitt verdiskapingspotensial og sin konkurransekraft.",
+    "status": "AKTIV",
+    "regionsnivaa": "32",
+    "region": "Akershus",
+    "satsingsomraade": "Klima, miljø og energi, Helse og omsorg, By-, steds- og regionsutvikling",
+    "naeringer": [
+      "Alle"
+    ],
+    "soeknadsfrist": "2026-05-04",
+    "mottakerStorrelse": [
+      "Lite foretak",
+      "Mellomstort foretak"
+    ],
+    "forvalter": {
+      "organisasjonsnummer": "930580783",
+      "navn": "AKERSHUS FYLKESKOMMUNE",
+      "rolleType": "FORVALTER",
+      "kontaktEpost": ""
+    },
+    "publisertFra": "",
+    "publisertTil": "2026-05-04",
+    "soknadsramme": 10000000,
+    "avsnitt": [
+      {
+        "overskrift": "Om ordningen",
+        "innhold": "<p>Ordningen retter seg mot små og mellomstore bedrifter i Akershus som vil ta i bruk forskning for å utvikle nye produkter og løsninger. Tilskuddet kan dekke inntil 50 % av godkjente prosjektkostnader, maks kr 750 000 per bedrift. Total ramme 2026: kr 10 000 000.</p>"
+      }
+    ],
+    "kilde": "Datasett - tilskudd.xlsx"
+  },
+  {
+    "tilskuddsordningId": "7082abd8-4f23-43e9-adce-c4762b848b81",
+    "ordningId": "46-BIOMIDL-2026",
+    "tittel": "BIO-midlar 2026",
+    "kortBeskrivelse": "Vestland fylkeskommune lyser ut 5 225 000 kroner til bedriftsintern opplæring (BIO) ekstraordinære opplæringstiltak i 2026.",
+    "status": "AKTIV",
+    "regionsnivaa": "46",
+    "region": "Vestland",
+    "satsingsomraade": "Grøn omstilling, inkludering, forsvar og beredskap, digital kompetanse",
+    "naeringer": [
+      "Alle"
+    ],
+    "soeknadsfrist": "2026-12-10",
+    "mottakerStorrelse": [
+      "Lite foretak",
+      "Mellomstort foretak",
+      "Stort foretak"
+    ],
+    "forvalter": {
+      "organisasjonsnummer": "821311632",
+      "navn": "VESTLAND FYLKESKOMMUNE",
+      "rolleType": "FORVALTER",
+      "kontaktEpost": ""
+    },
+    "publisertFra": "",
+    "publisertTil": "2026-12-10",
+    "soknadsramme": 5225000,
+    "avsnitt": [
+      {
+        "overskrift": "Om ordningen",
+        "innhold": "<p>Støtte til ekstraordinære opplæringstiltak (BIO) koblet til et konkret omstillingsprosjekt. Maks kr 250 000 per søknad, kr 40 000 per deltaker. Fortløpende behandling til midlene er brukt. Bedriften må være min. 2 år gammel.</p>"
+      }
+    ],
+    "kilde": "Datasett - tilskudd.xlsx"
+  },
+  {
+    "tilskuddsordningId": "b39a60ca-08e4-476c-88a1-a78fe3cd7983",
+    "ordningId": "31-STIMINTE-2026",
+    "tittel": "Stimuleringsmidler til internasjonalt samarbeid i Østfold",
+    "kortBeskrivelse": "Støtte til aktører i Østfold som vil gjennomføre søknadsprosesser mot EU-programmer som Horisont Europa, Kreativt Europa og Erasmus+.",
+    "status": "AKTIV",
+    "regionsnivaa": "31",
+    "region": "Østfold",
+    "satsingsomraade": "Kompetanseheving",
+    "naeringer": [
+      "Kommuner",
+      "Næringsklynger og nettverk",
+      "Forskningsmiljøer",
+      "Frivillig sektor",
+      "Kulturaktører",
+      "Universiteter og høyskoler"
+    ],
+    "soeknadsfrist": "2026-04-10",
+    "mottakerStorrelse": [
+      "Lite foretak",
+      "Mellomstort foretak",
+      "Stort foretak"
+    ],
+    "forvalter": {
+      "organisasjonsnummer": "930580694",
+      "navn": "ØSTFOLD FYLKESKOMMUNE",
+      "rolleType": "FORVALTER",
+      "kontaktEpost": "espenho@ofk.no"
+    },
+    "publisertFra": "",
+    "publisertTil": "2026-04-10",
+    "soknadsramme": 1000000,
+    "avsnitt": [
+      {
+        "overskrift": "Om ordningen",
+        "innhold": "<p>Formålet er å sette aktører i stand til å gjennomføre søknadsprosesser mot EU-programmer. Støtten kan utgjøre maks 50 % av forprosjektkostnaden, begrenset til kr 100 000. Krav om 50 % egenfinansiering.</p>"
+      }
+    ],
+    "kilde": "Datasett - tilskudd.xlsx"
+  },
+  {
+    "tilskuddsordningId": "cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0",
+    "ordningId": "1505-KOMMNAER-2026",
+    "tittel": "Kommunalt næringsfond Kristiansund 2026",
+    "kortBeskrivelse": "Kommunalt næringsfond for bedrifter og nyetablerere i Kristiansund. Støtten skal utløse nye arbeidsplasser eller sikre eksisterende.",
+    "status": "AKTIV",
+    "regionsnivaa": "1505",
+    "region": "Møre og Romsdal",
+    "satsingsomraade": "bedrifter og nyetablerere",
+    "naeringer": [
+      "Alle"
+    ],
+    "soeknadsfrist": "2026-10-01",
+    "mottakerStorrelse": [
+      "Lite foretak",
+      "Mellomstort foretak",
+      "Stort foretak"
+    ],
+    "forvalter": {
+      "organisasjonsnummer": "940373661",
+      "navn": "KRISTIANSUND KOMMUNE",
+      "rolleType": "FORVALTER",
+      "kontaktEpost": "postmottak@kristiansund.kommune.no"
+    },
+    "publisertFra": "",
+    "publisertTil": "2026-10-01",
+    "soknadsramme": 0,
+    "avsnitt": [
+      {
+        "overskrift": "Om ordningen",
+        "innhold": "<p>Søknad via www.regionalforvaltning.no. Maks 50 % av kostnadene kan finansieres fra fondet. To søknadsfrister per år: 1. april og 1. oktober.</p>"
+      }
+    ],
+    "kilde": "Datasett - tilskudd.xlsx"
+  },
+  {
+    "tilskuddsordningId": "72ad6a5b-3819-446b-881d-eed1d5dd9ed6",
+    "ordningId": "55-ARKT2030-2026",
+    "tittel": "Arktis 2030",
+    "kortBeskrivelse": "Troms, Nordland og Finnmark fylkeskommuner lyser ut 80 millioner kroner til hovedprosjekter over tilskuddsordningen Arktis 2030 i 2026.",
+    "status": "AKTIV",
+    "regionsnivaa": "55",
+    "region": "Nordland, Troms og Finnmark",
+    "satsingsomraade": "Kunnskap, infrastruktur, miljøvern, sikkerhet, beredskap og klimaendringer",
+    "naeringer": [
+      "Næringsliv i klynger og nettverk",
+      "Interesseorganisasjoner",
+      "Offentlige aktører",
+      "Kunnskapsmiljø i Nord-Norge"
+    ],
+    "soeknadsfrist": "2026-03-31",
+    "mottakerStorrelse": [
+      "Lite foretak",
+      "Mellomstort foretak",
+      "Stort foretak"
+    ],
+    "forvalter": {
+      "organisasjonsnummer": "930068128",
+      "navn": "TROMS FYLKESKOMMUNE",
+      "rolleType": "FORVALTER",
+      "kontaktEpost": ""
+    },
+    "publisertFra": "",
+    "publisertTil": "2026-03-31",
+    "soknadsramme": 80000000,
+    "avsnitt": [
+      {
+        "overskrift": "Om ordningen",
+        "innhold": "<p>80 mill. kroner til hovedprosjekter i arktiske strøk. Midlene er tildelt over statsbudsjettet av Kommunal- og distriktsdepartementet. Mer informasjon på Troms fylkeskommune sine nettsider.</p>"
+      }
+    ],
+    "kilde": "Datasett - tilskudd.xlsx"
+  },
+  {
     "tilskuddsordningId": "1fd37498-aa4b-41b5-857b-5a1394adb6ae",
     "ordningId": "32-NÆRINGS-2026",
     "tittel": "Næringsfond Akershus 2026",
@@ -45,7 +411,8 @@
         "overskrift": "Slik søker du",
         "innhold": "<p>Søknad sendes via www.regionalforvaltning.no. Søknaden skal inneholde beskrivelse av tiltaket, budsjett og finansieringsplan.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "155bf87e-d230-4d0e-bf5a-53b6ba462717",
@@ -87,7 +454,8 @@
         "overskrift": "Støttebeløp",
         "innhold": "<p>Maksimal støtte per søknad: kr 250 000. Maksimalt kr 40 000 per deltaker. Søknadane behandles fortløpende så lenge det er midler igjen.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "43981422-64da-4e4f-9fef-599f0627ed63",
@@ -132,7 +500,8 @@
         "overskrift": "Tildelingskriterier",
         "innhold": "<p>Prosjekter vurderes etter innovasjonsgrad, gjennomføringsevne, bærekraft og overføringsverdi til andre kommuner.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "e1a8121d-c457-4b6e-befb-c4ea9e319d58",
@@ -176,7 +545,8 @@
         "overskrift": "Søknadsfrister",
         "innhold": "<p>Det er 2 årlige søknadsfrister: 1. april og 1. oktober. Ta kontakt med kommunen om du har spørsmål.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "c3d9709f-f491-42a7-ae6f-da943547d6ee",
@@ -216,7 +586,8 @@
         "overskrift": "Prioriterte satsinger",
         "innhold": "<ul><li>Marin bioteknologi og akvakultur</li><li>Naturbasert reiseliv</li><li>Klimasmart logistikk</li><li>Samisk næringsliv</li></ul>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "87e1f8ae-623c-45e6-9b4b-e5bd9ca00627",
@@ -261,7 +632,8 @@
         "overskrift": "Vilkår",
         "innhold": "<p>Krav om egenfinansiering på minimum 50 %. Støtten kan utgjøre maksimalt 50 % av forprosjektkostnaden, begrenset til kr 100 000.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "5cd42aba-88a7-4a0d-a4e0-51a4f3af5dbb",
@@ -298,7 +670,8 @@
         "overskrift": "Støttebeløp",
         "innhold": "<p>Inntil 70 % av kursutgiftene, maksimalt kr 100 000 per bedrift per år. Kursarrangør må være godkjent.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "c74c32bb-27f4-4d3b-8258-6b99e9de4fd1",
@@ -338,7 +711,8 @@
         "overskrift": "Støttede tiltak",
         "innhold": "<ul><li>Innkjøp av elektriske kjøretøy og maskiner</li><li>Energieffektiviseringstiltak</li><li>Utvikling av klimateknologi</li><li>Pilotprosjekter for sirkulærøkonomi</li></ul>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "3185e775-5ebe-457c-8137-ffc97847175e",
@@ -379,7 +753,8 @@
         "overskrift": "Hvem kan søke",
         "innhold": "<p>Bedrifter i maritim sektor, klyngeorganisasjoner og FoU-institusjoner med aktivitet i Rogaland.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "e15eca30-0dcc-4dab-9d67-34afbf6fe36c",
@@ -419,7 +794,8 @@
         "overskrift": "Prioriterte kompetanseområder",
         "innhold": "<ul><li>Kunstig intelligens og maskinlæring</li><li>Cybersikkerhet</li><li>Dataanalyse og visualisering</li><li>Digital prosjektledelse</li></ul>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "25698e0f-8bfd-416b-9435-7d07b1c6d6b1",
@@ -457,7 +833,8 @@
         "overskrift": "Hvem kan søke",
         "innhold": "<p>Profesjonelle kunstnere, kulturorganisasjoner og kreative bedrifter med aktivitet i Oslo. Frivillige organisasjoner kan søke dersom de samarbeider med profesjonelle aktører.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "4c82d68a-cf30-4604-9bbd-0838dbff7972",
@@ -494,7 +871,8 @@
         "overskrift": "Søknadskriterier",
         "innhold": "<ul><li>Tydelig kulturelt formål</li><li>Bred publikumsappell</li><li>God geografisk spredning i Bergen</li><li>Egenfinansiering på minst 30 %</li></ul>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "3ac5c4ae-04fe-4e87-949e-f1fff3584bf7",
@@ -533,7 +911,8 @@
         "overskrift": "Vilkår",
         "innhold": "<p>Festivalen må ha vært arrangert tidligere eller ha et solid planverk. Minimum 500 besøkende. Arrangementet må gjennomføres i Stavanger.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "e3aeb6b7-6ecc-4eda-98ba-ed408227d0fa",
@@ -566,7 +945,8 @@
         "overskrift": "Prioriterte tiltak",
         "innhold": "<ul><li>Digitalisering av kulturarv</li><li>Restaurering og vedlikehold av verneverdige bygg</li><li>Formidlingsprosjekter rettet mot unge</li><li>Dokumentasjon av stedsnavn og tradisjoner</li></ul>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "8399e2d1-432f-438d-a0a7-678198422938",
@@ -600,7 +980,8 @@
         "overskrift": "Merk",
         "innhold": "<p>Denne ordningen er avsluttet for 2025. Ny utlysning forventes i januar 2026. Kontakt Hamar fylkeskommune for mer informasjon.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "25c0f9be-f4c5-46b9-b37c-90be1af0407b",
@@ -645,7 +1026,8 @@
         "overskrift": "Rapportering",
         "innhold": "<p>Alle prosjekter som mottar støtte må rapportere på faktiske klimagassreduksjoner innen 12 måneder etter prosjektavslutning.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "bddccf5e-e75c-47a3-93ac-8041c42ec9d5",
@@ -685,7 +1067,8 @@
         "overskrift": "Søknadsprosess",
         "innhold": "<p>Prosjekter over kr 500 000 krever teknisk faglig vurdering. Søknad sendes via regionalforvaltning.no med nødvendig teknisk dokumentasjon.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "6a2ef95d-27f4-4ae3-b2b1-eefc8aae8160",
@@ -720,7 +1103,8 @@
         "overskrift": "Krav til søknaden",
         "innhold": "<p>Søknaden må koble prosjektet tydelig til ett eller flere av FNs 17 bærekraftsmål og beskrive forventet effekt på lokalsamfunnet.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "cd38b8fb-0041-4d04-9dac-cf371ee3f7b3",
@@ -756,7 +1140,8 @@
         "overskrift": "Tilpasningsområder",
         "innhold": "<ul><li>Flomsikring og overvannshåndtering</li><li>Skredforebygging</li><li>Tilpasning av bygg til ekstremvær</li><li>Klimarobuste transportsystemer</li></ul>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "61c727e5-df22-4ae5-95f4-5428c77e49cc",
@@ -791,7 +1176,8 @@
         "overskrift": "Status",
         "innhold": "<p>Ordningen er midlertidig stanset. Ny utlysning forventes Q1 2026 etter statsbudsjettet er vedtatt.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "64d6a491-321e-4c37-812c-70cee8bd82f0",
@@ -827,7 +1213,8 @@
         "overskrift": "Støttede tiltak",
         "innhold": "<ul><li>Investering i ny landbruksteknologi</li><li>Presisjonsjordbruk og sensorer</li><li>Klimasmart husdyrhold</li><li>Lokal matproduksjon og kortreistmat</li></ul>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "ddddf2d2-79f5-4f17-863e-27d5929a568e",
@@ -861,7 +1248,8 @@
         "overskrift": "Særpreg",
         "innhold": "<p>Ordningen tar hensyn til de særskilte utfordringene ved landbruk i arktisk klima, inkludert kortere vekstsesong, permafrost og samisk reindrift.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "b0a6eea5-9fd7-441a-97a2-a83da8c93623",
@@ -895,7 +1283,8 @@
         "overskrift": "Om ordningen",
         "innhold": "<p>Tilskuddet skal bidra til å opprettholde aktiv landbruksdrift i Bodø og sikre at matproduksjonsressursene utnyttes.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "431aefcf-2fd0-4fdc-bfae-ecb9dae3c50c",
@@ -931,7 +1320,8 @@
         "overskrift": "Hva støttes",
         "innhold": "<ul><li>Sentrumsutvikling og møteplasser</li><li>Bredbåndsutbygging i grissgrendte strøk</li><li>Lokale næringspark-initiativer</li><li>Attraktivitetstiltak for tilflytting</li></ul>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "e92b6f8a-9220-436f-bcda-ab31ac1b7f99",
@@ -965,7 +1355,8 @@
         "overskrift": "Prioriterte produkter",
         "innhold": "<p>Lokale og tradisjonelle matprodukter, kortreist mat, bærekraftig havmat, og produkter med geografisk indikasjon prioriteres.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "db2a4416-0cd2-41d6-a628-54641346e4e2",
@@ -1000,7 +1391,8 @@
         "overskrift": "Prioriterte teknologier",
         "innhold": "<ul><li>Kunstig intelligens og maskinlæring</li><li>Automatisering og robotikk</li><li>IoT og sensorteknologi</li><li>Blokkjede og distribuerte løsninger</li></ul>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "608be3d1-b14f-4f5f-970d-b4410d82e765",
@@ -1034,7 +1426,8 @@
         "overskrift": "Støttede aktiviteter",
         "innhold": "<ul><li>Etterutdanning innen teknologi</li><li>Lærlingplasser i teknologibedrifter</li><li>Mentorprogrammer med teknologieksperter</li><li>Workshops og hackathons</li></ul>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "cf2a6a07-017b-409d-b75c-524e014a3ed7",
@@ -1070,7 +1463,8 @@
         "overskrift": "Hva støttes",
         "innhold": "<ul><li>Etableringskostnader (inntil kr 30 000)</li><li>Første markedsføringskampanje</li><li>Prototyping og produktutvikling</li><li>Deltakelse på messer og salgsarenaer</li></ul>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "652fabc0-0f1c-4c8b-a30c-9a7f6e2c6cc2",
@@ -1104,7 +1498,8 @@
         "overskrift": "Programinnhold",
         "innhold": "<ul><li>Oppstartsstipend på inntil kr 75 000</li><li>6 måneders mentorprogram</li><li>Tilgang til co-working space</li><li>Demo Day for investorer</li></ul>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   },
   {
     "tilskuddsordningId": "085a5865-03b2-436f-b60a-824b5e0af509",
@@ -1144,6 +1539,7 @@
         "overskrift": "Samarbeidskrav",
         "innhold": "<p>Prosjekter som involverer samarbeid mellom kommunen, næringslivet og FoU-miljøer prioriteres. Minst én av partene må ha erfaring med smart by-teknologi.</p>"
       }
-    ]
+    ],
+    "kilde": "Generert"
   }
 ]
