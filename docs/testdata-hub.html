@@ -416,6 +416,7 @@
   <table id="tabell">
     <thead>
       <tr>
+        <th style="width:2.5rem;text-align:center">#</th>
         <th>Ordning-ID</th>
         <th>Tittel</th>
         <th>Status</th>
@@ -2040,6 +2041,7 @@ function rendrer(rader) {
     const kildeKlasse = d.kilde === 'Generert' ? 'generert' : 'excel';
     const kildeLabel  = d.kilde === 'Generert' ? 'Generert' : 'Datasett - tilskudd.xlsx';
     rad.innerHTML = `
+      <td style="text-align:center;color:#9ca3af;font-size:.78rem">${idx + 1}</td>
       <td class="ordning-id">${esc(d.ordningId)}</td>
       <td class="tittel-celle">
         <strong>${esc(d.tittel)}</strong>
@@ -2059,7 +2061,7 @@ function rendrer(rader) {
     const detaljRad = document.createElement('tr');
     detaljRad.className = 'detalj-rad';
     detaljRad.id = `detalj-${idx}`;
-    detaljRad.innerHTML = `<td colspan="8">${byggDetalj(d, idx)}</td>`;
+    detaljRad.innerHTML = `<td colspan="9">${byggDetalj(d, idx)}</td>`;
     tbody.appendChild(detaljRad);
   });
 }
