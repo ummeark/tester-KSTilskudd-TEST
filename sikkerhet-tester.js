@@ -5,9 +5,9 @@ import https from 'https';
 import http from 'http';
 import { fileURLToPath } from 'url';
 import { exec } from 'child_process';
+import { START_URL, VIEWPORT, SIDE_TIMEOUT, IDLE_TIMEOUT, HTTP_TIMEOUT } from './config.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const START_URL = process.argv[2] || 'https://tilskudd.fiks.test.ks.no/';
 const dato = new Date().toISOString().slice(0, 10);
 const tidspunkt = new Date().toLocaleTimeString('no-NO', { hour: '2-digit', minute: '2-digit' });
 const rapportDir = path.join(__dirname, 'rapporter', dato);
@@ -65,7 +65,7 @@ const XSS_SØKEFELT_PAYLOAD = '"><img src=x onerror=alert(1)>';
 function hentHoder(url) {
   return new Promise((resolve) => {
     const modul = url.startsWith('https') ? https : http;
-    const req = modul.request(url, { method: 'HEAD', timeout: 8000,
+    const req = modul.request(url, { method: 'HEAD', timeout: HTTP_TIMEOUT,
       headers: { 'User-Agent': 'Mozilla/5.0 SikkerhetsTester/1.0' },
       rejectUnauthorized: false,
     }, res => resolve({ status: res.statusCode, hoder: res.headers }));
@@ -79,7 +79,7 @@ function hentInnhold(url) {
   return new Promise((resolve) => {
     const modul = url.startsWith('https') ? https : http;
     let data = '';
-    const req = modul.request(url, { method: 'GET', timeout: 8000,
+    const req = modul.request(url, { method: 'GET', timeout: HTTP_TIMEOUT,
       headers: { 'User-Agent': 'Mozilla/5.0 SikkerhetsTester/1.0' },
       rejectUnauthorized: false,
     }, res => {
@@ -201,7 +201,7 @@ const context = await browser.newContext({ ignoreHTTPSErrors: true });
 async function hentVersjon(ctx) {
   const p = await ctx.newPage();
   try {
-    await p.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await p.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
     const tekst = await p.evaluate(() => document.body.innerText);
     const match = tekst.match(/v\d+\.\d+\.\d+/);
     return match ? match[0] : null;
@@ -212,7 +212,7 @@ const versjon = await hentVersjon(context);
 const page = await context.newPage();
 
 try {
-  await page.goto(START_URL, { waitUntil: 'networkidle', timeout: 20000 });
+  await page.goto(START_URL, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT });
 } catch (e) {
   console.log(`  ⚠️ Kunne ikke laste siden: ${e.message}`);
 }
@@ -251,7 +251,7 @@ page.on('request', req => {
 });
 
 try {
-  await page.reload({ waitUntil: 'networkidle', timeout: 15000 });
+  await page.reload({ waitUntil: 'networkidle', timeout: SIDE_TIMEOUT });
 } catch { /* ignorer */ }
 
 if (mixedContent.length > 0) {
@@ -310,7 +310,7 @@ console.log('🌐 Sjekker CORS-konfigurasjon...');
 const corsRes = await new Promise(resolve => {
   const modul = START_URL.startsWith('https') ? https : http;
   const req = modul.request(START_URL, {
-    method: 'OPTIONS', timeout: 8000,
+    method: 'OPTIONS', timeout: HTTP_TIMEOUT,
     headers: {
       'Origin': 'https://ondomain.eksempel.no',
       'Access-Control-Request-Method': 'GET',

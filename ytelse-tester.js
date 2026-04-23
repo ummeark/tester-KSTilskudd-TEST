@@ -2,10 +2,9 @@ import { chromium } from 'playwright';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { START_URL, MAX_SIDER, VIEWPORT, LAST_TIMEOUT } from './config.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const START_URL = process.argv[2] || 'https://tilskudd.fiks.test.ks.no/';
-const MAX_SIDER = parseInt(process.argv[3]) || 20;
 const dato = new Date().toISOString().slice(0, 10);
 const tidspunkt = new Date().toLocaleTimeString('no-NO', { hour: '2-digit', minute: '2-digit' });
 const rapportDir = path.join(__dirname, 'rapporter', dato);
@@ -46,7 +45,7 @@ function scoreKlasse(s) { return s >= 80 ? 'god' : s >= 50 ? 'middels' : 'dårli
 const browser = await chromium.launch();
 const context = await browser.newContext({
   userAgent: 'Mozilla/5.0 Ytelses-Tester/1.0',
-  viewport: { width: 1280, height: 900 },
+  viewport: VIEWPORT,
 });
 
 const besøkte = new Set();
@@ -84,7 +83,7 @@ while (kø.length > 0 && sideResultater.length < MAX_SIDER) {
   let lenker = [];
 
   try {
-    await page.goto(url, { waitUntil: 'load', timeout: 30000 });
+    await page.goto(url, { waitUntil: 'load', timeout: LAST_TIMEOUT });
     await page.waitForTimeout(800); // gi LCP-observer tid til å registrere
 
     const data = await page.evaluate(() => {

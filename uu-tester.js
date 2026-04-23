@@ -3,11 +3,9 @@ import AxeBuilder from '@axe-core/playwright';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { START_URL, MAX_SIDER, VIEWPORT, SIDE_TIMEOUT, IDLE_TIMEOUT, LAST_TIMEOUT, LINK_TIMEOUT } from './config.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const START_URL = process.argv[2] || 'https://tilskudd.fiks.test.ks.no/';
-const MAX_SIDER = parseInt(process.argv[3]) || 20;
 const dato = new Date().toISOString().slice(0, 10);
 const tidspunkt = new Date().toLocaleTimeString('no-NO', { hour: '2-digit', minute: '2-digit' });
 const rapportDir = path.join(__dirname, 'rapporter', dato);
@@ -24,14 +22,14 @@ const browser = await chromium.launch();
 const nettleser = browser.version();
 const context = await browser.newContext({
   userAgent: 'Mozilla/5.0 UU-Tester/1.0',
-  viewport: { width: 1280, height: 900 }
+  viewport: VIEWPORT
 });
 
 // Hent versjonsnummer fra siden
 async function hentVersjon(ctx) {
   const p = await ctx.newPage();
   try {
-    await p.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await p.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
     const tekst = await p.evaluate(() => document.body.innerText);
     const match = tekst.match(/v\d+\.\d+\.\d+/);
     return match ? match[0] : null;
@@ -108,7 +106,7 @@ async function taSkjermdump(page, selectors, filnavn, farge = '#dc3545') {
 async function analyserSide(url, indeks) {
   const page = await context.newPage();
   try {
-    await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
+    await page.goto(url, { waitUntil: 'networkidle', timeout: LAST_TIMEOUT });
     await page.waitForTimeout(800);
 
     const tittel = await page.title();
@@ -200,11 +198,11 @@ async function analyserSide(url, indeks) {
           return { ...l, status: 'skip', ok: true };
         }
         try {
-          const r = await fetch(l.href, { method: 'HEAD', signal: AbortSignal.timeout(6000) });
+          const r = await fetch(l.href, { method: 'HEAD', signal: AbortSignal.timeout(LINK_TIMEOUT) });
           return { ...l, status: r.status, ok: r.ok };
         } catch {
           try {
-            const r = await fetch(l.href, { method: 'GET', signal: AbortSignal.timeout(6000) });
+            const r = await fetch(l.href, { method: 'GET', signal: AbortSignal.timeout(LINK_TIMEOUT) });
             return { ...l, status: r.status, ok: r.ok };
           } catch {
             return { ...l, status: 'feil', ok: false };
@@ -325,7 +323,7 @@ async function kjørTastaturSjekker(ctx, url) {
 
   try {
     // 2.4.7 Synlig fokus
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
     const utenFokus = [];
     let forrigeKey = null;
     for (let i = 0; i < 15; i++) {
@@ -353,7 +351,7 @@ async function kjørTastaturSjekker(ctx, url) {
     }
 
     // 2.4.3 Tabindeks-misbruk
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
     const misbruk = await page.evaluate(() =>
       Array.from(document.querySelectorAll('[tabindex]'))
         .filter(el => parseInt(el.getAttribute('tabindex'), 10) > 0)
@@ -367,7 +365,7 @@ async function kjørTastaturSjekker(ctx, url) {
     }
 
     // 2.1.1 Tastaturrekkevidde
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
     const interaktiveDOM = await page.evaluate(() =>
       document.querySelectorAll('a[href]:not([tabindex="-1"]),button:not([tabindex="-1"]):not([disabled]),input:not([type=hidden]):not([tabindex="-1"])').length
     );
@@ -393,7 +391,7 @@ async function kjørTastaturSjekker(ctx, url) {
     }
 
     // 2.1.2 Ingen tastaturfelle
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
     let forrigeId = null, konsekutive = 0, felle = null;
     for (let i = 0; i < 40; i++) {
       await page.keyboard.press('Tab');
@@ -412,7 +410,7 @@ async function kjørTastaturSjekker(ctx, url) {
     }
 
     // 2.4.1 Hopplenke til hovedinnhold
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
     await page.evaluate(() => document.body.focus());
     await page.waitForTimeout(100);
     await page.keyboard.press('Tab');
@@ -433,7 +431,7 @@ async function kjørTastaturSjekker(ctx, url) {
     }
 
     // 2.1.1 Enter aktiverer lenker
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
     const utgangsUrl = page.url();
     let aktivert = false;
     for (let i = 0; i < 15 && !aktivert; i++) {

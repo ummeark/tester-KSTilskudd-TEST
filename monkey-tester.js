@@ -2,10 +2,9 @@ import { chromium } from 'playwright';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { START_URL, ITERASJONER, VIEWPORT, SIDE_TIMEOUT, IDLE_TIMEOUT, KRASJ_ORD } from './config.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const START_URL = process.argv[2] || 'https://tilskudd.fiks.test.ks.no/';
-const ITERASJONER = parseInt(process.argv[3]) || 60;
 const dato = new Date().toISOString().slice(0, 10);
 const tidspunkt = new Date().toLocaleTimeString('no-NO', { hour: '2-digit', minute: '2-digit' });
 const rapportDir = path.join(__dirname, 'rapporter', dato);
@@ -56,14 +55,14 @@ const browser = await chromium.launch();
 const nettleser = browser.version();
 const context = await browser.newContext({
   userAgent: 'Mozilla/5.0 MonkeyTester/1.0',
-  viewport: { width: 1280, height: 900 },
+  viewport: VIEWPORT,
 });
 
 // Hent versjonsnummer fra siden
 async function hentVersjon(ctx) {
   const p = await ctx.newPage();
   try {
-    await p.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await p.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
     const tekst = await p.evaluate(() => document.body.innerText);
     const match = tekst.match(/v\d+\.\d+\.\d+/);
     return match ? match[0] : null;
@@ -105,16 +104,14 @@ async function taSkjermdump(prefix) {
 
 async function resetTilStart() {
   try {
-    await page.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: 12000 });
+    await page.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
   } catch { /* ignorer */ }
 }
 
 async function sjekkForFeilside() {
   try {
     const tekst = await page.textContent('body');
-    const feilord = ['500', 'Internal Server Error', 'Something went wrong',
-                     'Uventet feil', 'Oops', 'Ops!', '404 – Siden'];
-    for (const ord of feilord) {
+    for (const ord of KRASJ_ORD) {
       if (tekst.includes(ord)) return ord;
     }
   } catch { /* ignorer */ }
@@ -123,7 +120,7 @@ async function sjekkForFeilside() {
 
 // ── Start navigasjon ─────────────────────────────────────────────────────────
 try {
-  await page.goto(START_URL, { waitUntil: 'networkidle', timeout: 20000 });
+  await page.goto(START_URL, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT });
 } catch (e) {
   console.log(`❌ Kunne ikke laste startsiden: ${e.message}`);
   await browser.close();

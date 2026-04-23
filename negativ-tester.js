@@ -3,9 +3,9 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { exec } from 'child_process';
+import { START_URL, VIEWPORT, SIDE_TIMEOUT } from './config.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const START_URL = process.argv[2] || 'https://tilskudd.fiks.test.ks.no/';
 const dato = new Date().toISOString().slice(0, 10);
 const tidspunkt = new Date().toLocaleTimeString('no-NO', { hour: '2-digit', minute: '2-digit' });
 const rapportDir = path.join(__dirname, 'rapporter', dato);
@@ -34,14 +34,14 @@ const browser = await chromium.launch();
 const nettleser = browser.version();
 const context = await browser.newContext({
   userAgent: 'Mozilla/5.0 NegativTester/1.0',
-  viewport: { width: 1280, height: 900 },
+  viewport: VIEWPORT,
 });
 
 // Hent versjonsnummer fra siden
 async function hentVersjon(ctx) {
   const p = await ctx.newPage();
   try {
-    await p.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await p.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
     const tekst = await p.evaluate(() => document.body.innerText);
     const match = tekst.match(/v\d+\.\d+\.\d+/);
     return match ? match[0] : null;
@@ -65,7 +65,7 @@ async function skjermdump(prefix) {
 
 async function gåTil(url) {
   try {
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
     await page.waitForTimeout(600);
     return true;
   } catch { return false; }
@@ -340,7 +340,7 @@ await leggTilTest('nettleser', 'Siden uten JavaScript', 'noScript', 'Viser innho
   const noJsCtx = await browser.newContext({ javaScriptEnabled: false });
   const noJsPage = await noJsCtx.newPage();
   try {
-    await noJsPage.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await noJsPage.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
     const tekst = await noJsPage.textContent('body').catch(() => '');
     const harInnhold = tekst.trim().length > 100;
     await noJsCtx.close();
@@ -360,7 +360,7 @@ await leggTilTest('nettleser', 'Smal mobilvisning (320px bredde)', '320px viewpo
   const mobilCtx = await browser.newContext({ viewport: { width: 320, height: 568 } });
   const mobilPage = await mobilCtx.newPage();
   try {
-    await mobilPage.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await mobilPage.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
     const tekst = await mobilPage.textContent('body').catch(() => '');
     if (sjekkKrasj(tekst)) {
       await mobilCtx.close();
@@ -385,7 +385,7 @@ await leggTilTest('nettleser', 'Stor skjerm (3840×2160)', '4K viewport', 'Ingen
   const storCtx = await browser.newContext({ viewport: { width: 3840, height: 2160 } });
   const storPage = await storCtx.newPage();
   try {
-    await storPage.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await storPage.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
     const tekst = await storPage.textContent('body').catch(() => '');
     await storCtx.close();
     if (sjekkKrasj(tekst)) return { faktisk: 'Krasjet på 4K-visning', resultat: 'feil' };
