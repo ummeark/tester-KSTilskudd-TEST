@@ -406,6 +406,7 @@
   <span id="antall-resultat"></span>
 
   <div class="toolbar-right">
+    <button class="knapp" onclick="utvid()">+ 10 nye ordninger</button>
     <button class="knapp sekundær" onclick="lastNedJSON()">⬇ Last ned JSON</button>
     <button class="knapp sekundær" onclick="kopierAlle()">⧉ Kopier alle</button>
   </div>
@@ -2193,6 +2194,79 @@ function visToast(melding) {
   t.textContent = melding;
   t.classList.add('synlig');
   setTimeout(() => t.classList.remove('synlig'), 2500);
+}
+
+function utvid() {
+  const titler = [
+    ['Kulturmidler', 'KULTUR'], ['Kompetanseløft', 'KOMPET'], ['Innovasjonsstøtte', 'INNOVA'],
+    ['Miljøtilskudd', 'MILJOT'], ['Næringsutvikling', 'NAERIN'], ['Inkluderingsmidler', 'INKLU'],
+    ['Frivillighetsfond', 'FRIVIL'], ['Ungdomstiltak', 'UNGDOM'], ['Boligutviklingsstøtte', 'BOLIGU'],
+    ['Landbruksmidler', 'LANDBR'], ['Turistutviklingsfond', 'TURIST'], ['Helseinnovasjon', 'HELSEI'],
+    ['Samhandlingsstøtte', 'SAMHAN'], ['Stedsutviklingsfond', 'STEDSF'], ['Energiomstilling', 'ENERGI'],
+  ];
+  const regioner = ['Agder', 'Innlandet', 'Møre og Romsdal', 'Nordland', 'Oslo', 'Rogaland',
+    'Troms', 'Trøndelag', 'Vestfold og Telemark', 'Vestland', 'Viken'];
+  const kategorier = ['Digitalisering', 'Klimaomstilling', 'Gründerstøtte', 'Bærekraftig utvikling',
+    'Næring og innovasjon', 'Festival og arrangement', 'Bygde- og stedsutvikling', 'Fornybar energi'];
+  const naeringer = ['Varehandel', 'Bygg og anlegg', 'Helse og omsorg', 'Undervisning',
+    'Informasjon og kommunikasjon', 'Landbruk', 'Transport', 'Reiseliv'];
+  const storleker = [
+    ['Lite foretak', 'Mellomstort foretak'],
+    ['Mellomstort foretak', 'Stort foretak'],
+    ['Lite foretak'],
+    ['Lite foretak', 'Mellomstort foretak', 'Stort foretak'],
+  ];
+
+  function uuid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+      const r = Math.random() * 16 | 0;
+      return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+  }
+  function velg(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+  const neste = TESTDATA.length + 1;
+  const ny = [];
+  for (let i = 0; i < 10; i++) {
+    const [tittel, kode] = velg(titler);
+    const region = velg(regioner);
+    const år = 2026 + Math.floor(i / 5);
+    const mnd = String(Math.ceil(Math.random() * 12)).padStart(2, '0');
+    const dag = String(1 + Math.floor(Math.random() * 28)).padStart(2, '0');
+    const n1 = velg(naeringer), n2 = velg(naeringer);
+    ny.push({
+      tilskuddsordningId: uuid(),
+      ordningId: `${neste + i}-${kode}-${år}`,
+      tittel: `${tittel} ${region} ${år}`,
+      kortBeskrivelse: `Støtteordning for ${tittel.toLowerCase()} i ${region}-regionen. Midlene skal bidra til lokal utvikling og bærekraftig vekst.`,
+      status: Math.random() > 0.2 ? 'AKTIV' : 'INAKTIV',
+      regionsnivaa: '',
+      region,
+      satsingsomraade: velg(kategorier),
+      naeringer: n1 === n2 ? [n1] : [n1, n2],
+      soeknadsfrist: `${år}-${mnd}-${dag}`,
+      mottakerStorrelse: velg(storleker),
+      kilde: 'Generert',
+    });
+  }
+
+  TESTDATA.push(...ny);
+
+  const regionSel = document.getElementById('filter-region');
+  const kategoriSel = document.getElementById('filter-kategori');
+  ny.forEach(d => {
+    if (![...regionSel.options].some(o => o.value === d.region)) {
+      const o = document.createElement('option'); o.value = d.region; o.textContent = d.region;
+      regionSel.appendChild(o);
+    }
+    if (d.satsingsomraade && ![...kategoriSel.options].some(o => o.value === d.satsingsomraade)) {
+      const o = document.createElement('option'); o.value = d.satsingsomraade; o.textContent = d.satsingsomraade;
+      kategoriSel.appendChild(o);
+    }
+  });
+
+  filtrer();
+  visToast(`10 nye ordninger lagt til (totalt ${TESTDATA.length})`);
 }
 
 init();
