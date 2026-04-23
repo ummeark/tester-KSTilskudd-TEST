@@ -136,6 +136,25 @@
     /* ── Tom tilstand ── */
     .tom { text-align: center; color: #94a3b8; padding: 3rem 0; font-size: .9rem; }
 
+    /* ── GitHub commits ── */
+    .github-seksjon {
+      background: white; border: 1px solid #e2e8f0; border-radius: 10px;
+      padding: 1.25rem 1.5rem; margin-top: 2.5rem;
+    }
+    .github-seksjon select {
+      width: 100%; padding: .45rem .8rem; border: 1px solid #cbd5e1;
+      border-radius: 8px; font-size: .84rem; color: #1e293b;
+      background: white; cursor: pointer; margin-top: .75rem;
+    }
+    .github-seksjon select:focus { outline: 2px solid #1e293b; outline-offset: 2px; }
+    .commit-liste { margin-top: 1rem; display: flex; flex-direction: column; }
+    .commit-rad { display: flex; gap: .8rem; align-items: baseline; font-size: .82rem; padding: .45rem 0; border-bottom: 1px solid #f1f5f9; }
+    .commit-rad:last-child { border-bottom: none; }
+    .commit-sha { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .72rem; color: #94a3b8; white-space: nowrap; }
+    .commit-melding { color: #1e293b; flex: 1; }
+    .commit-melding a { color: #1e293b; text-decoration: none; }
+    .commit-melding a:hover { text-decoration: underline; }
+
     /* ── Footer ── */
     footer {
       text-align: center; font-size: .75rem; color: #94a3b8;
@@ -158,6 +177,14 @@
   <div class="stats" id="stats"></div>
   <div class="filter-rad" id="filterRad"></div>
   <div id="innhold"></div>
+
+  <div class="github-seksjon">
+    <div class="gruppe-tittel">🔀 Innsjekket i GitHub <span class="gruppe-teller" id="commit-teller"></span></div>
+    <select id="dato-velger" disabled>
+      <option>Laster commits…</option>
+    </select>
+    <div id="commit-innhold"></div>
+  </div>
 </main>
 
 <footer>
@@ -297,6 +324,62 @@ async function init() {
 }
 
 init();
+</script>
+
+<script>
+(async () => {
+  const velger = document.getElementById('dato-velger');
+  const innhold = document.getElementById('commit-innhold');
+  const teller = document.getElementById('commit-teller');
+  const repo = 'ummeark/tester-KSTilskudd-TEST';
+
+  let commits;
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=100`);
+    if (!res.ok) throw new Error(res.status);
+    commits = await res.json();
+  } catch {
+    velger.options[0].text = 'Kunne ikke laste commits';
+    return;
+  }
+
+  const perDato = {};
+  for (const c of commits) {
+    const dato = c.commit.author.date.slice(0, 10);
+    if (!perDato[dato]) perDato[dato] = [];
+    perDato[dato].push(c);
+  }
+
+  const datoer = Object.keys(perDato).sort((a, b) => b.localeCompare(a));
+  teller.textContent = commits.length;
+
+  velger.innerHTML = '';
+  const placeholder = document.createElement('option');
+  placeholder.value = '';
+  placeholder.textContent = 'Velg dato…';
+  velger.appendChild(placeholder);
+
+  const datoFormat = new Intl.DateTimeFormat('nb-NO', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+  for (const dato of datoer) {
+    const antall = perDato[dato].length;
+    const opt = document.createElement('option');
+    opt.value = dato;
+    opt.textContent = `${datoFormat.format(new Date(dato + 'T12:00:00'))} · ${antall} commit${antall !== 1 ? 's' : ''}`;
+    velger.appendChild(opt);
+  }
+  velger.disabled = false;
+
+  velger.addEventListener('change', () => {
+    const dato = velger.value;
+    if (!dato) { innhold.innerHTML = ''; return; }
+    innhold.innerHTML = `<div class="commit-liste">${perDato[dato].map(c => `
+      <div class="commit-rad">
+        <span class="commit-sha">${c.sha.slice(0, 7)}</span>
+        <span class="commit-melding"><a href="${c.html_url}" target="_blank">${c.commit.message.split('\n')[0]}</a></span>
+      </div>`).join('')}</div>`;
+  });
+})();
 </script>
 </body>
 </html>
