@@ -4,11 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="favicon-testdata.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <title>Testdatahub – KS Tilskudd</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #f4f2ee;
       color: #1a1a1a;
       min-height: 100vh;
@@ -103,6 +106,32 @@
       border: 1.5px solid #0a1355;
     }
     .knapp.sekundær:hover { background: #eef0f8; }
+
+    /* ── Custom tooltip ── */
+    [data-tooltip] { position: relative; }
+    [data-tooltip]::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a1a2e;
+      color: #fff;
+      font-size: .74rem;
+      font-weight: 400;
+      white-space: nowrap;
+      padding: .35rem .65rem;
+      border-radius: .3rem;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .15s ease;
+      transition-delay: 0s;
+    }
+    [data-tooltip]:hover::after {
+      opacity: 1;
+      transition-delay: .15s;
+    }
+
     #antall-resultat {
       font-size: .8rem;
       color: #666;
@@ -406,7 +435,7 @@
   <span id="antall-resultat"></span>
 
   <div class="toolbar-right">
-    <button class="knapp" onclick="utvid()" title="Genererer 10 nye ordninger i nettleserminnet – nullstilles ved refresh">+ 10 nye ordninger</button>
+    <button class="knapp" onclick="utvid()" data-tooltip="Genererer 10 nye ordninger i nettleserminnet – nullstilles ved refresh">+ 10 nye ordninger</button>
     <button class="knapp sekundær" onclick="lastNedJSON()">⬇ Last ned JSON</button>
     <button class="knapp sekundær" onclick="kopierAlle()">⧉ Kopier alle</button>
   </div>
