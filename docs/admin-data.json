@@ -1,5 +1,13 @@
 [
   {
+    "dato": "2026-04-24",
+    "type": "refaktorering",
+    "tittel": "Erstatt page.$() og waitForTimeout() med moderne Playwright-API",
+    "beskrivelse": "Alle 5 testfiler er oppdatert: page.$() og page.$$() (utdatert element handle-API) er erstattet med page.locator(), og hardkodede waitForTimeout()-kall (~33 totalt) er erstattet med waitForLoadState() og waitForFunction(). Alle tester ble kjørt og verifisert etter endringene.",
+    "filer": ["uu-tester.js", "monkey-tester.js", "sikkerhet-tester.js", "negativ-tester.js", "ytelse-tester.js"],
+    "status": "ferdig"
+  },
+  {
     "dato": "2026-04-23",
     "type": "refaktorering",
     "tittel": "Extraher lib/common.js med felles initialisering og hentVersjon()",

@@ -84,7 +84,7 @@ while (kø.length > 0 && sideResultater.length < MAX_SIDER) {
 
   try {
     await page.goto(url, { waitUntil: 'load', timeout: LAST_TIMEOUT });
-    await page.waitForTimeout(800); // gi LCP-observer tid til å registrere
+    await page.waitForLoadState('networkidle').catch(() => {}); // gi LCP-observer tid til å registrere
 
     const data = await page.evaluate(() => {
       const nav = performance.getEntriesByType('navigation')[0];

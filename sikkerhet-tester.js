@@ -269,12 +269,12 @@ if (mixedContent.length > 0) {
 // ── Test 7: Input-refleksjon (XSS) ────────────────────────────────────────────
 
 console.log('💉 Sjekker input-refleksjon...');
-const søkefelt = await page.$('input[type=search], input[name*=søk], input[name*=search], input[placeholder*=øk]');
-if (søkefelt) {
+const søkefelt = page.locator('input[type=search], input[name*=søk], input[name*=search], input[placeholder*=øk]').first();
+if (await søkefelt.count() > 0) {
   try {
     await søkefelt.fill(XSS_SØKEFELT_PAYLOAD);
     await page.keyboard.press('Enter');
-    await page.waitForTimeout(1500);
+    await page.waitForLoadState('domcontentloaded').catch(() => {});
 
     const sideTekst = await page.content();
     const reflektert = sideTekst.includes(XSS_SØKEFELT_PAYLOAD);

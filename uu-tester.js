@@ -63,8 +63,8 @@ async function taSkjermdump(page, selectors, filnavn, farge = '#dc3545') {
     // Prøv å ta nærbilde av første element
     let nærbilde = null;
     try {
-      const el = await page.$(selectors[0]);
-      if (el) {
+      const el = page.locator(selectors[0]).first();
+      if (await el.count() > 0) {
         const boks = await el.boundingBox();
         if (boks && boks.width > 0 && boks.height > 0) {
           const nærFil = path.join(skjermDir, `${filnavn}-element.png`);
@@ -107,7 +107,6 @@ async function analyserSide(url, indeks) {
   const page = await context.newPage();
   try {
     await page.goto(url, { waitUntil: 'networkidle', timeout: LAST_TIMEOUT });
-    await page.waitForTimeout(800);
 
     const tittel = await page.title();
 
@@ -328,7 +327,7 @@ async function kjørTastaturSjekker(ctx, url) {
     let forrigeKey = null;
     for (let i = 0; i < 15; i++) {
       await page.keyboard.press('Tab');
-      await page.waitForTimeout(100);
+      await page.waitForFunction(() => document.readyState === 'complete').catch(() => {});
       const info = await page.evaluate(() => {
         const el = document.activeElement;
         if (!el || el === document.body) return null;
@@ -372,7 +371,7 @@ async function kjørTastaturSjekker(ctx, url) {
     const nådd = new Set();
     for (let i = 0; i < 50; i++) {
       await page.keyboard.press('Tab');
-      await page.waitForTimeout(50);
+      await page.waitForFunction(() => document.readyState === 'complete').catch(() => {});
       const id = await page.evaluate(() => {
         const el = document.activeElement;
         if (!el || el === document.body) return null;
@@ -395,7 +394,7 @@ async function kjørTastaturSjekker(ctx, url) {
     let forrigeId = null, konsekutive = 0, felle = null;
     for (let i = 0; i < 40; i++) {
       await page.keyboard.press('Tab');
-      await page.waitForTimeout(70);
+      await page.waitForFunction(() => document.readyState === 'complete').catch(() => {});
       const id = await page.evaluate(() => {
         const el = document.activeElement;
         return el ? `${el.tagName}|${el.getAttribute('href') || el.id || el.textContent?.trim().slice(0, 20)}` : null;
@@ -412,9 +411,9 @@ async function kjørTastaturSjekker(ctx, url) {
     // 2.4.1 Hopplenke til hovedinnhold
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
     await page.evaluate(() => document.body.focus());
-    await page.waitForTimeout(100);
+    await page.waitForFunction(() => document.readyState === 'complete').catch(() => {});
     await page.keyboard.press('Tab');
-    await page.waitForTimeout(200);
+    await page.waitForFunction(() => document.readyState === 'complete').catch(() => {});
     const hoppInfo = await page.evaluate(() => {
       const el = document.activeElement;
       if (!el) return null;
@@ -436,7 +435,7 @@ async function kjørTastaturSjekker(ctx, url) {
     let aktivert = false;
     for (let i = 0; i < 15 && !aktivert; i++) {
       await page.keyboard.press('Tab');
-      await page.waitForTimeout(70);
+      await page.waitForFunction(() => document.readyState === 'complete').catch(() => {});
       const erNavLenke = await page.evaluate(() => {
         const el = document.activeElement;
         if (el?.tagName !== 'A') return false;
@@ -445,7 +444,7 @@ async function kjørTastaturSjekker(ctx, url) {
       });
       if (erNavLenke) {
         await page.keyboard.press('Enter');
-        await page.waitForTimeout(1500);
+        await page.waitForLoadState('domcontentloaded').catch(() => {});
         aktivert = page.url() !== utgangsUrl;
         break;
       }
@@ -482,7 +481,7 @@ async function kjørReflowSjekk(ctx, url) {
     // 320px tilsvarer 400 % zoom på 1280px-skjerm
     await page.setViewportSize({ width: 320, height: 780 });
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
-    await page.waitForTimeout(500);
+    await page.waitForFunction(() => document.readyState === 'complete').catch(() => {});
 
     // Horisontal rulling
     const horisontalScroll = await page.evaluate(() =>
@@ -561,14 +560,13 @@ async function kjørTekstmellomromSjekk(ctx, url) {
 
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
-    await page.waitForTimeout(500);
 
     // Injiser WCAG 1.4.12-stilregler
     await page.addStyleTag({ content: `
       * { line-height: 1.5 !important; letter-spacing: 0.12em !important; word-spacing: 0.16em !important; }
       p  { margin-bottom: 2em !important; }
     ` });
-    await page.waitForTimeout(400);
+    await page.waitForFunction(() => document.readyState === 'complete').catch(() => {});
 
     // Sjekk for klipping (overflow:hidden + scrollHeight > clientHeight)
     const klippet = await page.evaluate(() => {

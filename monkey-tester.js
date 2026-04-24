@@ -147,19 +147,22 @@ for (let i = 0; i < ITERASJONER; i++) {
     if (handling < 0.35) {
       // Klikk tilfeldig knapp / lenke
       type = 'klikk';
-      const elementer = await page.$$('button:visible, [role="button"]:visible');
-      if (elementer.length > 0) {
-        const el = elementer[Math.floor(Math.random() * elementer.length)];
+      const elementer = page.locator('button:visible, [role="button"]:visible');
+      const elementCount = await elementer.count();
+      if (elementCount > 0) {
+        const el = elementer.nth(Math.floor(Math.random() * elementCount));
         const tekst = (await el.textContent().catch(() => '')).trim().slice(0, 60);
         detalj = `Klikket: "${tekst || '(ingen tekst)'}"`;
         console.log(`  🖱️  [${i+1}] ${detalj}`);
         await el.click({ timeout: 4000, force: false }).catch(() => {});
-        await page.waitForTimeout(800);
+        await page.waitForLoadState('domcontentloaded').catch(() => {});
       } else {
         // Prøv lenker
-        const lenker = await page.$$('a[href]:visible');
+        const lenker = page.locator('a[href]:visible');
+        const lenkeCount = await lenker.count();
         const interne = [];
-        for (const l of lenker) {
+        for (let li = 0; li < lenkeCount; li++) {
+          const l = lenker.nth(li);
           const href = await l.getAttribute('href').catch(() => '');
           if (href && (href.startsWith('/') || href.startsWith(baseOrigin))) interne.push(l);
         }
@@ -169,36 +172,37 @@ for (let i = 0; i < ITERASJONER; i++) {
           detalj = `Klikket lenke: "${tekst}"`;
           console.log(`  🔗 [${i+1}] ${detalj}`);
           await el.click({ timeout: 4000 }).catch(() => {});
-          await page.waitForTimeout(800);
+          await page.waitForLoadState('domcontentloaded').catch(() => {});
         }
       }
 
     } else if (handling < 0.55) {
       // Fyll inn tilfeldig tekst i skjemafelt
       type = 'skjemafyll';
-      const inputs = await page.$$('input:visible:not([type=hidden]):not([type=submit]):not([type=button]), textarea:visible');
-      if (inputs.length > 0) {
-        const inp = inputs[Math.floor(Math.random() * inputs.length)];
+      const inputs = page.locator('input:visible:not([type=hidden]):not([type=submit]):not([type=button]), textarea:visible');
+      const inputCount = await inputs.count();
+      if (inputCount > 0) {
+        const inp = inputs.nth(Math.floor(Math.random() * inputCount));
         const inputType = await inp.getAttribute('type').catch(() => 'text') || 'text';
         let verdi = inputType === 'email' ? tilfeldigEpost() : tilfeldigTekst();
         detalj = `Fylte "${verdi.slice(0, 40)}" i ${inputType}-felt`;
         console.log(`  ✏️  [${i+1}] ${detalj}`);
         await inp.fill(verdi, { timeout: 3000 }).catch(() => {});
-        await page.waitForTimeout(300);
       }
 
     } else if (handling < 0.70) {
       // Send inn skjema
       type = 'skjemasubmit';
-      const knapper = await page.$$('button[type=submit]:visible, input[type=submit]:visible');
-      if (knapper.length > 0) {
-        const btn = knapper[Math.floor(Math.random() * knapper.length)];
+      const knapper = page.locator('button[type=submit]:visible, input[type=submit]:visible');
+      const knapperCount = await knapper.count();
+      if (knapperCount > 0) {
+        const btn = knapper.nth(Math.floor(Math.random() * knapperCount));
         const tekst = (await btn.textContent().catch(() => '')).trim().slice(0, 40);
         detalj = `Send skjema: "${tekst}"`;
         console.log(`  📤 [${i+1}] ${detalj}`);
         skjerm = await taSkjermdump('pre-submit');
         await btn.click({ timeout: 4000 }).catch(() => {});
-        await page.waitForTimeout(1200);
+        await page.waitForLoadState('domcontentloaded').catch(() => {});
       }
 
     } else if (handling < 0.82) {
@@ -207,7 +211,7 @@ for (let i = 0; i < ITERASJONER; i++) {
       detalj = 'Gikk tilbake (browser back)';
       console.log(`  ⬅️  [${i+1}] ${detalj}`);
       await page.goBack({ timeout: 6000, waitUntil: 'domcontentloaded' }).catch(() => {});
-      await page.waitForTimeout(500);
+      await page.waitForLoadState('domcontentloaded').catch(() => {});
 
     } else {
       // Reset til start

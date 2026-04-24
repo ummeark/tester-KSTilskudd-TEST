@@ -66,7 +66,6 @@ async function skjermdump(prefix) {
 async function gåTil(url) {
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
-    await page.waitForTimeout(600);
     return true;
   } catch { return false; }
 }
@@ -119,11 +118,11 @@ console.log('\n📝 Kategori 1: Skjema-validering');
 // 1a. Tom søk
 await leggTilTest('skjema', 'Tom søkeinnsending', '(tomt)', 'Viser feilmelding eller ingen resultatendring', async () => {
   await gåTil(START_URL);
-  const søkefelt = await page.$('input[type=search], input[name*=search], input[name*=søk]');
-  if (!søkefelt) return { faktisk: 'Søkefelt ikke funnet', resultat: 'advarsel' };
+  const søkefelt = page.locator('input[type=search], input[name*=search], input[name*=søk]').first();
+  if (await søkefelt.count() === 0) return { faktisk: 'Søkefelt ikke funnet', resultat: 'advarsel' };
   await søkefelt.fill('');
   await page.keyboard.press('Enter');
-  await page.waitForTimeout(800);
+  await page.waitForLoadState('domcontentloaded').catch(() => {});
   const tekst = await page.textContent('body');
   const krasj = sjekkKrasj(tekst);
   if (krasj) {
@@ -136,11 +135,11 @@ await leggTilTest('skjema', 'Tom søkeinnsending', '(tomt)', 'Viser feilmelding 
 // 1b. Veldig lang søkestreng (2000 tegn)
 await leggTilTest('skjema', 'Søk med ekstremt lang tekst (2000 tegn)', 'a'.repeat(2000), 'Håndteres uten krasj', async () => {
   await gåTil(START_URL);
-  const søkefelt = await page.$('input[type=search], input[name*=search], input[name*=søk]');
-  if (!søkefelt) return { faktisk: 'Søkefelt ikke funnet', resultat: 'advarsel' };
+  const søkefelt = page.locator('input[type=search], input[name*=search], input[name*=søk]').first();
+  if (await søkefelt.count() === 0) return { faktisk: 'Søkefelt ikke funnet', resultat: 'advarsel' };
   await søkefelt.fill('a'.repeat(2000));
   await page.keyboard.press('Enter');
-  await page.waitForTimeout(800);
+  await page.waitForLoadState('domcontentloaded').catch(() => {});
   const tekst = await page.textContent('body');
   if (sjekkKrasj(tekst)) {
     const skjerm = await skjermdump('lang-tekst-krasj');
@@ -153,11 +152,11 @@ await leggTilTest('skjema', 'Søk med ekstremt lang tekst (2000 tegn)', 'a'.repe
 const spesialtegn = '!@#$%^&*()<>{}[]|\\;:\'",.?/`~';
 await leggTilTest('skjema', 'Søk med spesialtegn', spesialtegn, 'Håndteres uten krasj eller XSS', async () => {
   await gåTil(START_URL);
-  const søkefelt = await page.$('input[type=search], input[name*=search], input[name*=søk]');
-  if (!søkefelt) return { faktisk: 'Søkefelt ikke funnet', resultat: 'advarsel' };
+  const søkefelt = page.locator('input[type=search], input[name*=search], input[name*=søk]').first();
+  if (await søkefelt.count() === 0) return { faktisk: 'Søkefelt ikke funnet', resultat: 'advarsel' };
   await søkefelt.fill(spesialtegn);
   await page.keyboard.press('Enter');
-  await page.waitForTimeout(800);
+  await page.waitForLoadState('domcontentloaded').catch(() => {});
   const tekst = await page.textContent('body');
   if (sjekkKrasj(tekst)) {
     const skjerm = await skjermdump('spesialtegn-krasj');
@@ -169,11 +168,11 @@ await leggTilTest('skjema', 'Søk med spesialtegn', spesialtegn, 'Håndteres ute
 // 1d. Kun mellomrom i søk
 await leggTilTest('skjema', 'Søk med kun mellomrom', '     ', 'Behandles som tom søk eller gir feilmelding', async () => {
   await gåTil(START_URL);
-  const søkefelt = await page.$('input[type=search], input[name*=search], input[name*=søk]');
-  if (!søkefelt) return { faktisk: 'Søkefelt ikke funnet', resultat: 'advarsel' };
+  const søkefelt = page.locator('input[type=search], input[name*=search], input[name*=søk]').first();
+  if (await søkefelt.count() === 0) return { faktisk: 'Søkefelt ikke funnet', resultat: 'advarsel' };
   await søkefelt.fill('     ');
   await page.keyboard.press('Enter');
-  await page.waitForTimeout(800);
+  await page.waitForLoadState('domcontentloaded').catch(() => {});
   const tekst = await page.textContent('body');
   if (sjekkKrasj(tekst)) {
     const skjerm = await skjermdump('mellomrom-krasj');
@@ -185,11 +184,11 @@ await leggTilTest('skjema', 'Søk med kun mellomrom', '     ', 'Behandles som to
 // 1e. Norske tegn i søk
 await leggTilTest('skjema', 'Søk med norske tegn (æøå)', 'æøå ÆØÅ tilskudd', 'Håndteres korrekt', async () => {
   await gåTil(START_URL);
-  const søkefelt = await page.$('input[type=search], input[name*=search], input[name*=søk]');
-  if (!søkefelt) return { faktisk: 'Søkefelt ikke funnet', resultat: 'advarsel' };
+  const søkefelt = page.locator('input[type=search], input[name*=search], input[name*=søk]').first();
+  if (await søkefelt.count() === 0) return { faktisk: 'Søkefelt ikke funnet', resultat: 'advarsel' };
   await søkefelt.fill('æøå ÆØÅ tilskudd');
   await page.keyboard.press('Enter');
-  await page.waitForTimeout(800);
+  await page.waitForLoadState('domcontentloaded').catch(() => {});
   const tekst = await page.textContent('body');
   if (sjekkKrasj(tekst)) {
     const skjerm = await skjermdump('norske-tegn-krasj');
@@ -201,11 +200,11 @@ await leggTilTest('skjema', 'Søk med norske tegn (æøå)', 'æøå ÆØÅ tils
 // 1f. SQL-lignende input (ikke angrep, bare validering)
 await leggTilTest('skjema', 'SQL-lignende søketekst', "' OR '1'='1", 'Renses og vises trygt', async () => {
   await gåTil(START_URL);
-  const søkefelt = await page.$('input[type=search], input[name*=search], input[name*=søk]');
-  if (!søkefelt) return { faktisk: 'Søkefelt ikke funnet', resultat: 'advarsel' };
+  const søkefelt = page.locator('input[type=search], input[name*=search], input[name*=søk]').first();
+  if (await søkefelt.count() === 0) return { faktisk: 'Søkefelt ikke funnet', resultat: 'advarsel' };
   await søkefelt.fill("' OR '1'='1");
   await page.keyboard.press('Enter');
-  await page.waitForTimeout(800);
+  await page.waitForLoadState('domcontentloaded').catch(() => {});
   const tekst = await page.textContent('body');
   if (sjekkKrasj(tekst)) {
     const skjerm = await skjermdump('sql-krasj');
@@ -274,7 +273,7 @@ await leggTilTest('navigasjon', 'Browser tilbake fra søknadsskjema', 'goBack()'
   await gåTil(START_URL);
   await gåTil(baseOrigin + '/soknad/opprett');
   await page.goBack({ timeout: 8000 }).catch(() => {});
-  await page.waitForTimeout(600);
+  await page.waitForLoadState('domcontentloaded').catch(() => {});
   const tekst = await page.textContent('body').catch(() => '');
   if (sjekkKrasj(tekst)) {
     const skjerm = await skjermdump('tilbake-krasj');
@@ -289,9 +288,9 @@ await leggTilTest('navigasjon', 'Rask frem-og-tilbake-navigasjon (5x)', '5x goBa
   await gåTil(baseOrigin + '/ordninger');
   for (let i = 0; i < 5; i++) {
     await page.goBack({ timeout: 5000 }).catch(() => {});
-    await page.waitForTimeout(200);
+    await page.waitForLoadState('domcontentloaded').catch(() => {});
     await page.goForward({ timeout: 5000 }).catch(() => {});
-    await page.waitForTimeout(200);
+    await page.waitForLoadState('domcontentloaded').catch(() => {});
   }
   const tekst = await page.textContent('body').catch(() => '');
   if (sjekkKrasj(tekst)) {
@@ -304,10 +303,10 @@ await leggTilTest('navigasjon', 'Rask frem-og-tilbake-navigasjon (5x)', '5x goBa
 // 3d. Dobbelt-klikk på knapp
 await leggTilTest('navigasjon', 'Dobbelt-klikk på handlingsknapp', 'dblclick', 'Ingen dobbel-innsending eller krasj', async () => {
   await gåTil(START_URL);
-  const knapp = await page.$('button:visible');
-  if (!knapp) return { faktisk: 'Ingen knapp funnet', resultat: 'advarsel' };
+  const knapp = page.locator('button:visible').first();
+  if (await knapp.count() === 0) return { faktisk: 'Ingen knapp funnet', resultat: 'advarsel' };
   await knapp.dblclick({ timeout: 3000 }).catch(() => {});
-  await page.waitForTimeout(800);
+  await page.waitForLoadState('domcontentloaded').catch(() => {});
   const tekst = await page.textContent('body').catch(() => '');
   if (sjekkKrasj(tekst)) {
     const skjerm = await skjermdump('dblclick-krasj');
@@ -326,7 +325,6 @@ console.log('\n🌐 Kategori 4: Nettleserfunksjoner');
 await leggTilTest('nettleser', 'Sideoppdatering (F5) under søknad', 'reload()', 'Håndteres – viser skjema eller forklaring', async () => {
   await gåTil(baseOrigin + '/soknad/opprett');
   await page.reload({ timeout: 10000, waitUntil: 'domcontentloaded' }).catch(() => {});
-  await page.waitForTimeout(600);
   const tekst = await page.textContent('body').catch(() => '');
   if (sjekkKrasj(tekst)) {
     const skjerm = await skjermdump('reload-krasj');
@@ -407,7 +405,6 @@ await leggTilTest('sesjon', 'Last side etter sletting av alle cookies', 'clearCo
   await gåTil(START_URL);
   await context.clearCookies();
   await page.reload({ waitUntil: 'domcontentloaded', timeout: 12000 }).catch(() => {});
-  await page.waitForTimeout(600);
   const tekst = await page.textContent('body').catch(() => '');
   if (sjekkKrasj(tekst)) {
     const skjerm = await skjermdump('no-cookies-krasj');
@@ -421,7 +418,6 @@ await leggTilTest('sesjon', 'Last side etter tømming av localStorage', 'localSt
   await gåTil(START_URL);
   await page.evaluate(() => { try { localStorage.clear(); } catch(e) {} });
   await page.reload({ waitUntil: 'domcontentloaded', timeout: 12000 }).catch(() => {});
-  await page.waitForTimeout(600);
   const tekst = await page.textContent('body').catch(() => '');
   if (sjekkKrasj(tekst)) {
     const skjerm = await skjermdump('no-localstorage-krasj');
@@ -436,7 +432,6 @@ await leggTilTest('sesjon', 'Direkte tilgang til "Min side" uten innlogging', '/
   const nyPage = await nyCtx.newPage();
   try {
     await nyPage.goto(baseOrigin + '/minside', { waitUntil: 'domcontentloaded', timeout: 12000 });
-    await nyPage.waitForTimeout(600);
     const url = nyPage.url();
     const tekst = await nyPage.textContent('body').catch(() => '');
     await nyCtx.close();
