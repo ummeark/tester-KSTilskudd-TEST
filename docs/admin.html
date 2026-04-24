@@ -376,9 +376,9 @@ init();
     if (!dato) { innhold.innerHTML = ''; return; }
     innhold.innerHTML = `<div class="commit-liste">${perDato[dato].map(c => `
       <div class="commit-rad">
+        <span class="commit-tid">${new Date(c.commit.author.date).toLocaleTimeString('nb-NO', { hour: '2-digit', minute: '2-digit' })}</span>
         <span class="commit-sha">${c.sha.slice(0, 7)}</span>
         <span class="commit-melding"><a href="${c.html_url}" target="_blank">${c.commit.message.split('\n')[0]}</a></span>
-        <span class="commit-tid">${new Date(c.commit.author.date).toLocaleTimeString('nb-NO', { hour: '2-digit', minute: '2-digit' })}</span>
       </div>`).join('')}</div>`;
   });
 })();
