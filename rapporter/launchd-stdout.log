@@ -333,3 +333,25 @@
  create mode 100644 rapporter/2026-04-23/skjermbilder/s8-doede-lenker-side.png
  create mode 100644 rapporter/2026-04-23/uu-rapport-08-30.html
  create mode 100644 rapporter/2026-04-23/uu-rapport.html
+[main a3ed53e] Daglig UU-rapport 2026-04-24 [skip ci]
+ 58 files changed, 8953 insertions(+), 349 deletions(-)
+ create mode 100644 docs/arkiv/2026-04-24/monkey-rapport-08-30.html
+ create mode 100644 docs/arkiv/2026-04-24/negativ-rapport-08-31.html
+ create mode 100644 docs/arkiv/2026-04-24/sikkerhet-rapport-08-31.html
+ create mode 100644 docs/arkiv/2026-04-24/skjermbilder-monkey/monkey-feilside-3.png
+ create mode 100644 docs/arkiv/2026-04-24/skjermbilder-monkey/monkey-feilside-5.png
+ create mode 100644 docs/arkiv/2026-04-24/skjermbilder-monkey/monkey-pre-submit-2.png
+ create mode 100644 docs/arkiv/2026-04-24/skjermbilder-monkey/monkey-pre-submit-7.png
+ create mode 100644 docs/arkiv/2026-04-24/uu-rapport-08-30.html
+ create mode 100644 rapporter/2026-04-24/monkey-rapport-08-30.html
+ create mode 100644 rapporter/2026-04-24/monkey-resultat-08-30.json
+ create mode 100644 rapporter/2026-04-24/negativ-rapport-08-31.html
+ create mode 100644 rapporter/2026-04-24/negativ-resultat-08-31.json
+ create mode 100644 rapporter/2026-04-24/resultat-08-30.json
+ create mode 100644 rapporter/2026-04-24/sikkerhet-rapport-08-31.html
+ create mode 100644 rapporter/2026-04-24/sikkerhet-resultat-08-31.json
+ create mode 100644 rapporter/2026-04-24/skjermbilder-monkey/monkey-feilside-3.png
+ create mode 100644 rapporter/2026-04-24/skjermbilder-monkey/monkey-feilside-5.png
+ create mode 100644 rapporter/2026-04-24/skjermbilder-monkey/monkey-pre-submit-2.png
+ create mode 100644 rapporter/2026-04-24/skjermbilder-monkey/monkey-pre-submit-7.png
+ create mode 100644 rapporter/2026-04-24/uu-rapport-08-30.html
