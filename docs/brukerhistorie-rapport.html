@@ -5,7 +5,7 @@
 <script>if(location.protocol!=='file:'&&!sessionStorage.getItem('ks-auth'))location.replace('logg-inn.html?redir='+encodeURIComponent(location.href))</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Brukerhistorietester – 2026-06-03 08:31</title>
+<title>Brukerhistorietester – 2026-06-03 12:21</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:system-ui,-apple-system,sans-serif;background:#faf6f0;color:#0f0e17;display:flex;min-height:100vh}
@@ -90,7 +90,7 @@
   <div class="sidemeny-header">
     <div class="sidemeny-logo">KS Tilskudd · Brukerhistorietester</div>
     <div class="env-badge">TEST-MILJØ</div>
-    <h1>Brukerhistorie-rapport <span>2026-06-03 08:31 · 7 brukerhistorier</span></h1>
+    <h1>Brukerhistorie-rapport <span>2026-06-03 12:21 · 8 brukerhistorier</span></h1>
   </div>
   <ul>
     <li>
@@ -118,6 +118,13 @@
       <a href="#bh-TILSK-738: Som søker ønsker jeg å se kontaktinformasjon om ordningen" class="sidenav-link har-hoppet">
         <span class="sidenavn">TILSK-738: Som søker ønsker jeg å se kontaktinformasjon om ordningen</span>
         <span class="side-url">TILSK-738: Som søker ønsker jeg å se kontaktinformasjon om ordningen</span>
+        <span class="side-badge">1 hoppet over</span>
+      </a>
+    </li>
+    <li>
+      <a href="#bh-TILSK-760: Som bruker ønsker jeg å kunne navigere via footer fra alle sidene i tilskuddsportalen" class="sidenav-link har-hoppet">
+        <span class="sidenavn">TILSK-760: Som bruker ønsker jeg å kunne navigere via footer fra alle sidene i tilskuddsportalen</span>
+        <span class="side-url">TILSK-760: Som bruker ønsker jeg å kunne navigere via footer fra alle sidene i tilskuddsportalen</span>
         <span class="side-badge">1 hoppet over</span>
       </a>
     </li>
@@ -151,7 +158,7 @@
       <h1>Brukerhistorietester</h1>
       <div class="meta">
         <a href="https://tilskudd.fiks.test.ks.no/" target="_blank" rel="noopener">https://tilskudd.fiks.test.ks.no/</a>
-        &nbsp;· 2026-06-03 08:31 · 7 brukerhistorier · @playwright/test
+        &nbsp;· 2026-06-03 12:21 · 8 brukerhistorier · @playwright/test
       </div>
     </div>
     <div class="nav-knapper">
@@ -205,28 +212,28 @@
   </div>
 
   <div class="score-kort">
-    <div class="score-sirkel" style="background:#b8860b;">94</div>
+    <div class="score-sirkel" style="background:#b8860b;">92</div>
     <div class="score-tekst">
       <strong>0 tester feilet</strong>
-      <p>44 av 47 tester bestatt på 7 brukerhistorier.<br>
-      Varighet: 86.2s totalt.</p>
+      <p>48 av 52 tester bestatt på 8 brukerhistorier.<br>
+      Varighet: 84.4s totalt.</p>
     </div>
   </div>
 
   <div class="kort-grid">
     <div class="kort ok">
       <div class="etikett">Brukerhistorier</div>
-      <div class="tall">7</div>
+      <div class="tall">8</div>
       <div class="undertekst">Synlige i rapporten</div>
     </div>
     <div class="kort ok">
       <div class="etikett">Tester kjørt</div>
-      <div class="tall">47</div>
+      <div class="tall">52</div>
       <div class="undertekst">Akseptansekriterier</div>
     </div>
     <div class="kort ok">
       <div class="etikett">Bestatt</div>
-      <div class="tall">44</div>
+      <div class="tall">48</div>
       <div class="undertekst">expected</div>
     </div>
     <div class="kort ok">
@@ -249,7 +256,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-2 – søkefelt med placeholder &quot;Søk etter tilskuddsordning&quot; er synlig</strong></span>
-          <span class="brudd-teller">744ms</span>
+          <span class="brudd-teller">707ms</span>
         </div>
         
         
@@ -257,7 +264,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-2 – Søk-knapp er synlig ved siden av søkefeltet</strong></span>
-          <span class="brudd-teller">710ms</span>
+          <span class="brudd-teller">683ms</span>
         </div>
         
         
@@ -265,7 +272,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-2 – søkefeltet er fokuserbart</strong></span>
-          <span class="brudd-teller">703ms</span>
+          <span class="brudd-teller">713ms</span>
         </div>
         
         
@@ -273,7 +280,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-3 – søk fra forsiden navigerer til oversiktssiden for utlysninger</strong></span>
-          <span class="brudd-teller">689ms</span>
+          <span class="brudd-teller">687ms</span>
         </div>
         
         
@@ -281,30 +288,6 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-3 – søk fra forsiden gir respons uten feilside</strong></span>
-          <span class="brudd-teller">693ms</span>
-        </div>
-        
-        
-      </div>
-      <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
-        <div class="brudd-header">
-          <span>✅ <strong>AK-4 – forsiden viser H1 &quot;Nasjonal portal for søknad om offentlige tilskudd&quot;</strong></span>
-          <span class="brudd-teller">666ms</span>
-        </div>
-        
-        
-      </div>
-      <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
-        <div class="brudd-header">
-          <span>✅ <strong>AK-4 – forsiden viser ingress om å finne tilskuddsordninger</strong></span>
-          <span class="brudd-teller">669ms</span>
-        </div>
-        
-        
-      </div>
-      <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
-        <div class="brudd-header">
-          <span>✅ <strong>AK-4 – forsiden har innholdsseksjon som forklarer hva portalen er</strong></span>
           <span class="brudd-teller">681ms</span>
         </div>
         
@@ -312,8 +295,32 @@
       </div>
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
+          <span>✅ <strong>AK-4 – forsiden viser H1 &quot;Nasjonal portal for søknad om offentlige tilskudd&quot;</strong></span>
+          <span class="brudd-teller">673ms</span>
+        </div>
+        
+        
+      </div>
+      <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
+        <div class="brudd-header">
+          <span>✅ <strong>AK-4 – forsiden viser ingress om å finne tilskuddsordninger</strong></span>
+          <span class="brudd-teller">664ms</span>
+        </div>
+        
+        
+      </div>
+      <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
+        <div class="brudd-header">
+          <span>✅ <strong>AK-4 – forsiden har innholdsseksjon som forklarer hva portalen er</strong></span>
+          <span class="brudd-teller">670ms</span>
+        </div>
+        
+        
+      </div>
+      <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
+        <div class="brudd-header">
           <span>✅ <strong>TILSK-481 – søk på oversiktssiden gir treff uten feilside</strong></span>
-          <span class="brudd-teller">184ms</span>
+          <span class="brudd-teller">195ms</span>
         </div>
         
         
@@ -335,7 +342,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1.1 – utlysningslisten vises uten krav om innlogging</strong></span>
-          <span class="brudd-teller">168ms</span>
+          <span class="brudd-teller">167ms</span>
         </div>
         
         
@@ -343,7 +350,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1.2 – søkefelt er synlig og tilgjengelig uten innlogging</strong></span>
-          <span class="brudd-teller">184ms</span>
+          <span class="brudd-teller">178ms</span>
         </div>
         
         
@@ -351,7 +358,7 @@
       <div class="brudd-kort" style="border-left-color:#b45309;background:#fffbeb;">
         <div class="brudd-header">
           <span>⚠️ <strong>AK-3.1 – pagineringsknapp finnes hvis listen har flere sider</strong></span>
-          <span class="brudd-teller">1363ms</span>
+          <span class="brudd-teller">1126ms</span>
         </div>
         <div class="hoppet-arsak">Årsak: Ingen pagineringsknapp funnet – testmiljøet har antagelig færre ordninger enn én side krever, eller pagineringsselektorer treffer ikke appens DOM</div>
         
@@ -359,7 +366,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-4.1 – ingen treff: tydelig melding vises, ikke feilside</strong></span>
-          <span class="brudd-teller">231ms</span>
+          <span class="brudd-teller">178ms</span>
         </div>
         
         
@@ -381,7 +388,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>min side er tilgjengelig etter innlogging</strong></span>
-          <span class="brudd-teller">427ms</span>
+          <span class="brudd-teller">364ms</span>
         </div>
         
         
@@ -389,7 +396,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>min side viser ikke innloggingsskjema (brukeren er innlogget)</strong></span>
-          <span class="brudd-teller">334ms</span>
+          <span class="brudd-teller">251ms</span>
         </div>
         
         
@@ -397,7 +404,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>min side laster uten JavaScript-feil</strong></span>
-          <span class="brudd-teller">1114ms</span>
+          <span class="brudd-teller">905ms</span>
         </div>
         
         
@@ -419,7 +426,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1.0 – utlysningssiden laster uten feilside</strong></span>
-          <span class="brudd-teller">1690ms</span>
+          <span class="brudd-teller">1670ms</span>
         </div>
         
         
@@ -427,7 +434,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1.0 – kontaktinformasjonsseksjon finnes på en utlysningsside</strong></span>
-          <span class="brudd-teller">824ms</span>
+          <span class="brudd-teller">812ms</span>
         </div>
         
         
@@ -435,7 +442,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1.1 – minst ett kontaktinfokort vises</strong></span>
-          <span class="brudd-teller">827ms</span>
+          <span class="brudd-teller">821ms</span>
         </div>
         
         
@@ -443,7 +450,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1.1 – maks tre kontaktinfokort vises totalt</strong></span>
-          <span class="brudd-teller">808ms</span>
+          <span class="brudd-teller">804ms</span>
         </div>
         
         
@@ -451,7 +458,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1.2 – maks tre personkort vises</strong></span>
-          <span class="brudd-teller">795ms</span>
+          <span class="brudd-teller">807ms</span>
         </div>
         
         
@@ -459,7 +466,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1.3 – maks ett virksomhetskort vises</strong></span>
-          <span class="brudd-teller">808ms</span>
+          <span class="brudd-teller">810ms</span>
         </div>
         
         
@@ -467,7 +474,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1.4/1.5 – kontaktkort inneholder e-post eller telefonnummer</strong></span>
-          <span class="brudd-teller">799ms</span>
+          <span class="brudd-teller">815ms</span>
         </div>
         
         
@@ -475,7 +482,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1.6 – obligatoriske felt: minst telefon eller e-post finnes i kontaktinfo</strong></span>
-          <span class="brudd-teller">2966ms</span>
+          <span class="brudd-teller">793ms</span>
         </div>
         
         
@@ -483,9 +490,63 @@
       <div class="brudd-kort" style="border-left-color:#b45309;background:#fffbeb;">
         <div class="brudd-header">
           <span>⚠️ <strong>AK-1.7 – personkort vises over virksomhetskort på siden</strong></span>
-          <span class="brudd-teller">5056ms</span>
+          <span class="brudd-teller">4959ms</span>
         </div>
         <div class="hoppet-arsak">Årsak: Ingen utlysning med både person- og virksomhetskort funnet i TEST-miljøet</div>
+        
+      </div>
+    </div>
+    
+  </section>
+
+  <section class="side-seksjon" id="bh-TILSK-760: Som bruker ønsker jeg å kunne navigere via footer fra alle sidene i tilskuddsportalen">
+    <div class="side-header">
+      <div>
+        <h2>TILSK-760: Som bruker ønsker jeg å kunne navigere via footer fra alle sidene i tilskuddsportalen</h2>
+        <div class="jira-tittel"><span class="jira-tittel-linje"><span class="jira-tag">TILSK-760</span>Som bruker ønsker jeg å kunne navigere via footer fra alle sidene i tilskuddsportalen</span></div>
+      </div>
+      <div class="side-score-badges"><span class="badge mangler-data">1 hoppet over – manglende testdata</span></div>
+    </div>
+    <div class="wcag-seksjon">
+      <h3>Akseptansekriterier (5 tester)</h3>
+      <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
+        <div class="brudd-header">
+          <span>✅ <strong>AK-1.0 – footer finnes på forside og underside</strong></span>
+          <span class="brudd-teller">1708ms</span>
+        </div>
+        
+        
+      </div>
+      <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
+        <div class="brudd-header">
+          <span>✅ <strong>AK-1.1 – footer inneholder forventede elementer fra Figma-skissen</strong></span>
+          <span class="brudd-teller">677ms</span>
+        </div>
+        
+        
+      </div>
+      <div class="brudd-kort" style="border-left-color:#b45309;background:#fffbeb;">
+        <div class="brudd-header">
+          <span>⚠️ <strong>AK-1.2 – footer inneholder språkvalg</strong></span>
+          <span class="brudd-teller">63ms</span>
+        </div>
+        <div class="hoppet-arsak">Årsak: AK-1.2 avventer implementering – språkvalg ikke avklart (TILSK-760)</div>
+        
+      </div>
+      <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
+        <div class="brudd-header">
+          <span>✅ <strong>AK-1.3 – footer inneholder lenke til personvernerklæring</strong></span>
+          <span class="brudd-teller">656ms</span>
+        </div>
+        
+        
+      </div>
+      <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
+        <div class="brudd-header">
+          <span>✅ <strong>AK-1.4 – footer inneholder lenke til tilgjengelighetserklæring</strong></span>
+          <span class="brudd-teller">666ms</span>
+        </div>
+        
         
       </div>
     </div>
@@ -505,7 +566,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1 – &quot;Hvem søker du på vegne av?&quot;-skjerm vises etter klikk på Søk om tilskudd</strong></span>
-          <span class="brudd-teller">3918ms</span>
+          <span class="brudd-teller">3566ms</span>
         </div>
         
         
@@ -513,7 +574,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-2 – organisasjonsnummerfeltet er synlig</strong></span>
-          <span class="brudd-teller">5833ms</span>
+          <span class="brudd-teller">3626ms</span>
         </div>
         
         
@@ -521,7 +582,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-3 – organisasjonsnummer er obligatorisk (tom felt blokkerer innsending)</strong></span>
-          <span class="brudd-teller">4667ms</span>
+          <span class="brudd-teller">3527ms</span>
         </div>
         
         
@@ -529,7 +590,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-3 – org-nummer valideres på format (feil antall siffer gir feil)</strong></span>
-          <span class="brudd-teller">3625ms</span>
+          <span class="brudd-teller">3576ms</span>
         </div>
         
         
@@ -537,7 +598,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-4 – søknadsnavn-felt er synlig</strong></span>
-          <span class="brudd-teller">3592ms</span>
+          <span class="brudd-teller">3560ms</span>
         </div>
         
         
@@ -545,7 +606,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-5 – e-postfelt er synlig</strong></span>
-          <span class="brudd-teller">3656ms</span>
+          <span class="brudd-teller">3521ms</span>
         </div>
         
         
@@ -567,7 +628,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1.0 – breadcrumbs er synlig på utlysningssiden</strong></span>
-          <span class="brudd-teller">1670ms</span>
+          <span class="brudd-teller">1654ms</span>
         </div>
         
         
@@ -575,7 +636,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1.1 – tittel (h1) er synlig under breadcrumbs</strong></span>
-          <span class="brudd-teller">826ms</span>
+          <span class="brudd-teller">1261ms</span>
         </div>
         
         
@@ -583,7 +644,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1.2 – sist oppdatert dato vises</strong></span>
-          <span class="brudd-teller">784ms</span>
+          <span class="brudd-teller">1978ms</span>
         </div>
         
         
@@ -591,7 +652,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1.3 – forvalternavn vises</strong></span>
-          <span class="brudd-teller">802ms</span>
+          <span class="brudd-teller">815ms</span>
         </div>
         
         
@@ -599,7 +660,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1.4 – pengebeløp vises med tusenskille i kroner (om tilskuddsramme er satt)</strong></span>
-          <span class="brudd-teller">824ms</span>
+          <span class="brudd-teller">795ms</span>
         </div>
         
         
@@ -607,7 +668,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-2.0 – søknadsfristkort er synlig</strong></span>
-          <span class="brudd-teller">823ms</span>
+          <span class="brudd-teller">801ms</span>
         </div>
         
         
@@ -615,7 +676,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-3.0 – kontaktinfoseksjon er synlig</strong></span>
-          <span class="brudd-teller">819ms</span>
+          <span class="brudd-teller">795ms</span>
         </div>
         
         
@@ -623,7 +684,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-4.0 – rikttekst-innholdsområde er synlig med tekst</strong></span>
-          <span class="brudd-teller">803ms</span>
+          <span class="brudd-teller">786ms</span>
         </div>
         
         
@@ -631,7 +692,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK – utlysningssiden laster uten feilside</strong></span>
-          <span class="brudd-teller">840ms</span>
+          <span class="brudd-teller">795ms</span>
         </div>
         
         
@@ -653,7 +714,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1 – stikkord: søk på ett ord gir resultater (ikke feilside)</strong></span>
-          <span class="brudd-teller">252ms</span>
+          <span class="brudd-teller">223ms</span>
         </div>
         
         
@@ -661,7 +722,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-1 – stikkord: søk på ett ord viser matchende utlysninger</strong></span>
-          <span class="brudd-teller">175ms</span>
+          <span class="brudd-teller">162ms</span>
         </div>
         
         
@@ -669,7 +730,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-2 – halvferdig ord: delstreng gir relevante treff (ikke feilside)</strong></span>
-          <span class="brudd-teller">216ms</span>
+          <span class="brudd-teller">161ms</span>
         </div>
         
         
@@ -677,7 +738,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-3 – flere ord: søk på «barn og unge» gir respons uten feilside</strong></span>
-          <span class="brudd-teller">173ms</span>
+          <span class="brudd-teller">176ms</span>
         </div>
         
         
@@ -685,7 +746,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-4 – ingen treff: nonsens-streng viser ingen-treff-melding, ikke feilside</strong></span>
-          <span class="brudd-teller">164ms</span>
+          <span class="brudd-teller">163ms</span>
         </div>
         
         
@@ -693,7 +754,7 @@
       <div class="brudd-kort" style="border-left-color:#064e3b;background:#ecfdf5;">
         <div class="brudd-header">
           <span>✅ <strong>AK-5 – tomt søkefelt: hel utlysningsliste vises igjen</strong></span>
-          <span class="brudd-teller">1025ms</span>
+          <span class="brudd-teller">1031ms</span>
         </div>
         
         
@@ -701,7 +762,7 @@
       <div class="brudd-kort" style="border-left-color:#b45309;background:#fffbeb;">
         <div class="brudd-header">
           <span>⚠️ <strong>AK-6 – feilstaving: feilstavet søkeord håndteres (f.eks. «mente du?»)</strong></span>
-          <span class="brudd-teller">74ms</span>
+          <span class="brudd-teller">69ms</span>
         </div>
         <div class="hoppet-arsak">Årsak: AK-6 ikke implementert ennå – krever fuzzy søkemotor (TILSK-856 i Utviklingskø)</div>
         
@@ -710,7 +771,7 @@
     
   </section>
 
-  <footer>KS Tilskudd · Brukerhistorietester · @playwright/test · 2026-06-03 08:31</footer>
+  <footer>KS Tilskudd · Brukerhistorietester · @playwright/test · 2026-06-03 12:21</footer>
 </main>
 </body>
 </html>

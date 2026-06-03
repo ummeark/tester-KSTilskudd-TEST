@@ -406,6 +406,68 @@ test.describe('TILSK-738: Som søker ønsker jeg å se kontaktinformasjon om ord
 
 });
 
+// ── TILSK-760 ────────────────────────────────────────────────────────────────────
+test.describe('TILSK-760: Som bruker ønsker jeg å kunne navigere via footer fra alle sidene i tilskuddsportalen', () => {
+
+  const FOOTER_SEL = 'footer, [role="contentinfo"]';
+  const PERSONVERN_SEL = [
+    'a[href*="personvern"]',
+    'a:has-text("Personvernerklæring")',
+    'a:has-text("personvern")',
+  ].join(', ');
+  const TILGJENGELIGHET_SEL = [
+    'a[href*="tilgjengelighet"]',
+    'a:has-text("Tilgjengelighetserklæring")',
+    'a:has-text("tilgjengelighet")',
+  ].join(', ');
+
+  test('AK-1.0 – footer finnes på forside og underside', async ({ page }) => {
+    await page.goto(base, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT });
+    await expect(page.locator(FOOTER_SEL).first()).toBeVisible({ timeout: SIDE_TIMEOUT });
+
+    await page.goto(`${base}/utlysinger`, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT });
+    await expect(page.locator(FOOTER_SEL).first()).toBeVisible({ timeout: SIDE_TIMEOUT });
+  });
+
+  test('AK-1.1 – footer inneholder forventede elementer fra Figma-skissen', async ({ page }) => {
+    await page.goto(base, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT });
+    const footer = page.locator(FOOTER_SEL).first();
+    await expect(footer).toBeVisible({ timeout: SIDE_TIMEOUT });
+
+    const antallLenker = await footer.locator('a').count();
+    expect(antallLenker, 'Footer skal inneholde lenker til navigasjon').toBeGreaterThanOrEqual(1);
+
+    const footerTekst = await footer.textContent();
+    const harPortalTekst = /tilskudd|portal|ks\.no|kommune/i.test(footerTekst ?? '');
+    expect(harPortalTekst, 'Footer skal inneholde tekst om tilskuddsportalen eller KS').toBe(true);
+  });
+
+  test('AK-1.2 – footer inneholder språkvalg', async ({ page }, testInfo) => {
+    testInfo.skip(true, 'AK-1.2 avventer implementering – språkvalg ikke avklart (TILSK-760)');
+  });
+
+  test('AK-1.3 – footer inneholder lenke til personvernerklæring', async ({ page }) => {
+    await page.goto(base, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT });
+    const footer = page.locator(FOOTER_SEL).first();
+    await expect(footer).toBeVisible({ timeout: SIDE_TIMEOUT });
+    await expect(
+      footer.locator(PERSONVERN_SEL).first(),
+      'Footer skal inneholde lenke til personvernerklæring'
+    ).toBeVisible({ timeout: SIDE_TIMEOUT });
+  });
+
+  test('AK-1.4 – footer inneholder lenke til tilgjengelighetserklæring', async ({ page }) => {
+    await page.goto(base, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT });
+    const footer = page.locator(FOOTER_SEL).first();
+    await expect(footer).toBeVisible({ timeout: SIDE_TIMEOUT });
+    await expect(
+      footer.locator(TILGJENGELIGHET_SEL).first(),
+      'Footer skal inneholde lenke til tilgjengelighetserklæring'
+    ).toBeVisible({ timeout: SIDE_TIMEOUT });
+  });
+
+});
+
 // ── TILSK-767 ────────────────────────────────────────────────────────────────────
 test.describe('TILSK-767: Organisasjonsvelger ved søknadsopprettelse', () => {
 
