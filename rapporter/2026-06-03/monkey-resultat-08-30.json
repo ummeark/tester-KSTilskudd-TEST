@@ -1,0 +1,54 @@
+{
+  "url": "https://tilskudd.fiks.test.ks.no/",
+  "dato": "2026-06-03",
+  "versjon": "v0.6.1",
+  "nettleser": "147.0.7727.15",
+  "totalt": {
+    "iterasjoner": 60,
+    "siderBesøkt": 8,
+    "jsErrors": 1,
+    "konsollFeil": 1,
+    "nettverksFeil": 0,
+    "kritiske": 1,
+    "alvorlige": 0,
+    "varighet": 8
+  },
+  "score": 69,
+  "jsErrors": [
+    {
+      "melding": "Minified React error #419; visit https://react.dev/errors/419 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+      "stack": "",
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0",
+      "tid": "2026-06-03T06:30:34.935Z"
+    }
+  ],
+  "konsollFeil": [
+    {
+      "melding": "TypeError: Cannot read properties of undefined (reading 'code')\n    at loader (https://tilskudd.fiks.test.ks.no/assets/index-uCgcEYCS.js:77:54038)\n    at async Jt (https://tilskudd.fiks.test.ks.no/assets/index-uCgcEYCS.js:10:65316)\n    at async r (https://tilskudd.fiks.test.ks.no/assets/index-uCgcEYCS.js:10:67087)\n    at async Yt (https://tilskudd.fiks.test.ks.no/assets/index-uCgcEYCS.js:10:67982)\n    at async Promise.all (index 1)\n    at async Xt (https://tilskudd.fiks.test.ks.no/assets/index-uCgcEYCS.js:10:68864)\n    at async https://tilskudd.fiks.test.ks.no/assets/index-uCgcEYCS.js:10:84938",
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger?searchString=&currentPage=1&pageSize=10",
+      "tid": "2026-06-03T06:30:33.924Z"
+    }
+  ],
+  "nettverksFeil": [],
+  "interaksjoner": [
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter navigasjon: inneholder \"500\"",
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0",
+      "handling": "Gikk tilbake (browser back)",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-7.png",
+      "tid": "2026-06-03T06:30:34.788Z"
+    }
+  ],
+  "besøkte": [
+    "https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast",
+    "https://tilskudd.fiks.test.ks.no/",
+    "https://tilskudd.fiks.test.ks.no/utlysinger?searchString=&currentPage=1&pageSize=10",
+    "https://tilskudd.fiks.test.ks.no/utlysinger?searchString=%220%22&currentPage=1&pageSize=10",
+    "https://tilskudd.fiks.test.ks.no/utlysinger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0",
+    "https://tilskudd.fiks.test.ks.no/utlysinger?currentPage=1&pageSize=10",
+    "https://tilskudd.fiks.test.ks.no/utlysinger?searchString=%21%40%23%24%25%26*%28%29&currentPage=1&pageSize=10",
+    "https://tilskudd.fiks.test.ks.no/utlysinger?searchString=%C3%A6%C3%B8%C3%A5+%C3%86%C3%98%C3%85&currentPage=1&pageSize=10"
+  ]
+}
