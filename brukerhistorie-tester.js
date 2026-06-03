@@ -617,6 +617,41 @@ test.describe('TILSK-785 / TILSK-795: Redesign av utlysningsside', () => {
 
 });
 
+// ── TILSK-793 ────────────────────────────────────────────────────────────────────
+test.describe('TILSK-793: Redesign av forside: Som besøker av forsiden til tilskuddsportalen ønsker jeg å kunne søke etter en tilskuddsordning', () => {
+
+  const SØKEFELT = 'input[placeholder*="tilskuddsordning"], input[placeholder*="Søk etter"], input[type="search"]';
+
+  test('AK-1.0 – forsiden laster uten feilside', async ({ page }) => {
+    await page.goto(`${base}/`, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT });
+    const body = await page.textContent('body');
+    expect(body).not.toMatch(/Internal Server Error|Uventet feil/);
+  });
+
+  test('AK-1.1 – forsiden viser overskrift og tekst som forklarer hva portalen er', async ({ page }) => {
+    await page.goto(`${base}/`, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT });
+    await expect(page.locator('h1').first()).toBeVisible({ timeout: SIDE_TIMEOUT });
+    const body = await page.textContent('body');
+    expect(body).toMatch(/nasjonal portal|tilskudd|søknad|offentlige/i);
+  });
+
+  test('AK-1.2 – forsiden viser søkefelt for å søke i tilskuddsordninger', async ({ page }) => {
+    await page.goto(`${base}/`, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT });
+    await expect(page.locator(SØKEFELT).first()).toBeVisible({ timeout: SIDE_TIMEOUT });
+  });
+
+  test('AK-1.3 – søk fra forsiden navigerer til oversiktssiden for tilskuddsordninger', async ({ page }) => {
+    await page.goto(`${base}/`, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT });
+    const felt = page.locator(SØKEFELT).first();
+    await expect(felt).toBeVisible({ timeout: SIDE_TIMEOUT });
+    await felt.fill('tilskudd');
+    await page.keyboard.press('Enter');
+    await page.waitForLoadState('domcontentloaded');
+    await expect(page).toHaveURL(/utlysing/);
+  });
+
+});
+
 // ── TILSK-856 ────────────────────────────────────────────────────────────────────
 test.describe('TILSK-856: Som søker vil jeg finne tilskuddsordninger med stikkord, halvferdige ord eller flere ord', () => {
 
