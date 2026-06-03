@@ -618,7 +618,7 @@ test.describe('TILSK-785 / TILSK-795: Redesign av utlysningsside', () => {
 });
 
 // ── TILSK-793 ────────────────────────────────────────────────────────────────────
-test.describe('TILSK-793: Redesign av forside: Som besøker av forsiden til tilskuddsportalen ønsker jeg å kunne søke etter en tilskuddsordning', () => {
+test.describe('TILSK-793: Designsystemet redesign - Forside', () => {
 
   const SØKEFELT = 'input[placeholder*="tilskuddsordning"], input[placeholder*="Søk etter"], input[type="search"]';
 
