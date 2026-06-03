@@ -8,88 +8,6 @@ import fs from 'fs';
 const base = START_URL.replace(/\/$/, '');
 const SKJERMBILDER = 'brukerhistorie-resultater/skjermbilder';
 
-// ── BR.HIST-1 ─────────────────────────────────────────────────────────────────────
-test.describe('BR.HIST-1: Som søker vil jeg se oversikt over tilskuddsordninger', () => {
-
-  test('kan navigere til utlysningslisten', async ({ page }) => {
-    await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
-    await expect(page).toHaveURL(/utlysinger/);
-  });
-
-  test('utlysningslisten inneholder minst én ordning', async ({ page }) => {
-    await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
-    const kort = page.locator('article, [class*="card"], [class*="kort"], li a[href*="utlysing"]');
-    await expect(kort.first()).toBeVisible({ timeout: SIDE_TIMEOUT });
-  });
-
-  test('kan klikke seg inn på en utlysning og se detaljer', async ({ page }) => {
-    await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
-    const forstelenke = page.locator('a[href*="utlysing"]').first();
-    await expect(forstelenke).toBeVisible({ timeout: SIDE_TIMEOUT });
-    await forstelenke.click();
-    await page.waitForLoadState('domcontentloaded');
-    await expect(page).not.toHaveURL(`${base}/utlysinger`);
-  });
-
-});
-
-// ── BR.HIST-4 ─────────────────────────────────────────────────────────────────────
-test.describe('BR.HIST-4: Som søker vil jeg kunne navigere tilbake fra en utlysning', () => {
-
-  test('tilbake-navigasjon fra utlysning fungerer', async ({ page }) => {
-    await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
-    const lenke = page.locator('a[href*="utlysinger/"]').first();
-    const href = await lenke.getAttribute('href');
-    const absoluteHref = href.startsWith('http') ? href : `${base}${href}`;
-    await page.goto(absoluteHref, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
-    await page.goBack({ waitUntil: 'domcontentloaded' });
-    await expect(page).toHaveURL(/utlysinger/);
-  });
-
-  test('F5-refresh på utlysningslisten beholder siden', async ({ page }) => {
-    await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
-    await page.reload({ waitUntil: 'domcontentloaded' });
-    await expect(page).toHaveURL(/utlysinger/);
-    const body = await page.textContent('body');
-    expect(body).not.toMatch(/500|Internal Server Error|Uventet feil/);
-  });
-
-});
-
-// ── BR.HIST-5 ─────────────────────────────────────────────────────────────────────
-test.describe('BR.HIST-5: Som søker med hjelpemiddelteknologi vil jeg hoppe over navigasjonen', () => {
-
-  test('skiplink til hovedinnhold finnes i DOM (WCAG 2.4.1)', async ({ page }) => {
-    await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
-    fs.mkdirSync(SKJERMBILDER, { recursive: true });
-    await page.screenshot({ path: `${SKJERMBILDER}/BR.HIST-5-side-uten-skiplink.png` });
-    // Forventer: <a href="#main"> eller tilsvarende skiplink øverst på siden
-    const skipLenke = page.locator(
-      'a[href="#main"], a[href="#maincontent"], a[href="#main-content"], ' +
-      'a[href="#innhold"], a.skip-link, a[class*="skip"]'
-    ).first();
-    await expect(skipLenke).toBeAttached();
-  });
-
-  test('skiplink er første fokuserbare element ved Tab-navigasjon', async ({ page }) => {
-    await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
-    await page.keyboard.press('Tab');
-    fs.mkdirSync(SKJERMBILDER, { recursive: true });
-    await page.screenshot({ path: `${SKJERMBILDER}/BR.HIST-5-foerste-tab-fokus.png` });
-    // Forventer: første Tab-stopp er skiplink, ikke logo/menylenke
-    const href = await page.locator(':focus').getAttribute('href').catch(() => '');
-    expect(href, 'Første Tab-stopp bør være en skiplink til #main eller #innhold').toMatch(/#main|#innhold|#content|#skip/);
-  });
-
-  test('søkeskjema er merket med role="search" for skjermlesere', async ({ page }) => {
-    await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
-    // Forventer: søkecontaineren er annotert med role="search" (WCAG)
-    const searchRegion = page.locator('[role="search"]').first();
-    await expect(searchRegion).toBeVisible({ timeout: SIDE_TIMEOUT });
-  });
-
-});
-
 // ── TILSK-481 / TILSK-793 ────────────────────────────────────────────────────────
 test.describe('TILSK-481 / TILSK-793: Som søker vil jeg søke etter en tilskuddsordning', () => {
 
@@ -762,6 +680,85 @@ test.describe('TILSK-856: Som søker vil jeg finne tilskuddsordninger med stikko
   // AK-6: Feilstaving håndteres – gjerne med «mente du?»
   test('AK-6 – feilstaving: feilstavet søkeord håndteres (f.eks. «mente du?»)', async ({ page }, testInfo) => {
     testInfo.skip(true, 'AK-6 ikke implementert ennå – krever fuzzy søkemotor (TILSK-856 i Utviklingskø)');
+  });
+
+});
+
+// ── BR.HIST-1 ─────────────────────────────────────────────────────────────────────
+test.describe('BR.HIST-1: Som søker vil jeg se oversikt over tilskuddsordninger', () => {
+
+  test('kan navigere til utlysningslisten', async ({ page }) => {
+    await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
+    await expect(page).toHaveURL(/utlysinger/);
+  });
+
+  test('utlysningslisten inneholder minst én ordning', async ({ page }) => {
+    await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
+    const kort = page.locator('article, [class*="card"], [class*="kort"], li a[href*="utlysing"]');
+    await expect(kort.first()).toBeVisible({ timeout: SIDE_TIMEOUT });
+  });
+
+  test('kan klikke seg inn på en utlysning og se detaljer', async ({ page }) => {
+    await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
+    const forstelenke = page.locator('a[href*="utlysing"]').first();
+    await expect(forstelenke).toBeVisible({ timeout: SIDE_TIMEOUT });
+    await forstelenke.click();
+    await page.waitForLoadState('domcontentloaded');
+    await expect(page).not.toHaveURL(`${base}/utlysinger`);
+  });
+
+});
+
+// ── BR.HIST-4 ─────────────────────────────────────────────────────────────────────
+test.describe('BR.HIST-4: Som søker vil jeg kunne navigere tilbake fra en utlysning', () => {
+
+  test('tilbake-navigasjon fra utlysning fungerer', async ({ page }) => {
+    await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
+    const lenke = page.locator('a[href*="utlysinger/"]').first();
+    const href = await lenke.getAttribute('href');
+    const absoluteHref = href.startsWith('http') ? href : `${base}${href}`;
+    await page.goto(absoluteHref, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
+    await page.goBack({ waitUntil: 'domcontentloaded' });
+    await expect(page).toHaveURL(/utlysinger/);
+  });
+
+  test('F5-refresh på utlysningslisten beholder siden', async ({ page }) => {
+    await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await expect(page).toHaveURL(/utlysinger/);
+    const body = await page.textContent('body');
+    expect(body).not.toMatch(/500|Internal Server Error|Uventet feil/);
+  });
+
+});
+
+// ── BR.HIST-5 ─────────────────────────────────────────────────────────────────────
+test.describe('BR.HIST-5: Som søker med hjelpemiddelteknologi vil jeg hoppe over navigasjonen', () => {
+
+  test('skiplink til hovedinnhold finnes i DOM (WCAG 2.4.1)', async ({ page }) => {
+    await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
+    fs.mkdirSync(SKJERMBILDER, { recursive: true });
+    await page.screenshot({ path: `${SKJERMBILDER}/BR.HIST-5-side-uten-skiplink.png` });
+    const skipLenke = page.locator(
+      'a[href="#main"], a[href="#maincontent"], a[href="#main-content"], ' +
+      'a[href="#innhold"], a.skip-link, a[class*="skip"]'
+    ).first();
+    await expect(skipLenke).toBeAttached();
+  });
+
+  test('skiplink er første fokuserbare element ved Tab-navigasjon', async ({ page }) => {
+    await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
+    await page.keyboard.press('Tab');
+    fs.mkdirSync(SKJERMBILDER, { recursive: true });
+    await page.screenshot({ path: `${SKJERMBILDER}/BR.HIST-5-foerste-tab-fokus.png` });
+    const href = await page.locator(':focus').getAttribute('href').catch(() => '');
+    expect(href, 'Første Tab-stopp bør være en skiplink til #main eller #innhold').toMatch(/#main|#innhold|#content|#skip/);
+  });
+
+  test('søkeskjema er merket med role="search" for skjermlesere', async ({ page }) => {
+    await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
+    const searchRegion = page.locator('[role="search"]').first();
+    await expect(searchRegion).toBeVisible({ timeout: SIDE_TIMEOUT });
   });
 
 });

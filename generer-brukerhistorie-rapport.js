@@ -30,11 +30,7 @@ const allBhSuites = (data.suites ?? []).flatMap(s => s.suites ?? []);
 const bhMap = new Map();
 for (const suite of allBhSuites) bhMap.set(suite.title, suite);
 
-// Suites som ikke skal vises i rapporten (tester kjøres fortsatt)
-const SKJULTE_SUITES = ['BR.HIST-1', 'BR.HIST-4', 'BR.HIST-5'];
-const suites = [...bhMap.values()].filter(s =>
-  !SKJULTE_SUITES.some(p => s.title.startsWith(p))
-);
+const suites = [...bhMap.values()];
 
 // Dato
 const startTime = new Date(stats.startTime);
