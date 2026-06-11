@@ -5,7 +5,7 @@
 <script>if(location.protocol!=='file:'&&!sessionStorage.getItem('ks-auth'))location.replace('logg-inn.html?redir='+encodeURIComponent(location.href))</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>UU-rapport – 2026-06-11 08:40</title>
+<title>UU-rapport – 2026-06-11 10:23</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:system-ui,-apple-system,sans-serif;background:#faf6f0;color:#0f0e17;display:flex;min-height:100vh}
@@ -77,6 +77,10 @@
   .side-url-link:hover{text-decoration:underline}
   .side-score-badges{display:flex;gap:.4rem;flex-wrap:wrap;align-items:flex-start}
 
+  /* Testdata strip */
+  .testdata-strip{display:flex;gap:.5rem;flex-wrap:wrap;padding:.7rem 0 .9rem;border-bottom:1px solid #f4ecdf;margin-bottom:1rem}
+  .testdata-chip{display:inline-flex;align-items:center;gap:.25rem;background:#f4ecdf;color:#374151;padding:.18rem .65rem;border-radius:100px;font-size:.71rem;font-weight:500}
+
   /* WCAG sections */
   .wcag-seksjon{margin-bottom:1.6rem}
   .wcag-seksjon h3{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;margin-bottom:.9rem;padding-bottom:.4rem;border-bottom:1px solid #f4ecdf}
@@ -133,7 +137,7 @@
   <div class="sidemeny-header">
     <div class="sidemeny-logo">KS Tilskudd · UU-tester</div>
     <div class="env-badge">TEST-MILJØ · v0.6.3</div>
-    <h1>Tilgjengelighetsrapport <span>2026-06-11 08:40 · 20 sider</span></h1>
+    <h1>Tilgjengelighetsrapport <span>2026-06-11 10:23 · 20 sider</span></h1>
   </div>
   <ul><li><a href="#side-0" class="sidenav-link ok">
       <span class="sidenavn">KS Tilskudd - Min side</span>
@@ -221,7 +225,7 @@
   <div class="rapport-header">
     <div>
       <h1>Tilgjengelighetsrapport</h1>
-      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-06-11 08:40 · 20 sider testet · Chromium 147</div>
+      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-06-11 10:23 · 20 sider testet · Chromium 147</div>
     </div>
     <div class="nav-knapper">
       <a href="rapport.html" class="knapp sekundær">Forside</a>
@@ -279,6 +283,26 @@
     <div class="score-tekst"><strong>UU-score</strong><p>Basert på WCAG-brudd, døde lenker og manglende labels på tvers av 20 sider. Klikk på skjermdumper for å forstørre.</p></div>
   </div>
 
+  <div class="seksjon" style="padding:1rem 1.4rem;margin-bottom:1.5rem">
+    <div class="seksjon-tittel">🧪 Testkontekst</div>
+    <div style="display:flex;gap:2rem;flex-wrap:wrap;font-size:.83rem;color:#374151;align-items:flex-start">
+      <div>
+        <span style="font-weight:600;color:#0a1355;display:block;margin-bottom:.25rem">Innlogget bruker</span>
+        <code style="color:#2b3285">10895696434</code>
+        <span style="color:#6b7280;font-size:.78rem;margin-left:.4rem">(ID-porten TestID · fast modus)</span>
+      </div>
+      <div>
+        <span style="font-weight:600;color:#0a1355;display:block;margin-bottom:.25rem">Viewport</span>
+        <code style="color:#2b3285">1280×900</code>
+        <span style="color:#6b7280;font-size:.78rem;margin-left:.4rem">px</span>
+      </div>
+      <div>
+        <span style="font-weight:600;color:#0a1355;display:block;margin-bottom:.25rem">Start-URL</span>
+        <a href="https://tilskudd.fiks.test.ks.no/" target="_blank" style="color:#07604f;font-size:.82rem">https://tilskudd.fiks.test.ks.no/</a>
+      </div>
+    </div>
+  </div>
+
   <div class="kort-grid">
     <div class="kort ok"><div class="tall">20</div><div class="etikett">Sider testet</div></div>
     <div class="kort kritisk"><div class="tall">15</div><div class="etikett">WCAG-brudd</div><div class="undertekst">3 kritiske · 12 alvorlige</div></div>
@@ -300,6 +324,13 @@
           <span class="badge dead">2 døde lenker</span>
         </div>
       </summary>
+
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">🚪 Startside (innloggingsretur)</span>
+        
+      </div>
 
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
@@ -396,6 +427,13 @@
           <span class="badge dead">2 døde lenker</span>
         </div>
       </summary>
+
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /minside?statusFilter=utkast</span>
+        
+      </div>
 
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
@@ -512,6 +550,13 @@
         </div>
       </summary>
 
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /minside?statusFilter=utkast</span>
+        
+      </div>
+
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
         <h3>♿ WCAG-brudd (0)</h3>
@@ -623,6 +668,13 @@
         </div>
       </summary>
 
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /minside?statusFilter=utkast</span>
+        
+      </div>
+
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
         <h3>♿ WCAG-brudd (0)</h3>
@@ -718,6 +770,13 @@
           <span class="badge dead">2 døde lenker</span>
         </div>
       </summary>
+
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /minside?statusFilter=utkast</span>
+        
+      </div>
 
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
@@ -815,6 +874,13 @@
         </div>
       </summary>
 
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /minside?statusFilter=utkast</span>
+        
+      </div>
+
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
         <h3>♿ WCAG-brudd (0)</h3>
@@ -911,6 +977,13 @@
         </div>
       </summary>
 
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /minside?statusFilter=utkast</span>
+        
+      </div>
+
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
         <h3>♿ WCAG-brudd (0)</h3>
@@ -1006,6 +1079,13 @@
           <span class="badge dead">3 døde lenker</span>
         </div>
       </summary>
+
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /utlysinger</span>
+        
+      </div>
 
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
@@ -1127,6 +1207,13 @@
         </div>
       </summary>
 
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /utlysinger</span>
+        
+      </div>
+
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
         <h3>♿ WCAG-brudd (0)</h3>
@@ -1227,6 +1314,13 @@
           <span class="badge dead">3 døde lenker</span>
         </div>
       </summary>
+
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /utlysinger</span>
+        
+      </div>
 
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
@@ -1347,6 +1441,13 @@
           <span class="badge dead">4 døde lenker</span>
         </div>
       </summary>
+
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /utlysinger</span>
+        
+      </div>
 
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
@@ -1487,6 +1588,13 @@
         </div>
       </summary>
 
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /utlysinger</span>
+        
+      </div>
+
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
         <h3>♿ WCAG-brudd (0)</h3>
@@ -1606,6 +1714,13 @@
           <span class="badge dead">3 døde lenker</span>
         </div>
       </summary>
+
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /utlysinger</span>
+        
+      </div>
 
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
@@ -1727,6 +1842,13 @@
         </div>
       </summary>
 
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /minside/utkast</span>
+        
+      </div>
+
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
         <h3>♿ WCAG-brudd (0)</h3>
@@ -1822,6 +1944,13 @@
           <span class="badge dead">2 døde lenker</span>
         </div>
       </summary>
+
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /minside/utkast</span>
+        
+      </div>
 
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
@@ -2444,6 +2573,13 @@ problem@epost-adresse.no</td>
         </div>
       </summary>
 
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /minside/utkast</span>
+        
+      </div>
+
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
         <h3>♿ WCAG-brudd (3)</h3>
@@ -2825,6 +2961,13 @@ mb@example.com</td>
         </div>
       </summary>
 
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /minside/utkast</span>
+        
+      </div>
+
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
         <h3>♿ WCAG-brudd (2)</h3>
@@ -3095,6 +3238,13 @@ mb@example.com</td>
           <span class="badge dead">2 døde lenker</span>
         </div>
       </summary>
+
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /minside/utkast</span>
+        
+      </div>
 
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
@@ -3375,6 +3525,13 @@ Org.rep</td>
         </div>
       </summary>
 
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /minside/utkast</span>
+        
+      </div>
+
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
         <h3>♿ WCAG-brudd (2)</h3>
@@ -3653,6 +3810,13 @@ Org.rep</td>
           <span class="badge dead">2 døde lenker</span>
         </div>
       </summary>
+
+      <!-- Testkontekst for denne siden -->
+      <div class="testdata-strip">
+        <span class="testdata-chip">🔐 Bruker: 10895696434 (TestID)</span>
+        <span class="testdata-chip">📍 Funnet via: /minside/utkast</span>
+        
+      </div>
 
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
@@ -4640,7 +4804,7 @@ Org.rep</td>
       </div>
     </div>
   </details>
-  <footer>KS Tilskudd · UU-tester · axe-core + Playwright · 2026-06-11 08:40</footer>
+  <footer>KS Tilskudd · UU-tester · axe-core + Playwright · 2026-06-11 10:23</footer>
 </div>
 </body>
 </html>
