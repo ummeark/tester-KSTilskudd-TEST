@@ -5,7 +5,7 @@
 <script>if(location.protocol!=='file:'&&!sessionStorage.getItem('ks-auth'))location.replace('logg-inn.html?redir='+encodeURIComponent(location.href))</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>UU-rapport – 2026-06-11 10:23</title>
+<title>UU-rapport – 2026-06-11 11:53</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:system-ui,-apple-system,sans-serif;background:#faf6f0;color:#0f0e17;display:flex;min-height:100vh}
@@ -137,7 +137,7 @@
   <div class="sidemeny-header">
     <div class="sidemeny-logo">KS Tilskudd · UU-tester</div>
     <div class="env-badge">TEST-MILJØ · v0.6.3</div>
-    <h1>Tilgjengelighetsrapport <span>2026-06-11 10:23 · 20 sider</span></h1>
+    <h1>Tilgjengelighetsrapport <span>2026-06-11 11:53 · 20 sider</span></h1>
   </div>
   <ul><li><a href="#side-0" class="sidenav-link ok">
       <span class="sidenavn">KS Tilskudd - Min side</span>
@@ -225,7 +225,7 @@
   <div class="rapport-header">
     <div>
       <h1>Tilgjengelighetsrapport</h1>
-      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-06-11 10:23 · 20 sider testet · Chromium 147</div>
+      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-06-11 11:53 · 20 sider testet · Chromium 147</div>
     </div>
     <div class="nav-knapper">
       <a href="rapport.html" class="knapp sekundær">Forside</a>
@@ -306,13 +306,13 @@
   <div class="kort-grid">
     <div class="kort ok"><div class="tall">20</div><div class="etikett">Sider testet</div></div>
     <div class="kort kritisk"><div class="tall">15</div><div class="etikett">WCAG-brudd</div><div class="undertekst">3 kritiske · 12 alvorlige</div></div>
-    <div class="kort kritisk"><div class="tall">46</div><div class="etikett">Døde lenker</div></div>
+    <div class="kort kritisk"><div class="tall">6</div><div class="etikett">Døde lenker</div></div>
     <div class="kort advarsel"><div class="tall">148</div><div class="etikett">Knapper testet</div><div class="undertekst">17 uten label</div></div>
     <div class="kort ok"><div class="tall">12</div><div class="etikett">Bilder testet</div><div class="undertekst">0 uten alt</div></div>
     <div class="kort ok"><div class="tall">65</div><div class="etikett">Skjemafelt</div><div class="undertekst">0 uten label</div></div>
   </div>
   
-    <details class="side-seksjon" id="side-0" open>
+    <details class="side-seksjon" id="side-0">
       <summary class="side-header">
         <div>
           <h2>KS Tilskudd - Min side</h2>
@@ -321,7 +321,7 @@
         <div class="side-score-badges">
           
           
-          <span class="badge dead">2 døde lenker</span>
+          
         </div>
       </summary>
 
@@ -340,40 +340,6 @@
 
       <!-- Døde lenker med skjermdump -->
       
-      <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (2)</h3>
-        
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s1-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s1-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s1-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s1-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
 
       <!-- Artefakter -->
       <div class="artefakt-grid">
@@ -400,22 +366,13 @@
         </div>
         
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (8)</h3>
-          <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
-            <tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr></tbody></table>
+          <h3>🔗 Lenker sjekket (6)</h3>
+          <p class="ok-tekst">✅ Ingen døde lenker</p>
         </div>
       </div>
     </details>
   
-    <details class="side-seksjon" id="side-1" open>
+    <details class="side-seksjon" id="side-1">
       <summary class="side-header">
         <div>
           <h2>KS Tilskudd - Hjem</h2>
@@ -424,7 +381,7 @@
         <div class="side-score-badges">
           
           
-          <span class="badge dead">2 døde lenker</span>
+          
         </div>
       </summary>
 
@@ -443,40 +400,6 @@
 
       <!-- Døde lenker med skjermdump -->
       
-      <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (2)</h3>
-        
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s2-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s2-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s2-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s2-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
 
       <!-- Artefakter -->
       <div class="artefakt-grid">
@@ -522,22 +445,13 @@
           </tr></tbody></table>
         </div>
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (5)</h3>
-          <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
-            <tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr></tbody></table>
+          <h3>🔗 Lenker sjekket (3)</h3>
+          <p class="ok-tekst">✅ Ingen døde lenker</p>
         </div>
       </div>
     </details>
   
-    <details class="side-seksjon" id="side-2" open>
+    <details class="side-seksjon" id="side-2">
       <summary class="side-header">
         <div>
           <h2>KS Tilskudd - Tilskuddsordninger</h2>
@@ -546,7 +460,7 @@
         <div class="side-score-badges">
           
           
-          <span class="badge dead">2 døde lenker</span>
+          
         </div>
       </summary>
 
@@ -565,40 +479,6 @@
 
       <!-- Døde lenker med skjermdump -->
       
-      <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (2)</h3>
-        
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s3-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s3-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s3-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s3-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
 
       <!-- Artefakter -->
       <div class="artefakt-grid">
@@ -640,22 +520,13 @@
           </tr></tbody></table>
         </div>
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (13)</h3>
-          <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
-            <tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr></tbody></table>
+          <h3>🔗 Lenker sjekket (11)</h3>
+          <p class="ok-tekst">✅ Ingen døde lenker</p>
         </div>
       </div>
     </details>
   
-    <details class="side-seksjon" id="side-3" open>
+    <details class="side-seksjon" id="side-3">
       <summary class="side-header">
         <div>
           <h2>KS Tilskudd - Min side</h2>
@@ -664,7 +535,7 @@
         <div class="side-score-badges">
           
           
-          <span class="badge dead">2 døde lenker</span>
+          
         </div>
       </summary>
 
@@ -683,40 +554,6 @@
 
       <!-- Døde lenker med skjermdump -->
       
-      <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (2)</h3>
-        
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s4-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s4-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s4-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s4-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
 
       <!-- Artefakter -->
       <div class="artefakt-grid">
@@ -743,22 +580,13 @@
         </div>
         
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (8)</h3>
-          <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
-            <tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr></tbody></table>
+          <h3>🔗 Lenker sjekket (6)</h3>
+          <p class="ok-tekst">✅ Ingen døde lenker</p>
         </div>
       </div>
     </details>
   
-    <details class="side-seksjon" id="side-4" open>
+    <details class="side-seksjon" id="side-4">
       <summary class="side-header">
         <div>
           <h2>KS Tilskudd - Min side</h2>
@@ -767,7 +595,7 @@
         <div class="side-score-badges">
           
           
-          <span class="badge dead">2 døde lenker</span>
+          
         </div>
       </summary>
 
@@ -786,40 +614,6 @@
 
       <!-- Døde lenker med skjermdump -->
       
-      <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (2)</h3>
-        
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s5-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s5-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s5-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s5-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
 
       <!-- Artefakter -->
       <div class="artefakt-grid">
@@ -846,22 +640,13 @@
         </div>
         
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (14)</h3>
-          <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
-            <tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr></tbody></table>
+          <h3>🔗 Lenker sjekket (12)</h3>
+          <p class="ok-tekst">✅ Ingen døde lenker</p>
         </div>
       </div>
     </details>
   
-    <details class="side-seksjon" id="side-5" open>
+    <details class="side-seksjon" id="side-5">
       <summary class="side-header">
         <div>
           <h2>KS Tilskudd - Min side</h2>
@@ -870,7 +655,7 @@
         <div class="side-score-badges">
           
           
-          <span class="badge dead">2 døde lenker</span>
+          
         </div>
       </summary>
 
@@ -889,40 +674,6 @@
 
       <!-- Døde lenker med skjermdump -->
       
-      <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (2)</h3>
-        
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s6-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s6-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s6-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s6-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
 
       <!-- Artefakter -->
       <div class="artefakt-grid">
@@ -949,22 +700,13 @@
         </div>
         
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (7)</h3>
-          <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
-            <tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr></tbody></table>
+          <h3>🔗 Lenker sjekket (5)</h3>
+          <p class="ok-tekst">✅ Ingen døde lenker</p>
         </div>
       </div>
     </details>
   
-    <details class="side-seksjon" id="side-6" open>
+    <details class="side-seksjon" id="side-6">
       <summary class="side-header">
         <div>
           <h2>KS Tilskudd - Min side</h2>
@@ -973,7 +715,7 @@
         <div class="side-score-badges">
           
           
-          <span class="badge dead">2 døde lenker</span>
+          
         </div>
       </summary>
 
@@ -992,40 +734,6 @@
 
       <!-- Døde lenker med skjermdump -->
       
-      <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (2)</h3>
-        
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s7-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s7-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s7-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s7-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
 
       <!-- Artefakter -->
       <div class="artefakt-grid">
@@ -1052,17 +760,8 @@
         </div>
         
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (7)</h3>
-          <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
-            <tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr></tbody></table>
+          <h3>🔗 Lenker sjekket (5)</h3>
+          <p class="ok-tekst">✅ Ingen døde lenker</p>
         </div>
       </div>
     </details>
@@ -1076,7 +775,7 @@
         <div class="side-score-badges">
           
           
-          <span class="badge dead">3 døde lenker</span>
+          <span class="badge dead">1 døde lenker</span>
         </div>
       </summary>
 
@@ -1096,43 +795,13 @@
       <!-- Døde lenker med skjermdump -->
       
       <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (3)</h3>
+        <h3>🔗 Døde lenker (1)</h3>
         
           <div class="brudd-kort" style="border-left-color:#6c757d">
             <div class="brudd-header">
               <div><span class="badge dead">feil</span> <span>rk@eksempel.no</span></div>
             </div>
             <code class="node-selector">email:rk@eksempel.no</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s8-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s8-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s8-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s8-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
             
             <div class="skjermdump-gruppe">
               <div class="skjermdump-wrapper">
@@ -1175,26 +844,18 @@
         </div>
         
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (8)</h3>
+          <h3>🔗 Lenker sjekket (6)</h3>
           <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
             <tr>
               <td><span class="badge dead">feil</span></td>
               <td>rk@eksempel.no</td>
               <td style="font-size:0.75rem;word-break:break-all">email:rk@eksempel.no</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
             </tr></tbody></table>
         </div>
       </div>
     </details>
   
-    <details class="side-seksjon" id="side-8" open>
+    <details class="side-seksjon" id="side-8">
       <summary class="side-header">
         <div>
           <h2>KS Tilskudd</h2>
@@ -1203,7 +864,7 @@
         <div class="side-score-badges">
           
           
-          <span class="badge dead">2 døde lenker</span>
+          
         </div>
       </summary>
 
@@ -1222,40 +883,6 @@
 
       <!-- Døde lenker med skjermdump -->
       
-      <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (2)</h3>
-        
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s9-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s9-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s9-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s9-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
 
       <!-- Artefakter -->
       <div class="artefakt-grid">
@@ -1287,17 +914,8 @@
         </div>
         
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (7)</h3>
-          <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
-            <tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr></tbody></table>
+          <h3>🔗 Lenker sjekket (5)</h3>
+          <p class="ok-tekst">✅ Ingen døde lenker</p>
         </div>
       </div>
     </details>
@@ -1311,7 +929,7 @@
         <div class="side-score-badges">
           
           
-          <span class="badge dead">3 døde lenker</span>
+          <span class="badge dead">1 døde lenker</span>
         </div>
       </summary>
 
@@ -1331,43 +949,13 @@
       <!-- Døde lenker med skjermdump -->
       
       <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (3)</h3>
+        <h3>🔗 Døde lenker (1)</h3>
         
           <div class="brudd-kort" style="border-left-color:#6c757d">
             <div class="brudd-header">
               <div><span class="badge dead">feil</span> <span>mm@eksempel.no</span></div>
             </div>
             <code class="node-selector">email:mm@eksempel.no</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s10-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s10-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s10-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s10-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
             
             <div class="skjermdump-gruppe">
               <div class="skjermdump-wrapper">
@@ -1410,20 +998,12 @@
         </div>
         
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (10)</h3>
+          <h3>🔗 Lenker sjekket (8)</h3>
           <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
             <tr>
               <td><span class="badge dead">feil</span></td>
               <td>mm@eksempel.no</td>
               <td style="font-size:0.75rem;word-break:break-all">email:mm@eksempel.no</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
             </tr></tbody></table>
         </div>
       </div>
@@ -1438,7 +1018,7 @@
         <div class="side-score-badges">
           
           
-          <span class="badge dead">4 døde lenker</span>
+          <span class="badge dead">2 døde lenker</span>
         </div>
       </summary>
 
@@ -1458,7 +1038,7 @@
       <!-- Døde lenker med skjermdump -->
       
       <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (4)</h3>
+        <h3>🔗 Døde lenker (2)</h3>
         
           <div class="brudd-kort" style="border-left-color:#6c757d">
             <div class="brudd-header">
@@ -1480,36 +1060,6 @@
               <div><span class="badge dead">feil</span> <span>mm@eksempel.no</span></div>
             </div>
             <code class="node-selector">email:mm@eksempel.no</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s11-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s11-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s11-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s11-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
             
             <div class="skjermdump-gruppe">
               <div class="skjermdump-wrapper">
@@ -1552,7 +1102,7 @@
         </div>
         
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (12)</h3>
+          <h3>🔗 Lenker sjekket (10)</h3>
           <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
             <tr>
               <td><span class="badge dead">feil</span></td>
@@ -1562,14 +1112,6 @@
               <td><span class="badge dead">feil</span></td>
               <td>mm@eksempel.no</td>
               <td style="font-size:0.75rem;word-break:break-all">email:mm@eksempel.no</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
             </tr></tbody></table>
         </div>
       </div>
@@ -1584,7 +1126,7 @@
         <div class="side-score-badges">
           
           
-          <span class="badge dead">3 døde lenker</span>
+          <span class="badge dead">1 døde lenker</span>
         </div>
       </summary>
 
@@ -1604,43 +1146,13 @@
       <!-- Døde lenker med skjermdump -->
       
       <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (3)</h3>
+        <h3>🔗 Døde lenker (1)</h3>
         
           <div class="brudd-kort" style="border-left-color:#6c757d">
             <div class="brudd-header">
               <div><span class="badge dead">feil</span> <span>lg@eksempel.no</span></div>
             </div>
             <code class="node-selector">email:lg@eksempel.no</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s12-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s12-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s12-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s12-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
             
             <div class="skjermdump-gruppe">
               <div class="skjermdump-wrapper">
@@ -1683,20 +1195,12 @@
         </div>
         
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (9)</h3>
+          <h3>🔗 Lenker sjekket (7)</h3>
           <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
             <tr>
               <td><span class="badge dead">feil</span></td>
               <td>lg@eksempel.no</td>
               <td style="font-size:0.75rem;word-break:break-all">email:lg@eksempel.no</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
             </tr></tbody></table>
         </div>
       </div>
@@ -1711,7 +1215,7 @@
         <div class="side-score-badges">
           
           
-          <span class="badge dead">3 døde lenker</span>
+          <span class="badge dead">1 døde lenker</span>
         </div>
       </summary>
 
@@ -1731,43 +1235,13 @@
       <!-- Døde lenker med skjermdump -->
       
       <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (3)</h3>
+        <h3>🔗 Døde lenker (1)</h3>
         
           <div class="brudd-kort" style="border-left-color:#6c757d">
             <div class="brudd-header">
               <div><span class="badge dead">feil</span> <span>kari.testesen@eksempel.no</span></div>
             </div>
             <code class="node-selector">email:kari.testesen@eksempel.no</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s13-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s13-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s13-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s13-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
             
             <div class="skjermdump-gruppe">
               <div class="skjermdump-wrapper">
@@ -1810,26 +1284,18 @@
         </div>
         
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (9)</h3>
+          <h3>🔗 Lenker sjekket (7)</h3>
           <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
             <tr>
               <td><span class="badge dead">feil</span></td>
               <td>kari.testesen@eksempel.no</td>
               <td style="font-size:0.75rem;word-break:break-all">email:kari.testesen@eksempel.no</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
             </tr></tbody></table>
         </div>
       </div>
     </details>
   
-    <details class="side-seksjon" id="side-13" open>
+    <details class="side-seksjon" id="side-13">
       <summary class="side-header">
         <div>
           <h2>KS Tilskudd</h2>
@@ -1838,7 +1304,7 @@
         <div class="side-score-badges">
           
           
-          <span class="badge dead">2 døde lenker</span>
+          
         </div>
       </summary>
 
@@ -1857,40 +1323,6 @@
 
       <!-- Døde lenker med skjermdump -->
       
-      <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (2)</h3>
-        
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s14-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s14-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s14-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s14-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
 
       <!-- Artefakter -->
       <div class="artefakt-grid">
@@ -1917,17 +1349,8 @@
         </div>
         
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (6)</h3>
-          <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
-            <tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr></tbody></table>
+          <h3>🔗 Lenker sjekket (4)</h3>
+          <p class="ok-tekst">✅ Ingen døde lenker</p>
         </div>
       </div>
     </details>
@@ -1941,7 +1364,7 @@
         <div class="side-score-badges">
           <span class="badge critical">1 kritiske</span>
           <span class="badge serious">2 alvorlige</span>
-          <span class="badge dead">2 døde lenker</span>
+          
         </div>
       </summary>
 
@@ -2086,40 +1509,6 @@
 
       <!-- Døde lenker med skjermdump -->
       
-      <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (2)</h3>
-        
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s15-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s15-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s15-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s15-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
 
       <!-- Artefakter -->
       <div class="artefakt-grid">
@@ -2545,17 +1934,8 @@ problem@epost-adresse.no</td>
           </tr></tbody></table>
         </div>
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (7)</h3>
-          <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
-            <tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr></tbody></table>
+          <h3>🔗 Lenker sjekket (5)</h3>
+          <p class="ok-tekst">✅ Ingen døde lenker</p>
         </div>
       </div>
     </details>
@@ -2569,7 +1949,7 @@ problem@epost-adresse.no</td>
         <div class="side-score-badges">
           <span class="badge critical">1 kritiske</span>
           <span class="badge serious">2 alvorlige</span>
-          <span class="badge dead">2 døde lenker</span>
+          
         </div>
       </summary>
 
@@ -2714,40 +2094,6 @@ problem@epost-adresse.no</td>
 
       <!-- Døde lenker med skjermdump -->
       
-      <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (2)</h3>
-        
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s16-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s16-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s16-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s16-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
 
       <!-- Artefakter -->
       <div class="artefakt-grid">
@@ -2933,17 +2279,8 @@ mb@example.com</td>
           </tr></tbody></table>
         </div>
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (7)</h3>
-          <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
-            <tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr></tbody></table>
+          <h3>🔗 Lenker sjekket (5)</h3>
+          <p class="ok-tekst">✅ Ingen døde lenker</p>
         </div>
       </div>
     </details>
@@ -2957,7 +2294,7 @@ mb@example.com</td>
         <div class="side-score-badges">
           
           <span class="badge serious">2 alvorlige</span>
-          <span class="badge dead">2 døde lenker</span>
+          
         </div>
       </summary>
 
@@ -3049,40 +2386,6 @@ mb@example.com</td>
 
       <!-- Døde lenker med skjermdump -->
       
-      <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (2)</h3>
-        
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s17-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s17-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s17-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s17-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
 
       <!-- Artefakter -->
       <div class="artefakt-grid">
@@ -3211,17 +2514,8 @@ mb@example.com</td>
           </tr></tbody></table>
         </div>
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (7)</h3>
-          <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
-            <tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr></tbody></table>
+          <h3>🔗 Lenker sjekket (5)</h3>
+          <p class="ok-tekst">✅ Ingen døde lenker</p>
         </div>
       </div>
     </details>
@@ -3235,7 +2529,7 @@ mb@example.com</td>
         <div class="side-score-badges">
           
           <span class="badge serious">2 alvorlige</span>
-          <span class="badge dead">2 døde lenker</span>
+          
         </div>
       </summary>
 
@@ -3327,40 +2621,6 @@ mb@example.com</td>
 
       <!-- Døde lenker med skjermdump -->
       
-      <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (2)</h3>
-        
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s18-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s18-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s18-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s18-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
 
       <!-- Artefakter -->
       <div class="artefakt-grid">
@@ -3497,17 +2757,8 @@ Org.rep</td>
           </tr></tbody></table>
         </div>
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (7)</h3>
-          <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
-            <tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr></tbody></table>
+          <h3>🔗 Lenker sjekket (5)</h3>
+          <p class="ok-tekst">✅ Ingen døde lenker</p>
         </div>
       </div>
     </details>
@@ -3521,7 +2772,7 @@ Org.rep</td>
         <div class="side-score-badges">
           
           <span class="badge serious">2 alvorlige</span>
-          <span class="badge dead">2 døde lenker</span>
+          
         </div>
       </summary>
 
@@ -3613,40 +2864,6 @@ Org.rep</td>
 
       <!-- Døde lenker med skjermdump -->
       
-      <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (2)</h3>
-        
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s19-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s19-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s19-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s19-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
 
       <!-- Artefakter -->
       <div class="artefakt-grid">
@@ -3783,17 +3000,8 @@ Org.rep</td>
           </tr></tbody></table>
         </div>
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (7)</h3>
-          <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
-            <tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr></tbody></table>
+          <h3>🔗 Lenker sjekket (5)</h3>
+          <p class="ok-tekst">✅ Ingen døde lenker</p>
         </div>
       </div>
     </details>
@@ -3807,7 +3015,7 @@ Org.rep</td>
         <div class="side-score-badges">
           <span class="badge critical">1 kritiske</span>
           <span class="badge serious">2 alvorlige</span>
-          <span class="badge dead">2 døde lenker</span>
+          
         </div>
       </summary>
 
@@ -3932,40 +3140,6 @@ Org.rep</td>
 
       <!-- Døde lenker med skjermdump -->
       
-      <div class="wcag-seksjon">
-        <h3>🔗 Døde lenker (2)</h3>
-        
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Personvernerklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s20-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s20-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="brudd-kort" style="border-left-color:#6c757d">
-            <div class="brudd-header">
-              <div><span class="badge dead">feil</span> <span>Tilgjengelighetserklæring</span></div>
-            </div>
-            <code class="node-selector">#</code>
-            
-            <div class="skjermdump-gruppe">
-              <div class="skjermdump-wrapper">
-                <p class="skjermdump-label">🖥️ Siden med den døde lenken markert</p>
-                <a href="skjermbilder/s20-doede-lenker-side.png" target="_blank">
-                  <img src="skjermbilder/s20-doede-lenker-side.png" alt="Skjermdump som viser plasseringen av den døde lenken" class="skjermdump helside" loading="lazy">
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
 
       <!-- Artefakter -->
       <div class="artefakt-grid">
@@ -4103,17 +3277,8 @@ Org.rep</td>
           </tr></tbody></table>
         </div>
         <div class="artefakt-kort">
-          <h3>🔗 Lenker sjekket (7)</h3>
-          <table><thead><tr><th>Status</th><th>Tekst</th><th>URL</th></tr></thead><tbody>
-            <tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Personvernerklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr><tr>
-              <td><span class="badge dead">feil</span></td>
-              <td>Tilgjengelighetserklæring</td>
-              <td style="font-size:0.75rem;word-break:break-all">#</td>
-            </tr></tbody></table>
+          <h3>🔗 Lenker sjekket (5)</h3>
+          <p class="ok-tekst">✅ Ingen døde lenker</p>
         </div>
       </div>
     </details>
@@ -4367,6 +3532,124 @@ Org.rep</td>
           </div>
         </div>
       </div>
+    </div>
+  </details>
+
+  
+  <details style="margin-top:2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🎲 Tilfeldig bruker – Andre kjøring (15846498548)</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+    </summary>
+    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+      <p style="font-size:.83rem;color:#374151;margin-bottom:1.2rem;line-height:1.6">
+        Resultat fra andre kjøring med tilfeldig TestID-bruker (<code style="color:#2b3285">15846498548</code>).
+        Skjermdumper er deaktivert for denne kjøringen.
+      </p>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.82rem">
+        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">📄 17 sider</span>
+        <span style="background:#fee2e2;color:#c53030;padding:.2rem .7rem;border-radius:100px;font-weight:600">♿ 5 WCAG-brudd</span>
+        <span style="background:#ecfdf5;color:#07604f;padding:.2rem .7rem;border-radius:100px;font-weight:600">🔴 0 kritiske</span>
+        <span style="background:#fee2e2;color:#c53030;padding:.2rem .7rem;border-radius:100px;font-weight:600">🔗 6 døde lenker</span>
+        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">Score: 35</span>
+      </div>
+      
+      <table style="width:100%;border-collapse:collapse;font-size:.82rem;margin-bottom:1rem">
+        <thead><tr>
+          <th style="background:#f4ecdf;text-align:left;padding:.5rem .7rem;font-weight:600;color:#0a1355;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em">Side</th>
+          <th style="background:#f4ecdf;text-align:left;padding:.5rem .7rem;font-weight:600;color:#0a1355;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em">WCAG-brudd</th>
+          <th style="background:#f4ecdf;text-align:left;padding:.5rem .7rem;font-weight:600;color:#0a1355;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em">Kritiske</th>
+          <th style="background:#f4ecdf;text-align:left;padding:.5rem .7rem;font-weight:600;color:#0a1355;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em">Brudd-IDer</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">KS Tilskudd - Min side</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">—</td>
+          </tr><tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">KS Tilskudd - Hjem</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">—</td>
+          </tr><tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">KS Tilskudd - Tilskuddsordninger</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">—</td>
+          </tr><tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">KS Tilskudd - Min side</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">—</td>
+          </tr><tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">KS Tilskudd - Min side</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">—</td>
+          </tr><tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">KS Tilskudd - Min side</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">—</td>
+          </tr><tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">KS Tilskudd - Min side</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">—</td>
+          </tr><tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">KS Tilskudd</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">—</td>
+          </tr><tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">KS Tilskudd</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">—</td>
+          </tr><tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">KS Tilskudd</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">—</td>
+          </tr><tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">KS Tilskudd</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">—</td>
+          </tr><tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">KS Tilskudd</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">—</td>
+          </tr><tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">KS Tilskudd</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">—</td>
+          </tr><tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">KS Tilskudd</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">—</td>
+          </tr><tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">KS Tilskudd</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">—</td>
+          </tr><tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">KS Tilskudd</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">—</td>
+          </tr><tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">https://tilskudd.fiks.test.ks.no/soknad/opprett</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:700;color:#c53030">5</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:400;color:#07604f">0</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">document-title, html-has-lang, landmark-one-main, page-has-heading-one, region</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </details>
 
@@ -4804,7 +4087,7 @@ Org.rep</td>
       </div>
     </div>
   </details>
-  <footer>KS Tilskudd · UU-tester · axe-core + Playwright · 2026-06-11 10:23</footer>
+  <footer>KS Tilskudd · UU-tester · axe-core + Playwright · 2026-06-11 11:53</footer>
 </div>
 </body>
 </html>
