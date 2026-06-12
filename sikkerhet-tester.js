@@ -5,7 +5,7 @@ import https from 'https';
 import http from 'http';
 import { fileURLToPath } from 'url';
 import { exec } from 'child_process';
-import { START_URL, VIEWPORT, SIDE_TIMEOUT, IDLE_TIMEOUT, HTTP_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH } from './config.js';
+import { START_URL, VIEWPORT, SIDE_TIMEOUT, IDLE_TIMEOUT, HTTP_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER } from './config.js';
 import { hentVersjon, loggInn } from './lib/common.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -199,7 +199,7 @@ const nettleser = browser.version();
 const context = await browser.newContext({ ignoreHTTPSErrors: true });
 if (GITHUB_PAGES_AUTH) await context.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
 
-const { url: innloggetUrl } = await loggInn(context, START_URL, { modus: TEST_MODUS, testFnr: TEST_FNR });
+const { url: innloggetUrl, bruktFnr } = await loggInn(context, START_URL, { modus: TEST_MODUS, testFnr: TEST_FNR });
 if (!innloggetUrl) {
   console.log('❌ Innlogging feilet – avslutter.');
   await browser.close();
@@ -389,6 +389,48 @@ if (corsOrigin === '*') {
 
 await browser.close();
 
+// ── Andre kjøring: cookie-sjekk med tilfeldig bruker ──────────────────────────
+let ekstraCookieFunn = null;
+let bruktFnr2 = null;
+if (TEST_EKSTRA_BRUKER) {
+  console.log('\n🎲 Kjører cookie-sjekk med tilfeldig bruker...');
+  const browser2 = await chromium.launch();
+  const context2 = await browser2.newContext({ ignoreHTTPSErrors: true });
+  if (GITHUB_PAGES_AUTH) await context2.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
+  const { url: innloggetUrl2, bruktFnr: fnr2 } = await loggInn(context2, START_URL, { modus: 'tilfeldig', testFnr: TEST_FNR });
+  bruktFnr2 = fnr2;
+  if (innloggetUrl2) {
+    const page2 = await context2.newPage();
+    try {
+      await page2.goto(innloggetUrl2, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT });
+    } catch (e) {
+      console.log(`  ⚠️ Kunne ikke laste siden: ${e.message.slice(0, 80)}`);
+    }
+    const cookies2 = await context2.cookies();
+    const cookieFunn2 = [];
+    for (const cookie of cookies2) {
+      if (!erEgenCookie(cookie)) continue;
+      const problemer = [];
+      if (!cookie.secure) problemer.push('mangler Secure-flagg');
+      if (cookie.name !== 'ingress-csrf' && !cookie.httpOnly) problemer.push('mangler HttpOnly-flagg');
+      const sessionSamesiteUndtak2 = cookie.name === 'session' && (!cookie.sameSite || cookie.sameSite === 'None');
+      if (!sessionSamesiteUndtak2 && (!cookie.sameSite || cookie.sameSite === 'None')) problemer.push('SameSite er None eller ikke satt');
+      cookieFunn2.push({
+        navn: cookie.name,
+        problemer,
+        ok: problemer.length === 0,
+        alvorlighet: problemer.length === 0 ? 'ok' : (!cookie.secure ? 'alvorlig' : 'middels'),
+      });
+    }
+    ekstraCookieFunn = { bruker: bruktFnr2, cookies: cookieFunn2 };
+    console.log(`  ✅ Tilfeldig bruker (${bruktFnr2 ?? 'ukjent'}): ${cookies2.length} cookies sjekket`);
+    await page2.close();
+  } else {
+    console.log('  ⚠️  Innlogging med tilfeldig bruker feilet – hopper over cookie-sjekk.');
+  }
+  await browser2.close();
+}
+
 const varighet = Math.round((Date.now() - startTid) / 1000);
 
 // ── Oppsummering ──────────────────────────────────────────────────────────────
@@ -427,6 +469,10 @@ fs.writeFileSync(
 );
 
 // ── HTML-rapport ──────────────────────────────────────────────────────────────
+
+function escapeHtml(str) {
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
 
 const KATEGORIER = {
   'hoder':               { tittel: 'HTTP-sikkerhetshoder',       ikon: '📋' },
@@ -655,6 +701,32 @@ const html = `<!DOCTYPE html>
   </div>
 
   ${seksjoner}
+
+  ${ekstraCookieFunn ? `
+  <details style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🎲 Tilfeldig bruker – Cookie-sjekk (${escapeHtml(ekstraCookieFunn.bruker ?? 'ukjent')})</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+    </summary>
+    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+      <p style="font-size:.83rem;color:#374151;margin-bottom:1rem;line-height:1.6">
+        Cookie-sjekk utført med tilfeldig TestID-bruker (<code style="color:#2b3285">${escapeHtml(ekstraCookieFunn.bruker ?? 'ukjent')}</code>).
+        Brukeruavhengige sjekker (HTTP-hoder, HTTPS, CORS osv.) ble ikke gjentatt.
+      </p>
+      ${ekstraCookieFunn.cookies.length === 0
+        ? '<div class="wcag-ok">Ingen egne cookies funnet for tilfeldig bruker</div>'
+        : ekstraCookieFunn.cookies.map(c => `
+        <div class="brudd-kort" style="border-left-color:${c.alvorlighet === 'ok' ? '#07604f' : c.alvorlighet === 'alvorlig' ? '#9a3412' : '#b8860b'}">
+          <div class="brudd-header">
+            <div>
+              <span class="badge ${c.alvorlighet === 'ok' ? '' : c.alvorlighet}" style="${c.alvorlighet === 'ok' ? 'background:#ecfdf5;color:#07604f' : ''}">${c.alvorlighet === 'ok' ? '✅ ok' : c.alvorlighet}</span>
+              <span class="regel-desc">Cookie "${c.navn}"</span>
+            </div>
+          </div>
+          ${c.problemer.length > 0 ? `<p class="brudd-hjelp">${c.problemer.join(', ')}</p>` : '<p style="font-size:.82rem;color:#07604f;margin:.4rem 0">Secure + HttpOnly + SameSite er korrekt satt</p>'}
+        </div>`).join('')}
+    </div>
+  </details>` : ''}
 
   <div class="seksjon" style="margin-top:2rem">
     <div class="seksjon-tittel">Slik beregnes sikkerhetsscoren</div>

@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { START_URL, MAX_SIDER, VIEWPORT, LAST_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH } from './config.js';
+import { START_URL, MAX_SIDER, VIEWPORT, LAST_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER } from './config.js';
 import { loggInn } from './lib/common.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -50,91 +50,117 @@ const context = await browser.newContext({
 });
 if (GITHUB_PAGES_AUTH) await context.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
 
-const { url: innloggetUrl } = await loggInn(context, START_URL, { modus: TEST_MODUS, testFnr: TEST_FNR });
+const { url: innloggetUrl, bruktFnr } = await loggInn(context, START_URL, { modus: TEST_MODUS, testFnr: TEST_FNR });
 if (!innloggetUrl) {
   console.log('❌ Innlogging feilet – avslutter.');
   await browser.close();
   process.exit(1);
 }
 
-const besøkte = new Set();
-const kø = [innloggetUrl];
-const sideResultater = [];
+// ── Crawl som gjenbrukbar funksjon ────────────────────────────────────────────
+async function kjørYtelseRunde(ctx, startUrl, maxSider) {
+  const besøkte = new Set();
+  const kø = [startUrl];
+  const sideResultater = [];
 
-while (kø.length > 0 && sideResultater.length < MAX_SIDER) {
-  const url = kø.shift();
-  if (besøkte.has(url)) continue;
-  besøkte.add(url);
+  while (kø.length > 0 && sideResultater.length < maxSider) {
+    const url = kø.shift();
+    if (besøkte.has(url)) continue;
+    besøkte.add(url);
 
-  console.log(`  📄 [${sideResultater.length + 1}] ${url}`);
+    console.log(`  📄 [${sideResultater.length + 1}] ${url}`);
 
-  const page = await context.newPage();
+    const page = await ctx.newPage();
 
-  // Observer for LCP og FCP må settes opp FØR navigasjon
-  await page.addInitScript(() => {
-    window.__lcp = 0;
-    window.__fcp = 0;
-    try {
-      new PerformanceObserver(list => {
-        const e = list.getEntries();
-        if (e.length) window.__lcp = e[e.length - 1].startTime;
-      }).observe({ type: 'largest-contentful-paint', buffered: true });
-    } catch {}
-    try {
-      new PerformanceObserver(list => {
-        for (const e of list.getEntries())
-          if (e.name === 'first-contentful-paint') window.__fcp = e.startTime;
-      }).observe({ type: 'paint', buffered: true });
-    } catch {}
-  });
-
-  let ytelse = null;
-  let lenker = [];
-
-  try {
-    await page.goto(url, { waitUntil: 'load', timeout: LAST_TIMEOUT });
-    await page.waitForLoadState('networkidle').catch(() => {}); // gi LCP-observer tid til å registrere
-
-    const data = await page.evaluate(() => {
-      const nav = performance.getEntriesByType('navigation')[0];
-      const res = performance.getEntriesByType('resource');
-      return {
-        ttfb:     nav ? Math.round(nav.responseStart - nav.requestStart) : 0,
-        load:     nav ? Math.round(nav.loadEventEnd - nav.startTime)     : 0,
-        sizeKB:   Math.round(res.reduce((s, r) => s + (r.transferSize || 0), 0) / 1024),
-        requests: res.length,
-        lcp:      Math.round(window.__lcp || 0),
-        fcp:      Math.round(window.__fcp || 0),
-      };
+    await page.addInitScript(() => {
+      window.__lcp = 0;
+      window.__fcp = 0;
+      try {
+        new PerformanceObserver(list => {
+          const e = list.getEntries();
+          if (e.length) window.__lcp = e[e.length - 1].startTime;
+        }).observe({ type: 'largest-contentful-paint', buffered: true });
+      } catch {}
+      try {
+        new PerformanceObserver(list => {
+          for (const e of list.getEntries())
+            if (e.name === 'first-contentful-paint') window.__fcp = e.startTime;
+        }).observe({ type: 'paint', buffered: true });
+      } catch {}
     });
 
-    const tittel = await page.title() || url;
-    const score = beregnScore(data.lcp, data.fcp, data.ttfb, data.load);
-    ytelse = { url, tittel, score, ...data };
+    let ytelse = null;
+    let lenker = [];
 
-    lenker = await page.evaluate(origin => {
-      return [...new Set(
-        Array.from(document.querySelectorAll('a[href]'))
-          .map(a => { try { return new URL(a.href, location.href).href.split('?')[0]; } catch { return null; } })
-          .filter(h => h && h.startsWith(origin) && !h.includes('#'))
-      )];
-    }, baseOrigin);
+    try {
+      await page.goto(url, { waitUntil: 'load', timeout: LAST_TIMEOUT });
+      await page.waitForLoadState('networkidle').catch(() => {});
 
-    console.log(`     Score: ${score} | LCP: ${data.lcp}ms | FCP: ${data.fcp}ms | TTFB: ${data.ttfb}ms | Last: ${data.load}ms | ${data.sizeKB}KB | ${data.requests} req`);
-  } catch (e) {
-    console.log(`     ⚠️  Feil: ${e.message.split('\n')[0]}`);
-  } finally {
-    await page.close();
+      const data = await page.evaluate(() => {
+        const nav = performance.getEntriesByType('navigation')[0];
+        const res = performance.getEntriesByType('resource');
+        return {
+          ttfb:     nav ? Math.round(nav.responseStart - nav.requestStart) : 0,
+          load:     nav ? Math.round(nav.loadEventEnd - nav.startTime)     : 0,
+          sizeKB:   Math.round(res.reduce((s, r) => s + (r.transferSize || 0), 0) / 1024),
+          requests: res.length,
+          lcp:      Math.round(window.__lcp || 0),
+          fcp:      Math.round(window.__fcp || 0),
+        };
+      });
+
+      const tittel = await page.title() || url;
+      const score = beregnScore(data.lcp, data.fcp, data.ttfb, data.load);
+      ytelse = { url, tittel, score, ...data };
+
+      lenker = await page.evaluate(origin => {
+        return [...new Set(
+          Array.from(document.querySelectorAll('a[href]'))
+            .map(a => { try { return new URL(a.href, location.href).href.split('?')[0]; } catch { return null; } })
+            .filter(h => h && h.startsWith(origin) && !h.includes('#'))
+        )];
+      }, baseOrigin);
+
+      console.log(`     Score: ${score} | LCP: ${data.lcp}ms | FCP: ${data.fcp}ms | TTFB: ${data.ttfb}ms | Last: ${data.load}ms | ${data.sizeKB}KB | ${data.requests} req`);
+    } catch (e) {
+      console.log(`     ⚠️  Feil: ${e.message.split('\n')[0]}`);
+    } finally {
+      await page.close();
+    }
+
+    if (ytelse) {
+      sideResultater.push(ytelse);
+      for (const l of lenker)
+        if (!besøkte.has(l) && !kø.includes(l)) kø.push(l);
+    }
   }
 
-  if (ytelse) {
-    sideResultater.push(ytelse);
-    for (const l of lenker)
-      if (!besøkte.has(l) && !kø.includes(l)) kø.push(l);
-  }
+  return sideResultater;
 }
 
+// ── Kjør første runde ────────────────────────────────────────────────────────
+const sideResultater = await kjørYtelseRunde(context, innloggetUrl, MAX_SIDER);
+
 await browser.close();
+
+// ── Andre kjøring med tilfeldig bruker ───────────────────────────────────────
+let sideResultater2 = null;
+let bruktFnr2 = null;
+if (TEST_EKSTRA_BRUKER) {
+  console.log('\n🎲 Kjører andre runde med tilfeldig bruker...');
+  const browser2 = await chromium.launch();
+  const context2 = await browser2.newContext({ userAgent: 'Mozilla/5.0 Ytelses-Tester/1.0', viewport: VIEWPORT });
+  if (GITHUB_PAGES_AUTH) await context2.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
+  const { url: innloggetUrl2, bruktFnr: fnr2 } = await loggInn(context2, START_URL, { modus: 'tilfeldig', testFnr: TEST_FNR });
+  bruktFnr2 = fnr2;
+  if (innloggetUrl2) {
+    sideResultater2 = await kjørYtelseRunde(context2, innloggetUrl2, MAX_SIDER);
+    console.log(`  ✅ Tilfeldig bruker (${bruktFnr2 ?? 'ukjent'}): ${sideResultater2.length} sider analysert`);
+  } else {
+    console.log('  ⚠️  Innlogging med tilfeldig bruker feilet – hopper over andre runde.');
+  }
+  await browser2.close();
+}
 
 // ── Aggreger resultater ───────────────────────────────────────────────────────
 
@@ -399,6 +425,50 @@ const rapportHTML = `<!DOCTYPE html>
     <span class="middels">Middels (nær grensen)</span>
     <span class="dårlig">Bør forbedres (over grense)</span>
   </div>
+
+  ${sideResultater2 ? (() => {
+    const n2 = sideResultater2.length;
+    const snitt2 = arr => n2 ? Math.round(arr.reduce((a, b) => a + b, 0) / n2) : 0;
+    const samletScore2 = snitt2(sideResultater2.map(r => r.score));
+    return `
+  <details style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🎲 Tilfeldig bruker – Andre kjøring (${bruktFnr2 ?? 'ukjent'})</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+    </summary>
+    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.82rem">
+        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">📄 ${n2} sider</span>
+        <span style="background:${scoreKlasse(samletScore2) === 'god' ? '#ecfdf5' : scoreKlasse(samletScore2) === 'middels' ? '#f3dda2' : '#fee2e2'};color:${scoreKlasse(samletScore2) === 'god' ? '#07604f' : scoreKlasse(samletScore2) === 'middels' ? '#713f12' : '#c53030'};padding:.2rem .7rem;border-radius:100px;font-weight:600">Score: ${samletScore2}</span>
+        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">Snitt LCP: ${visTid(snitt2(sideResultater2.map(r => r.lcp)))}</span>
+        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">Snitt TTFB: ${visTid(snitt2(sideResultater2.map(r => r.ttfb)))}</span>
+      </div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Side</th><th>Score</th><th>LCP</th><th>FCP</th><th>TTFB</th><th>Lastetid</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${sideResultater2.map((side, i) => `
+            <tr id="ekstra-side-${i}">
+              <td class="url-col">
+                <a href="${side.url}" target="_blank">${side.tittel}</a>
+                <small>${side.url}</small>
+              </td>
+              <td class="score-col ${scoreKlasse(side.score)}">${side.score}</td>
+              <td class="${fargeLCP(side.lcp)}">${visTid(side.lcp)}</td>
+              <td class="${fargeFCP(side.fcp)}">${visTid(side.fcp)}</td>
+              <td class="${fargeTTFB(side.ttfb)}">${visTid(side.ttfb)}</td>
+              <td class="${fargeLoad(side.load)}">${visTid(side.load)}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>`;
+  })() : ''}
 
   <div class="seksjon" style="margin-top:2rem">
     <div class="seksjon-tittel">Slik beregnes ytelsesscoren</div>

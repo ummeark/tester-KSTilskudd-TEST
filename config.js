@@ -27,3 +27,5 @@ export const KRASJ_ORD = [
   '500', 'Internal Server Error', 'Something went wrong',
   'Uventet feil', 'Oops', 'Ops!', '404 – Siden',
 ];
+
+export const TEST_EKSTRA_BRUKER = process.env.TEST_EKSTRA_BRUKER !== 'false'; // true by default – kjør også med tilfeldig bruker

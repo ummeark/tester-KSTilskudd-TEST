@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { START_URL, MAX_SIDER, VIEWPORT, SIDE_TIMEOUT, IDLE_TIMEOUT, LAST_TIMEOUT, LINK_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH } from './config.js';
+import { START_URL, MAX_SIDER, VIEWPORT, SIDE_TIMEOUT, IDLE_TIMEOUT, LAST_TIMEOUT, LINK_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER } from './config.js';
 import { hentVersjon, loggInn } from './lib/common.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -27,7 +27,7 @@ const context = await browser.newContext({
 });
 if (GITHUB_PAGES_AUTH) await context.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
 
-const { url: innloggetUrl, steg: innloggingsSteg } = await loggInn(context, START_URL, { modus: TEST_MODUS, testFnr: TEST_FNR, skjermDir });
+const { url: innloggetUrl, steg: innloggingsSteg, bruktFnr } = await loggInn(context, START_URL, { modus: TEST_MODUS, testFnr: TEST_FNR, skjermDir });
 if (!innloggetUrl) {
   console.log('❌ Innlogging feilet – avslutter.');
   await browser.close();
@@ -37,7 +37,7 @@ if (!innloggetUrl) {
 const versjon = await hentVersjon(context, START_URL);
 
 const testdata = {
-  bruker: TEST_FNR,
+  bruker: bruktFnr,
   modus: TEST_MODUS,
   viewport: `${VIEWPORT.width}×${VIEWPORT.height}`,
   startUrl: START_URL,
@@ -111,8 +111,8 @@ async function taSkjermdump(page, selectors, filnavn, farge = '#dc3545') {
   }
 }
 
-async function analyserSide(url, indeks, oppdagetFra = null) {
-  const page = await context.newPage();
+async function analyserSide(url, indeks, oppdagetFra = null, ctx = context, tarScreenshots = true) {
+  const page = await ctx.newPage();
   try {
     await page.goto(url, { waitUntil: 'networkidle', timeout: LAST_TIMEOUT });
 
@@ -177,10 +177,16 @@ async function analyserSide(url, indeks, oppdagetFra = null) {
     };
 
     // Ta skjermdump av hvert WCAG-brudd
-    console.log(`  📸 Tar skjermdumper av ${axe.violations.length} brudd...`);
     const violasjonerMedBilder = [];
+    if (tarScreenshots) {
+      console.log(`  📸 Tar skjermdumper av ${axe.violations.length} brudd...`);
+    }
     for (let vi = 0; vi < axe.violations.length; vi++) {
       const v = axe.violations[vi];
+      if (!tarScreenshots) {
+        violasjonerMedBilder.push({ ...v, bilder: { nærbilde: null, helside: null } });
+        continue;
+      }
       const selectors = v.nodes.flatMap(n => n.target).slice(0, 5);
       const filnavn = `s${indeks}-${v.id.replace(/[^a-z0-9]/gi, '-')}-${vi}`;
       const farge = v.impact === 'critical' ? '#dc3545' : v.impact === 'serious' ? '#fd7e14' : '#ffc107';
@@ -223,6 +229,11 @@ async function analyserSide(url, indeks, oppdagetFra = null) {
         if (!l.href || l.href.startsWith('mailto:') || l.href.startsWith('tel:') || l.href.startsWith('javascript:') || l.href.includes('/authorize/')) {
           return { ...l, status: 'skip', ok: true };
         }
+        // Personvernerklæring og Tilgjengelighetserklæring er ikke implementert ennå – hopp over når href er plassholder
+        if (/personvern(?:erklæring)?|tilgjengelighet(?:serklæring)?/i.test(l.tekst) &&
+            (l.href === '#' || l.href.startsWith('#') || l.href === '')) {
+          return { ...l, status: 'skip', ok: true };
+        }
         try {
           const r = await fetch(l.href, { method: 'HEAD', signal: AbortSignal.timeout(LINK_TIMEOUT) });
           return { ...l, status: r.status, ok: r.ok };
@@ -239,7 +250,7 @@ async function analyserSide(url, indeks, oppdagetFra = null) {
 
     // Skjermdump av sider med døde lenker
     const dødeLenker = lenkeSjekk.filter(l => !l.ok && l.status !== 'skip');
-    if (dødeLenker.length > 0) {
+    if (dødeLenker.length > 0 && tarScreenshots) {
       const dødFil = `s${indeks}-doede-lenker`;
       const dødSelectors = dødeLenker.map(l => `a[href="${l.href}"]`).slice(0, 5);
       const dødBilder = await taSkjermdump(page, dødSelectors, dødFil, '#6c757d');
@@ -830,6 +841,80 @@ const ekstraWcag = await kjørEkstraWcagSjekker(context, START_URL);
 
 await browser.close();
 
+// Andre kjøring med tilfeldig bruker
+let ekstraRun = null;
+if (TEST_EKSTRA_BRUKER) {
+  console.log('\n🎲 Kjører andre runde med tilfeldig bruker...');
+  const browser2 = await chromium.launch();
+  const context2 = await browser2.newContext({ userAgent: 'Mozilla/5.0 UU-Tester/1.0', viewport: VIEWPORT });
+  if (GITHUB_PAGES_AUTH) await context2.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
+  const { url: innloggetUrl2, bruktFnr: bruktFnr2 } = await loggInn(context2, START_URL, { modus: 'tilfeldig', testFnr: TEST_FNR });
+  if (innloggetUrl2) {
+    const besøkte2 = new Set();
+    const kø2 = [innloggetUrl2];
+    const oppdagetFraMap2 = new Map();
+    oppdagetFraMap2.set((innloggetUrl2 ?? START_URL).replace(/\/$/, '') || START_URL, null);
+    const sideResultater2 = [];
+    let sideIndeks2 = 0;
+
+    while (kø2.length > 0 && besøkte2.size < MAX_SIDER) {
+      const url2 = kø2.shift();
+      const normUrl2 = url2.replace(/\/$/, '') || START_URL;
+      if (besøkte2.has(normUrl2)) continue;
+      besøkte2.add(normUrl2);
+      sideIndeks2++;
+
+      console.log(`  📄 [Tilfeldig bruker ${besøkte2.size}/${MAX_SIDER}] Analyserer: ${normUrl2}`);
+      const resultat2 = await analyserSide(normUrl2, sideIndeks2, oppdagetFraMap2.get(normUrl2) ?? null, context2, false);
+      if (resultat2) {
+        sideResultater2.push(resultat2);
+        for (const lenke of resultat2.internelenker) {
+          const norm = lenke.replace(/\/$/, '');
+          if (!besøkte2.has(norm) && !kø2.includes(norm)) {
+            kø2.push(norm);
+            if (!oppdagetFraMap2.has(norm)) oppdagetFraMap2.set(norm, normUrl2);
+          }
+        }
+      }
+    }
+
+    const tastatur2 = await kjørTastaturSjekker(context2, START_URL);
+    const reflow2 = await kjørReflowSjekk(context2, START_URL);
+    const tekstmellomrom2 = await kjørTekstmellomromSjekk(context2, START_URL);
+    const ekstraWcag2 = await kjørEkstraWcagSjekker(context2, START_URL);
+
+    const totalt2 = {
+      sider: sideResultater2.length,
+      wcagBrudd: sideResultater2.reduce((s, r) => s + r.wcag.brudd, 0),
+      kritiske: sideResultater2.reduce((s, r) => s + r.wcag.kritiske, 0),
+      alvorlige: sideResultater2.reduce((s, r) => s + r.wcag.alvorlige, 0),
+      moderate: sideResultater2.reduce((s, r) => s + r.wcag.moderate, 0),
+      mindre: sideResultater2.reduce((s, r) => s + r.wcag.mindre, 0),
+      dødelenker: sideResultater2.reduce((s, r) => s + r.lenker.døde.length, 0),
+      knapper: sideResultater2.reduce((s, r) => s + r.knapper.length, 0),
+      knappUtenLabel: sideResultater2.reduce((s, r) => s + r.knapper.filter(k => !k.harLabel).length, 0),
+      bilder: sideResultater2.reduce((s, r) => s + r.bilder.length, 0),
+      bilderUtenAlt: sideResultater2.reduce((s, r) => s + r.bilder.filter(b => !b.harAlt).length, 0),
+      skjemafelt: sideResultater2.reduce((s, r) => s + r.skjemafelt.length, 0),
+      feltUtenLabel: sideResultater2.reduce((s, r) => s + r.skjemafelt.filter(f => !f.harLabel).length, 0),
+      tastaturFeil: tastatur2.feil,
+      tastaturAdvarsel: tastatur2.advarsel,
+      reflowFeil: reflow2.feil,
+      reflowAdvarsel: reflow2.advarsel,
+      tekstmellomromFeil: tekstmellomrom2.feil,
+      tekstmellomromAdvarsel: tekstmellomrom2.advarsel,
+      ekstraFeil: ekstraWcag2.feil,
+      ekstraAdvarsel: ekstraWcag2.advarsel,
+    };
+
+    ekstraRun = { bruker: bruktFnr2, sider: sideResultater2, tastatur: tastatur2, reflow: reflow2, tekstmellomrom: tekstmellomrom2, ekstraWcag: ekstraWcag2, totalt: totalt2 };
+    console.log(`  ✅ Tilfeldig bruker (${escapeHtml(bruktFnr2 ?? 'ukjent')}): ${sideResultater2.length} sider, ${totalt2.wcagBrudd} WCAG-brudd`);
+  } else {
+    console.log('  ⚠️  Innlogging med tilfeldig bruker feilet – hopper over andre kjøring.');
+  }
+  await browser2.close();
+}
+
 // Aggregert oppsummering
 const totalt = {
   sider: sideResultater.length,
@@ -859,7 +944,7 @@ const totalt = {
 fs.writeFileSync(path.join(rapportDir, 'resultat.json'), JSON.stringify({ url: START_URL, dato, versjon, nettleser, totalt, tastatur, reflow, tekstmellomrom, ekstraWcag, sider: sideResultater.map(s => ({ ...s, wcag: { ...s.wcag, detaljer: s.wcag.detaljer.map(v => ({ ...v, bilder: v.bilder })) } })) }, null, 2));
 
 // Generer HTML
-fs.writeFileSync(path.join(rapportDir, 'uu-rapport.html'), genererRapport(START_URL, dato, tidspunkt, totalt, sideResultater, versjon, tastatur, nettleser, reflow, tekstmellomrom, innloggingsSteg, ekstraWcag, testdata));
+fs.writeFileSync(path.join(rapportDir, 'uu-rapport.html'), genererRapport(START_URL, dato, tidspunkt, totalt, sideResultater, versjon, tastatur, nettleser, reflow, tekstmellomrom, innloggingsSteg, ekstraWcag, testdata, ekstraRun));
 
 // Lagre tidsstemplet kopi for arkiv (bevarer alle kjøringer samme dag)
 const tidFil = tidspunkt.replace(':', '-');
@@ -908,7 +993,7 @@ function impactFarge(impact) {
   return { critical: '#c53030', serious: '#9a3412', moderate: '#b8860b', minor: '#6b7280' }[impact] || '#6b7280';
 }
 
-function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tastatur = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, nettleser = '', reflow = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, tekstmellomrom = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, innloggingsSteg = [], ekstraWcag = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, testdata = {}) {
+function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tastatur = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, nettleser = '', reflow = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, tekstmellomrom = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, innloggingsSteg = [], ekstraWcag = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, testdata = {}, ekstraRun = null) {
   const s = scoreBeregn(totalt);
   const scoreKlasse = s >= 80 ? 'god' : s >= 50 ? 'middels' : 'dårlig';
 
@@ -928,6 +1013,13 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
         <div>
           <h2>${side.tittel || '(ingen tittel)'}</h2>
           <a href="${side.url}" target="_blank" class="side-url-link" onclick="event.stopPropagation()">${side.url}</a>
+          <div class="testdata-strip">
+            <span class="testdata-chip">🔐 Bruker: ${escapeHtml(testdata.bruker || '—')} (TestID)</span>
+            ${side.oppdagetFra
+              ? `<span class="testdata-chip">📍 Funnet via: ${escapeHtml(side.oppdagetFra.replace(url.replace(/\/$/, ''), '') || '/')}</span>`
+              : '<span class="testdata-chip">🚪 Startside (innloggingsretur)</span>'}
+            ${side.orgnr ? `<span class="testdata-chip">🏢 Org.nr.: ${escapeHtml(side.orgnr)}</span>` : ''}
+          </div>
         </div>
         <div class="side-score-badges">
           ${badge(side.wcag.kritiske, 'critical', 'kritiske')}
@@ -935,15 +1027,6 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
           ${badge(side.lenker.døde.length, 'dead', 'døde lenker')}
         </div>
       </summary>
-
-      <!-- Testkontekst for denne siden -->
-      <div class="testdata-strip">
-        <span class="testdata-chip">🔐 Bruker: ${escapeHtml(testdata.bruker || '—')} (TestID)</span>
-        ${side.oppdagetFra
-          ? `<span class="testdata-chip">📍 Funnet via: ${escapeHtml(side.oppdagetFra.replace(url.replace(/\/$/, ''), '') || '/')}</span>`
-          : '<span class="testdata-chip">🚪 Startside (innloggingsretur)</span>'}
-        ${side.orgnr ? `<span class="testdata-chip">🏢 Org.nr.: ${escapeHtml(side.orgnr)}</span>` : ''}
-      </div>
 
       <!-- WCAG-brudd med skjermdumper -->
       <div class="wcag-seksjon">
@@ -1431,6 +1514,44 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
           </div>
         </div>`).join('')}
       </div>
+    </div>
+  </details>` : ''}
+
+  ${ekstraRun ? `
+  <details style="margin-top:2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🎲 Tilfeldig bruker – Andre kjøring (${escapeHtml(ekstraRun.bruker ?? 'ukjent')})</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+    </summary>
+    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+      <p style="font-size:.83rem;color:#374151;margin-bottom:1.2rem;line-height:1.6">
+        Resultat fra andre kjøring med tilfeldig TestID-bruker (<code style="color:#2b3285">${escapeHtml(ekstraRun.bruker ?? 'ukjent')}</code>).
+        Skjermdumper er deaktivert for denne kjøringen.
+      </p>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.82rem">
+        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">📄 ${ekstraRun.totalt?.sider ?? 0} sider</span>
+        <span style="background:${(ekstraRun.totalt?.wcagBrudd ?? 0) === 0 ? '#ecfdf5' : '#fee2e2'};color:${(ekstraRun.totalt?.wcagBrudd ?? 0) === 0 ? '#07604f' : '#c53030'};padding:.2rem .7rem;border-radius:100px;font-weight:600">♿ ${ekstraRun.totalt?.wcagBrudd ?? 0} WCAG-brudd</span>
+        <span style="background:${(ekstraRun.totalt?.kritiske ?? 0) === 0 ? '#ecfdf5' : '#fee2e2'};color:${(ekstraRun.totalt?.kritiske ?? 0) === 0 ? '#07604f' : '#c53030'};padding:.2rem .7rem;border-radius:100px;font-weight:600">🔴 ${ekstraRun.totalt?.kritiske ?? 0} kritiske</span>
+        <span style="background:${(ekstraRun.totalt?.dødelenker ?? 0) === 0 ? '#ecfdf5' : '#fee2e2'};color:${(ekstraRun.totalt?.dødelenker ?? 0) === 0 ? '#07604f' : '#c53030'};padding:.2rem .7rem;border-radius:100px;font-weight:600">🔗 ${ekstraRun.totalt?.dødelenker ?? 0} døde lenker</span>
+        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">Score: ${scoreBeregn(ekstraRun.totalt ?? {})}</span>
+      </div>
+      ${(ekstraRun.sider ?? []).length > 0 ? `
+      <table style="width:100%;border-collapse:collapse;font-size:.82rem;margin-bottom:1rem">
+        <thead><tr>
+          <th style="background:#f4ecdf;text-align:left;padding:.5rem .7rem;font-weight:600;color:#0a1355;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em">Side</th>
+          <th style="background:#f4ecdf;text-align:left;padding:.5rem .7rem;font-weight:600;color:#0a1355;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em">WCAG-brudd</th>
+          <th style="background:#f4ecdf;text-align:left;padding:.5rem .7rem;font-weight:600;color:#0a1355;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em">Kritiske</th>
+          <th style="background:#f4ecdf;text-align:left;padding:.5rem .7rem;font-weight:600;color:#0a1355;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em">Brudd-IDer</th>
+        </tr></thead>
+        <tbody>
+          ${(ekstraRun.sider ?? []).map(side => `<tr>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.8rem;word-break:break-all">${escapeHtml(side.tittel || side.url)}</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:${side.wcag.brudd > 0 ? '700' : '400'};color:${side.wcag.brudd > 0 ? '#c53030' : '#07604f'}">${side.wcag.brudd}</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;text-align:center;font-weight:${side.wcag.kritiske > 0 ? '700' : '400'};color:${side.wcag.kritiske > 0 ? '#c53030' : '#07604f'}">${side.wcag.kritiske}</td>
+            <td style="padding:.45rem .7rem;border-bottom:1px solid #f1f0ee;vertical-align:top;font-size:.75rem;color:#6b7280">${(side.wcag.detaljer ?? []).map(v => escapeHtml(v.id)).join(', ') || '—'}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>` : '<div class="wcag-ok">Ingen sider analysert i andre kjøring</div>'}
     </div>
   </details>` : ''}
 

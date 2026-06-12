@@ -797,3 +797,139 @@ test.describe('BR.HIST-5: Som søker med hjelpemiddelteknologi vil jeg hoppe ove
   });
 
 });
+
+// ── TILSK-697 ────────────────────────────────────────────────────────────────────
+test.describe('TILSK-697: Som søker ønsker jeg å se status på søknaden', () => {
+
+  const GYLDIGE_STATUSER = ['Utkast', 'Til behandling', 'Gjenåpnet', 'Innvilget', 'Avslått', 'Avsluttet', 'Trukket'];
+  const RAPPORT_STATUSER  = ['Ikke innsendt', 'Påbegynt', 'Innsendt', 'Godkjent'];
+
+  const STATUS_SEL =
+    '[class*="status"], [class*="badge"], [data-testid*="status"], ' +
+    '[class*="etikett"], [class*="chip"], [class*="tag"]';
+
+  async function gåTilMinSide(page) {
+    await page.goto(`${base}/minside`, { timeout: IDLE_TIMEOUT });
+    await page.waitForLoadState('networkidle', { timeout: IDLE_TIMEOUT });
+  }
+
+  async function hentSøknadsUrler(page) {
+    await page.goto(`${base}/minside/utkast`, { timeout: IDLE_TIMEOUT });
+    await page.waitForLoadState('networkidle', { timeout: IDLE_TIMEOUT });
+    const hrefs = await page.locator('a[href*="soknad/"]').evaluateAll(
+      els => [...new Set(els.map(el => el.getAttribute('href')).filter(Boolean))]
+    );
+    return hrefs.map(h => h.startsWith('http') ? h : `${base}${h}`);
+  }
+
+  // AK-1 – gyldige statuser vises
+  test('AK-1 – minst én gyldig søknadsstatus vises på Min side', async ({ page }) => {
+    await gåTilMinSide(page);
+    const body = await page.textContent('body');
+    const harGyldigStatus = GYLDIGE_STATUSER.some(s => body.includes(s));
+    expect(harGyldigStatus, `Forventet minst én av: ${GYLDIGE_STATUSER.join(', ')}`).toBe(true);
+  });
+
+  test('AK-1 – søknadssiden viser statusbadge', async ({ page }, testInfo) => {
+    const urler = await hentSøknadsUrler(page);
+    testInfo.skip(urler.length === 0, 'Ingen søknader funnet i TEST-miljøet');
+    await page.goto(urler[0], { timeout: IDLE_TIMEOUT });
+    await page.waitForLoadState('networkidle', { timeout: IDLE_TIMEOUT });
+    await expect(page.locator(STATUS_SEL).first()).toBeAttached({ timeout: SIDE_TIMEOUT });
+  });
+
+  // AK-2 – utkast-siden finnes og laster
+  test('AK-2 – /minside/utkast laster uten feilside', async ({ page }) => {
+    await page.goto(`${base}/minside/utkast`, { timeout: IDLE_TIMEOUT });
+    await page.waitForLoadState('networkidle', { timeout: IDLE_TIMEOUT });
+    const body = await page.textContent('body');
+    expect(body).not.toMatch(/500|Internal Server Error|Uventet feil/);
+  });
+
+  test('AK-2 – Min side har en "Utkast"-navigasjon', async ({ page }) => {
+    await gåTilMinSide(page);
+    const utkast = page.locator(
+      'h2:has-text("Utkast"), h3:has-text("Utkast"), a:has-text("Utkast"), [aria-label*="Utkast"]'
+    ).first();
+    await expect(utkast).toBeAttached({ timeout: SIDE_TIMEOUT });
+  });
+
+  // AK-4 – "Avvist" skal aldri vises, kun "Avslått"
+  test('AK-4 – statusetiketten "Avvist" vises ikke (portalen bruker "Avslått")', async ({ page }) => {
+    await gåTilMinSide(page);
+    const tekster = await page.locator(STATUS_SEL).allTextContents();
+    const harAvvist = tekster.some(t => /^avvist$/i.test(t.trim()));
+    expect(harAvvist, '"Avvist" skal aldri vises – bruk "Avslått"').toBe(false);
+  });
+
+  // AK-5 – "Slettet" skal ikke vises noe sted
+  test('AK-5 – status "Slettet" vises ikke i noen av listefanene', async ({ page }) => {
+    for (const sti of ['/minside/utkast', '/minside/aktiv', '/minside/avsluttet']) {
+      await page.goto(`${base}${sti}`, { timeout: IDLE_TIMEOUT });
+      await page.waitForLoadState('networkidle', { timeout: IDLE_TIMEOUT });
+      const tekster = await page.locator(STATUS_SEL).allTextContents();
+      const harSlettet = tekster.some(t => /^slettet$/i.test(t.trim()));
+      expect(harSlettet, `"Slettet" skal ikke vises på ${sti}`).toBe(false);
+    }
+  });
+
+  // AK-6 – tre grupper på Min side
+  test('AK-6 – Min side har gruppen "Utkast"', async ({ page }) => {
+    await gåTilMinSide(page);
+    await expect(
+      page.locator('h2:has-text("Utkast"), h3:has-text("Utkast"), a:has-text("Utkast")').first()
+    ).toBeAttached({ timeout: SIDE_TIMEOUT });
+  });
+
+  test('AK-6 – Min side har gruppen "Aktive"', async ({ page }) => {
+    await gåTilMinSide(page);
+    await expect(
+      page.locator('h2:has-text("Aktive"), h3:has-text("Aktive"), a:has-text("Aktive")').first()
+    ).toBeAttached({ timeout: SIDE_TIMEOUT });
+  });
+
+  test('AK-6 – Min side har gruppen "Avsluttede"', async ({ page }) => {
+    await gåTilMinSide(page);
+    await expect(
+      page.locator('h2:has-text("Avsluttede"), h3:has-text("Avsluttede"), a:has-text("Avsluttede")').first()
+    ).toBeAttached({ timeout: SIDE_TIMEOUT });
+  });
+
+  // AK-7 – rapportstatuser vises på innvilgede saker
+  test('AK-7 – rapportstatus vises på aktive søknader med innvilget vedtak', async ({ page }, testInfo) => {
+    await page.goto(`${base}/minside/aktiv`, { timeout: IDLE_TIMEOUT });
+    await page.waitForLoadState('networkidle', { timeout: IDLE_TIMEOUT });
+    const body = await page.textContent('body');
+    testInfo.skip(!/innvilget/i.test(body), 'Ingen innvilgede søknader i TEST-miljøet');
+    const harRapportstatus = RAPPORT_STATUSER.some(s => body.includes(s));
+    expect(harRapportstatus, `Forventet minst én av: ${RAPPORT_STATUSER.join(', ')}`).toBe(true);
+  });
+
+  // AK-8 – klagefrist vises ved vedtak
+  test('AK-8 – klagefrist (3 uker) vises på saker med vedtak', async ({ page }, testInfo) => {
+    await page.goto(`${base}/minside/avsluttet`, { timeout: IDLE_TIMEOUT });
+    await page.waitForLoadState('networkidle', { timeout: IDLE_TIMEOUT });
+    const body = await page.textContent('body');
+    testInfo.skip(!/innvilget|avslått/i.test(body), 'Ingen saker med vedtak i TEST-miljøet');
+    const harKlagefrist = /klagefrist|klage.*frist|3 uker|tre uker/i.test(body);
+    expect(harKlagefrist, 'Klagefrist (forvaltningsloven § 29) skal vises ved vedtak').toBe(true);
+  });
+
+  test('AK-8 – klagefrist vises direkte på søknadssiden med vedtak', async ({ page }, testInfo) => {
+    const urler = await hentSøknadsUrler(page);
+    testInfo.skip(urler.length === 0, 'Ingen søknader i TEST-miljøet');
+    let funnetVedtak = false;
+    for (const url of urler.slice(0, 8)) {
+      await page.goto(url, { timeout: IDLE_TIMEOUT });
+      const body = await page.textContent('body');
+      if (/innvilget|avslått/i.test(body)) {
+        funnetVedtak = true;
+        const harKlagefrist = /klagefrist|klage.*frist|3 uker|tre uker/i.test(body);
+        expect(harKlagefrist, `Klagefrist mangler på vedtaksside: ${url}`).toBe(true);
+        break;
+      }
+    }
+    testInfo.skip(!funnetVedtak, 'Ingen saker med vedtak blant de første 8 søknadene');
+  });
+
+});

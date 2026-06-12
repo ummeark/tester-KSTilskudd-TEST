@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { START_URL, ITERASJONER, VIEWPORT, SIDE_TIMEOUT, IDLE_TIMEOUT, KRASJ_ORD, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH } from './config.js';
+import { START_URL, ITERASJONER, VIEWPORT, SIDE_TIMEOUT, IDLE_TIMEOUT, KRASJ_ORD, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER } from './config.js';
 import { hentVersjon, loggInn } from './lib/common.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -43,13 +43,10 @@ const tilfeldigEpost = () => {
 };
 
 // ── Resultatlagring ─────────────────────────────────────────────────────────
-const jsErrors     = [];
-const konsollFeil  = [];
-const nettverksFeil = [];
-const interaksjoner = [];
-const besøkte      = new Set();
-let skjermTeller   = 0;
-let startTid       = Date.now();
+let skjermTeller = 0;
+let startTid     = Date.now();
+
+function nowStr() { return new Date().toISOString(); }
 
 // ── Browser ─────────────────────────────────────────────────────────────────
 const browser = await chromium.launch();
@@ -60,7 +57,7 @@ const context = await browser.newContext({
 });
 if (GITHUB_PAGES_AUTH) await context.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
 
-const { url: innloggetUrl } = await loggInn(context, START_URL, { modus: TEST_MODUS, testFnr: TEST_FNR });
+const { url: innloggetUrl, bruktFnr } = await loggInn(context, START_URL, { modus: TEST_MODUS, testFnr: TEST_FNR });
 if (!innloggetUrl) {
   console.log('❌ Innlogging feilet – avslutter.');
   await browser.close();
@@ -69,195 +66,226 @@ if (!innloggetUrl) {
 
 const versjon = await hentVersjon(context, START_URL);
 
-const page = await context.newPage();
+// ── Monkey-runde som gjenbrukbar funksjon ────────────────────────────────────
+async function kjørMonkeyRunde(ctx, startUrl, iterasjoner) {
+  const jsErrors     = [];
+  const konsollFeil  = [];
+  const nettverksFeil = [];
+  const interaksjoner = [];
+  const besøkte      = new Set();
+  const stille_feil  = [];
+  const rundeTid     = Date.now();
 
-page.on('pageerror', err => {
-  jsErrors.push({ melding: err.message, stack: err.stack, url: page.url(), tid: nowStr() });
-  console.log(`  ⚡ JS-feil: ${err.message.slice(0, 80)}`);
-});
+  const page = await ctx.newPage();
 
-page.on('console', msg => {
-  if (msg.type() === 'error') {
-    konsollFeil.push({ melding: msg.text(), url: page.url(), tid: nowStr() });
-  }
-});
+  page.on('pageerror', err => {
+    jsErrors.push({ melding: err.message, stack: err.stack, url: page.url(), tid: nowStr() });
+    console.log(`  ⚡ JS-feil: ${err.message.slice(0, 80)}`);
+  });
 
-page.on('response', resp => {
-  const s = resp.status();
-  if (s >= 400 && !resp.url().includes('favicon') && !resp.url().includes('analytics')) {
-    nettverksFeil.push({ status: s, url: resp.url(), side: page.url(), tid: nowStr() });
-    console.log(`  🌐 HTTP ${s}: ${resp.url().slice(0, 80)}`);
-  }
-});
-
-function nowStr() { return new Date().toISOString(); }
-
-// ── Stille-feil-logging ──────────────────────────────────────────────────────
-const stille_feil = [];
-function loggFeil(melding) {
-  stille_feil.push(melding);
-  console.log(`  ⚠️  ${melding}`);
-}
-
-async function taSkjermdump(prefix) {
-  skjermTeller++;
-  const filnavn = `monkey-${prefix}-${skjermTeller}.png`;
-  try {
-    await page.screenshot({ path: path.join(skjermDir, filnavn), fullPage: false });
-    return `skjermbilder-monkey/${filnavn}`;
-  } catch { return null; }
-}
-
-async function resetTilStart() {
-  try {
-    await page.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
-  } catch { /* ignorer */ }
-}
-
-async function sjekkForFeilside() {
-  try {
-    const tekst = await page.textContent('body');
-    for (const ord of KRASJ_ORD) {
-      if (tekst.includes(ord)) return ord;
+  page.on('console', msg => {
+    if (msg.type() === 'error') {
+      konsollFeil.push({ melding: msg.text(), url: page.url(), tid: nowStr() });
     }
-  } catch { /* ignorer */ }
-  return null;
-}
+  });
 
-// ── Start navigasjon ─────────────────────────────────────────────────────────
-try {
-  await page.goto(innloggetUrl, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT });
-} catch (e) {
-  console.log(`❌ Kunne ikke laste startsiden: ${e.message}`);
-  await browser.close();
-  process.exit(1);
-}
+  page.on('response', resp => {
+    const s = resp.status();
+    if (s >= 400 && !resp.url().includes('favicon') && !resp.url().includes('analytics')) {
+      nettverksFeil.push({ status: s, url: resp.url(), side: page.url(), tid: nowStr() });
+      console.log(`  🌐 HTTP ${s}: ${resp.url().slice(0, 80)}`);
+    }
+  });
 
-// ── Monkey-løkke ─────────────────────────────────────────────────────────────
-for (let i = 0; i < ITERASJONER; i++) {
-  const currentUrl = page.url();
-
-  // Naviger bort fra eksterne sider – sjekk før vi logger besøket
-  if (!currentUrl.startsWith(baseOrigin)) {
-    await resetTilStart();
-    continue;
+  function loggFeil(melding) {
+    stille_feil.push(melding);
+    console.log(`  ⚠️  ${melding}`);
   }
 
-  besøkte.add(currentUrl);
-  const handling = Math.random();
-  let type = '';
-  let detalj = '';
-  let skjerm = null;
-  let ok = true;
+  async function taSkjermdump(prefix) {
+    skjermTeller++;
+    const filnavn = `monkey-${prefix}-${skjermTeller}.png`;
+    try {
+      await page.screenshot({ path: path.join(skjermDir, filnavn), fullPage: false });
+      return `skjermbilder-monkey/${filnavn}`;
+    } catch { return null; }
+  }
+
+  async function resetTilStart() {
+    try {
+      await page.goto(startUrl, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
+    } catch { /* ignorer */ }
+  }
+
+  async function sjekkForFeilside() {
+    try {
+      const tekst = await page.textContent('body');
+      for (const ord of KRASJ_ORD) {
+        if (tekst.includes(ord)) return ord;
+      }
+    } catch { /* ignorer */ }
+    return null;
+  }
 
   try {
-    if (handling < 0.35) {
-      // Klikk tilfeldig knapp / lenke
-      type = 'klikk';
-      const elementer = page.locator('button:visible, [role="button"]:visible');
-      const elementCount = await elementer.count();
-      if (elementCount > 0) {
-        const el = elementer.nth(Math.floor(Math.random() * elementCount));
-        const tekst = (await el.textContent().catch(() => '')).trim().slice(0, 60);
-        detalj = `Klikket: "${tekst || '(ingen tekst)'}"`;
-        console.log(`  🖱️  [${i+1}] ${detalj}`);
-        await el.click({ timeout: 4000, force: false }).catch(e => loggFeil(`Klikk feilet: ${e.message.slice(0, 80)}`));
-        await page.waitForLoadState('domcontentloaded').catch(e => loggFeil(`waitForLoadState feilet etter klikk: ${e.message.slice(0, 80)})`));
-      } else {
-        // Prøv lenker
-        const lenker = page.locator('a[href]:visible');
-        const lenkeCount = await lenker.count();
-        const interne = [];
-        for (let li = 0; li < lenkeCount; li++) {
-          const l = lenker.nth(li);
-          const href = await l.getAttribute('href').catch(() => '');
-          if (href && (href.startsWith('/') || href.startsWith(baseOrigin)) && !href.includes('/authorize/')) interne.push(l);
-        }
-        if (interne.length > 0) {
-          const el = interne[Math.floor(Math.random() * interne.length)];
-          const tekst = (await el.textContent().catch(() => '')).trim().slice(0, 60);
-          detalj = `Klikket lenke: "${tekst}"`;
-          console.log(`  🔗 [${i+1}] ${detalj}`);
-          await el.click({ timeout: 4000 }).catch(e => loggFeil(`Lenkeklikk feilet: ${e.message.slice(0, 80)}`));
-          await page.waitForLoadState('domcontentloaded').catch(e => loggFeil(`waitForLoadState feilet etter lenkeklikk: ${e.message.slice(0, 80)}`));
-        }
-      }
+    await page.goto(startUrl, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT });
+  } catch (e) {
+    console.log(`❌ Kunne ikke laste startsiden: ${e.message}`);
+    await page.close();
+    return { handlinger: [], jsErrors, konsollFeil, nettverksFeil, kritiskeFunn: [], besøkte: [], varighet: 0 };
+  }
 
-    } else if (handling < 0.55) {
-      // Fyll inn tilfeldig tekst i skjemafelt
-      type = 'skjemafyll';
-      const inputs = page.locator('input:visible:not([type=hidden]):not([type=submit]):not([type=button]), textarea:visible');
-      const inputCount = await inputs.count();
-      if (inputCount > 0) {
-        const inp = inputs.nth(Math.floor(Math.random() * inputCount));
-        const inputType = await inp.getAttribute('type').catch(() => 'text') || 'text';
-        let verdi = inputType === 'email' ? tilfeldigEpost() : tilfeldigTekst();
-        detalj = `Fylte "${verdi.slice(0, 40)}" i ${inputType}-felt`;
-        console.log(`  ✏️  [${i+1}] ${detalj}`);
-        await inp.fill(verdi, { timeout: 3000 }).catch(e => loggFeil(`Skjemafyll feilet: ${e.message.slice(0, 80)}`));
-      }
+  for (let i = 0; i < iterasjoner; i++) {
+    const currentUrl = page.url();
 
-    } else if (handling < 0.70) {
-      // Send inn skjema
-      type = 'skjemasubmit';
-      const knapper = page.locator('button[type=submit]:visible, input[type=submit]:visible');
-      const knapperCount = await knapper.count();
-      if (knapperCount > 0) {
-        const btn = knapper.nth(Math.floor(Math.random() * knapperCount));
-        const tekst = (await btn.textContent().catch(() => '')).trim().slice(0, 40);
-        detalj = `Send skjema: "${tekst}"`;
-        console.log(`  📤 [${i+1}] ${detalj}`);
-        skjerm = await taSkjermdump('pre-submit');
-        await btn.click({ timeout: 4000 }).catch(e => loggFeil(`Skjemasubmit feilet: ${e.message.slice(0, 80)}`));
-        await page.waitForLoadState('domcontentloaded').catch(e => loggFeil(`waitForLoadState feilet etter submit: ${e.message.slice(0, 80)}`));
-      }
-
-    } else if (handling < 0.82) {
-      // Tilbake-navigasjon
-      type = 'navigasjon';
-      detalj = 'Gikk tilbake (browser back)';
-      console.log(`  ⬅️  [${i+1}] ${detalj}`);
-      await page.goBack({ timeout: 6000, waitUntil: 'domcontentloaded' }).catch(e => loggFeil(`goBack feilet: ${e.message.slice(0, 80)}`));
-      await page.waitForLoadState('domcontentloaded').catch(e => loggFeil(`waitForLoadState feilet etter goBack: ${e.message.slice(0, 80)}`));
-
-    } else {
-      // Reset til start
-      type = 'reset';
-      detalj = 'Reset til startside';
-      console.log(`  🏠 [${i+1}] ${detalj}`);
+    if (!currentUrl.startsWith(baseOrigin)) {
       await resetTilStart();
+      continue;
     }
 
-    // Sjekk for feilside etter interaksjon
-    const feilord = await sjekkForFeilside();
-    if (feilord) {
-      skjerm = await taSkjermdump('feilside');
+    besøkte.add(currentUrl);
+    const handling = Math.random();
+    let type = '';
+    let detalj = '';
+    let skjerm = null;
+    let ok = true;
+
+    try {
+      if (handling < 0.35) {
+        type = 'klikk';
+        const elementer = page.locator('button:visible, [role="button"]:visible');
+        const elementCount = await elementer.count();
+        if (elementCount > 0) {
+          const el = elementer.nth(Math.floor(Math.random() * elementCount));
+          const tekst = (await el.textContent().catch(() => '')).trim().slice(0, 60);
+          detalj = `Klikket: "${tekst || '(ingen tekst)'}"`;
+          console.log(`  🖱️  [${i+1}] ${detalj}`);
+          await el.click({ timeout: 4000, force: false }).catch(e => loggFeil(`Klikk feilet: ${e.message.slice(0, 80)}`));
+          await page.waitForLoadState('domcontentloaded').catch(e => loggFeil(`waitForLoadState feilet etter klikk: ${e.message.slice(0, 80)})`));
+        } else {
+          const lenker = page.locator('a[href]:visible');
+          const lenkeCount = await lenker.count();
+          const interne = [];
+          for (let li = 0; li < lenkeCount; li++) {
+            const l = lenker.nth(li);
+            const href = await l.getAttribute('href').catch(() => '');
+            if (href && (href.startsWith('/') || href.startsWith(baseOrigin)) && !href.includes('/authorize/')) interne.push(l);
+          }
+          if (interne.length > 0) {
+            const el = interne[Math.floor(Math.random() * interne.length)];
+            const tekst = (await el.textContent().catch(() => '')).trim().slice(0, 60);
+            detalj = `Klikket lenke: "${tekst}"`;
+            console.log(`  🔗 [${i+1}] ${detalj}`);
+            await el.click({ timeout: 4000 }).catch(e => loggFeil(`Lenkeklikk feilet: ${e.message.slice(0, 80)}`));
+            await page.waitForLoadState('domcontentloaded').catch(e => loggFeil(`waitForLoadState feilet etter lenkeklikk: ${e.message.slice(0, 80)}`));
+          }
+        }
+
+      } else if (handling < 0.55) {
+        type = 'skjemafyll';
+        const inputs = page.locator('input:visible:not([type=hidden]):not([type=submit]):not([type=button]), textarea:visible');
+        const inputCount = await inputs.count();
+        if (inputCount > 0) {
+          const inp = inputs.nth(Math.floor(Math.random() * inputCount));
+          const inputType = await inp.getAttribute('type').catch(() => 'text') || 'text';
+          let verdi = inputType === 'email' ? tilfeldigEpost() : tilfeldigTekst();
+          detalj = `Fylte "${verdi.slice(0, 40)}" i ${inputType}-felt`;
+          console.log(`  ✏️  [${i+1}] ${detalj}`);
+          await inp.fill(verdi, { timeout: 3000 }).catch(e => loggFeil(`Skjemafyll feilet: ${e.message.slice(0, 80)}`));
+        }
+
+      } else if (handling < 0.70) {
+        type = 'skjemasubmit';
+        const knapper = page.locator('button[type=submit]:visible, input[type=submit]:visible');
+        const knapperCount = await knapper.count();
+        if (knapperCount > 0) {
+          const btn = knapper.nth(Math.floor(Math.random() * knapperCount));
+          const tekst = (await btn.textContent().catch(() => '')).trim().slice(0, 40);
+          detalj = `Send skjema: "${tekst}"`;
+          console.log(`  📤 [${i+1}] ${detalj}`);
+          skjerm = await taSkjermdump('pre-submit');
+          await btn.click({ timeout: 4000 }).catch(e => loggFeil(`Skjemasubmit feilet: ${e.message.slice(0, 80)}`));
+          await page.waitForLoadState('domcontentloaded').catch(e => loggFeil(`waitForLoadState feilet etter submit: ${e.message.slice(0, 80)}`));
+        }
+
+      } else if (handling < 0.82) {
+        type = 'navigasjon';
+        detalj = 'Gikk tilbake (browser back)';
+        console.log(`  ⬅️  [${i+1}] ${detalj}`);
+        await page.goBack({ timeout: 6000, waitUntil: 'domcontentloaded' }).catch(e => loggFeil(`goBack feilet: ${e.message.slice(0, 80)}`));
+        await page.waitForLoadState('domcontentloaded').catch(e => loggFeil(`waitForLoadState feilet etter goBack: ${e.message.slice(0, 80)}`));
+
+      } else {
+        type = 'reset';
+        detalj = 'Reset til startside';
+        console.log(`  🏠 [${i+1}] ${detalj}`);
+        await resetTilStart();
+      }
+
+      const feilord = await sjekkForFeilside();
+      if (feilord) {
+        skjerm = await taSkjermdump('feilside');
+        interaksjoner.push({
+          type: 'feilside', alvorlighet: 'kritisk',
+          melding: `Feilside etter ${type}: inneholder "${feilord}"`,
+          url: page.url(), handling: detalj, skjermdump: skjerm, tid: nowStr()
+        });
+        ok = false;
+        await resetTilStart();
+      }
+
+    } catch (e) {
+      type = type || 'ukjent';
+      detalj = detalj || '—';
+      skjerm = await taSkjermdump('unntak');
       interaksjoner.push({
-        type: 'feilside', alvorlighet: 'kritisk',
-        melding: `Feilside etter ${type}: inneholder "${feilord}"`,
+        type: 'unntak', alvorlighet: 'alvorlig',
+        melding: e.message.slice(0, 200),
         url: page.url(), handling: detalj, skjermdump: skjerm, tid: nowStr()
       });
       ok = false;
       await resetTilStart();
     }
-
-  } catch (e) {
-    type = type || 'ukjent';
-    detalj = detalj || '—';
-    skjerm = await taSkjermdump('unntak');
-    interaksjoner.push({
-      type: 'unntak', alvorlighet: 'alvorlig',
-      melding: e.message.slice(0, 200),
-      url: page.url(), handling: detalj, skjermdump: skjerm, tid: nowStr()
-    });
-    ok = false;
-    await resetTilStart();
   }
+
+  await page.close();
+  const varighet = Math.round((Date.now() - rundeTid) / 1000);
+  const kritiskeFunn = interaksjoner.filter(f => f.alvorlighet === 'kritisk');
+  return { handlinger: interaksjoner, jsErrors, konsollFeil, nettverksFeil, kritiskeFunn, besøkte: [...besøkte], varighet };
 }
+
+// ── Kjør første runde (fast bruker) ─────────────────────────────────────────
+console.log(`\n🐒 Kjører monkey-runde 1 (fast bruker: ${bruktFnr ?? TEST_FNR})...`);
+const runde1 = await kjørMonkeyRunde(context, innloggetUrl, ITERASJONER);
 
 await browser.close();
 
-const varighet = Math.round((Date.now() - startTid) / 1000);
+// ── Kjør andre runde (tilfeldig bruker) ──────────────────────────────────────
+let runde2 = null;
+let bruktFnr2 = null;
+if (TEST_EKSTRA_BRUKER) {
+  console.log('\n🎲 Kjører andre runde med tilfeldig bruker...');
+  const browser2 = await chromium.launch();
+  const context2 = await browser2.newContext({ userAgent: 'Mozilla/5.0 MonkeyTester/1.0', viewport: VIEWPORT });
+  if (GITHUB_PAGES_AUTH) await context2.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
+  const { url: innloggetUrl2, bruktFnr: fnr2 } = await loggInn(context2, START_URL, { modus: 'tilfeldig', testFnr: TEST_FNR });
+  bruktFnr2 = fnr2;
+  if (innloggetUrl2) {
+    runde2 = await kjørMonkeyRunde(context2, innloggetUrl2, ITERASJONER);
+    console.log(`  ✅ Tilfeldig bruker (${bruktFnr2 ?? 'ukjent'}): ${runde2.kritiskeFunn.length} kritiske funn`);
+  } else {
+    console.log('  ⚠️  Innlogging med tilfeldig bruker feilet – hopper over andre runde.');
+  }
+  await browser2.close();
+}
+
+// ── Sammenstill resultater fra runde 1 ───────────────────────────────────────
+const jsErrors      = runde1.jsErrors;
+const konsollFeil   = runde1.konsollFeil;
+const nettverksFeil = runde1.nettverksFeil;
+const interaksjoner = runde1.handlinger;
+const besøkte       = new Set(runde1.besøkte);
+const varighet      = runde1.varighet;
 
 // ── Sammendrag ───────────────────────────────────────────────────────────────
 const totalt = {
@@ -574,6 +602,25 @@ const html = `<!DOCTYPE html>
       ${[...besøkte].sort().map(u => `<li title="${u}">${u}</li>`).join('')}
     </ul>
   </div>
+
+  ${runde2 ? `
+  <!-- Tilfeldig bruker – Andre kjøring -->
+  <details style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🎲 Tilfeldig bruker – Andre kjøring (${bruktFnr2 ?? 'ukjent'})</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+    </summary>
+    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.82rem">
+        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">⚡ ${runde2.jsErrors.length} JS-feil</span>
+        <span style="background:${runde2.konsollFeil.length > 0 ? '#f3dda2' : '#ecfdf5'};color:${runde2.konsollFeil.length > 0 ? '#713f12' : '#07604f'};padding:.2rem .7rem;border-radius:100px;font-weight:600">🖥️ ${runde2.konsollFeil.length} konsoll-feil</span>
+        <span style="background:${runde2.nettverksFeil.length > 0 ? '#f3dda2' : '#ecfdf5'};color:${runde2.nettverksFeil.length > 0 ? '#713f12' : '#07604f'};padding:.2rem .7rem;border-radius:100px;font-weight:600">🌐 ${runde2.nettverksFeil.length} nettverksfeil</span>
+        <span style="background:${runde2.kritiskeFunn.length > 0 ? '#fee2e2' : '#ecfdf5'};color:${runde2.kritiskeFunn.length > 0 ? '#c53030' : '#07604f'};padding:.2rem .7rem;border-radius:100px;font-weight:600">💥 ${runde2.kritiskeFunn.length} kritiske funn</span>
+        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">📄 ${runde2.besøkte.length} sider · ${runde2.varighet}s</span>
+      </div>
+      ${runde2.handlinger.length > 0 ? runde2.handlinger.map(funnRad).join('') : '<div class="wcag-ok">Ingen kritiske funn under testing med tilfeldig bruker</div>'}
+    </div>
+  </details>` : ''}
 
   <div class="seksjon" style="margin-top:2rem">
     <div class="seksjon-tittel">Slik beregnes robusthetssscoren</div>

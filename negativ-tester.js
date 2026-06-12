@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { exec } from 'child_process';
-import { START_URL, VIEWPORT, SIDE_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH } from './config.js';
+import { START_URL, VIEWPORT, SIDE_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER } from './config.js';
 import { hentVersjon, loggInn, gåTil, sjekkKrasj, sjekkFeilmelding } from './lib/common.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -21,7 +21,6 @@ console.log(`📅 Dato: ${dato}\n`);
 
 // ── Testresultater ────────────────────────────────────────────────────────────
 
-const tester = []; // { kategori, navn, input, forventet, faktisk, resultat, detalj, skjermdump }
 let skjermTeller = 0;
 
 function logg(resultat, navn, detalj = '') {
@@ -39,7 +38,7 @@ const context = await browser.newContext({
 });
 if (GITHUB_PAGES_AUTH) await context.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
 
-const { url: innloggetUrl } = await loggInn(context, START_URL, { modus: TEST_MODUS, testFnr: TEST_FNR });
+const { url: innloggetUrl, bruktFnr } = await loggInn(context, START_URL, { modus: TEST_MODUS, testFnr: TEST_FNR });
 if (!innloggetUrl) {
   console.log('❌ Innlogging feilet – avslutter.');
   await browser.close();
@@ -48,49 +47,51 @@ if (!innloggetUrl) {
 
 const versjon = await hentVersjon(context, START_URL);
 
-const page = await context.newPage();
+// ── Alle tester samlet som gjenbrukbar funksjon ───────────────────────────────
 
-const jsErrors = [];
-page.on('pageerror', err => jsErrors.push({ melding: err.message, url: page.url() }));
+async function kjørNegativRunde(page, ctx) {
+  const tester = [];
+  const jsErrors = [];
+  page.on('pageerror', err => jsErrors.push({ melding: err.message, url: page.url() }));
 
-async function skjermdump(prefix) {
-  skjermTeller++;
-  const filnavn = `negativ-${prefix}-${skjermTeller}.png`;
-  try {
-    await page.screenshot({ path: path.join(skjermDir, filnavn), fullPage: false });
-    return `skjermbilder-negativ/${filnavn}`;
-  } catch { return null; }
-}
-
-async function leggTilTest(kategori, navn, input, forventet, testFn) {
-  const jsForFør = jsErrors.length;
-  let faktisk = '';
-  let resultat = 'bestått';
-  let detalj = '';
-  let skjerm = null;
-
-  try {
-    const res = await testFn();
-    faktisk = res?.faktisk || '';
-    resultat = res?.resultat || 'bestått';
-    detalj = res?.detalj || '';
-    skjerm = res?.skjerm || null;
-  } catch (e) {
-    faktisk = `Unntak: ${e.message.slice(0, 100)}`;
-    resultat = 'feil';
-    skjerm = await skjermdump('unntak');
+  async function skjermdump(prefix) {
+    skjermTeller++;
+    const filnavn = `negativ-${prefix}-${skjermTeller}.png`;
+    try {
+      await page.screenshot({ path: path.join(skjermDir, filnavn), fullPage: false });
+      return `skjermbilder-negativ/${filnavn}`;
+    } catch { return null; }
   }
 
-  const nyeJsErrors = jsErrors.slice(jsForFør);
-  if (nyeJsErrors.length > 0 && resultat === 'bestått') {
-    resultat = 'advarsel';
-    detalj = (detalj ? detalj + ' · ' : '') + `JS-feil: ${nyeJsErrors[0].melding.slice(0, 80)}`;
-    if (!skjerm) skjerm = await skjermdump('js-feil');
-  }
+  async function leggTilTest(kategori, navn, input, forventet, testFn) {
+    const jsForFør = jsErrors.length;
+    let faktisk = '';
+    let resultat = 'bestått';
+    let detalj = '';
+    let skjerm = null;
 
-  tester.push({ kategori, navn, input, forventet, faktisk, resultat, detalj, skjerm });
-  logg(resultat, navn, detalj);
-}
+    try {
+      const res = await testFn();
+      faktisk = res?.faktisk || '';
+      resultat = res?.resultat || 'bestått';
+      detalj = res?.detalj || '';
+      skjerm = res?.skjerm || null;
+    } catch (e) {
+      faktisk = `Unntak: ${e.message.slice(0, 100)}`;
+      resultat = 'feil';
+      skjerm = await skjermdump('unntak');
+    }
+
+    const nyeJsErrors = jsErrors.slice(jsForFør);
+    if (nyeJsErrors.length > 0 && resultat === 'bestått') {
+      resultat = 'advarsel';
+      detalj = (detalj ? detalj + ' · ' : '') + `JS-feil: ${nyeJsErrors[0].melding.slice(0, 80)}`;
+      if (!skjerm) skjerm = await skjermdump('js-feil');
+    }
+
+    tester.push({ kategori, navn, input, forventet, faktisk, resultat, detalj, skjerm });
+    logg(resultat, navn, detalj);
+  }
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // KATEGORI 1: Skjema-validering
@@ -318,7 +319,7 @@ await leggTilTest('nettleser', 'Sideoppdatering (F5) under søknad', 'reload()',
 
 // 4b. JavaScript deaktivert (ny kontekst)
 await leggTilTest('nettleser', 'Siden uten JavaScript', 'noScript', 'Viser innhold eller tydelig feilmelding', async () => {
-  const noJsCtx = await browser.newContext({ javaScriptEnabled: false });
+  const noJsCtx = await ctx.browser().newContext({ javaScriptEnabled: false });
   const noJsPage = await noJsCtx.newPage();
   try {
     await noJsPage.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
@@ -338,7 +339,7 @@ await leggTilTest('nettleser', 'Siden uten JavaScript', 'noScript', 'Viser innho
 
 // 4c. Mobilvisning (320px)
 await leggTilTest('nettleser', 'Smal mobilvisning (320px bredde)', '320px viewport', 'Ingen krasj, siden er brukbar', async () => {
-  const mobilCtx = await browser.newContext({ viewport: { width: 320, height: 568 } });
+  const mobilCtx = await ctx.browser().newContext({ viewport: { width: 320, height: 568 } });
   const mobilPage = await mobilCtx.newPage();
   try {
     await mobilPage.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
@@ -363,7 +364,7 @@ await leggTilTest('nettleser', 'Smal mobilvisning (320px bredde)', '320px viewpo
 
 // 4d. Veldig stor viewport (4K)
 await leggTilTest('nettleser', 'Stor skjerm (3840×2160)', '4K viewport', 'Ingen krasj, layout er stabil', async () => {
-  const storCtx = await browser.newContext({ viewport: { width: 3840, height: 2160 } });
+  const storCtx = await ctx.browser().newContext({ viewport: { width: 3840, height: 2160 } });
   const storPage = await storCtx.newPage();
   try {
     await storPage.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
@@ -386,7 +387,7 @@ console.log('\n🔑 Kategori 5: Tilstand og sesjon');
 // 5a. Slette alle cookies og laste siden
 await leggTilTest('sesjon', 'Last side etter sletting av alle cookies', 'clearCookies()', 'Siden laster – viser innloggingsside eller offentlig innhold', async () => {
   await gåTil(page, START_URL);
-  await context.clearCookies();
+  await ctx.clearCookies();
   await page.reload({ waitUntil: 'domcontentloaded', timeout: 12000 }).catch(() => {});
   const tekst = await page.textContent('body').catch(() => '');
   if (sjekkKrasj(tekst)) {
@@ -411,7 +412,7 @@ await leggTilTest('sesjon', 'Last side etter tømming av localStorage', 'localSt
 
 // 5c. Tilgang til beskyttet side uten sesjon
 await leggTilTest('sesjon', 'Direkte tilgang til "Min side" uten innlogging', '/minside', 'Omdirigerer til innlogging – ikke krasj', async () => {
-  const nyCtx = await browser.newContext();
+  const nyCtx = await ctx.browser().newContext();
   const nyPage = await nyCtx.newPage();
   try {
     await nyPage.goto(baseOrigin + '/minside', { waitUntil: 'domcontentloaded', timeout: 12000 });
@@ -430,7 +431,39 @@ await leggTilTest('sesjon', 'Direkte tilgang til "Min side" uten innlogging', '/
   }
 });
 
+  return tester;
+} // end kjørNegativRunde
+
+// ── Kjør første runde ────────────────────────────────────────────────────────
+console.log('\n🧪 Kjører negativ testrunde 1 (fast bruker)...');
+const page = await context.newPage();
+const tester = await kjørNegativRunde(page, context);
+await page.close();
+
 await browser.close();
+
+// ── Kjør andre runde med tilfeldig bruker ────────────────────────────────────
+let tester2 = null;
+let bruktFnr2 = null;
+if (TEST_EKSTRA_BRUKER) {
+  console.log('\n🎲 Kjører andre runde med tilfeldig bruker...');
+  const browser2 = await chromium.launch();
+  const context2 = await browser2.newContext({ userAgent: 'Mozilla/5.0 NegativTester/1.0', viewport: VIEWPORT });
+  if (GITHUB_PAGES_AUTH) await context2.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
+  const { url: innloggetUrl2, bruktFnr: fnr2 } = await loggInn(context2, START_URL, { modus: 'tilfeldig', testFnr: TEST_FNR });
+  bruktFnr2 = fnr2;
+  if (innloggetUrl2) {
+    const page2 = await context2.newPage();
+    tester2 = await kjørNegativRunde(page2, context2);
+    await page2.close();
+    const bestått2 = tester2.filter(t => t.resultat === 'bestått').length;
+    const feil2    = tester2.filter(t => t.resultat === 'feil').length;
+    console.log(`  ✅ Tilfeldig bruker (${bruktFnr2 ?? 'ukjent'}): ${bestått2} bestått, ${feil2} feil`);
+  } else {
+    console.log('  ⚠️  Innlogging med tilfeldig bruker feilet – hopper over andre runde.');
+  }
+  await browser2.close();
+}
 
 // ── Oppsummering ──────────────────────────────────────────────────────────────
 
@@ -681,6 +714,31 @@ const html = `<!DOCTYPE html>
   </div>
 
   ${seksjoner}
+
+  ${tester2 ? (() => {
+    const bestått2 = tester2.filter(t => t.resultat === 'bestått').length;
+    const feil2    = tester2.filter(t => t.resultat === 'feil').length;
+    const advarsel2 = tester2.filter(t => t.resultat === 'advarsel').length;
+    const score2 = Math.max(0, 100 - feil2 * 15 - advarsel2 * 5);
+    return `
+  <details style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🎲 Tilfeldig bruker – Andre kjøring (${bruktFnr2 ?? 'ukjent'})</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+    </summary>
+    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.82rem">
+        <span style="background:#ecfdf5;color:#07604f;padding:.2rem .7rem;border-radius:100px;font-weight:600">✅ ${bestått2} bestått</span>
+        ${advarsel2 > 0 ? `<span style="background:#f3dda2;color:#713f12;padding:.2rem .7rem;border-radius:100px;font-weight:600">⚠️ ${advarsel2} advarsler</span>` : ''}
+        ${feil2 > 0 ? `<span style="background:#fee2e2;color:#c53030;padding:.2rem .7rem;border-radius:100px;font-weight:600">❌ ${feil2} feil</span>` : ''}
+        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">Score: ${score2}</span>
+      </div>
+      ${tester2.filter(t => t.resultat !== 'bestått').length > 0
+        ? tester2.filter(t => t.resultat !== 'bestått').map(testKort).join('')
+        : '<div class="wcag-ok">Alle tester bestått for tilfeldig bruker</div>'}
+    </div>
+  </details>`;
+  })() : ''}
 
   <div class="seksjon" style="margin-top:2rem">
     <div class="seksjon-tittel">Slik beregnes robusthetssscoren</div>
