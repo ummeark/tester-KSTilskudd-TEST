@@ -19961,3 +19961,23 @@ Rapport skrevet til docs/brukerhistorie-rapport.html og rapporter/2026-06-11/bru
    Datoer: 49 | UU: 115 | Monkey: 97 | Sikkerhet: 97 | Negativ: 96
 ✅ Dashboard generert → docs/rapport.html
 [2026-06-11 08:33:47] ✅ Ferdig og pushet til GitHub
+=======================================
+[2026-06-12 08:40:31] Starter daglig UU-test
+[2026-06-12 08:40:32] Node: v24.12.0
+[2026-06-12 08:40:34] Kjører npm run rapport...
+
+> uu-tester@1.0.0 rapport
+> node uu-tester.js
+
+
+🔍 Starter UU-analyse av: https://tilskudd.fiks.test.ks.no/
+📅 Dato: 2026-06-12
+📄 Maks antall sider: 20
+
+
+🔐 Logger inn via ID-porten TestID (modus: fast)...
+  ❌ Innlogging feilet: page.goto: Timeout 20000ms exceeded.
+Call log:
+  - navigating to "https://tilskudd.fiks.test.ks.no/", waiting until "dom
+  📸 Skjermbilde: /tmp/idporten-login-feil.png
+❌ Innlogging feilet – avslutter.

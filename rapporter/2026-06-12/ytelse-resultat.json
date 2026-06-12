@@ -1,0 +1,237 @@
+{
+  "url": "https://tilskudd.fiks.test.ks.no/",
+  "dato": "2026-06-12",
+  "tidspunkt": "13:32",
+  "score": 100,
+  "totalt": {
+    "sider": 20,
+    "snittLCP": 161,
+    "snittFCP": 120,
+    "snittTTFB": 93,
+    "snittLoad": 126,
+    "totalSizeKB": 131,
+    "totalRequests": 242
+  },
+  "sider": [
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast",
+      "tittel": "KS Tilskudd - Min side",
+      "score": 100,
+      "ttfb": 34,
+      "load": 50,
+      "sizeKB": 82,
+      "requests": 9,
+      "lcp": 56,
+      "fcp": 56
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/",
+      "tittel": "KS Tilskudd - Hjem",
+      "score": 100,
+      "ttfb": 28,
+      "load": 44,
+      "sizeKB": 0,
+      "requests": 7,
+      "lcp": 48,
+      "fcp": 48
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger",
+      "tittel": "KS Tilskudd - Tilskuddsordninger",
+      "score": 100,
+      "ttfb": 52,
+      "load": 111,
+      "sizeKB": 11,
+      "requests": 11,
+      "lcp": 556,
+      "fcp": 92
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/minside",
+      "tittel": "KS Tilskudd - Min side",
+      "score": 100,
+      "ttfb": 51,
+      "load": 69,
+      "sizeKB": 0,
+      "requests": 9,
+      "lcp": 72,
+      "fcp": 72
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/minside/utkast",
+      "tittel": "KS Tilskudd - Min side",
+      "score": 100,
+      "ttfb": 175,
+      "load": 237,
+      "sizeKB": 6,
+      "requests": 11,
+      "lcp": 216,
+      "fcp": 216
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/minside/aktiv",
+      "tittel": "KS Tilskudd - Min side",
+      "score": 100,
+      "ttfb": 63,
+      "load": 81,
+      "sizeKB": 1,
+      "requests": 11,
+      "lcp": 84,
+      "fcp": 84
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/minside/avsluttet",
+      "tittel": "KS Tilskudd - Min side",
+      "score": 100,
+      "ttfb": 44,
+      "load": 62,
+      "sizeKB": 1,
+      "requests": 11,
+      "lcp": 64,
+      "fcp": 64
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger/553b5d8c-209e-410e-88c6-a6cb79d714dc",
+      "tittel": "KS Tilskudd",
+      "score": 100,
+      "ttfb": 82,
+      "load": 102,
+      "sizeKB": 15,
+      "requests": 12,
+      "lcp": 152,
+      "fcp": 104
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger/e42eab8a-1512-4dc2-bbf9-40eebcbabcd5",
+      "tittel": "KS Tilskudd",
+      "score": 100,
+      "ttfb": 97,
+      "load": 111,
+      "sizeKB": 0,
+      "requests": 12,
+      "lcp": 164,
+      "fcp": 112
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger/7082abd8-4f23-43e9-adce-c4762b848b81",
+      "tittel": "KS Tilskudd",
+      "score": 100,
+      "ttfb": 103,
+      "load": 121,
+      "sizeKB": 0,
+      "requests": 12,
+      "lcp": 192,
+      "fcp": 124
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0",
+      "tittel": "KS Tilskudd",
+      "score": 100,
+      "ttfb": 94,
+      "load": 102,
+      "sizeKB": 0,
+      "requests": 12,
+      "lcp": 168,
+      "fcp": 112
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger/72ad6a5b-3819-446b-881d-eed1d5dd9ed6",
+      "tittel": "KS Tilskudd",
+      "score": 100,
+      "ttfb": 125,
+      "load": 143,
+      "sizeKB": 0,
+      "requests": 12,
+      "lcp": 200,
+      "fcp": 144
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger/b4d7c9a1-2f65-4e3b-8a91-0c7d6e5f4a33",
+      "tittel": "KS Tilskudd",
+      "score": 100,
+      "ttfb": 80,
+      "load": 89,
+      "sizeKB": 0,
+      "requests": 12,
+      "lcp": 160,
+      "fcp": 100
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/minside/utkast/Utkast",
+      "tittel": "KS Tilskudd",
+      "score": 100,
+      "ttfb": 22,
+      "load": 39,
+      "sizeKB": 0,
+      "requests": 5,
+      "lcp": 44,
+      "fcp": 44
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/soknad/a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      "tittel": "KS Tilskudd",
+      "score": 100,
+      "ttfb": 163,
+      "load": 225,
+      "sizeKB": 15,
+      "requests": 16,
+      "lcp": 204,
+      "fcp": 204
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/soknad/72076638-cb96-4e8d-866b-9b120fe00601",
+      "tittel": "KS Tilskudd",
+      "score": 100,
+      "ttfb": 121,
+      "load": 178,
+      "sizeKB": 0,
+      "requests": 16,
+      "lcp": 156,
+      "fcp": 156
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/soknad/f79639d3-59df-498c-97d5-1b0499078ecf",
+      "tittel": "KS Tilskudd",
+      "score": 100,
+      "ttfb": 127,
+      "load": 187,
+      "sizeKB": 0,
+      "requests": 16,
+      "lcp": 164,
+      "fcp": 164
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/soknad/d1aa30b0-88c6-4084-abfb-57751f0876a2",
+      "tittel": "KS Tilskudd",
+      "score": 100,
+      "ttfb": 129,
+      "load": 185,
+      "sizeKB": 0,
+      "requests": 16,
+      "lcp": 168,
+      "fcp": 168
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/soknad/a986a003-ce01-4cfc-af76-24a247db9a17",
+      "tittel": "KS Tilskudd",
+      "score": 100,
+      "ttfb": 145,
+      "load": 196,
+      "sizeKB": 0,
+      "requests": 16,
+      "lcp": 180,
+      "fcp": 180
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/soknad/28ad17b3-f3fd-4655-a404-57c9f5f9667e",
+      "tittel": "KS Tilskudd",
+      "score": 100,
+      "ttfb": 130,
+      "load": 182,
+      "sizeKB": 0,
+      "requests": 16,
+      "lcp": 164,
+      "fcp": 164
+    }
+  ]
+}
