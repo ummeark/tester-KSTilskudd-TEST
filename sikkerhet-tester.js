@@ -6,7 +6,7 @@ import http from 'http';
 import { fileURLToPath } from 'url';
 import { exec } from 'child_process';
 import { START_URL, VIEWPORT, SIDE_TIMEOUT, IDLE_TIMEOUT, HTTP_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER } from './config.js';
-import { hentVersjon, loggInn } from './lib/common.js';
+import { hentVersjon, loggInn, testdataPanelCss, brukerChipHtml } from './lib/common.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dato = new Date().toISOString().slice(0, 10);
@@ -500,7 +500,7 @@ const sidenavigasjon = Object.entries(KATEGORIER).map(([id, { tittel, ikon }]) =
   </a></li>`;
 }).join('');
 
-function funnKort(f) {
+function funnKort(f, bruker) {
   if (f.alvorlighet === 'ok') return '';
   return `
   <div class="brudd-kort" style="border-left-color:${alvorlighetFarge(f.alvorlighet)}">
@@ -510,6 +510,7 @@ function funnKort(f) {
         <span class="regel-desc">${f.tittel}</span>
       </div>
     </div>
+    <div style="margin:.3rem 0 .5rem">${brukerChipHtml(bruker)}</div>
     ${f.detalj ? `<p class="brudd-hjelp">${f.detalj}</p>` : ''}
     ${f.url && f.url !== START_URL ? `<div class="node-info"><span class="node-selector">${f.url}</span></div>` : ''}
     ${f.skjermdump ? `
@@ -524,10 +525,10 @@ function funnKort(f) {
   </div>`;
 }
 
-function okListe(kfunn) {
+function okListe(kfunn, bruker) {
   const bestått = kfunn.filter(f => f.alvorlighet === 'ok');
   if (bestått.length === 0) return '';
-  return `<details style="margin-top:.8rem"><summary style="font-size:.78rem;color:#07604f;cursor:pointer;padding:.4rem 0">✅ ${bestått.length} sjekk bestått</summary>
+  return `<details style="margin-top:.8rem"><summary style="font-size:.78rem;color:#07604f;cursor:pointer;padding:.4rem 0;display:flex;align-items:center;gap:.5rem;list-style:none">✅ ${bestått.length} sjekk bestått ${brukerChipHtml(bruker)}</summary>
     <ul style="list-style:none;margin-top:.5rem;display:flex;flex-direction:column;gap:.3rem">
       ${bestått.map(f => `<li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ ${f.tittel}${f.detalj ? ` — <span style="color:#6b7280">${f.detalj}</span>` : ''}</li>`).join('')}
     </ul>
@@ -542,8 +543,8 @@ const seksjoner = Object.entries(KATEGORIER).map(([id, { tittel, ikon }]) => {
     <div class="seksjon-tittel">${ikon} ${tittel} (${problemer.length} funn)</div>
     ${problemer.length === 0
       ? '<div class="wcag-ok">Ingen funn i denne kategorien</div>'
-      : problemer.map(funnKort).join('')}
-    ${okListe(kfunn)}
+      : problemer.map(f => funnKort(f, bruktFnr)).join('')}
+    ${okListe(kfunn, bruktFnr)}
   </div>`;
 }).join('');
 
@@ -616,6 +617,7 @@ const html = `<!DOCTYPE html>
   .badge.lav{background:#f1f0ee;color:#4b5563}
   .wcag-ok{background:#ecfdf5;color:#064e3b;padding:.8rem 1rem;border-left:3px solid #07604f;font-size:.88rem}
   footer{text-align:center;padding:2.5rem;color:#9ca3af;font-size:.78rem;border-top:1px solid #f1f0ee;margin-top:2rem}
+  ${testdataPanelCss}
 </style>
 </head>
 <body>
@@ -703,10 +705,10 @@ const html = `<!DOCTYPE html>
   ${seksjoner}
 
   ${ekstraCookieFunn ? `
-  <details style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+  <details open style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
     <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
       <span>🎲 Tilfeldig bruker – Cookie-sjekk (${escapeHtml(ekstraCookieFunn.bruker ?? 'ukjent')})</span>
-      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
       <p style="font-size:.83rem;color:#374151;margin-bottom:1rem;line-height:1.6">

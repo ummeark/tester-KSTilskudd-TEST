@@ -4,7 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { exec } from 'child_process';
 import { START_URL, VIEWPORT, SIDE_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER } from './config.js';
-import { hentVersjon, loggInn, gåTil, sjekkKrasj, sjekkFeilmelding } from './lib/common.js';
+import { hentVersjon, loggInn, gåTil, sjekkKrasj, sjekkFeilmelding, testdataPanelCss, brukerChipHtml } from './lib/common.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dato = new Date().toISOString().slice(0, 10);
@@ -518,9 +518,36 @@ const sidenavigasjon = Object.entries(KATEGORIER).map(([id, { tittel, ikon }]) =
   </a></li>`;
 }).join('');
 
-function testKort(t) {
-  const farger = { bestått: '#07604f', feil: '#c53030', advarsel: '#b8860b' };
+function testKort(t, bruker) {
+  const farger = { feil: '#c53030', advarsel: '#b8860b' };
   const ikoner = { bestått: '✅', feil: '❌', advarsel: '⚠️' };
+  const chip = brukerChipHtml(bruker);
+
+  const grid = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.5rem 0;font-size:.8rem">
+      <div style="background:#f4ecdf;padding:.4rem .6rem">
+        <div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin-bottom:.2rem">Input</div>
+        <div style="color:#374151;word-break:break-all">${t.input}</div>
+      </div>
+      <div style="background:${t.resultat === 'feil' ? '#fee2e2' : t.resultat === 'advarsel' ? '#fff9db' : '#ecfdf5'};padding:.4rem .6rem">
+        <div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin-bottom:.2rem">Faktisk oppførsel</div>
+        <div style="color:#374151;word-break:break-all">${t.faktisk || t.forventet}</div>
+      </div>
+    </div>
+    ${t.detalj ? `<p class="brudd-hjelp">${t.detalj}</p>` : ''}`;
+
+  if (t.resultat === 'bestått') {
+    return `
+  <details style="border-left:3px solid #07604f;margin:.4rem 0;background:#fff;border-radius:0 4px 4px 0;box-shadow:0 1px 3px rgba(10,19,85,.04)">
+    <summary style="display:flex;align-items:center;gap:.6rem;padding:.55rem .9rem;cursor:pointer;list-style:none;font-size:.85rem">
+      <span style="color:#07604f;font-weight:700;flex-shrink:0">✅</span>
+      <span style="flex:1;color:#374151">${t.navn}</span>
+      ${chip}
+    </summary>
+    <div style="padding:.4rem .9rem .8rem;border-top:1px solid #d1fae5">${grid}</div>
+  </details>`;
+  }
+
   return `
   <div class="brudd-kort" style="border-left-color:${farger[t.resultat] || '#6b7280'}">
     <div class="brudd-header">
@@ -529,17 +556,8 @@ function testKort(t) {
         <span class="regel-desc">${t.navn}</span>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.5rem 0;font-size:.8rem">
-      <div style="background:#f4ecdf;padding:.4rem .6rem">
-        <div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin-bottom:.2rem">Input</div>
-        <div style="color:#374151;word-break:break-all">${t.input}</div>
-      </div>
-      <div style="background:${t.resultat === 'bestått' ? '#ecfdf5' : t.resultat === 'feil' ? '#fee2e2' : '#fff9db'};padding:.4rem .6rem">
-        <div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin-bottom:.2rem">Faktisk oppførsel</div>
-        <div style="color:#374151;word-break:break-all">${t.faktisk || t.forventet}</div>
-      </div>
-    </div>
-    ${t.detalj ? `<p class="brudd-hjelp">${t.detalj}</p>` : ''}
+    <div style="margin:.3rem 0 .5rem">${chip}</div>
+    ${grid}
     ${t.skjerm ? `
     <div class="skjermdump-gruppe">
       <div class="skjermdump-wrapper">
@@ -557,7 +575,7 @@ const seksjoner = Object.entries(KATEGORIER).map(([id, { tittel, ikon }]) => {
   return `
   <div class="seksjon" id="${id}">
     <div class="seksjon-tittel">${ikon} ${tittel} – ${ktester.filter(t=>t.resultat==='bestått').length}/${ktester.length} bestått</div>
-    ${ktester.length === 0 ? '<div class="wcag-ok">Ingen tester i denne kategorien</div>' : ktester.map(testKort).join('')}
+    ${ktester.length === 0 ? '<div class="wcag-ok">Ingen tester i denne kategorien</div>' : ktester.map(t => testKort(t, bruktFnr)).join('')}
   </div>`;
 }).join('');
 
@@ -629,6 +647,7 @@ const html = `<!DOCTYPE html>
   .badge.advarsel{background:#f3dda2;color:#713f12}
   .wcag-ok{background:#ecfdf5;color:#064e3b;padding:.8rem 1rem;border-left:3px solid #07604f;font-size:.88rem}
   footer{text-align:center;padding:2.5rem;color:#9ca3af;font-size:.78rem;border-top:1px solid #f1f0ee;margin-top:2rem}
+  ${testdataPanelCss}
 </style>
 </head>
 <body>
@@ -721,10 +740,10 @@ const html = `<!DOCTYPE html>
     const advarsel2 = tester2.filter(t => t.resultat === 'advarsel').length;
     const score2 = Math.max(0, 100 - feil2 * 15 - advarsel2 * 5);
     return `
-  <details style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+  <details open style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
     <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
       <span>🎲 Tilfeldig bruker – Andre kjøring (${bruktFnr2 ?? 'ukjent'})</span>
-      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
       <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.82rem">
@@ -734,7 +753,7 @@ const html = `<!DOCTYPE html>
         <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">Score: ${score2}</span>
       </div>
       ${tester2.filter(t => t.resultat !== 'bestått').length > 0
-        ? tester2.filter(t => t.resultat !== 'bestått').map(testKort).join('')
+        ? tester2.filter(t => t.resultat !== 'bestått').map(t => testKort(t, bruktFnr2)).join('')
         : '<div class="wcag-ok">Alle tester bestått for tilfeldig bruker</div>'}
     </div>
   </details>`;

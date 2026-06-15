@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { START_URL, MAX_SIDER, VIEWPORT, LAST_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER } from './config.js';
-import { loggInn } from './lib/common.js';
+import { loggInn, testdataPanelCss, brukerChipHtml } from './lib/common.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dato = new Date().toISOString().slice(0, 10);
@@ -217,6 +217,7 @@ const tabellRader = sideResultater.map((side, i) => `
     <td class="url-col">
       <a href="${side.url}" target="_blank">${side.tittel}</a>
       <small>${side.url}</small>
+      <div style="margin-top:.3rem">${brukerChipHtml(bruktFnr)}</div>
     </td>
     <td class="score-col ${scoreKlasse(side.score)}">${side.score}</td>
     <td class="${fargeLCP(side.lcp)}">${visTid(side.lcp)}</td>
@@ -300,6 +301,7 @@ const rapportHTML = `<!DOCTYPE html>
   .forklaring .middels::before{content:'● ';color:#b8860b}
   .forklaring .dårlig::before{content:'● ';color:#c53030}
   footer{text-align:center;padding:2.5rem;color:#9ca3af;font-size:.78rem;border-top:1px solid #f1f0ee;margin-top:2rem}
+  ${testdataPanelCss}
 </style>
 </head>
 <body>
@@ -431,10 +433,10 @@ const rapportHTML = `<!DOCTYPE html>
     const snitt2 = arr => n2 ? Math.round(arr.reduce((a, b) => a + b, 0) / n2) : 0;
     const samletScore2 = snitt2(sideResultater2.map(r => r.score));
     return `
-  <details style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+  <details open style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
     <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
       <span>🎲 Tilfeldig bruker – Andre kjøring (${bruktFnr2 ?? 'ukjent'})</span>
-      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
       <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.82rem">
@@ -456,6 +458,7 @@ const rapportHTML = `<!DOCTYPE html>
               <td class="url-col">
                 <a href="${side.url}" target="_blank">${side.tittel}</a>
                 <small>${side.url}</small>
+                <div style="margin-top:.3rem">${brukerChipHtml(bruktFnr2, true)}</div>
               </td>
               <td class="score-col ${scoreKlasse(side.score)}">${side.score}</td>
               <td class="${fargeLCP(side.lcp)}">${visTid(side.lcp)}</td>

@@ -5,7 +5,7 @@
 <script>if(location.protocol!=='file:'&&!sessionStorage.getItem('ks-auth'))location.replace('../../logg-inn.html?redir='+encodeURIComponent(location.href))</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ytelsesrapport – 2026-06-15 08:34</title>
+<title>Ytelsesrapport – 2026-06-15 13:41</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:system-ui,-apple-system,sans-serif;background:#faf6f0;color:#0f0e17;display:flex;min-height:100vh}
@@ -71,6 +71,13 @@
   .forklaring .middels::before{content:'● ';color:#b8860b}
   .forklaring .dårlig::before{content:'● ';color:#c53030}
   footer{text-align:center;padding:2.5rem;color:#9ca3af;font-size:.78rem;border-top:1px solid #f1f0ee;margin-top:2rem}
+  
+/* Testdata-panel – globalt i rapport-header */
+.testdata-panel{display:flex;gap:.5rem;flex-wrap:wrap;padding:.65rem 0 .35rem;margin-top:.45rem;border-top:1px solid rgba(0,0,0,.07)}
+.td-chip{display:inline-flex;align-items:center;gap:.25rem;background:#f4ecdf;color:#374151;padding:.18rem .65rem;border-radius:100px;font-size:.71rem;font-weight:500;white-space:nowrap}
+.td-chip code{font-size:.71rem;font-weight:700;color:#2b3285;background:none;padding:0}
+.td-chip.td-tilfeldig{background:#e8f5f0;color:#065f46}
+.td-chip.td-tilfeldig code{color:#065f46}
 </style>
 </head>
 <body>
@@ -78,7 +85,7 @@
   <div class="sidemeny-header">
     <div class="sidemeny-logo">KS Tilskudd · Ytelsestester</div>
     <div class="env-badge">TEST-MILJØ</div>
-    <h1>Ytelsesrapport <span>2026-06-15 08:34</span></h1>
+    <h1>Ytelsesrapport <span>2026-06-15 13:41</span></h1>
   </div>
   <ul><li><a href="#side-0" class="sidenav-link ok">
     <span class="sidenavn">KS Tilskudd - Min side</span>
@@ -146,7 +153,7 @@
   <div class="rapport-header">
     <div>
       <h1>Ytelsesrapport</h1>
-      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-06-15 08:34 · 20 sider analysert · Playwright Chromium</div>
+      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-06-15 13:41 · 20 sider analysert · Playwright Chromium</div>
     </div>
     <div class="nav-knapper">
       <a href="../../rapport.html" class="knapp sekundær">Forside</a>
@@ -210,19 +217,19 @@
   <div class="kort-grid">
     <div class="kort ok">
       <div class="etikett">Snitt LCP</div>
-      <div class="tall">159 ms</div>
+      <div class="tall">155 ms</div>
     </div>
     <div class="kort ok">
       <div class="etikett">Snitt FCP</div>
-      <div class="tall">118 ms</div>
+      <div class="tall">117 ms</div>
     </div>
     <div class="kort ok">
       <div class="etikett">Snitt TTFB</div>
-      <div class="tall">87 ms</div>
+      <div class="tall">89 ms</div>
     </div>
     <div class="kort ok">
       <div class="etikett">Snitt lastetid</div>
-      <div class="tall">124 ms</div>
+      <div class="tall">223 ms</div>
     </div>
     <div class="kort ok">
       <div class="etikett">Total størrelse</div>
@@ -253,12 +260,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast" target="_blank">KS Tilskudd - Min side</a>
       <small>https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">56 ms</td>
-    <td class="god">56 ms</td>
-    <td class="god">34 ms</td>
-    <td class="god">50 ms</td>
+    <td class="god">48 ms</td>
+    <td class="god">48 ms</td>
+    <td class="god">29 ms</td>
+    <td class="god">45 ms</td>
     <td class="god">0 KB</td>
     <td class="god">9</td>
   </tr>
@@ -266,12 +274,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/" target="_blank">KS Tilskudd - Hjem</a>
       <small>https://tilskudd.fiks.test.ks.no/</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
     <td class="god">40 ms</td>
     <td class="god">40 ms</td>
-    <td class="god">16 ms</td>
-    <td class="god">33 ms</td>
+    <td class="god">19 ms</td>
+    <td class="god">36 ms</td>
     <td class="god">0 KB</td>
     <td class="god">7</td>
   </tr>
@@ -279,12 +288,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/utlysinger" target="_blank">KS Tilskudd - Tilskuddsordninger</a>
       <small>https://tilskudd.fiks.test.ks.no/utlysinger</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">544 ms</td>
-    <td class="god">80 ms</td>
-    <td class="god">46 ms</td>
-    <td class="god">103 ms</td>
+    <td class="god">508 ms</td>
+    <td class="god">76 ms</td>
+    <td class="god">45 ms</td>
+    <td class="god">97 ms</td>
     <td class="god">11 KB</td>
     <td class="god">11</td>
   </tr>
@@ -292,12 +302,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/minside" target="_blank">KS Tilskudd - Min side</a>
       <small>https://tilskudd.fiks.test.ks.no/minside</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">56 ms</td>
-    <td class="god">56 ms</td>
-    <td class="god">34 ms</td>
-    <td class="god">52 ms</td>
+    <td class="god">72 ms</td>
+    <td class="god">72 ms</td>
+    <td class="god">51 ms</td>
+    <td class="god">69 ms</td>
     <td class="god">0 KB</td>
     <td class="god">9</td>
   </tr>
@@ -305,12 +316,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/minside/utkast" target="_blank">KS Tilskudd - Min side</a>
       <small>https://tilskudd.fiks.test.ks.no/minside/utkast</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">192 ms</td>
-    <td class="god">192 ms</td>
-    <td class="god">145 ms</td>
-    <td class="god">189 ms</td>
+    <td class="god">184 ms</td>
+    <td class="god">184 ms</td>
+    <td class="god">154 ms</td>
+    <td class="god">182 ms</td>
     <td class="god">6 KB</td>
     <td class="god">11</td>
   </tr>
@@ -318,12 +330,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/minside/aktiv" target="_blank">KS Tilskudd - Min side</a>
       <small>https://tilskudd.fiks.test.ks.no/minside/aktiv</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">56 ms</td>
-    <td class="god">56 ms</td>
-    <td class="god">34 ms</td>
-    <td class="god">52 ms</td>
+    <td class="god">60 ms</td>
+    <td class="god">60 ms</td>
+    <td class="god">38 ms</td>
+    <td class="god">55 ms</td>
     <td class="god">1 KB</td>
     <td class="god">11</td>
   </tr>
@@ -331,12 +344,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/minside/avsluttet" target="_blank">KS Tilskudd - Min side</a>
       <small>https://tilskudd.fiks.test.ks.no/minside/avsluttet</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">80 ms</td>
-    <td class="god">80 ms</td>
-    <td class="god">41 ms</td>
-    <td class="god">99 ms</td>
+    <td class="god">56 ms</td>
+    <td class="god">56 ms</td>
+    <td class="god">34 ms</td>
+    <td class="god">50 ms</td>
     <td class="god">1 KB</td>
     <td class="god">11</td>
   </tr>
@@ -344,12 +358,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/utlysinger/553b5d8c-209e-410e-88c6-a6cb79d714dc" target="_blank">KS Tilskudd</a>
       <small>https://tilskudd.fiks.test.ks.no/utlysinger/553b5d8c-209e-410e-88c6-a6cb79d714dc</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">156 ms</td>
-    <td class="god">100 ms</td>
-    <td class="god">76 ms</td>
-    <td class="god">96 ms</td>
+    <td class="god">164 ms</td>
+    <td class="god">116 ms</td>
+    <td class="god">81 ms</td>
+    <td class="god">136 ms</td>
     <td class="god">15 KB</td>
     <td class="god">12</td>
   </tr>
@@ -357,12 +372,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/utlysinger/e42eab8a-1512-4dc2-bbf9-40eebcbabcd5" target="_blank">KS Tilskudd</a>
       <small>https://tilskudd.fiks.test.ks.no/utlysinger/e42eab8a-1512-4dc2-bbf9-40eebcbabcd5</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">196 ms</td>
-    <td class="god">136 ms</td>
-    <td class="god">113 ms</td>
-    <td class="god">133 ms</td>
+    <td class="god">172 ms</td>
+    <td class="god">116 ms</td>
+    <td class="god">97 ms</td>
+    <td class="god">115 ms</td>
     <td class="god">0 KB</td>
     <td class="god">12</td>
   </tr>
@@ -370,12 +386,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/utlysinger/7082abd8-4f23-43e9-adce-c4762b848b81" target="_blank">KS Tilskudd</a>
       <small>https://tilskudd.fiks.test.ks.no/utlysinger/7082abd8-4f23-43e9-adce-c4762b848b81</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">176 ms</td>
-    <td class="god">116 ms</td>
-    <td class="god">94 ms</td>
-    <td class="god">113 ms</td>
+    <td class="god">160 ms</td>
+    <td class="god">108 ms</td>
+    <td class="god">88 ms</td>
+    <td class="god">97 ms</td>
     <td class="god">0 KB</td>
     <td class="god">12</td>
   </tr>
@@ -383,12 +400,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/utlysinger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0" target="_blank">KS Tilskudd</a>
       <small>https://tilskudd.fiks.test.ks.no/utlysinger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">172 ms</td>
-    <td class="god">108 ms</td>
-    <td class="god">89 ms</td>
-    <td class="god">107 ms</td>
+    <td class="god">164 ms</td>
+    <td class="god">104 ms</td>
+    <td class="god">86 ms</td>
+    <td class="god">103 ms</td>
     <td class="god">0 KB</td>
     <td class="god">12</td>
   </tr>
@@ -396,12 +414,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/utlysinger/72ad6a5b-3819-446b-881d-eed1d5dd9ed6" target="_blank">KS Tilskudd</a>
       <small>https://tilskudd.fiks.test.ks.no/utlysinger/72ad6a5b-3819-446b-881d-eed1d5dd9ed6</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">184 ms</td>
-    <td class="god">128 ms</td>
-    <td class="god">108 ms</td>
-    <td class="god">125 ms</td>
+    <td class="god">192 ms</td>
+    <td class="god">140 ms</td>
+    <td class="god">116 ms</td>
+    <td class="god">136 ms</td>
     <td class="god">0 KB</td>
     <td class="god">12</td>
   </tr>
@@ -409,12 +428,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/utlysinger/b4d7c9a1-2f65-4e3b-8a91-0c7d6e5f4a33" target="_blank">KS Tilskudd</a>
       <small>https://tilskudd.fiks.test.ks.no/utlysinger/b4d7c9a1-2f65-4e3b-8a91-0c7d6e5f4a33</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">160 ms</td>
-    <td class="god">100 ms</td>
-    <td class="god">81 ms</td>
-    <td class="god">98 ms</td>
+    <td class="god">164 ms</td>
+    <td class="god">104 ms</td>
+    <td class="god">85 ms</td>
+    <td class="god">101 ms</td>
     <td class="god">0 KB</td>
     <td class="god">12</td>
   </tr>
@@ -422,12 +442,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/minside/utkast/Utkast" target="_blank">KS Tilskudd</a>
       <small>https://tilskudd.fiks.test.ks.no/minside/utkast/Utkast</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">36 ms</td>
-    <td class="god">36 ms</td>
-    <td class="god">15 ms</td>
-    <td class="god">31 ms</td>
+    <td class="god">40 ms</td>
+    <td class="god">40 ms</td>
+    <td class="god">19 ms</td>
+    <td class="god">34 ms</td>
     <td class="god">0 KB</td>
     <td class="god">5</td>
   </tr>
@@ -435,12 +456,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/soknad/a1b2c3d4-e5f6-7890-1234-567890abcdef" target="_blank">KS Tilskudd</a>
       <small>https://tilskudd.fiks.test.ks.no/soknad/a1b2c3d4-e5f6-7890-1234-567890abcdef</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">200 ms</td>
-    <td class="god">200 ms</td>
-    <td class="god">151 ms</td>
-    <td class="god">227 ms</td>
+    <td class="god">180 ms</td>
+    <td class="god">180 ms</td>
+    <td class="god">142 ms</td>
+    <td class="god">2.2 s</td>
     <td class="god">15 KB</td>
     <td class="god">16</td>
   </tr>
@@ -448,12 +470,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/soknad/72076638-cb96-4e8d-866b-9b120fe00601" target="_blank">KS Tilskudd</a>
       <small>https://tilskudd.fiks.test.ks.no/soknad/72076638-cb96-4e8d-866b-9b120fe00601</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">148 ms</td>
-    <td class="god">148 ms</td>
-    <td class="god">115 ms</td>
-    <td class="god">171 ms</td>
+    <td class="god">168 ms</td>
+    <td class="god">168 ms</td>
+    <td class="god">128 ms</td>
+    <td class="god">185 ms</td>
     <td class="god">0 KB</td>
     <td class="god">16</td>
   </tr>
@@ -461,12 +484,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/soknad/f79639d3-59df-498c-97d5-1b0499078ecf" target="_blank">KS Tilskudd</a>
       <small>https://tilskudd.fiks.test.ks.no/soknad/f79639d3-59df-498c-97d5-1b0499078ecf</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">168 ms</td>
-    <td class="god">168 ms</td>
-    <td class="god">128 ms</td>
-    <td class="god">189 ms</td>
+    <td class="god">212 ms</td>
+    <td class="god">212 ms</td>
+    <td class="god">173 ms</td>
+    <td class="god">231 ms</td>
     <td class="god">0 KB</td>
     <td class="god">16</td>
   </tr>
@@ -474,12 +498,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/soknad/d1aa30b0-88c6-4084-abfb-57751f0876a2" target="_blank">KS Tilskudd</a>
       <small>https://tilskudd.fiks.test.ks.no/soknad/d1aa30b0-88c6-4084-abfb-57751f0876a2</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">200 ms</td>
-    <td class="god">200 ms</td>
-    <td class="god">153 ms</td>
-    <td class="god">220 ms</td>
+    <td class="god">168 ms</td>
+    <td class="god">168 ms</td>
+    <td class="god">130 ms</td>
+    <td class="god">187 ms</td>
     <td class="god">0 KB</td>
     <td class="god">16</td>
   </tr>
@@ -487,12 +512,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/soknad/a986a003-ce01-4cfc-af76-24a247db9a17" target="_blank">KS Tilskudd</a>
       <small>https://tilskudd.fiks.test.ks.no/soknad/a986a003-ce01-4cfc-af76-24a247db9a17</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">172 ms</td>
-    <td class="god">172 ms</td>
-    <td class="god">130 ms</td>
-    <td class="god">192 ms</td>
+    <td class="god">152 ms</td>
+    <td class="god">152 ms</td>
+    <td class="god">117 ms</td>
+    <td class="god">175 ms</td>
     <td class="god">0 KB</td>
     <td class="god">16</td>
   </tr>
@@ -500,12 +526,13 @@
     <td class="url-col">
       <a href="https://tilskudd.fiks.test.ks.no/soknad/28ad17b3-f3fd-4655-a404-57c9f5f9667e" target="_blank">KS Tilskudd</a>
       <small>https://tilskudd.fiks.test.ks.no/soknad/28ad17b3-f3fd-4655-a404-57c9f5f9667e</small>
+      <div style="margin-top:.3rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     </td>
     <td class="score-col god">100</td>
-    <td class="god">180 ms</td>
-    <td class="god">180 ms</td>
-    <td class="god">140 ms</td>
-    <td class="god">200 ms</td>
+    <td class="god">196 ms</td>
+    <td class="god">196 ms</td>
+    <td class="god">157 ms</td>
+    <td class="god">214 ms</td>
     <td class="god">0 KB</td>
     <td class="god">16</td>
   </tr></tbody>
@@ -518,17 +545,17 @@
   </div>
 
   
-  <details style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+  <details open style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
     <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker – Andre kjøring (67857003583)</span>
-      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+      <span>🎲 Tilfeldig bruker – Andre kjøring (13845499335)</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
       <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.82rem">
         <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">📄 17 sider</span>
         <span style="background:#ecfdf5;color:#07604f;padding:.2rem .7rem;border-radius:100px;font-weight:600">Score: 100</span>
-        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">Snitt LCP: 128 ms</span>
-        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">Snitt TTFB: 58 ms</span>
+        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">Snitt LCP: 120 ms</span>
+        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">Snitt TTFB: 50 ms</span>
       </div>
       <div style="overflow-x:auto">
         <table>
@@ -543,188 +570,205 @@
               <td class="url-col">
                 <a href="https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast" target="_blank">KS Tilskudd - Min side</a>
                 <small>https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast</small>
+                <div style="margin-top:.3rem"><span class="td-chip td-tilfeldig">🎲 Bruker: <code>13845499335</code></span></div>
               </td>
               <td class="score-col god">100</td>
-              <td class="god">52 ms</td>
-              <td class="god">52 ms</td>
-              <td class="god">28 ms</td>
-              <td class="god">47 ms</td>
+              <td class="god">64 ms</td>
+              <td class="god">64 ms</td>
+              <td class="god">43 ms</td>
+              <td class="god">61 ms</td>
             </tr>
             <tr id="ekstra-side-1">
               <td class="url-col">
                 <a href="https://tilskudd.fiks.test.ks.no/" target="_blank">KS Tilskudd - Hjem</a>
                 <small>https://tilskudd.fiks.test.ks.no/</small>
+                <div style="margin-top:.3rem"><span class="td-chip td-tilfeldig">🎲 Bruker: <code>13845499335</code></span></div>
               </td>
               <td class="score-col god">100</td>
               <td class="god">40 ms</td>
               <td class="god">40 ms</td>
-              <td class="god">20 ms</td>
-              <td class="god">37 ms</td>
+              <td class="god">19 ms</td>
+              <td class="god">36 ms</td>
             </tr>
             <tr id="ekstra-side-2">
               <td class="url-col">
                 <a href="https://tilskudd.fiks.test.ks.no/utlysinger" target="_blank">KS Tilskudd - Tilskuddsordninger</a>
                 <small>https://tilskudd.fiks.test.ks.no/utlysinger</small>
+                <div style="margin-top:.3rem"><span class="td-chip td-tilfeldig">🎲 Bruker: <code>13845499335</code></span></div>
               </td>
               <td class="score-col god">100</td>
-              <td class="god">508 ms</td>
-              <td class="god">76 ms</td>
-              <td class="god">45 ms</td>
-              <td class="god">97 ms</td>
+              <td class="god">556 ms</td>
+              <td class="god">72 ms</td>
+              <td class="god">40 ms</td>
+              <td class="god">93 ms</td>
             </tr>
             <tr id="ekstra-side-3">
               <td class="url-col">
                 <a href="https://tilskudd.fiks.test.ks.no/minside" target="_blank">KS Tilskudd - Min side</a>
                 <small>https://tilskudd.fiks.test.ks.no/minside</small>
+                <div style="margin-top:.3rem"><span class="td-chip td-tilfeldig">🎲 Bruker: <code>13845499335</code></span></div>
               </td>
               <td class="score-col god">100</td>
-              <td class="god">52 ms</td>
-              <td class="god">52 ms</td>
-              <td class="god">28 ms</td>
-              <td class="god">46 ms</td>
+              <td class="god">56 ms</td>
+              <td class="god">56 ms</td>
+              <td class="god">36 ms</td>
+              <td class="god">53 ms</td>
             </tr>
             <tr id="ekstra-side-4">
               <td class="url-col">
                 <a href="https://tilskudd.fiks.test.ks.no/minside/utkast" target="_blank">KS Tilskudd - Min side</a>
                 <small>https://tilskudd.fiks.test.ks.no/minside/utkast</small>
-              </td>
-              <td class="score-col god">100</td>
-              <td class="god">60 ms</td>
-              <td class="god">60 ms</td>
-              <td class="god">37 ms</td>
-              <td class="god">58 ms</td>
-            </tr>
-            <tr id="ekstra-side-5">
-              <td class="url-col">
-                <a href="https://tilskudd.fiks.test.ks.no/minside/aktiv" target="_blank">KS Tilskudd - Min side</a>
-                <small>https://tilskudd.fiks.test.ks.no/minside/aktiv</small>
-              </td>
-              <td class="score-col god">100</td>
-              <td class="god">60 ms</td>
-              <td class="god">60 ms</td>
-              <td class="god">36 ms</td>
-              <td class="god">54 ms</td>
-            </tr>
-            <tr id="ekstra-side-6">
-              <td class="url-col">
-                <a href="https://tilskudd.fiks.test.ks.no/minside/avsluttet" target="_blank">KS Tilskudd - Min side</a>
-                <small>https://tilskudd.fiks.test.ks.no/minside/avsluttet</small>
+                <div style="margin-top:.3rem"><span class="td-chip td-tilfeldig">🎲 Bruker: <code>13845499335</code></span></div>
               </td>
               <td class="score-col god">100</td>
               <td class="god">60 ms</td>
               <td class="god">60 ms</td>
               <td class="god">35 ms</td>
-              <td class="god">54 ms</td>
+              <td class="god">55 ms</td>
+            </tr>
+            <tr id="ekstra-side-5">
+              <td class="url-col">
+                <a href="https://tilskudd.fiks.test.ks.no/minside/aktiv" target="_blank">KS Tilskudd - Min side</a>
+                <small>https://tilskudd.fiks.test.ks.no/minside/aktiv</small>
+                <div style="margin-top:.3rem"><span class="td-chip td-tilfeldig">🎲 Bruker: <code>13845499335</code></span></div>
+              </td>
+              <td class="score-col god">100</td>
+              <td class="god">52 ms</td>
+              <td class="god">52 ms</td>
+              <td class="god">30 ms</td>
+              <td class="god">48 ms</td>
+            </tr>
+            <tr id="ekstra-side-6">
+              <td class="url-col">
+                <a href="https://tilskudd.fiks.test.ks.no/minside/avsluttet" target="_blank">KS Tilskudd - Min side</a>
+                <small>https://tilskudd.fiks.test.ks.no/minside/avsluttet</small>
+                <div style="margin-top:.3rem"><span class="td-chip td-tilfeldig">🎲 Bruker: <code>13845499335</code></span></div>
+              </td>
+              <td class="score-col god">100</td>
+              <td class="god">52 ms</td>
+              <td class="god">52 ms</td>
+              <td class="god">33 ms</td>
+              <td class="god">50 ms</td>
             </tr>
             <tr id="ekstra-side-7">
               <td class="url-col">
                 <a href="https://tilskudd.fiks.test.ks.no/utlysinger/553b5d8c-209e-410e-88c6-a6cb79d714dc" target="_blank">KS Tilskudd</a>
                 <small>https://tilskudd.fiks.test.ks.no/utlysinger/553b5d8c-209e-410e-88c6-a6cb79d714dc</small>
+                <div style="margin-top:.3rem"><span class="td-chip td-tilfeldig">🎲 Bruker: <code>13845499335</code></span></div>
               </td>
               <td class="score-col god">100</td>
-              <td class="god">160 ms</td>
+              <td class="god">152 ms</td>
               <td class="god">100 ms</td>
-              <td class="god">77 ms</td>
-              <td class="god">98 ms</td>
+              <td class="god">75 ms</td>
+              <td class="god">96 ms</td>
             </tr>
             <tr id="ekstra-side-8">
               <td class="url-col">
                 <a href="https://tilskudd.fiks.test.ks.no/utlysinger/e42eab8a-1512-4dc2-bbf9-40eebcbabcd5" target="_blank">KS Tilskudd</a>
                 <small>https://tilskudd.fiks.test.ks.no/utlysinger/e42eab8a-1512-4dc2-bbf9-40eebcbabcd5</small>
+                <div style="margin-top:.3rem"><span class="td-chip td-tilfeldig">🎲 Bruker: <code>13845499335</code></span></div>
               </td>
               <td class="score-col god">100</td>
-              <td class="god">164 ms</td>
-              <td class="god">104 ms</td>
-              <td class="god">86 ms</td>
-              <td class="god">101 ms</td>
+              <td class="god">168 ms</td>
+              <td class="god">108 ms</td>
+              <td class="god">88 ms</td>
+              <td class="god">107 ms</td>
             </tr>
             <tr id="ekstra-side-9">
               <td class="url-col">
                 <a href="https://tilskudd.fiks.test.ks.no/utlysinger/7082abd8-4f23-43e9-adce-c4762b848b81" target="_blank">KS Tilskudd</a>
                 <small>https://tilskudd.fiks.test.ks.no/utlysinger/7082abd8-4f23-43e9-adce-c4762b848b81</small>
+                <div style="margin-top:.3rem"><span class="td-chip td-tilfeldig">🎲 Bruker: <code>13845499335</code></span></div>
               </td>
               <td class="score-col god">100</td>
-              <td class="god">172 ms</td>
-              <td class="god">108 ms</td>
-              <td class="god">86 ms</td>
-              <td class="god">107 ms</td>
+              <td class="god">168 ms</td>
+              <td class="god">112 ms</td>
+              <td class="god">90 ms</td>
+              <td class="god">101 ms</td>
             </tr>
             <tr id="ekstra-side-10">
               <td class="url-col">
                 <a href="https://tilskudd.fiks.test.ks.no/utlysinger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0" target="_blank">KS Tilskudd</a>
                 <small>https://tilskudd.fiks.test.ks.no/utlysinger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0</small>
+                <div style="margin-top:.3rem"><span class="td-chip td-tilfeldig">🎲 Bruker: <code>13845499335</code></span></div>
               </td>
               <td class="score-col god">100</td>
-              <td class="god">176 ms</td>
-              <td class="god">116 ms</td>
+              <td class="god">156 ms</td>
+              <td class="god">100 ms</td>
+              <td class="god">80 ms</td>
               <td class="god">97 ms</td>
-              <td class="god">116 ms</td>
             </tr>
             <tr id="ekstra-side-11">
               <td class="url-col">
                 <a href="https://tilskudd.fiks.test.ks.no/utlysinger/72ad6a5b-3819-446b-881d-eed1d5dd9ed6" target="_blank">KS Tilskudd</a>
                 <small>https://tilskudd.fiks.test.ks.no/utlysinger/72ad6a5b-3819-446b-881d-eed1d5dd9ed6</small>
+                <div style="margin-top:.3rem"><span class="td-chip td-tilfeldig">🎲 Bruker: <code>13845499335</code></span></div>
               </td>
               <td class="score-col god">100</td>
-              <td class="god">356 ms</td>
-              <td class="god">296 ms</td>
-              <td class="god">264 ms</td>
-              <td class="god">292 ms</td>
+              <td class="god">200 ms</td>
+              <td class="god">144 ms</td>
+              <td class="god">123 ms</td>
+              <td class="god">141 ms</td>
             </tr>
             <tr id="ekstra-side-12">
               <td class="url-col">
                 <a href="https://tilskudd.fiks.test.ks.no/utlysinger/b4d7c9a1-2f65-4e3b-8a91-0c7d6e5f4a33" target="_blank">KS Tilskudd</a>
                 <small>https://tilskudd.fiks.test.ks.no/utlysinger/b4d7c9a1-2f65-4e3b-8a91-0c7d6e5f4a33</small>
+                <div style="margin-top:.3rem"><span class="td-chip td-tilfeldig">🎲 Bruker: <code>13845499335</code></span></div>
               </td>
               <td class="score-col god">100</td>
-              <td class="god">160 ms</td>
-              <td class="god">100 ms</td>
-              <td class="god">80 ms</td>
-              <td class="god">98 ms</td>
+              <td class="god">148 ms</td>
+              <td class="god">92 ms</td>
+              <td class="god">72 ms</td>
+              <td class="god">88 ms</td>
             </tr>
             <tr id="ekstra-side-13">
               <td class="url-col">
                 <a href="https://tilskudd.fiks.test.ks.no/minside/utkast/Utkast" target="_blank">KS Tilskudd</a>
                 <small>https://tilskudd.fiks.test.ks.no/minside/utkast/Utkast</small>
+                <div style="margin-top:.3rem"><span class="td-chip td-tilfeldig">🎲 Bruker: <code>13845499335</code></span></div>
               </td>
               <td class="score-col god">100</td>
-              <td class="god">32 ms</td>
-              <td class="god">32 ms</td>
+              <td class="god">36 ms</td>
+              <td class="god">36 ms</td>
               <td class="god">15 ms</td>
-              <td class="god">30 ms</td>
+              <td class="god">29 ms</td>
             </tr>
             <tr id="ekstra-side-14">
               <td class="url-col">
                 <a href="https://tilskudd.fiks.test.ks.no/minside/aktiv/Aktive%20s%C3%B8knader" target="_blank">KS Tilskudd</a>
                 <small>https://tilskudd.fiks.test.ks.no/minside/aktiv/Aktive%20s%C3%B8knader</small>
+                <div style="margin-top:.3rem"><span class="td-chip td-tilfeldig">🎲 Bruker: <code>13845499335</code></span></div>
               </td>
               <td class="score-col god">100</td>
               <td class="god">40 ms</td>
               <td class="god">40 ms</td>
               <td class="god">23 ms</td>
-              <td class="god">37 ms</td>
+              <td class="god">38 ms</td>
             </tr>
             <tr id="ekstra-side-15">
               <td class="url-col">
                 <a href="https://tilskudd.fiks.test.ks.no/minside/avsluttet/Avsluttede%20s%C3%B8knader" target="_blank">KS Tilskudd</a>
                 <small>https://tilskudd.fiks.test.ks.no/minside/avsluttet/Avsluttede%20s%C3%B8knader</small>
+                <div style="margin-top:.3rem"><span class="td-chip td-tilfeldig">🎲 Bruker: <code>13845499335</code></span></div>
               </td>
               <td class="score-col god">100</td>
-              <td class="god">36 ms</td>
-              <td class="god">36 ms</td>
-              <td class="god">17 ms</td>
-              <td class="god">33 ms</td>
+              <td class="god">44 ms</td>
+              <td class="god">44 ms</td>
+              <td class="god">26 ms</td>
+              <td class="god">41 ms</td>
             </tr>
             <tr id="ekstra-side-16">
               <td class="url-col">
                 <a href="https://tilskudd.fiks.test.ks.no/soknad/opprett" target="_blank">https://tilskudd.fiks.test.ks.no/soknad/opprett</a>
                 <small>https://tilskudd.fiks.test.ks.no/soknad/opprett</small>
+                <div style="margin-top:.3rem"><span class="td-chip td-tilfeldig">🎲 Bruker: <code>13845499335</code></span></div>
               </td>
               <td class="score-col god">100</td>
               <td class="god">40 ms</td>
               <td class="god">40 ms</td>
               <td class="god">14 ms</td>
-              <td class="god">61 ms</td>
+              <td class="god">58 ms</td>
             </tr>
           </tbody>
         </table>

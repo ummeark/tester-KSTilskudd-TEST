@@ -25,6 +25,11 @@ const jiraMetadata = fs.existsSync(metadataPath)
   ? JSON.parse(fs.readFileSync(metadataPath, 'utf-8'))
   : {};
 
+const testdataPath = 'brukerhistorie-resultater/testdata.json';
+const bhTestdata = fs.existsSync(testdataPath)
+  ? JSON.parse(fs.readFileSync(testdataPath, 'utf-8'))
+  : {};
+
 // Samle BH-suites fra alle testfiler og dedupliser på tittel (siste fil vinner)
 const allBhSuites = (data.suites ?? []).flatMap(s => s.suites ?? []);
 const bhMap = new Map();
@@ -148,11 +153,25 @@ function bhSeksjoner() {
         ? `<div class="hoppet-arsak">Årsak: ${esc(arsak)}</div>`
         : '';
       const varighet = spec.tests?.[0]?.results?.[0]?.duration ?? 0;
+      const brukerChip = bhTestdata.bruker
+        ? `<span class="td-chip">🔐 Bruker: <code>${esc(bhTestdata.bruker)}</code></span>`
+        : '';
+      if (ok) {
+        return `      <details style="border-left:3px solid #064e3b;margin:.4rem 0;background:#ecfdf5;border-radius:0 4px 4px 0;box-shadow:0 1px 3px rgba(10,19,85,.04)">
+        <summary style="display:flex;align-items:center;gap:.6rem;padding:.55rem .9rem;cursor:pointer;list-style:none;font-size:.85rem">
+          <span style="color:#064e3b;font-weight:700;flex-shrink:0">✅</span>
+          <span style="flex:1;color:#374151">${esc(spec.title)}</span>
+          ${varighet > 0 ? `<span class="brudd-teller">${varighet}ms</span>` : ''}
+          ${brukerChip}
+        </summary>
+      </details>`;
+      }
       return `      <div class="brudd-kort" style="border-left-color:${farge};background:${bg};">
         <div class="brudd-header">
           <span>${ikon} <strong>${esc(spec.title)}</strong></span>
           <span class="brudd-teller">${varighet > 0 ? varighet + 'ms' : '–'}</span>
         </div>
+        <div style="margin:.3rem 0 .4rem">${brukerChip}</div>
         ${arsakHtml}
         ${errHtml}
       </div>`;
@@ -273,6 +292,12 @@ const html = `<!DOCTYPE html>
   figcaption{font-size:.68rem;color:#9ca3af;margin-top:.3rem;text-transform:capitalize}
 
   footer{text-align:center;padding:2.5rem;color:#9ca3af;font-size:.78rem;border-top:1px solid #f1f0ee;margin-top:2rem}
+  /* Testdata-panel – globalt i rapport-header */
+  .testdata-panel{display:flex;gap:.5rem;flex-wrap:wrap;padding:.65rem 0 .35rem;margin-top:.45rem;border-top:1px solid rgba(0,0,0,.07)}
+  .td-chip{display:inline-flex;align-items:center;gap:.25rem;background:#f4ecdf;color:#374151;padding:.18rem .65rem;border-radius:100px;font-size:.71rem;font-weight:500;white-space:nowrap}
+  .td-chip code{font-size:.71rem;font-weight:700;color:#2b3285;background:none;padding:0}
+  .td-chip.td-tilfeldig{background:#e8f5f0;color:#065f46}
+  .td-chip.td-tilfeldig code{color:#065f46}
 </style>
 </head>
 <body>

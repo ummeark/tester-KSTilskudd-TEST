@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { START_URL, MAX_SIDER, VIEWPORT, SIDE_TIMEOUT, IDLE_TIMEOUT, LAST_TIMEOUT, LINK_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER } from './config.js';
-import { hentVersjon, loggInn } from './lib/common.js';
+import { hentVersjon, loggInn, testdataPanelCss } from './lib/common.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dato = new Date().toISOString().slice(0, 10);
@@ -1235,6 +1235,7 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
   /* Testdata strip */
   .testdata-strip{display:flex;gap:.5rem;flex-wrap:wrap;padding:.7rem 0 .9rem;border-bottom:1px solid #f4ecdf;margin-bottom:1rem}
   .testdata-chip{display:inline-flex;align-items:center;gap:.25rem;background:#f4ecdf;color:#374151;padding:.18rem .65rem;border-radius:100px;font-size:.71rem;font-weight:500}
+  ${testdataPanelCss}
 
   /* WCAG sections */
   .wcag-seksjon{margin-bottom:1.6rem}
@@ -1356,26 +1357,6 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
   <div class="score-kort">
     <div class="score-sirkel ${scoreKlasse}">${s}</div>
     <div class="score-tekst"><strong>UU-score</strong><p>Basert på WCAG-brudd, døde lenker og manglende labels på tvers av ${totalt.sider} sider. Klikk på skjermdumper for å forstørre.</p></div>
-  </div>
-
-  <div class="seksjon" style="padding:1rem 1.4rem;margin-bottom:1.5rem">
-    <div class="seksjon-tittel">🧪 Testkontekst</div>
-    <div style="display:flex;gap:2rem;flex-wrap:wrap;font-size:.83rem;color:#374151;align-items:flex-start">
-      <div>
-        <span style="font-weight:600;color:#0a1355;display:block;margin-bottom:.25rem">Innlogget bruker</span>
-        <code style="color:#2b3285">${escapeHtml(testdata.bruker || '—')}</code>
-        <span style="color:#6b7280;font-size:.78rem;margin-left:.4rem">(ID-porten TestID${testdata.modus === 'fast' ? ' · fast modus' : ' · tilfeldig'})</span>
-      </div>
-      <div>
-        <span style="font-weight:600;color:#0a1355;display:block;margin-bottom:.25rem">Viewport</span>
-        <code style="color:#2b3285">${escapeHtml(testdata.viewport || '—')}</code>
-        <span style="color:#6b7280;font-size:.78rem;margin-left:.4rem">px</span>
-      </div>
-      <div>
-        <span style="font-weight:600;color:#0a1355;display:block;margin-bottom:.25rem">Start-URL</span>
-        <a href="${escapeHtml(testdata.startUrl || url)}" target="_blank" style="color:#07604f;font-size:.82rem">${escapeHtml(testdata.startUrl || url)}</a>
-      </div>
-    </div>
   </div>
 
   <div class="kort-grid">

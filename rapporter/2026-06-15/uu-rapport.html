@@ -5,7 +5,7 @@
 <script>if(location.protocol!=='file:'&&!sessionStorage.getItem('ks-auth'))location.replace('logg-inn.html?redir='+encodeURIComponent(location.href))</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>UU-rapport – 2026-06-15 08:30</title>
+<title>UU-rapport – 2026-06-15 13:49</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:system-ui,-apple-system,sans-serif;background:#faf6f0;color:#0f0e17;display:flex;min-height:100vh}
@@ -80,6 +80,13 @@
   /* Testdata strip */
   .testdata-strip{display:flex;gap:.5rem;flex-wrap:wrap;padding:.7rem 0 .9rem;border-bottom:1px solid #f4ecdf;margin-bottom:1rem}
   .testdata-chip{display:inline-flex;align-items:center;gap:.25rem;background:#f4ecdf;color:#374151;padding:.18rem .65rem;border-radius:100px;font-size:.71rem;font-weight:500}
+  
+/* Testdata-panel – globalt i rapport-header */
+.testdata-panel{display:flex;gap:.5rem;flex-wrap:wrap;padding:.65rem 0 .35rem;margin-top:.45rem;border-top:1px solid rgba(0,0,0,.07)}
+.td-chip{display:inline-flex;align-items:center;gap:.25rem;background:#f4ecdf;color:#374151;padding:.18rem .65rem;border-radius:100px;font-size:.71rem;font-weight:500;white-space:nowrap}
+.td-chip code{font-size:.71rem;font-weight:700;color:#2b3285;background:none;padding:0}
+.td-chip.td-tilfeldig{background:#e8f5f0;color:#065f46}
+.td-chip.td-tilfeldig code{color:#065f46}
 
   /* WCAG sections */
   .wcag-seksjon{margin-bottom:1.6rem}
@@ -137,7 +144,7 @@
   <div class="sidemeny-header">
     <div class="sidemeny-logo">KS Tilskudd · UU-tester</div>
     <div class="env-badge">TEST-MILJØ · v0.6.3</div>
-    <h1>Tilgjengelighetsrapport <span>2026-06-15 08:30 · 20 sider</span></h1>
+    <h1>Tilgjengelighetsrapport <span>2026-06-15 13:49 · 20 sider</span></h1>
   </div>
   <ul><li><a href="#side-0" class="sidenav-link ok">
       <span class="sidenavn">KS Tilskudd - Min side</span>
@@ -225,7 +232,7 @@
   <div class="rapport-header">
     <div>
       <h1>Tilgjengelighetsrapport</h1>
-      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-06-15 08:30 · 20 sider testet · Chromium 147</div>
+      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-06-15 13:49 · 20 sider testet · Chromium 147</div>
     </div>
     <div class="nav-knapper">
       <a href="rapport.html" class="knapp sekundær">Forside</a>
@@ -281,26 +288,6 @@
   <div class="score-kort">
     <div class="score-sirkel dårlig">0</div>
     <div class="score-tekst"><strong>UU-score</strong><p>Basert på WCAG-brudd, døde lenker og manglende labels på tvers av 20 sider. Klikk på skjermdumper for å forstørre.</p></div>
-  </div>
-
-  <div class="seksjon" style="padding:1rem 1.4rem;margin-bottom:1.5rem">
-    <div class="seksjon-tittel">🧪 Testkontekst</div>
-    <div style="display:flex;gap:2rem;flex-wrap:wrap;font-size:.83rem;color:#374151;align-items:flex-start">
-      <div>
-        <span style="font-weight:600;color:#0a1355;display:block;margin-bottom:.25rem">Innlogget bruker</span>
-        <code style="color:#2b3285">10895696434</code>
-        <span style="color:#6b7280;font-size:.78rem;margin-left:.4rem">(ID-porten TestID · fast modus)</span>
-      </div>
-      <div>
-        <span style="font-weight:600;color:#0a1355;display:block;margin-bottom:.25rem">Viewport</span>
-        <code style="color:#2b3285">1280×900</code>
-        <span style="color:#6b7280;font-size:.78rem;margin-left:.4rem">px</span>
-      </div>
-      <div>
-        <span style="font-weight:600;color:#0a1355;display:block;margin-bottom:.25rem">Start-URL</span>
-        <a href="https://tilskudd.fiks.test.ks.no/" target="_blank" style="color:#07604f;font-size:.82rem">https://tilskudd.fiks.test.ks.no/</a>
-      </div>
-    </div>
   </div>
 
   <div class="kort-grid">
@@ -3498,12 +3485,12 @@ Org.rep</td>
   
   <details style="margin-top:2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
     <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker – Andre kjøring (09891849386)</span>
+      <span>🎲 Tilfeldig bruker – Andre kjøring (28815996692)</span>
       <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
     </summary>
     <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
       <p style="font-size:.83rem;color:#374151;margin-bottom:1.2rem;line-height:1.6">
-        Resultat fra andre kjøring med tilfeldig TestID-bruker (<code style="color:#2b3285">09891849386</code>).
+        Resultat fra andre kjøring med tilfeldig TestID-bruker (<code style="color:#2b3285">28815996692</code>).
         Skjermdumper er deaktivert for denne kjøringen.
       </p>
       <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.82rem">
@@ -4047,7 +4034,7 @@ Org.rep</td>
       </div>
     </div>
   </details>
-  <footer>KS Tilskudd · UU-tester · axe-core + Playwright · 2026-06-15 08:30</footer>
+  <footer>KS Tilskudd · UU-tester · axe-core + Playwright · 2026-06-15 13:49</footer>
 </div>
 </body>
 </html>

@@ -11,9 +11,10 @@ const START_URL = process.env.TEST_URL || 'https://tilskudd.fiks.test.ks.no/';
 export default async function globalSetup() {
   const browser = await chromium.launch();
   const context = await browser.newContext();
-  const { url } = await loggInn(context, START_URL, { modus: TEST_MODUS, testFnr: TEST_FNR });
+  const { url, bruktFnr } = await loggInn(context, START_URL, { modus: TEST_MODUS, testFnr: TEST_FNR });
   if (!url) throw new Error('Innlogging feilet – kan ikke kjøre brukerhistorietester');
   fs.mkdirSync('brukerhistorie-resultater', { recursive: true });
   await context.storageState({ path: 'brukerhistorie-resultater/auth.json' });
+  fs.writeFileSync('brukerhistorie-resultater/testdata.json', JSON.stringify({ bruker: bruktFnr ?? TEST_FNR }, null, 2));
   await browser.close();
 }

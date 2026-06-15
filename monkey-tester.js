@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { START_URL, ITERASJONER, VIEWPORT, SIDE_TIMEOUT, IDLE_TIMEOUT, KRASJ_ORD, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER } from './config.js';
-import { hentVersjon, loggInn } from './lib/common.js';
+import { hentVersjon, loggInn, testdataPanelCss, brukerChipHtml } from './lib/common.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dato = new Date().toISOString().slice(0, 10);
@@ -348,7 +348,7 @@ const sidenavigasjon = [
   seksjonNav('sider', 'Sider besøkt', besøkte.size, ''),
 ].join('');
 
-function funnRad(f, i) {
+function funnRad(f, bruker) {
   return `
   <div class="brudd-kort" style="border-left-color:${alvorlighetFarge(f.alvorlighet)}">
     <div class="brudd-header">
@@ -358,6 +358,7 @@ function funnRad(f, i) {
       </div>
       <span class="brudd-teller">${f.tid?.slice(11, 19) || ''}</span>
     </div>
+    <div style="margin:.3rem 0 .5rem">${brukerChipHtml(bruker, f._tilfeldig)}</div>
     ${f.handling ? `<p class="brudd-hjelp">Handling: ${f.handling}</p>` : ''}
     <div class="node-info"><span class="node-selector">${f.url}</span></div>
     ${f.skjermdump ? `
@@ -456,6 +457,7 @@ const html = `<!DOCTYPE html>
   .url-liste{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.3rem}
   .url-liste li{font-size:.78rem;background:#f4ecdf;padding:.35rem .7rem;font-family:ui-monospace,monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   footer{text-align:center;padding:2.5rem;color:#9ca3af;font-size:.78rem;border-top:1px solid #f1f0ee;margin-top:2rem}
+  ${testdataPanelCss}
 </style>
 </head>
 <body>
@@ -592,7 +594,7 @@ const html = `<!DOCTYPE html>
     <div class="seksjon-tittel">Interaksjonsfunn (${interaksjoner.length})</div>
     ${interaksjoner.length === 0
       ? '<div class="wcag-ok">Ingen kritiske funn under monkey-testing</div>'
-      : interaksjoner.map(funnRad).join('')}
+      : interaksjoner.map(f => funnRad(f, bruktFnr)).join('')}
   </div>
 
   <!-- Sider besøkt -->
@@ -605,10 +607,10 @@ const html = `<!DOCTYPE html>
 
   ${runde2 ? `
   <!-- Tilfeldig bruker – Andre kjøring -->
-  <details style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+  <details open style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
     <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
       <span>🎲 Tilfeldig bruker – Andre kjøring (${bruktFnr2 ?? 'ukjent'})</span>
-      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
       <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.82rem">
@@ -618,7 +620,7 @@ const html = `<!DOCTYPE html>
         <span style="background:${runde2.kritiskeFunn.length > 0 ? '#fee2e2' : '#ecfdf5'};color:${runde2.kritiskeFunn.length > 0 ? '#c53030' : '#07604f'};padding:.2rem .7rem;border-radius:100px;font-weight:600">💥 ${runde2.kritiskeFunn.length} kritiske funn</span>
         <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">📄 ${runde2.besøkte.length} sider · ${runde2.varighet}s</span>
       </div>
-      ${runde2.handlinger.length > 0 ? runde2.handlinger.map(funnRad).join('') : '<div class="wcag-ok">Ingen kritiske funn under testing med tilfeldig bruker</div>'}
+      ${runde2.handlinger.length > 0 ? runde2.handlinger.map(f => funnRad(f, bruktFnr2)).join('') : '<div class="wcag-ok">Ingen kritiske funn under testing med tilfeldig bruker</div>'}
     </div>
   </details>` : ''}
 
