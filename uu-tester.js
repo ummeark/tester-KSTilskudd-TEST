@@ -1367,7 +1367,16 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
     <div class="kort ${totalt.bilderUtenAlt === 0 ? 'ok' : 'advarsel'}"><div class="tall">${totalt.bilder}</div><div class="etikett">Bilder testet</div><div class="undertekst">${totalt.bilderUtenAlt} uten alt</div></div>
     <div class="kort ${totalt.feltUtenLabel === 0 ? 'ok' : 'advarsel'}"><div class="tall">${totalt.skjemafelt}</div><div class="etikett">Skjemafelt</div><div class="undertekst">${totalt.feltUtenLabel} uten label</div></div>
   </div>
+
+  <details open style="margin-top:1.5rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🔐 Fast bruker – Første kjøring (${escapeHtml(testdata.bruker ?? 'ukjent')})</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
+    </summary>
+    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
   ${sideDetaljer}
+    </div>
+  </details>
 
   <div class="seksjon" id="tastatur" style="margin-top:2rem">
     <div class="seksjon-tittel">⌨️ Tastaturnavigasjon (WCAG 2.1 A/AA)</div>
@@ -1499,10 +1508,10 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
   </details>` : ''}
 
   ${ekstraRun ? `
-  <details style="margin-top:2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
-    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+  <details open style="margin-top:2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
       <span>🎲 Tilfeldig bruker – Andre kjøring (${escapeHtml(ekstraRun.bruker ?? 'ukjent')})</span>
-      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
       <p style="font-size:.83rem;color:#374151;margin-bottom:1.2rem;line-height:1.6">
