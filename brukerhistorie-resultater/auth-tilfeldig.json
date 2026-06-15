@@ -1,0 +1,135 @@
+{
+  "cookies": [
+    {
+      "name": "ingress-csrf",
+      "value": "ejf0zW0naOS+EhktqOmZog==",
+      "domain": "tilskudd.fiks.test.ks.no",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "dtCookie",
+      "value": "v_4_srv_70_sn_769E986B2D21E9ABB7514FF9ECDCFE9C_perc_100000_ol_0_mul_1_app-3A0c075c4cdf82efb1_0",
+      "domain": ".idporten.no",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "b01773c48f061e5a6fa15915170117e2",
+      "value": "85aa841ce6308fadd3c5ecfe0bb1cac2",
+      "domain": "login.test.idporten.no",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "BIGipServer~DigDir-Test~pool_digdir_test.idporten.no_https",
+      "value": "rd3567o00000000000000000000ffff8b692052o30011",
+      "domain": "login.test.idporten.no",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "0260dc82f58fc9f938d67c7fc5f66b20",
+      "value": "5fce85ad0f992f25f883fbc305f716d7",
+      "domain": "static.idporten.no",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "BIGipServer~DigDir~pool_digdir_idporten.no_https",
+      "value": "rd3535o00000000000000000000ffff8b69226ao30011",
+      "domain": "static.idporten.no",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "JSESSIONID",
+      "value": "AFF6F2A52CDD61C7933F99D1B22A0314",
+      "domain": "testid.test.idporten.no",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "0ba91516c140d36c0e0e98cf9b128957",
+      "value": "fd77e8cdad9775d76ff28ac3e1620e65",
+      "domain": "testid.test.idporten.no",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "BIGipServer~DigDir-Test~pool_digdir_test.idporten.no_https",
+      "value": "rd3567o00000000000000000000ffff8b692052o30011",
+      "domain": "testid.test.idporten.no",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "JSESSIONID",
+      "value": "B299AA5B297DBD93465B250028E8CD23",
+      "domain": "login.test.idporten.no",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "IDPORTEN_AUTH",
+      "value": "BMXrLjLPweGjJwciMtEm3A.o4_Mub6dBkM-vEj75SiiuQ",
+      "domain": "login.test.idporten.no",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "session",
+      "value": "tfihJe2mK4srIwLn4ZN-0w..|1781529280|LVpgNKQiDtQ4_sZBIxyny1r-aIM.",
+      "domain": "tilskudd.fiks.test.ks.no",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://testid.test.idporten.no",
+      "localStorage": [
+        {
+          "name": "remember-recently-used-pid",
+          "value": "false"
+        }
+      ]
+    }
+  ]
+}

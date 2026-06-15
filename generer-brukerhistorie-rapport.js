@@ -1,11 +1,12 @@
 // generer-brukerhistorie-rapport.js
-// Les brukerhistorie-resultater/brukerhistorie-resultat.json og generer docs/brukerhistorie-rapport.html
+// Les brukerhistorie-resultater/brukerhistorie-resultat.json (og evt. -tilfeldig.json) og generer docs/brukerhistorie-rapport.html
 
 import fs from 'fs';
 import path from 'path';
 
-const jsonPath = 'brukerhistorie-resultater/brukerhistorie-resultat.json';
-const utPath   = 'docs/brukerhistorie-rapport.html';
+const jsonPath  = 'brukerhistorie-resultater/brukerhistorie-resultat.json';
+const jsonPath2 = 'brukerhistorie-resultater/brukerhistorie-resultat-tilfeldig.json';
+const utPath    = 'docs/brukerhistorie-rapport.html';
 
 const iDag = new Date().toISOString().slice(0, 10);
 const datoDir = `rapporter/${iDag}`;
@@ -20,22 +21,33 @@ if (!fs.existsSync(jsonPath)) {
 const data   = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 const stats  = data.stats ?? {};
 
+const data2 = fs.existsSync(jsonPath2)
+  ? JSON.parse(fs.readFileSync(jsonPath2, 'utf-8'))
+  : null;
+
 const metadataPath = 'brukerhistorie-metadata.json';
 const jiraMetadata = fs.existsSync(metadataPath)
   ? JSON.parse(fs.readFileSync(metadataPath, 'utf-8'))
   : {};
 
-const testdataPath = 'brukerhistorie-resultater/testdata.json';
-const bhTestdata = fs.existsSync(testdataPath)
-  ? JSON.parse(fs.readFileSync(testdataPath, 'utf-8'))
+const bhTestdata = fs.existsSync('brukerhistorie-resultater/testdata.json')
+  ? JSON.parse(fs.readFileSync('brukerhistorie-resultater/testdata.json', 'utf-8'))
   : {};
 
-// Samle BH-suites fra alle testfiler og dedupliser på tittel (siste fil vinner)
+const bhTestdata2 = fs.existsSync('brukerhistorie-resultater/testdata-tilfeldig.json')
+  ? JSON.parse(fs.readFileSync('brukerhistorie-resultater/testdata-tilfeldig.json', 'utf-8'))
+  : {};
+
+// Suites – kjøring 1 (fast bruker)
 const allBhSuites = (data.suites ?? []).flatMap(s => s.suites ?? []);
 const bhMap = new Map();
 for (const suite of allBhSuites) bhMap.set(suite.title, suite);
-
 const suites = [...bhMap.values()];
+
+// Suites – kjøring 2 (tilfeldig bruker)
+const allBhSuites2 = data2 ? (data2.suites ?? []).flatMap(s => s.suites ?? []) : [];
+const bhMap2 = new Map();
+for (const suite of allBhSuites2) bhMap2.set(suite.title, suite);
 
 // Dato
 const startTime = new Date(stats.startTime);
@@ -43,13 +55,19 @@ const dato = startTime.toISOString().slice(0, 10);
 const tid  = startTime.toLocaleTimeString('no-NO', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Oslo' });
 const datotid = `${dato} ${tid}`;
 
-// Totaler beregnes fra synlige suites (skjulte suites telles ikke med)
-const alleSpecs = suites.flatMap(s => s.specs ?? []);
-const totaltBestatt = alleSpecs.filter(sp => sp.ok && !(sp.tests?.some(t => t.status === 'skipped'))).length;
-const totaltFeilet  = alleSpecs.filter(sp => !sp.ok).length;
-const totaltHoppet  = alleSpecs.filter(sp => sp.tests?.some(t => t.status === 'skipped')).length;
+// Totaler fra begge kjøringer
+function erHoppetOver(spec) {
+  return spec.tests?.some(t => t.status === 'skipped') ?? false;
+}
+
+const alleSpecs1 = suites.flatMap(s => s.specs ?? []);
+const alleSpecs2 = [...bhMap2.values()].flatMap(s => s.specs ?? []);
+const alleAlleSpecs = [...alleSpecs1, ...alleSpecs2];
+
+const totaltBestatt = alleAlleSpecs.filter(sp => sp.ok && !erHoppetOver(sp)).length;
+const totaltFeilet  = alleAlleSpecs.filter(sp => !sp.ok).length;
+const totaltHoppet  = alleAlleSpecs.filter(sp => erHoppetOver(sp)).length;
 const totaltTester  = totaltBestatt + totaltFeilet + totaltHoppet;
-const maxBh = Math.max(0, ...suites.map(s => { const m = s.title.match(/^BH-(\d+)/); return m ? parseInt(m[1]) : 0; }));
 
 // Score
 const pct = totaltTester > 0 ? Math.round((totaltBestatt / totaltTester) * 100) : 0;
@@ -90,19 +108,77 @@ function jiraTittelHtml(suiteTitle) {
     : '';
 }
 
-function erHoppetOver(spec) {
-  return spec.tests?.some(t => t.status === 'skipped') ?? false;
-}
-
 function skipArsak(spec) {
   return spec.tests?.[0]?.annotations?.find(a => a.type === 'skip')?.description ?? '';
 }
 
+function renderSpecRader(specs, bruker, tilfeldig = false) {
+  const chipCls = tilfeldig ? 'td-chip td-tilfeldig' : 'td-chip';
+  const ikon    = tilfeldig ? '🎲' : '🔐';
+  const chip    = bruker
+    ? `<span class="${chipCls}">${ikon} Bruker: <code>${esc(bruker)}</code></span>`
+    : '';
+  return specs.map(spec => {
+    const hoppet  = erHoppetOver(spec);
+    const ok      = spec.ok && !hoppet;
+    const ikons   = hoppet ? '⚠️' : ok ? '✅' : '❌';
+    const farge   = hoppet ? '#b45309' : ok ? '#064e3b' : '#c53030';
+    const bg      = hoppet ? '#fffbeb' : ok ? '#ecfdf5' : '#fff5f5';
+    const errors  = spec.tests?.flatMap(t => t.results?.flatMap(r => r.errors ?? []) ?? []) ?? [];
+    const errHtml = errors.length
+      ? `<div class="brudd-hjelp">${esc(errors.map(e => e.message ?? '').join('\n\n')).replace(/\n/g, '<br>')}</div>`
+      : '';
+    const arsak     = hoppet ? skipArsak(spec) : '';
+    const arsakHtml = arsak
+      ? `<div class="hoppet-arsak">Årsak: ${esc(arsak)}</div>`
+      : '';
+    const varighet = spec.tests?.[0]?.results?.[0]?.duration ?? 0;
+
+    if (ok) {
+      return `        <details style="border-left:3px solid #064e3b;margin:.4rem 0;background:#ecfdf5;border-radius:0 4px 4px 0;box-shadow:0 1px 3px rgba(10,19,85,.04)">
+          <summary style="display:flex;align-items:center;gap:.6rem;padding:.55rem .9rem;cursor:pointer;list-style:none;font-size:.85rem">
+            <span style="color:#064e3b;font-weight:700;flex-shrink:0">✅</span>
+            <span style="flex:1;color:#374151">${esc(spec.title)}</span>
+            ${varighet > 0 ? `<span class="brudd-teller">${varighet}ms</span>` : ''}
+            ${chip}
+          </summary>
+        </details>`;
+    }
+    return `        <div class="brudd-kort" style="border-left-color:${farge};background:${bg};">
+          <div class="brudd-header">
+            <span>${ikons} <strong>${esc(spec.title)}</strong></span>
+            <span class="brudd-teller">${varighet > 0 ? varighet + 'ms' : '–'}</span>
+          </div>
+          <div style="margin:.3rem 0 .4rem">${chip}</div>
+          ${arsakHtml}
+          ${errHtml}
+        </div>`;
+  }).join('\n');
+}
+
+function kjøringContainer({ label, fnr, tilfeldig, specs }) {
+  const ikon   = tilfeldig ? '🎲' : '🔐';
+  const farge  = tilfeldig ? '#065f46' : '#0a1355';
+  const border = tilfeldig ? '#a7f3d0' : '#f4ecdf';
+  return `      <details open style="margin-top:.8rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+        <summary style="cursor:pointer;padding:.85rem 1.2rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:${farge};user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+          <span>${ikon} ${esc(label)} (${esc(fnr ?? 'ukjent')})</span>
+          <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
+        </summary>
+        <div style="padding:1rem 1.2rem 1.2rem;border-top:1px solid ${border}">
+${specs}
+        </div>
+      </details>`;
+}
+
 function sidemenyLinks() {
   return suites.map(suite => {
-    const specs    = suite.specs ?? [];
-    const feilet   = specs.filter(sp => !sp.ok).length;
-    const hoppet   = specs.filter(sp => erHoppetOver(sp)).length;
+    const specs1   = suite.specs ?? [];
+    const suite2   = bhMap2.get(suite.title);
+    const specs2   = suite2?.specs ?? [];
+    const allSpecs = [...specs1, ...specs2];
+    const feilet   = allSpecs.filter(sp => !sp.ok).length;
+    const hoppet   = allSpecs.filter(sp => erHoppetOver(sp)).length;
     const cls      = feilet > 0 ? 'har-brudd' : hoppet > 0 ? 'har-hoppet' : 'ok';
     const id       = bhId(suite.title);
     const beskrivelse = suite.title.replace(id + ': ', '');
@@ -122,9 +198,13 @@ function sidemenyLinks() {
 
 function bhSeksjoner() {
   return suites.map(suite => {
-    const specs = suite.specs ?? [];
-    const antallFeilet  = specs.filter(sp => !sp.ok).length;
-    const antallHoppet  = specs.filter(sp => erHoppetOver(sp)).length;
+    const specs1  = suite.specs ?? [];
+    const suite2  = bhMap2.get(suite.title);
+    const specs2  = suite2?.specs ?? [];
+    const allSpecs = [...specs1, ...specs2];
+
+    const antallFeilet  = allSpecs.filter(sp => !sp.ok).length;
+    const antallHoppet  = allSpecs.filter(sp => erHoppetOver(sp)).length;
     const id = bhId(suite.title);
     const statusBadge = [
       antallFeilet > 0
@@ -138,44 +218,23 @@ function bhSeksjoner() {
         : null,
     ].filter(Boolean).join(' ');
 
-    const specRader = specs.map(spec => {
-      const hoppet = erHoppetOver(spec);
-      const ok     = spec.ok && !hoppet;
-      const ikon   = hoppet ? '⚠️' : ok ? '✅' : '❌';
-      const farge  = hoppet ? '#b45309' : ok ? '#064e3b' : '#c53030';
-      const bg     = hoppet ? '#fffbeb' : ok ? '#ecfdf5' : '#fff5f5';
-      const errors = spec.tests?.flatMap(t => t.results?.flatMap(r => r.errors ?? []) ?? []) ?? [];
-      const errHtml = errors.length
-        ? `<div class="brudd-hjelp">${esc(errors.map(e => e.message ?? '').join('\n\n')).replace(/\n/g, '<br>')}</div>`
-        : '';
-      const arsak = hoppet ? skipArsak(spec) : '';
-      const arsakHtml = arsak
-        ? `<div class="hoppet-arsak">Årsak: ${esc(arsak)}</div>`
-        : '';
-      const varighet = spec.tests?.[0]?.results?.[0]?.duration ?? 0;
-      const brukerChip = bhTestdata.bruker
-        ? `<span class="td-chip">🔐 Bruker: <code>${esc(bhTestdata.bruker)}</code></span>`
-        : '';
-      if (ok) {
-        return `      <details style="border-left:3px solid #064e3b;margin:.4rem 0;background:#ecfdf5;border-radius:0 4px 4px 0;box-shadow:0 1px 3px rgba(10,19,85,.04)">
-        <summary style="display:flex;align-items:center;gap:.6rem;padding:.55rem .9rem;cursor:pointer;list-style:none;font-size:.85rem">
-          <span style="color:#064e3b;font-weight:700;flex-shrink:0">✅</span>
-          <span style="flex:1;color:#374151">${esc(spec.title)}</span>
-          ${varighet > 0 ? `<span class="brudd-teller">${varighet}ms</span>` : ''}
-          ${brukerChip}
-        </summary>
-      </details>`;
-      }
-      return `      <div class="brudd-kort" style="border-left-color:${farge};background:${bg};">
-        <div class="brudd-header">
-          <span>${ikon} <strong>${esc(spec.title)}</strong></span>
-          <span class="brudd-teller">${varighet > 0 ? varighet + 'ms' : '–'}</span>
-        </div>
-        <div style="margin:.3rem 0 .4rem">${brukerChip}</div>
-        ${arsakHtml}
-        ${errHtml}
-      </div>`;
-    }).join('\n');
+    const kjøring1 = kjøringContainer({
+      label: 'Fast bruker – Første kjøring',
+      fnr: bhTestdata.bruker,
+      tilfeldig: false,
+      specs: renderSpecRader(specs1, bhTestdata.bruker, false),
+    });
+
+    const kjøring2 = data2 && specs2.length > 0
+      ? kjøringContainer({
+          label: 'Tilfeldig bruker – Andre kjøring',
+          fnr: bhTestdata2.bruker,
+          tilfeldig: true,
+          specs: renderSpecRader(specs2, bhTestdata2.bruker, true),
+        })
+      : '';
+
+    const antallTester = specs1.length + specs2.length;
 
     const skjermbilder = lesSkjermbilder(id);
     const skjermbildeHtml = skjermbilder.length > 0 ? `
@@ -199,8 +258,9 @@ function bhSeksjoner() {
       <div class="side-score-badges">${statusBadge}</div>
     </div>
     <div class="wcag-seksjon">
-      <h3>Akseptansekriterier (${specs.length} tester)</h3>
-${specRader}
+      <h3>Akseptansekriterier (${antallTester} tester · ${data2 ? '2 kjøringer' : '1 kjøring'})</h3>
+${kjøring1}
+${kjøring2}
     </div>
     ${skjermbildeHtml}
   </section>`;
@@ -292,8 +352,6 @@ const html = `<!DOCTYPE html>
   figcaption{font-size:.68rem;color:#9ca3af;margin-top:.3rem;text-transform:capitalize}
 
   footer{text-align:center;padding:2.5rem;color:#9ca3af;font-size:.78rem;border-top:1px solid #f1f0ee;margin-top:2rem}
-  /* Testdata-panel – globalt i rapport-header */
-  .testdata-panel{display:flex;gap:.5rem;flex-wrap:wrap;padding:.65rem 0 .35rem;margin-top:.45rem;border-top:1px solid rgba(0,0,0,.07)}
   .td-chip{display:inline-flex;align-items:center;gap:.25rem;background:#f4ecdf;color:#374151;padding:.18rem .65rem;border-radius:100px;font-size:.71rem;font-weight:500;white-space:nowrap}
   .td-chip code{font-size:.71rem;font-weight:700;color:#2b3285;background:none;padding:0}
   .td-chip.td-tilfeldig{background:#e8f5f0;color:#065f46}
@@ -318,7 +376,7 @@ ${sidemenyLinks()}
       <h1>Brukerhistorietester</h1>
       <div class="meta">
         <a href="https://tilskudd.fiks.test.ks.no/" target="_blank" rel="noopener">https://tilskudd.fiks.test.ks.no/</a>
-        &nbsp;· ${datotid} · ${suites.length} brukerhistorier · @playwright/test
+        &nbsp;· ${datotid} · ${suites.length} brukerhistorier · @playwright/test${data2 ? ' · 2 kjøringer' : ''}
       </div>
     </div>
     <div class="nav-knapper">
@@ -375,8 +433,8 @@ ${sidemenyLinks()}
     <div class="score-sirkel" style="background:${scoreFarge};">${pct}</div>
     <div class="score-tekst">
       <strong>${pct === 100 ? 'Alle tester bestatt' : `${totaltFeilet} test${totaltFeilet !== 1 ? 'er' : ''} feilet`}</strong>
-      <p>${totaltBestatt} av ${totaltTester} tester bestatt på ${suites.length} brukerhistorier.<br>
-      Varighet: ${((stats.duration ?? 0) / 1000).toFixed(1)}s totalt.</p>
+      <p>${totaltBestatt} av ${totaltTester} tester bestatt på ${suites.length} brukerhistorier${data2 ? ' · 2 kjøringer' : ''}.<br>
+      Varighet: ${((stats.duration ?? 0) / 1000).toFixed(1)}s (kjøring 1).</p>
     </div>
   </div>
 
