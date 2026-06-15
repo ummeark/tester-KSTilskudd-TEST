@@ -1,0 +1,53 @@
+{
+  "url": "https://tilskudd.fiks.test.ks.no/",
+  "dato": "2026-06-15",
+  "versjon": "v0.6.3",
+  "nettleser": "147.0.7727.15",
+  "totalt": {
+    "iterasjoner": 60,
+    "siderBesøkt": 6,
+    "jsErrors": 0,
+    "konsollFeil": 2,
+    "nettverksFeil": 2,
+    "kritiske": 0,
+    "alvorlige": 0,
+    "varighet": 93
+  },
+  "score": 84,
+  "jsErrors": [],
+  "konsollFeil": [
+    {
+      "melding": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "https://tilskudd.fiks.test.ks.no/minside/aktiv/Aktive%20s%C3%B8knader",
+      "tid": "2026-06-15T06:32:37.042Z"
+    },
+    {
+      "melding": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "https://tilskudd.fiks.test.ks.no/minside/aktiv/Aktive%20s%C3%B8knader",
+      "tid": "2026-06-15T06:32:37.225Z"
+    }
+  ],
+  "nettverksFeil": [
+    {
+      "status": 404,
+      "url": "https://tilskudd.fiks.test.ks.no/minside/aktiv/Aktive%20s%C3%B8knader",
+      "side": "https://tilskudd.fiks.test.ks.no/minside/aktiv",
+      "tid": "2026-06-15T06:32:37.040Z"
+    },
+    {
+      "status": 404,
+      "url": "https://tilskudd.fiks.test.ks.no/minside/aktiv/Aktive%20s%C3%B8knader",
+      "side": "https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast",
+      "tid": "2026-06-15T06:32:37.224Z"
+    }
+  ],
+  "interaksjoner": [],
+  "besøkte": [
+    "https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast",
+    "https://tilskudd.fiks.test.ks.no/minside/avsluttet",
+    "https://tilskudd.fiks.test.ks.no/",
+    "https://tilskudd.fiks.test.ks.no/minside/aktiv",
+    "https://tilskudd.fiks.test.ks.no/utlysinger?currentPage=1&pageSize=10",
+    "https://tilskudd.fiks.test.ks.no/minside/aktiv/Aktive%20s%C3%B8knader"
+  ]
+}
