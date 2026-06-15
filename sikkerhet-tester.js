@@ -702,7 +702,15 @@ const html = `<!DOCTYPE html>
     <div class="kort ok"><div class="tall">${ok}</div><div class="etikett">Bestått</div></div>
   </div>
 
-  ${seksjoner}
+  <details open style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🔐 Fast bruker – Første kjøring (${bruktFnr ?? 'ukjent'})</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
+    </summary>
+    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+      ${seksjoner}
+    </div>
+  </details>
 
   ${ekstraCookieFunn ? `
   <details open style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">

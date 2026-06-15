@@ -544,6 +544,14 @@ const html = `<!DOCTYPE html>
     <div class="kort ${totalt.kritiske > 0 ? 'kritisk' : 'ok'}"><div class="tall">${totalt.kritiske}</div><div class="etikett">Kritiske funn</div></div>
   </div>
 
+  <!-- Fast bruker – Første kjøring -->
+  <details open style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🔐 Fast bruker – Første kjøring (${bruktFnr ?? 'ukjent'})</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
+    </summary>
+    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+
   <!-- JS-feil -->
   <div class="seksjon" id="js-feil">
     <div class="seksjon-tittel">JS-feil (${jsErrors.length})</div>
@@ -604,6 +612,9 @@ const html = `<!DOCTYPE html>
       ${[...besøkte].sort().map(u => `<li title="${u}">${u}</li>`).join('')}
     </ul>
   </div>
+
+    </div>
+  </details>
 
   ${runde2 ? `
   <!-- Tilfeldig bruker – Andre kjøring -->
