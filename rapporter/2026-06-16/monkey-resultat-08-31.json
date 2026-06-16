@@ -1,0 +1,66 @@
+{
+  "url": "https://tilskudd.fiks.test.ks.no/",
+  "dato": "2026-06-16",
+  "versjon": "v0.6.3",
+  "nettleser": "147.0.7727.15",
+  "totalt": {
+    "iterasjoner": 60,
+    "siderBesøkt": 9,
+    "jsErrors": 0,
+    "konsollFeil": 4,
+    "nettverksFeil": 2,
+    "kritiske": 0,
+    "alvorlige": 0,
+    "varighet": 3
+  },
+  "score": 78,
+  "jsErrors": [],
+  "konsollFeil": [
+    {
+      "melding": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "https://tilskudd.fiks.test.ks.no/minside/aktiv/Aktive%20s%C3%B8knader",
+      "tid": "2026-06-16T06:31:08.049Z"
+    },
+    {
+      "melding": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "https://tilskudd.fiks.test.ks.no/minside/aktiv/Aktive%20s%C3%B8knader",
+      "tid": "2026-06-16T06:31:08.219Z"
+    },
+    {
+      "melding": "TypeError: Cannot read properties of undefined (reading 'code')\n    at loader (https://tilskudd.fiks.test.ks.no/assets/index-AALk7Lgx.js:77:54037)\n    at async Jt (https://tilskudd.fiks.test.ks.no/assets/index-AALk7Lgx.js:10:65316)\n    at async r (https://tilskudd.fiks.test.ks.no/assets/index-AALk7Lgx.js:10:67087)\n    at async Yt (https://tilskudd.fiks.test.ks.no/assets/index-AALk7Lgx.js:10:67982)\n    at async Promise.all (index 1)\n    at async Xt (https://tilskudd.fiks.test.ks.no/assets/index-AALk7Lgx.js:10:68864)\n    at async https://tilskudd.fiks.test.ks.no/assets/index-AALk7Lgx.js:10:84938",
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger?currentPage=1&pageSize=10",
+      "tid": "2026-06-16T06:31:08.390Z"
+    },
+    {
+      "melding": "TypeError: Cannot read properties of undefined (reading 'code')\n    at loader (https://tilskudd.fiks.test.ks.no/assets/index-AALk7Lgx.js:77:54037)\n    at async Jt (https://tilskudd.fiks.test.ks.no/assets/index-AALk7Lgx.js:10:65316)\n    at async r (https://tilskudd.fiks.test.ks.no/assets/index-AALk7Lgx.js:10:67087)\n    at async Yt (https://tilskudd.fiks.test.ks.no/assets/index-AALk7Lgx.js:10:67982)\n    at async Promise.all (index 1)\n    at async Xt (https://tilskudd.fiks.test.ks.no/assets/index-AALk7Lgx.js:10:68864)\n    at async https://tilskudd.fiks.test.ks.no/assets/index-AALk7Lgx.js:10:84938",
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger?searchString=&currentPage=1&pageSize=10",
+      "tid": "2026-06-16T06:31:08.873Z"
+    }
+  ],
+  "nettverksFeil": [
+    {
+      "status": 404,
+      "url": "https://tilskudd.fiks.test.ks.no/minside/aktiv/Aktive%20s%C3%B8knader",
+      "side": "https://tilskudd.fiks.test.ks.no/minside/aktiv",
+      "tid": "2026-06-16T06:31:08.048Z"
+    },
+    {
+      "status": 404,
+      "url": "https://tilskudd.fiks.test.ks.no/minside/aktiv/Aktive%20s%C3%B8knader",
+      "side": "https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast",
+      "tid": "2026-06-16T06:31:08.217Z"
+    }
+  ],
+  "interaksjoner": [],
+  "besøkte": [
+    "https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast",
+    "https://tilskudd.fiks.test.ks.no/",
+    "https://tilskudd.fiks.test.ks.no/minside/aktiv",
+    "https://tilskudd.fiks.test.ks.no/minside/aktiv/Aktive%20s%C3%B8knader",
+    "https://tilskudd.fiks.test.ks.no/utlysinger?currentPage=1&pageSize=10",
+    "https://tilskudd.fiks.test.ks.no/minside/utkast",
+    "https://tilskudd.fiks.test.ks.no/utlysinger?searchString=&currentPage=1&pageSize=10",
+    "https://tilskudd.fiks.test.ks.no/minside/avsluttet",
+    "https://tilskudd.fiks.test.ks.no/minside"
+  ]
+}
