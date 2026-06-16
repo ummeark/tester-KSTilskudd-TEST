@@ -362,14 +362,17 @@ function funnRad(f, bruker) {
     ${f.handling ? `<p class="brudd-hjelp">Handling: ${f.handling}</p>` : ''}
     <div class="node-info"><span class="node-selector">${f.url}</span></div>
     ${f.skjermdump ? `
-    <div class="skjermdump-gruppe">
-      <div class="skjermdump-wrapper">
-        <p class="skjermdump-label">Skjermdump ved funn</p>
-        <a href="${f.skjermdump}" target="_blank">
-          <img src="${f.skjermdump}" alt="Skjermdump" class="skjermdump helside" loading="lazy">
-        </a>
+    <details style="margin:.2rem 0 .5rem 0">
+      <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">📸 Vis skjermdumper ▾</summary>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem;margin-top:.5rem;padding:.6rem .7rem;background:#f8f7f5;border:1px solid #ede9e3">
+        <div>
+          <p style="font-size:.67rem;color:#6b7280;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.05em">🖥️ Skjermdump ved funn</p>
+          <a href="${f.skjermdump}" target="_blank">
+            <img src="${f.skjermdump}" loading="lazy" alt="Skjermdump" style="width:100%;max-height:180px;object-fit:cover;object-position:top;border:1px solid #e5e3de;cursor:zoom-in;display:block">
+          </a>
+        </div>
       </div>
-    </div>` : ''}
+    </details>` : ''}
   </div>`;
 }
 

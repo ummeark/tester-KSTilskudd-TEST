@@ -559,14 +559,17 @@ function testKort(t, bruker) {
     <div style="margin:.3rem 0 .5rem">${chip}</div>
     ${grid}
     ${t.skjerm ? `
-    <div class="skjermdump-gruppe">
-      <div class="skjermdump-wrapper">
-        <p class="skjermdump-label">Skjermdump</p>
-        <a href="${t.skjerm}" target="_blank">
-          <img src="${t.skjerm}" alt="Skjermdump" class="skjermdump helside" loading="lazy">
-        </a>
+    <details style="margin:.2rem 0 .5rem 0">
+      <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">📸 Vis skjermdumper ▾</summary>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem;margin-top:.5rem;padding:.6rem .7rem;background:#f8f7f5;border:1px solid #ede9e3">
+        <div>
+          <p style="font-size:.67rem;color:#6b7280;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.05em">🖥️ Skjermdump</p>
+          <a href="${t.skjerm}" target="_blank">
+            <img src="${t.skjerm}" loading="lazy" alt="Skjermdump" style="width:100%;max-height:180px;object-fit:cover;object-position:top;border:1px solid #e5e3de;cursor:zoom-in;display:block">
+          </a>
+        </div>
       </div>
-    </div>` : ''}
+    </details>` : ''}
   </div>`;
 }
 
