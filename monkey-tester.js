@@ -551,6 +551,29 @@ const html = `<!DOCTYPE html>
     <div class="kort ${totalt.kritiske > 0 ? 'kritisk' : 'ok'}"><div class="tall">${totalt.kritiske}</div><div class="etikett">Kritiske funn</div></div>
   </div>
 
+  <details id="sider" style="margin-top:1.5rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>📄 Sider besøkt (${besøkte.size}${runde2 ? ' fast · ' + runde2.besøkte.length + ' tilfeldig' : ''})</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+    </summary>
+    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem">
+        <div>
+          <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#0a1355;margin-bottom:.7rem">🔐 Fast bruker (${bruktFnr ?? 'ukjent'})</div>
+          <div class="sider-liste">
+            ${[...besøkte].sort().map(u => `<div class="side-url-rad"><a href="${u}" target="_blank">${u.replace(START_URL.replace(/\/$/, ''), '') || '/'}</a></div>`).join('')}
+          </div>
+        </div>
+        ${runde2 ? `<div>
+          <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;margin-bottom:.7rem">🎲 Tilfeldig bruker (${bruktFnr2 ?? 'ukjent'})</div>
+          <div class="sider-liste">
+            ${runde2.besøkte.slice().sort().map(u => `<div class="side-url-rad"><a href="${u}" target="_blank">${u.replace(START_URL.replace(/\/$/, ''), '') || '/'}</a></div>`).join('')}
+          </div>
+        </div>` : ''}
+      </div>
+    </div>
+  </details>
+
   <!-- Fast bruker – Første kjøring -->
   <details open style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
     <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
@@ -610,32 +633,6 @@ const html = `<!DOCTYPE html>
     ${interaksjoner.length === 0
       ? '<div class="wcag-ok">Ingen kritiske funn under monkey-testing</div>'
       : interaksjoner.map(f => funnRad(f, bruktFnr)).join('')}
-  </div>
-
-  <!-- Sider besøkt -->
-  <div class="seksjon" id="sider">
-    <details style="border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
-      <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-        <span>📄 Sider besøkt (${besøkte.size}${runde2 ? ' fast · ' + runde2.besøkte.length + ' tilfeldig' : ''})</span>
-        <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
-      </summary>
-      <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem">
-          <div>
-            <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#0a1355;margin-bottom:.7rem">🔐 Fast bruker (${bruktFnr ?? 'ukjent'})</div>
-            <div class="sider-liste">
-              ${[...besøkte].sort().map(u => `<div class="side-url-rad"><a href="${u}" target="_blank">${u.replace(START_URL.replace(/\/$/, ''), '') || '/'}</a></div>`).join('')}
-            </div>
-          </div>
-          ${runde2 ? `<div>
-            <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;margin-bottom:.7rem">🎲 Tilfeldig bruker (${bruktFnr2 ?? 'ukjent'})</div>
-            <div class="sider-liste">
-              ${runde2.besøkte.slice().sort().map(u => `<div class="side-url-rad"><a href="${u}" target="_blank">${u.replace(START_URL.replace(/\/$/, ''), '') || '/'}</a></div>`).join('')}
-            </div>
-          </div>` : ''}
-        </div>
-      </div>
-    </details>
   </div>
 
     </div>
