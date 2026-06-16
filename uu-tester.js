@@ -1056,9 +1056,24 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
         <code class="regel-id">${escapeHtml(v.id)}</code>
         <span class="regel-desc">${escapeHtml(v.description)}</span>
         <span class="node-teller">${v.nodes.length} element${v.nodes.length !== 1 ? 'er' : ''}</span>
-        ${v.bilder?.nærbilde ? `<a href="${v.bilder.nærbilde}" target="_blank" class="bilde-lenke">📸</a>` : ''}
-        ${v.bilder?.helside ? `<a href="${v.bilder.helside}" target="_blank" class="bilde-lenke">🖥️</a>` : ''}
-      </div>`).join('')}
+      </div>
+      ${v.bilder?.nærbilde || v.bilder?.helside ? `<details style="margin:.2rem 0 .5rem 0">
+        <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">📸 Vis skjermdumper ▾</summary>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem;margin-top:.5rem;padding:.6rem .7rem;background:#f8f7f5;border:1px solid #ede9e3">
+          ${v.bilder?.nærbilde ? `<div>
+            <p style="font-size:.67rem;color:#6b7280;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.05em">📍 Nærbilde av element</p>
+            <a href="${v.bilder.nærbilde}" target="_blank">
+              <img src="${v.bilder.nærbilde}" loading="lazy" alt="Nærbilde av feilende element" style="width:100%;max-height:180px;object-fit:contain;border:1px solid #e5e3de;background:white;cursor:zoom-in;display:block">
+            </a>
+          </div>` : ''}
+          ${v.bilder?.helside ? `<div>
+            <p style="font-size:.67rem;color:#6b7280;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.05em">🖥️ Sidekontekst</p>
+            <a href="${v.bilder.helside}" target="_blank">
+              <img src="${v.bilder.helside}" loading="lazy" alt="Skjermdump av siden med feilende element" style="width:100%;max-height:180px;object-fit:cover;object-position:top;border:1px solid #e5e3de;cursor:zoom-in;display:block">
+            </a>
+          </div>` : ''}
+        </div>
+      </details>` : ''}`).join('')}
     </div>`).join('');
   }
 
