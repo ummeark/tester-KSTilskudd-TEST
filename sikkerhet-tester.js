@@ -441,6 +441,8 @@ for (const f of funn) {
   per_kategori[f.kategori].push(f);
 }
 
+const testetUrls = [...new Set(funn.map(f => f.url).filter(Boolean))].sort();
+
 const kritiske  = funn.filter(f => f.alvorlighet === 'kritisk').length;
 const alvorlige = funn.filter(f => f.alvorlighet === 'alvorlig').length;
 const middels   = funn.filter(f => f.alvorlighet === 'middels').length;
@@ -619,6 +621,10 @@ const html = `<!DOCTYPE html>
   .badge.middels{background:#f3dda2;color:#713f12}
   .badge.lav{background:#f1f0ee;color:#4b5563}
   .wcag-ok{background:#ecfdf5;color:#064e3b;padding:.8rem 1rem;border-left:3px solid #07604f;font-size:.88rem}
+  .sider-liste{display:flex;flex-direction:column;gap:.25rem}
+  .side-url-rad{padding:.4rem .7rem;background:#faf6f0;border-left:3px solid #e5e3de;font-size:.82rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .side-url-rad a{color:#0a1355;text-decoration:none;font-weight:500}
+  .side-url-rad a:hover{text-decoration:underline}
   footer{text-align:center;padding:2.5rem;color:#9ca3af;font-size:.78rem;border-top:1px solid #f1f0ee;margin-top:2rem}
   ${testdataPanelCss}
 </style>
@@ -704,6 +710,18 @@ const html = `<!DOCTYPE html>
     <div class="kort ${lave > 0 ? 'nøytral' : 'ok'}"><div class="tall">${lave}</div><div class="etikett">Lave</div></div>
     <div class="kort ok"><div class="tall">${ok}</div><div class="etikett">Bestått</div></div>
   </div>
+
+  <details style="margin-top:1.5rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>📄 Sider testet (${testetUrls.length})</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+    </summary>
+    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+      <div class="sider-liste">
+        ${testetUrls.map(u => `<div class="side-url-rad"><a href="${escapeHtml(u)}" target="_blank">${escapeHtml(u.replace(START_URL.replace(/\/$/, ''), '') || '/')}</a></div>`).join('')}
+      </div>
+    </div>
+  </details>
 
   <details open style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
     <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">

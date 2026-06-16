@@ -459,6 +459,10 @@ const html = `<!DOCTYPE html>
   .wcag-ok{background:#ecfdf5;color:#064e3b;padding:.8rem 1rem;border-left:3px solid #07604f;font-size:.88rem}
   .url-liste{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.3rem}
   .url-liste li{font-size:.78rem;background:#f4ecdf;padding:.35rem .7rem;font-family:ui-monospace,monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .sider-liste{display:flex;flex-direction:column;gap:.25rem}
+  .side-url-rad{padding:.4rem .7rem;background:#faf6f0;border-left:3px solid #e5e3de;font-size:.82rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .side-url-rad a{color:#0a1355;text-decoration:none;font-weight:500}
+  .side-url-rad a:hover{text-decoration:underline}
   footer{text-align:center;padding:2.5rem;color:#9ca3af;font-size:.78rem;border-top:1px solid #f1f0ee;margin-top:2rem}
   ${testdataPanelCss}
 </style>
@@ -610,10 +614,28 @@ const html = `<!DOCTYPE html>
 
   <!-- Sider besøkt -->
   <div class="seksjon" id="sider">
-    <div class="seksjon-tittel">Sider besøkt (${besøkte.size})</div>
-    <ul class="url-liste">
-      ${[...besøkte].sort().map(u => `<li title="${u}">${u}</li>`).join('')}
-    </ul>
+    <details style="border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+      <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+        <span>📄 Sider besøkt (${besøkte.size}${runde2 ? ' fast · ' + runde2.besøkte.length + ' tilfeldig' : ''})</span>
+        <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+      </summary>
+      <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem">
+          <div>
+            <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#0a1355;margin-bottom:.7rem">🔐 Fast bruker (${bruktFnr ?? 'ukjent'})</div>
+            <div class="sider-liste">
+              ${[...besøkte].sort().map(u => `<div class="side-url-rad"><a href="${u}" target="_blank">${u.replace(START_URL.replace(/\/$/, ''), '') || '/'}</a></div>`).join('')}
+            </div>
+          </div>
+          ${runde2 ? `<div>
+            <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;margin-bottom:.7rem">🎲 Tilfeldig bruker (${bruktFnr2 ?? 'ukjent'})</div>
+            <div class="sider-liste">
+              ${runde2.besøkte.slice().sort().map(u => `<div class="side-url-rad"><a href="${u}" target="_blank">${u.replace(START_URL.replace(/\/$/, ''), '') || '/'}</a></div>`).join('')}
+            </div>
+          </div>` : ''}
+        </div>
+      </div>
+    </details>
   </div>
 
     </div>

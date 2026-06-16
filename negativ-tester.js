@@ -89,7 +89,7 @@ async function kjørNegativRunde(page, ctx) {
       if (!skjerm) skjerm = await skjermdump('js-feil');
     }
 
-    tester.push({ kategori, navn, input, forventet, faktisk, resultat, detalj, skjerm });
+    tester.push({ kategori, navn, input, forventet, faktisk, resultat, detalj, skjerm, url: page.url() });
     logg(resultat, navn, detalj);
   }
 
@@ -492,6 +492,9 @@ fs.writeFileSync(
 
 // ── HTML-rapport ──────────────────────────────────────────────────────────────
 
+const besøkteNegativ = [...new Set(tester.map(t => t.url).filter(Boolean))].sort();
+const besøkteNegativ2 = tester2 ? [...new Set(tester2.map(t => t.url).filter(Boolean))].sort() : null;
+
 const KATEGORIER = {
   skjema:    { tittel: 'Skjema-validering',      ikon: '📝' },
   url:       { tittel: 'URL-validering',          ikon: '🔗' },
@@ -649,6 +652,10 @@ const html = `<!DOCTYPE html>
   .badge.feil{background:#fee2e2;color:#c53030}
   .badge.advarsel{background:#f3dda2;color:#713f12}
   .wcag-ok{background:#ecfdf5;color:#064e3b;padding:.8rem 1rem;border-left:3px solid #07604f;font-size:.88rem}
+  .sider-liste{display:flex;flex-direction:column;gap:.25rem}
+  .side-url-rad{padding:.4rem .7rem;background:#faf6f0;border-left:3px solid #e5e3de;font-size:.82rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .side-url-rad a{color:#0a1355;text-decoration:none;font-weight:500}
+  .side-url-rad a:hover{text-decoration:underline}
   footer{text-align:center;padding:2.5rem;color:#9ca3af;font-size:.78rem;border-top:1px solid #f1f0ee;margin-top:2rem}
   ${testdataPanelCss}
 </style>
@@ -734,6 +741,29 @@ const html = `<!DOCTYPE html>
     <div class="kort ${advarsel > 0 ? 'advarsel' : 'ok'}"><div class="tall">${advarsel}</div><div class="etikett">Advarsler</div></div>
     <div class="kort ${feil > 0 ? 'kritisk' : 'ok'}"><div class="tall">${feil}</div><div class="etikett">Feil</div></div>
   </div>
+
+  <details style="margin-top:1.5rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>📄 Sider testet (${besøkteNegativ.length}${besøkteNegativ2 ? ' fast · ' + besøkteNegativ2.length + ' tilfeldig' : ''})</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+    </summary>
+    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem">
+        <div>
+          <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#0a1355;margin-bottom:.7rem">🔐 Fast bruker (${bruktFnr ?? 'ukjent'})</div>
+          <div class="sider-liste">
+            ${besøkteNegativ.map(u => `<div class="side-url-rad"><a href="${u}" target="_blank">${u.replace(START_URL.replace(/\/$/, ''), '') || '/'}</a></div>`).join('')}
+          </div>
+        </div>
+        ${besøkteNegativ2 ? `<div>
+          <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;margin-bottom:.7rem">🎲 Tilfeldig bruker (${bruktFnr2 ?? 'ukjent'})</div>
+          <div class="sider-liste">
+            ${besøkteNegativ2.map(u => `<div class="side-url-rad"><a href="${u}" target="_blank">${u.replace(START_URL.replace(/\/$/, ''), '') || '/'}</a></div>`).join('')}
+          </div>
+        </div>` : ''}
+      </div>
+    </div>
+  </details>
 
   <details open style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
     <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">

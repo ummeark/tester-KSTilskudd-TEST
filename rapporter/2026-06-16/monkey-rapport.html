@@ -5,7 +5,7 @@
 <script>if(location.protocol!=='file:'&&!sessionStorage.getItem('ks-auth'))location.replace('logg-inn.html?redir='+encodeURIComponent(location.href))</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Monkey-testrapport – 2026-06-16 08:59</title>
+<title>Monkey-testrapport – 2026-06-16 09:23</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:system-ui,-apple-system,sans-serif;background:#faf6f0;color:#0f0e17;display:flex;min-height:100vh}
@@ -74,6 +74,10 @@
   .wcag-ok{background:#ecfdf5;color:#064e3b;padding:.8rem 1rem;border-left:3px solid #07604f;font-size:.88rem}
   .url-liste{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.3rem}
   .url-liste li{font-size:.78rem;background:#f4ecdf;padding:.35rem .7rem;font-family:ui-monospace,monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .sider-liste{display:flex;flex-direction:column;gap:.25rem}
+  .side-url-rad{padding:.4rem .7rem;background:#faf6f0;border-left:3px solid #e5e3de;font-size:.82rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .side-url-rad a{color:#0a1355;text-decoration:none;font-weight:500}
+  .side-url-rad a:hover{text-decoration:underline}
   footer{text-align:center;padding:2.5rem;color:#9ca3af;font-size:.78rem;border-top:1px solid #f1f0ee;margin-top:2rem}
   
 /* Testdata-panel – globalt i rapport-header */
@@ -89,7 +93,7 @@
   <div class="sidemeny-header">
     <div class="sidemeny-logo">KS Tilskudd · Monkey-tester</div>
     <div class="env-badge">TEST-MILJØ · v0.6.3</div>
-    <h1>Monkey-testrapport <span>2026-06-16 08:59 · 60 iterasjoner</span></h1>
+    <h1>Monkey-testrapport <span>2026-06-16 09:23 · 60 iterasjoner</span></h1>
   </div>
   <ul><li><a href="#sammendrag" class="sidenav-link ">
     <span class="sidenavn">Sammendrag</span>
@@ -97,25 +101,25 @@
   </a></li><li><a href="#js-feil" class="sidenav-link ok">
     <span class="sidenavn">JS-feil</span>
     <span class="side-badge">0 funn</span>
-  </a></li><li><a href="#konsoll" class="sidenav-link har-brudd">
+  </a></li><li><a href="#konsoll" class="sidenav-link ok">
     <span class="sidenavn">Konsoll-feil</span>
-    <span class="side-badge">1 funn</span>
-  </a></li><li><a href="#nettverk" class="sidenav-link har-brudd">
+    <span class="side-badge">0 funn</span>
+  </a></li><li><a href="#nettverk" class="sidenav-link ok">
     <span class="sidenavn">Nettverksfeil</span>
-    <span class="side-badge">1 funn</span>
+    <span class="side-badge">0 funn</span>
   </a></li><li><a href="#interaksjoner" class="sidenav-link ok">
     <span class="sidenavn">Interaksjonsfunn</span>
     <span class="side-badge">0 funn</span>
   </a></li><li><a href="#sider" class="sidenav-link ">
     <span class="sidenavn">Sider besøkt</span>
-    <span class="side-badge">9 funn</span>
+    <span class="side-badge">8 funn</span>
   </a></li></ul>
 </nav>
 <div class="hoveddel">
   <div class="rapport-header">
     <div>
       <h1>Monkey-testrapport</h1>
-      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-06-16 08:59 · 109s · 60 tilfeldige handlinger · Chromium 147</div>
+      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-06-16 09:23 · 96s · 60 tilfeldige handlinger · Chromium 147</div>
     </div>
     <div class="nav-knapper">
       <a href="rapport.html" class="knapp sekundær">Forside</a>
@@ -170,19 +174,19 @@
     </div>
   </div>
   <div class="score-kort">
-    <div class="score-sirkel god">92</div>
+    <div class="score-sirkel god">100</div>
     <div class="score-tekst">
       <strong>Robusthetsscore</strong>
-      <p>Basert på JS-feil, nettverksfeil og kritiske funn etter 60 tilfeldige interaksjoner på 9 sider. Lavere score indikerer ustabilitet.</p>
+      <p>Basert på JS-feil, nettverksfeil og kritiske funn etter 60 tilfeldige interaksjoner på 8 sider. Lavere score indikerer ustabilitet.</p>
     </div>
   </div>
 
   <div class="kort-grid">
     <div class="kort ok"><div class="tall">60</div><div class="etikett">Iterasjoner</div></div>
-    <div class="kort ok"><div class="tall">9</div><div class="etikett">Sider besøkt</div></div>
+    <div class="kort ok"><div class="tall">8</div><div class="etikett">Sider besøkt</div></div>
     <div class="kort ok"><div class="tall">0</div><div class="etikett">JS-feil</div></div>
-    <div class="kort advarsel"><div class="tall">1</div><div class="etikett">Konsoll-feil</div></div>
-    <div class="kort advarsel"><div class="tall">1</div><div class="etikett">Nettverksfeil</div></div>
+    <div class="kort ok"><div class="tall">0</div><div class="etikett">Konsoll-feil</div></div>
+    <div class="kort ok"><div class="tall">0</div><div class="etikett">Nettverksfeil</div></div>
     <div class="kort ok"><div class="tall">0</div><div class="etikett">Kritiske funn</div></div>
   </div>
 
@@ -202,26 +206,14 @@
 
   <!-- Konsoll-feil -->
   <div class="seksjon" id="konsoll">
-    <div class="seksjon-tittel">Konsoll-feil (1)</div>
-    <table><thead><tr><th>Tidspunkt</th><th>Melding</th><th>URL</th></tr></thead><tbody>
-          <tr>
-            <td style="white-space:nowrap">07:01:33</td>
-            <td>Failed to load resource: the server responded with a status of 401 (Unauthorized)</td>
-            <td style="font-size:.75rem;word-break:break-all">https://tilskudd.fiks.test.ks.no/minside/avsluttet</td>
-          </tr>
-        </tbody></table>
+    <div class="seksjon-tittel">Konsoll-feil (0)</div>
+    <div class="wcag-ok">Ingen console.error()-kall oppdaget</div>
   </div>
 
   <!-- Nettverksfeil -->
   <div class="seksjon" id="nettverk">
-    <div class="seksjon-tittel">Nettverksfeil (1)</div>
-    <table><thead><tr><th>Status</th><th>URL</th><th>Fra side</th></tr></thead><tbody>
-          <tr>
-            <td><span class="badge alvorlig">401</span></td>
-            <td style="font-size:.75rem;word-break:break-all">https://tilskudd.fiks.test.ks.no/api/bff/innlogget.soknader.getList?batch=1&input=%7B%220%22%3A%7B%2</td>
-            <td style="font-size:.75rem;word-break:break-all">https://tilskudd.fiks.test.ks.no/minside/avsluttet</td>
-          </tr>
-        </tbody></table>
+    <div class="seksjon-tittel">Nettverksfeil (0)</div>
+    <div class="wcag-ok">Ingen HTTP 4xx/5xx-svar oppdaget</div>
   </div>
 
   <!-- Interaksjonsfunn -->
@@ -232,10 +224,28 @@
 
   <!-- Sider besøkt -->
   <div class="seksjon" id="sider">
-    <div class="seksjon-tittel">Sider besøkt (9)</div>
-    <ul class="url-liste">
-      <li title="https://tilskudd.fiks.test.ks.no/">https://tilskudd.fiks.test.ks.no/</li><li title="https://tilskudd.fiks.test.ks.no/minside">https://tilskudd.fiks.test.ks.no/minside</li><li title="https://tilskudd.fiks.test.ks.no/minside/aktiv">https://tilskudd.fiks.test.ks.no/minside/aktiv</li><li title="https://tilskudd.fiks.test.ks.no/minside/avsluttet">https://tilskudd.fiks.test.ks.no/minside/avsluttet</li><li title="https://tilskudd.fiks.test.ks.no/minside/utkast">https://tilskudd.fiks.test.ks.no/minside/utkast</li><li title="https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast">https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast</li><li title="https://tilskudd.fiks.test.ks.no/soknad/a1b2c3d4-e5f6-7890-1234-567890abcdef">https://tilskudd.fiks.test.ks.no/soknad/a1b2c3d4-e5f6-7890-1234-567890abcdef</li><li title="https://tilskudd.fiks.test.ks.no/soknad/a986a003-ce01-4cfc-af76-24a247db9a17">https://tilskudd.fiks.test.ks.no/soknad/a986a003-ce01-4cfc-af76-24a247db9a17</li><li title="https://tilskudd.fiks.test.ks.no/utlysinger?currentPage=1&pageSize=10">https://tilskudd.fiks.test.ks.no/utlysinger?currentPage=1&pageSize=10</li>
-    </ul>
+    <details style="border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+      <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+        <span>📄 Sider besøkt (8 fast · 9 tilfeldig)</span>
+        <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+      </summary>
+      <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem">
+          <div>
+            <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#0a1355;margin-bottom:.7rem">🔐 Fast bruker (10895696434)</div>
+            <div class="sider-liste">
+              <div class="side-url-rad"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">/</a></div><div class="side-url-rad"><a href="https://tilskudd.fiks.test.ks.no/minside/aktiv" target="_blank">/minside/aktiv</a></div><div class="side-url-rad"><a href="https://tilskudd.fiks.test.ks.no/minside/avsluttet" target="_blank">/minside/avsluttet</a></div><div class="side-url-rad"><a href="https://tilskudd.fiks.test.ks.no/minside/utkast" target="_blank">/minside/utkast</a></div><div class="side-url-rad"><a href="https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast" target="_blank">/minside?statusFilter=utkast</a></div><div class="side-url-rad"><a href="https://tilskudd.fiks.test.ks.no/utlysinger?currentPage=1&pageSize=10" target="_blank">/utlysinger?currentPage=1&pageSize=10</a></div><div class="side-url-rad"><a href="https://tilskudd.fiks.test.ks.no/utlysinger?searchString=&currentPage=1&pageSize=10" target="_blank">/utlysinger?searchString=&currentPage=1&pageSize=10</a></div><div class="side-url-rad"><a href="https://tilskudd.fiks.test.ks.no/utlysinger?searchString=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&currentPage=1&pageSize=10" target="_blank">/utlysinger?searchString=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&currentPage=1&pageSize=10</a></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;margin-bottom:.7rem">🎲 Tilfeldig bruker (24865599346)</div>
+            <div class="sider-liste">
+              <div class="side-url-rad"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">/</a></div><div class="side-url-rad"><a href="https://tilskudd.fiks.test.ks.no/minside" target="_blank">/minside</a></div><div class="side-url-rad"><a href="https://tilskudd.fiks.test.ks.no/minside/aktiv" target="_blank">/minside/aktiv</a></div><div class="side-url-rad"><a href="https://tilskudd.fiks.test.ks.no/minside/avsluttet" target="_blank">/minside/avsluttet</a></div><div class="side-url-rad"><a href="https://tilskudd.fiks.test.ks.no/minside/avsluttet/Avsluttede%20s%C3%B8knader" target="_blank">/minside/avsluttet/Avsluttede%20s%C3%B8knader</a></div><div class="side-url-rad"><a href="https://tilskudd.fiks.test.ks.no/minside/utkast" target="_blank">/minside/utkast</a></div><div class="side-url-rad"><a href="https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast" target="_blank">/minside?statusFilter=utkast</a></div><div class="side-url-rad"><a href="https://tilskudd.fiks.test.ks.no/utlysinger?currentPage=1&pageSize=10" target="_blank">/utlysinger?currentPage=1&pageSize=10</a></div><div class="side-url-rad"><a href="https://tilskudd.fiks.test.ks.no/utlysinger?searchString=&currentPage=1&pageSize=10" target="_blank">/utlysinger?searchString=&currentPage=1&pageSize=10</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
   </div>
 
     </div>
@@ -245,16 +255,16 @@
   <!-- Tilfeldig bruker – Andre kjøring -->
   <details open style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
     <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker – Andre kjøring (17825999205)</span>
+      <span>🎲 Tilfeldig bruker – Andre kjøring (24865599346)</span>
       <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
       <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.82rem">
         <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">⚡ 0 JS-feil</span>
-        <span style="background:#ecfdf5;color:#07604f;padding:.2rem .7rem;border-radius:100px;font-weight:600">🖥️ 0 konsoll-feil</span>
-        <span style="background:#ecfdf5;color:#07604f;padding:.2rem .7rem;border-radius:100px;font-weight:600">🌐 0 nettverksfeil</span>
+        <span style="background:#f3dda2;color:#713f12;padding:.2rem .7rem;border-radius:100px;font-weight:600">🖥️ 3 konsoll-feil</span>
+        <span style="background:#f3dda2;color:#713f12;padding:.2rem .7rem;border-radius:100px;font-weight:600">🌐 1 nettverksfeil</span>
         <span style="background:#ecfdf5;color:#07604f;padding:.2rem .7rem;border-radius:100px;font-weight:600">💥 0 kritiske funn</span>
-        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">📄 7 sider · 92s</span>
+        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">📄 9 sider · 2s</span>
       </div>
       <div class="wcag-ok">Ingen kritiske funn under testing med tilfeldig bruker</div>
     </div>
@@ -288,7 +298,7 @@
       </div>
     </div>
   </details>
-  <footer>KS Tilskudd · Monkey-tester · Playwright · 2026-06-16 08:59</footer>
+  <footer>KS Tilskudd · Monkey-tester · Playwright · 2026-06-16 09:23</footer>
 </div>
 </body>
 </html>
