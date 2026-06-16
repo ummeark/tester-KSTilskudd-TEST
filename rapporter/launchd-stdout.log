@@ -2538,3 +2538,49 @@
  create mode 100644 rapporter/2026-06-15/uu-rapport.html
  create mode 100644 rapporter/2026-06-15/ytelse-rapport.html
  create mode 100644 rapporter/2026-06-15/ytelse-resultat.json
+[main 23c670c] Daglig UU-rapport 2026-06-16 [skip ci]
+ 52 files changed, 13384 insertions(+), 1249 deletions(-)
+ create mode 100644 docs/arkiv/2026-06-16/brukerhistorie-rapport.html
+ create mode 100644 docs/arkiv/2026-06-16/monkey-rapport-08-31.html
+ create mode 100644 docs/arkiv/2026-06-16/monkey-rapport.html
+ create mode 100644 docs/arkiv/2026-06-16/negativ-rapport-08-31.html
+ create mode 100644 docs/arkiv/2026-06-16/negativ-rapport.html
+ create mode 100644 docs/arkiv/2026-06-16/sikkerhet-rapport-08-31.html
+ create mode 100644 docs/arkiv/2026-06-16/sikkerhet-rapport.html
+ create mode 100644 docs/arkiv/2026-06-16/skjermbilder-negativ/negativ-mobil-14.png
+ create mode 100644 docs/arkiv/2026-06-16/skjermbilder-negativ/negativ-mobil-7.png
+ create mode 100644 docs/arkiv/2026-06-16/skjermbilder-negativ/negativ-reload-krasj-13.png
+ create mode 100644 docs/arkiv/2026-06-16/skjermbilder-negativ/negativ-reload-krasj-6.png
+ create mode 100644 docs/arkiv/2026-06-16/skjermbilder-negativ/negativ-soknad-direkte-krasj-12.png
+ create mode 100644 docs/arkiv/2026-06-16/skjermbilder-negativ/negativ-soknad-direkte-krasj-5.png
+ create mode 100644 docs/arkiv/2026-06-16/skjermbilder-negativ/negativ-url-ingen-feilside-1.png
+ create mode 100644 docs/arkiv/2026-06-16/skjermbilder-negativ/negativ-url-ingen-feilside-10.png
+ create mode 100644 docs/arkiv/2026-06-16/skjermbilder-negativ/negativ-url-ingen-feilside-11.png
+ create mode 100644 docs/arkiv/2026-06-16/skjermbilder-negativ/negativ-url-ingen-feilside-2.png
+ create mode 100644 docs/arkiv/2026-06-16/skjermbilder-negativ/negativ-url-ingen-feilside-3.png
+ create mode 100644 docs/arkiv/2026-06-16/skjermbilder-negativ/negativ-url-ingen-feilside-4.png
+ create mode 100644 docs/arkiv/2026-06-16/skjermbilder-negativ/negativ-url-ingen-feilside-8.png
+ create mode 100644 docs/arkiv/2026-06-16/skjermbilder-negativ/negativ-url-ingen-feilside-9.png
+ create mode 100644 docs/arkiv/2026-06-16/ytelse-rapport.html
+ create mode 100644 rapporter/2026-06-16/brukerhistorie-rapport.html
+ create mode 100644 rapporter/2026-06-16/brukerhistorie-resultat.json
+ create mode 100644 rapporter/2026-06-16/negativ-rapport-08-31.html
+ create mode 100644 rapporter/2026-06-16/negativ-rapport.html
+ create mode 100644 rapporter/2026-06-16/negativ-resultat-08-31.json
+ create mode 100644 rapporter/2026-06-16/negativ-resultat.json
+ create mode 100644 rapporter/2026-06-16/skjermbilder-negativ/negativ-mobil-14.png
+ create mode 100644 rapporter/2026-06-16/skjermbilder-negativ/negativ-mobil-7.png
+ create mode 100644 rapporter/2026-06-16/skjermbilder-negativ/negativ-reload-krasj-13.png
+ create mode 100644 rapporter/2026-06-16/skjermbilder-negativ/negativ-reload-krasj-6.png
+ create mode 100644 rapporter/2026-06-16/skjermbilder-negativ/negativ-soknad-direkte-krasj-12.png
+ create mode 100644 rapporter/2026-06-16/skjermbilder-negativ/negativ-soknad-direkte-krasj-5.png
+ create mode 100644 rapporter/2026-06-16/skjermbilder-negativ/negativ-url-ingen-feilside-1.png
+ create mode 100644 rapporter/2026-06-16/skjermbilder-negativ/negativ-url-ingen-feilside-10.png
+ create mode 100644 rapporter/2026-06-16/skjermbilder-negativ/negativ-url-ingen-feilside-11.png
+ create mode 100644 rapporter/2026-06-16/skjermbilder-negativ/negativ-url-ingen-feilside-2.png
+ create mode 100644 rapporter/2026-06-16/skjermbilder-negativ/negativ-url-ingen-feilside-3.png
+ create mode 100644 rapporter/2026-06-16/skjermbilder-negativ/negativ-url-ingen-feilside-4.png
+ create mode 100644 rapporter/2026-06-16/skjermbilder-negativ/negativ-url-ingen-feilside-8.png
+ create mode 100644 rapporter/2026-06-16/skjermbilder-negativ/negativ-url-ingen-feilside-9.png
+ create mode 100644 rapporter/2026-06-16/ytelse-rapport.html
+ create mode 100644 rapporter/2026-06-16/ytelse-resultat.json
