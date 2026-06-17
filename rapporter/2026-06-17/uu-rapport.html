@@ -5,7 +5,7 @@
 <script>if(location.protocol!=='file:'&&!sessionStorage.getItem('ks-auth'))location.replace('logg-inn.html?redir='+encodeURIComponent(location.href))</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>UU-rapport – 2026-06-17 14:19</title>
+<title>UU-rapport – 2026-06-17 15:01</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:system-ui,-apple-system,sans-serif;background:#faf6f0;color:#0f0e17;display:flex;min-height:100vh}
@@ -182,9 +182,13 @@
   <div class="sidemeny-header">
     <div class="sidemeny-logo">KS Tilskudd · UU-tester</div>
     <div class="env-badge">TEST-MILJØ · v0.7.0</div>
-    <h1>Tilgjengelighetsrapport <span>2026-06-17 14:19 · 20 sider</span></h1>
+    <h1>Tilgjengelighetsrapport <span>2026-06-17 15:01 · 20 sider</span></h1>
   </div>
-  <ul><li class="wcag-prinsipp-header">Prinsipp 1: Mulig å oppfatte</li><li><a href="#wcag-1-1-1" class="sidenav-link har-brudd">
+  <ul><li><a href="#firefox-krysssjekk" class="sidenav-link har-brudd">
+    <span class="sidenavn">🦊 Firefox krysssjekk</span>
+    <span class="side-url">Nettlesersammenlikning</span>
+    <span class="side-badge">34 brudd</span>
+  </a></li><li class="wcag-prinsipp-header">Prinsipp 1: Mulig å oppfatte</li><li><a href="#wcag-1-1-1" class="sidenav-link har-brudd">
         <span class="sidenavn">1.1.1</span>
         <span class="side-url">Ikke-tekstlig innhold</span>
         <span class="side-badge">❌ feil</span>
@@ -266,7 +270,7 @@
   <div class="rapport-header">
     <div>
       <h1>Tilgjengelighetsrapport</h1>
-      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-06-17 14:19 · 20 sider testet · Chromium 147</div>
+      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-06-17 15:01 · 20 sider testet · Chromium 147</div>
     </div>
     <div class="nav-knapper">
       <a href="rapport.html" class="knapp sekundær">Forside</a>
@@ -407,7 +411,7 @@
           </div>
         </div>
         <div>
-          <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;margin-bottom:.7rem">🎲 Tilfeldig bruker (52837300533)</div>
+          <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;margin-bottom:.7rem">🎲 Tilfeldig bruker (05861998853)</div>
           <div class="sider-liste">
             <div class="side-url-rad">
               <a href="https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast" target="_blank">KS Tilskudd - Min side</a>
@@ -463,6 +467,127 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </details>
+
+  
+  <details style="margin-top:1.5rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)" id="firefox-krysssjekk">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🦊 Firefox krysssjekk (20 sider)</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
+    </summary>
+    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+      <p style="font-size:.83rem;color:#374151;margin-bottom:1rem;line-height:1.6">
+        Sammenligning av WCAG-brudd mellom Chromium og Firefox på de samme sidene. Brudd som finnes i begge nettlesere er høyest prioritert.
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.8rem;margin-bottom:1.2rem">
+        <div class="kort advarsel"><div class="tall">14</div><div class="etikett">Chromium brudd</div></div>
+        <div class="kort advarsel"><div class="tall">34</div><div class="etikett">Firefox brudd</div></div>
+        <div class="kort kritisk"><div class="tall">14</div><div class="etikett">Begge nettlesere</div><div class="undertekst">høyest prioritet</div></div>
+        <div class="kort advarsel"><div class="tall">20</div><div class="etikett">Kun Firefox</div></div>
+        <div class="kort"><div class="tall">0</div><div class="etikett">Kun Chromium</div></div>
+      </div>
+      <div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast" target="_blank" style="color:#0a1355;text-decoration:none">/minside?statusFilter=utkast</a></div>
+        
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no" target="_blank" style="color:#0a1355;text-decoration:none">/</a></div>
+        
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/utlysinger" target="_blank" style="color:#0a1355;text-decoration:none">/utlysinger</a></div>
+        
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/minside" target="_blank" style="color:#0a1355;text-decoration:none">/minside</a></div>
+        
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/minside/utkast" target="_blank" style="color:#0a1355;text-decoration:none">/minside/utkast</a></div>
+        
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/minside/aktiv" target="_blank" style="color:#0a1355;text-decoration:none">/minside/aktiv</a></div>
+        
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/minside/avsluttet" target="_blank" style="color:#0a1355;text-decoration:none">/minside/avsluttet</a></div>
+        
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/utlysinger/553b5d8c-209e-410e-88c6-a6cb79d714dc" target="_blank" style="color:#0a1355;text-decoration:none">/utlysinger/553b5d8c-209e-410e-88c6-a6cb79d714dc</a></div>
+        
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/utlysinger/e42eab8a-1512-4dc2-bbf9-40eebcbabcd5" target="_blank" style="color:#0a1355;text-decoration:none">/utlysinger/e42eab8a-1512-4dc2-bbf9-40eebcbabcd5</a></div>
+        
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/utlysinger/7082abd8-4f23-43e9-adce-c4762b848b81" target="_blank" style="color:#0a1355;text-decoration:none">/utlysinger/7082abd8-4f23-43e9-adce-c4762b848b81</a></div>
+        
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/utlysinger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0" target="_blank" style="color:#0a1355;text-decoration:none">/utlysinger/cbc3a2eb-42bd-49db-b2e7-0f66e13a56a0</a></div>
+        
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/utlysinger/72ad6a5b-3819-446b-881d-eed1d5dd9ed6" target="_blank" style="color:#0a1355;text-decoration:none">/utlysinger/72ad6a5b-3819-446b-881d-eed1d5dd9ed6</a></div>
+        
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/utlysinger/b4d7c9a1-2f65-4e3b-8a91-0c7d6e5f4a33" target="_blank" style="color:#0a1355;text-decoration:none">/utlysinger/b4d7c9a1-2f65-4e3b-8a91-0c7d6e5f4a33</a></div>
+        
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/minside/utkast/Utkast" target="_blank" style="color:#0a1355;text-decoration:none">/minside/utkast/Utkast</a></div>
+        
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/soknad/a1b2c3d4-e5f6-7890-1234-567890abcdef" target="_blank" style="color:#0a1355;text-decoration:none">/soknad/a1b2c3d4-e5f6-7890-1234-567890abcdef</a></div>
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#92400e;font-weight:600">🔴 Begge nettlesere:</span> <code style="background:#fee2e2;color:#c53030;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">button-name</code><code style="background:#fee2e2;color:#c53030;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">link-name</code><code style="background:#fee2e2;color:#c53030;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">role-img-alt</code></div>
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/soknad/72076638-cb96-4e8d-866b-9b120fe00601" target="_blank" style="color:#0a1355;text-decoration:none">/soknad/72076638-cb96-4e8d-866b-9b120fe00601</a></div>
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#92400e;font-weight:600">🔴 Begge nettlesere:</span> <code style="background:#fee2e2;color:#c53030;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">button-name</code><code style="background:#fee2e2;color:#c53030;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">link-name</code><code style="background:#fee2e2;color:#c53030;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">role-img-alt</code></div>
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/soknad/f79639d3-59df-498c-97d5-1b0499078ecf" target="_blank" style="color:#0a1355;text-decoration:none">/soknad/f79639d3-59df-498c-97d5-1b0499078ecf</a></div>
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#92400e;font-weight:600">🔴 Begge nettlesere:</span> <code style="background:#fee2e2;color:#c53030;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">link-name</code><code style="background:#fee2e2;color:#c53030;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">role-img-alt</code></div>
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/soknad/d1aa30b0-88c6-4084-abfb-57751f0876a2" target="_blank" style="color:#0a1355;text-decoration:none">/soknad/d1aa30b0-88c6-4084-abfb-57751f0876a2</a></div>
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#92400e;font-weight:600">🔴 Begge nettlesere:</span> <code style="background:#fee2e2;color:#c53030;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">link-name</code><code style="background:#fee2e2;color:#c53030;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">role-img-alt</code></div>
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/soknad/a986a003-ce01-4cfc-af76-24a247db9a17" target="_blank" style="color:#0a1355;text-decoration:none">/soknad/a986a003-ce01-4cfc-af76-24a247db9a17</a></div>
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#92400e;font-weight:600">🔴 Begge nettlesere:</span> <code style="background:#fee2e2;color:#c53030;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">link-name</code><code style="background:#fee2e2;color:#c53030;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">role-img-alt</code></div>
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
+      </div><div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
+        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="https://tilskudd.fiks.test.ks.no/soknad/28ad17b3-f3fd-4655-a404-57c9f5f9667e" target="_blank" style="color:#0a1355;text-decoration:none">/soknad/28ad17b3-f3fd-4655-a404-57c9f5f9667e</a></div>
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#92400e;font-weight:600">🔴 Begge nettlesere:</span> <code style="background:#fee2e2;color:#c53030;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">link-name</code><code style="background:#fee2e2;color:#c53030;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">role-img-alt</code></div>
+        <div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> <code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">region</code></div>
+        
       </div>
     </div>
   </details>
@@ -660,7 +785,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -690,7 +815,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -720,7 +845,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -750,7 +875,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -780,7 +905,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -810,7 +935,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -840,7 +965,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -873,7 +998,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -903,7 +1028,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -933,7 +1058,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -963,7 +1088,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -1021,7 +1146,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -1219,7 +1344,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -1249,7 +1374,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -1282,7 +1407,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -1312,7 +1437,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -1342,7 +1467,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -1375,7 +1500,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -1607,7 +1732,7 @@
   </details>
         <details open style="margin-top:.5rem;border:1px solid #e5e3de;border-radius:4px;background:white;box-shadow:0 1px 3px rgba(10,19,85,.04)">
     <summary style="cursor:pointer;padding:.7rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">52837300533</code></span>
+      <span>🎲 Tilfeldig bruker <code style="font-size:.71rem;font-weight:700;color:#065f46;background:none;margin-left:.3rem">05861998853</code></span>
       <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:.75rem 1rem 1rem;border-top:1px solid #a7f3d0">
@@ -2137,7 +2262,7 @@
       </div>
     </div>
   </details>
-  <footer>KS Tilskudd · UU-tester · axe-core + Playwright · 2026-06-17 14:19</footer>
+  <footer>KS Tilskudd · UU-tester · axe-core + Playwright · 2026-06-17 15:01</footer>
 </div>
 </body>
 </html>
