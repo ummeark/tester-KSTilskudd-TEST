@@ -223,20 +223,20 @@
       <div class="om-seksjon">
         <h3>Testtyper</h3>
         <table class="om-tabell">
-          <tr><td>♿ UU-test</td><td>npm run rapport</td><td>WCAG/axe-core, reflow og tekstmellomrom, opptil 20 sider</td></tr>
-          <tr><td>🐒 Monkey-test</td><td>npm run monkey</td><td>60 tilfeldige handlinger, fanger JS-feil og krasj</td></tr>
-          <tr><td>🔐 Sikkerhetstest</td><td>npm run sikkerhet</td><td>HTTP-hoder, cookies, CORS, eksponerte stier</td></tr>
-          <tr><td>🧪 Negativ test</td><td>npm run negativ</td><td>Ugyldig input, URL-manipulering, tilgangskontroll</td></tr>
-          <tr><td>🚀 Ytelsestest</td><td>npm run ytelse</td><td>LCP og FCP per side</td></tr>
-          <tr><td>📖 Brukerhistorie</td><td>npm run brukerhistorie</td><td>11 akseptansekriterier, BH-1 til BH-4</td></tr>
+          <tr><td>♿ UU-test</td><td>npm run rapport</td><td>axe-core, tastatur, reflow, tekstmellomrom og ekstra WCAG-sjekker · opptil 20 sider · 2 kjøringer</td></tr>
+          <tr><td>🐒 Monkey-test</td><td>npm run monkey</td><td>60 tilfeldige handlinger · 2 kjøringer · fanger JS-feil og krasj</td></tr>
+          <tr><td>🔐 Sikkerhetstest</td><td>npm run sikkerhet</td><td>HTTP-hoder, HTTPS, cookies, CORS, XSS-refleksjon og eksponerte stier</td></tr>
+          <tr><td>🧪 Negativ test</td><td>npm run negativ</td><td>Ugyldig input, URL-manipulering, navigasjon, nettleser og sesjonshåndtering</td></tr>
+          <tr><td>🚀 Ytelsestest</td><td>npm run ytelse</td><td>LCP, FCP, TTFB og innlastningstid per side</td></tr>
+          <tr><td>📖 Brukerhistorie</td><td>npm run brukerhistorie</td><td>13 brukerhistorier · 93 akseptansekriterier</td></tr>
         </table>
       </div>
       <div class="om-seksjon">
         <h3>Kjøreflyt</h3>
         <div class="flyt-liste">
           <div class="flyt-rad">launchd starter <code>sjekk-og-kjoer.sh</code> hvert 30. min (hverdager)</div>
-          <div class="flyt-rad">avbryter stille hvis alle 5 resultatfiler finnes for dagen</div>
-          <div class="flyt-rad"><code>run-rapport-lokalt.sh</code> kjører alle 5 tester i rekkefølge</div>
+          <div class="flyt-rad">avbryter stille hvis alle 6 resultatfiler finnes for dagen</div>
+          <div class="flyt-rad"><code>run-rapport-lokalt.sh</code> kjører alle 6 tester i rekkefølge</div>
           <div class="flyt-rad"><code>npm run arkiv</code> kopierer resultater til <code>docs/</code> og genererer denne siden</div>
           <div class="flyt-rad"><code>git push</code> publiserer til GitHub Pages</div>
         </div>
