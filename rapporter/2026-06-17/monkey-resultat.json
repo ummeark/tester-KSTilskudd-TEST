@@ -1,0 +1,71 @@
+{
+  "url": "https://tilskudd.fiks.test.ks.no/",
+  "dato": "2026-06-17",
+  "versjon": "v0.7.0",
+  "nettleser": "147.0.7727.15",
+  "totalt": {
+    "iterasjoner": 60,
+    "siderBesøkt": 9,
+    "jsErrors": 2,
+    "konsollFeil": 3,
+    "nettverksFeil": 0,
+    "kritiske": 1,
+    "alvorlige": 0,
+    "varighet": 4
+  },
+  "score": 55,
+  "jsErrors": [
+    {
+      "melding": "Minified React error #419; visit https://react.dev/errors/419 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+      "stack": "",
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger/553b5d8c-209e-410e-88c6-a6cb79d714dc",
+      "tid": "2026-06-17T06:31:14.664Z"
+    },
+    {
+      "melding": "Minified React error #419; visit https://react.dev/errors/419 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+      "stack": "",
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger/553b5d8c-209e-410e-88c6-a6cb79d714dc",
+      "tid": "2026-06-17T06:31:14.727Z"
+    }
+  ],
+  "konsollFeil": [
+    {
+      "melding": "TypeError: Cannot read properties of undefined (reading 'code')\n    at loader (https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:12:126793)\n    at async Pt (https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:10:43244)\n    at async r (https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:10:45015)\n    at async Ft (https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:10:45909)\n    at async Promise.all (index 1)\n    at async It (https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:10:46790)\n    at async https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:10:65382",
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger?searchString=&currentPage=1&pageSize=10",
+      "tid": "2026-06-17T06:31:13.021Z"
+    },
+    {
+      "melding": "TypeError: Cannot read properties of undefined (reading 'code')\n    at loader (https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:12:126793)\n    at async Pt (https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:10:43244)\n    at async r (https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:10:45015)\n    at async Ft (https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:10:45909)\n    at async Promise.all (index 1)\n    at async It (https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:10:46790)\n    at async https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:10:65382",
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger?searchString=&currentPage=1&pageSize=10",
+      "tid": "2026-06-17T06:31:14.422Z"
+    },
+    {
+      "melding": "TypeError: Cannot read properties of undefined (reading 'code')\n    at loader (https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:12:128009)\n    at async Pt (https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:10:43244)\n    at async r (https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:10:45015)\n    at async Ft (https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:10:45909)\n    at async Promise.all (index 1)\n    at async It (https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:10:46790)\n    at async https://tilskudd.fiks.test.ks.no/assets/index-F9UOzhR7.js:10:65382",
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger/553b5d8c-209e-410e-88c6-a6cb79d714dc",
+      "tid": "2026-06-17T06:31:14.544Z"
+    }
+  ],
+  "nettverksFeil": [],
+  "interaksjoner": [
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter skjemafyll: inneholder \"500\"",
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger/553b5d8c-209e-410e-88c6-a6cb79d714dc",
+      "handling": "",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-3.png",
+      "tid": "2026-06-17T06:31:14.748Z"
+    }
+  ],
+  "besøkte": [
+    "https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast",
+    "https://tilskudd.fiks.test.ks.no/utlysinger?currentPage=1&pageSize=10",
+    "https://tilskudd.fiks.test.ks.no/minside/utkast",
+    "https://tilskudd.fiks.test.ks.no/soknad/d1aa30b0-88c6-4084-abfb-57751f0876a2",
+    "https://tilskudd.fiks.test.ks.no/minside/avsluttet",
+    "https://tilskudd.fiks.test.ks.no/",
+    "https://tilskudd.fiks.test.ks.no/utlysinger?searchString=&currentPage=1&pageSize=10",
+    "https://tilskudd.fiks.test.ks.no/minside/aktiv",
+    "https://tilskudd.fiks.test.ks.no/utlysinger/553b5d8c-209e-410e-88c6-a6cb79d714dc"
+  ]
+}
