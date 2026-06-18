@@ -987,7 +987,7 @@ const totalt = {
 };
 
 // Lagre JSON (uten bildedata for å holde størrelsen nede)
-fs.writeFileSync(path.join(rapportDir, 'resultat.json'), JSON.stringify({ url: START_URL, dato, versjon, nettleser, totalt, tastatur, reflow, tekstmellomrom, ekstraWcag, sider: sideResultater.map(s => ({ ...s, wcag: { ...s.wcag, detaljer: s.wcag.detaljer.map(v => ({ ...v, bilder: v.bilder })) } })) }, null, 2));
+fs.writeFileSync(path.join(rapportDir, 'resultat.json'), JSON.stringify({ url: START_URL, dato, versjon, nettleser, score: scoreBeregn(totalt), totalt, tastatur, reflow, tekstmellomrom, ekstraWcag, sider: sideResultater.map(s => ({ ...s, wcag: { ...s.wcag, detaljer: s.wcag.detaljer.map(v => ({ ...v, bilder: v.bilder })) } })) }, null, 2));
 
 // Generer HTML
 fs.writeFileSync(path.join(rapportDir, 'uu-rapport.html'), genererRapport(START_URL, dato, tidspunkt, totalt, sideResultater, versjon, tastatur, nettleser, reflow, tekstmellomrom, innloggingsSteg, ekstraWcag, testdata, ekstraRun, firefoxRun));

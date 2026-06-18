@@ -27,10 +27,22 @@ function parseUUJson(json) {
     bilderUtenAlt: Array.isArray(json.bilder) ? json.bilder.filter(b => !b.harAlt).length : 0,
     feltUtenLabel: Array.isArray(json.skjema) ? json.skjema.filter(f => !f.harLabel).length : 0,
   };
+  if (json.score != null) return { score: json.score, totalt };
+  const t = totalt;
+  const axe = (t.uniqKritiske ?? t.kritiske ?? 0) * 15
+            + (t.uniqAlvorlige ?? t.alvorlige ?? 0) * 8
+            + (t.uniqModerate ?? t.moderate ?? 0) * 3
+            + (t.uniqMindre ?? t.mindre ?? 0) * 1;
   const score = Math.max(0, 100
-    - (totalt.kritiske || 0) * 15 - (totalt.alvorlige || 0) * 8 - (totalt.moderate || 0) * 3 - (totalt.mindre || 0)
-    - (totalt.dødelenker || 0) * 5 - (totalt.knappUtenLabel || 0) * 4 - (totalt.bilderUtenAlt || 0) * 4 - (totalt.feltUtenLabel || 0) * 4
-    - (totalt.tastaturFeil || 0) * 15 - (totalt.tastaturAdvarsel || 0) * 5
+    - axe
+    - Math.min((t.dødelenker || 0) * 4, 20)
+    - Math.min((t.knappUtenLabel || 0) * 2, 15)
+    - Math.min((t.bilderUtenAlt || 0) * 2, 10)
+    - Math.min((t.feltUtenLabel || 0) * 2, 10)
+    - (t.tastaturFeil || 0) * 10 - (t.tastaturAdvarsel || 0) * 3
+    - (t.reflowFeil || 0) * 8 - (t.reflowAdvarsel || 0) * 2
+    - (t.tekstmellomromFeil || 0) * 5 - (t.tekstmellomromAdvarsel || 0) * 1
+    - (t.ekstraFeil || 0) * 8 - (t.ekstraAdvarsel || 0) * 1
   );
   return { score, totalt };
 }
@@ -645,7 +657,7 @@ const sisteMonkey         = monkey[0]    || null;
 const sisteSikk           = sikkerhet[0] || null;
 const sisteNegativ        = negativ[0]   || null;
 const sisteYtelse         = ytelse[0]    || null;
-const sisteBrukerhistorie = lesBrukerhistorie();
+const sisteBrukerhistorie = brukerhistorie[0] || lesBrukerhistorie();
 
 const dashboardHTML = `<!DOCTYPE html>
 <html lang="no">
