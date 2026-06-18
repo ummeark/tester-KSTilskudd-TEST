@@ -957,6 +957,7 @@ if (FIREFOX_KRYSSSJEKK) {
 }
 
 // Aggregert oppsummering
+const alleViolasjonIds = sideResultater.flatMap(s => (s.wcag?.detaljer ?? []).map(v => ({ id: v.id, impact: v.impact })));
 const totalt = {
   sider: sideResultater.length,
   wcagBrudd: sideResultater.reduce((s, r) => s + r.wcag.brudd, 0),
@@ -964,6 +965,10 @@ const totalt = {
   alvorlige: sideResultater.reduce((s, r) => s + r.wcag.alvorlige, 0),
   moderate: sideResultater.reduce((s, r) => s + r.wcag.moderate, 0),
   mindre: sideResultater.reduce((s, r) => s + r.wcag.mindre, 0),
+  uniqKritiske: new Set(alleViolasjonIds.filter(v => v.impact === 'critical').map(v => v.id)).size,
+  uniqAlvorlige: new Set(alleViolasjonIds.filter(v => v.impact === 'serious').map(v => v.id)).size,
+  uniqModerate: new Set(alleViolasjonIds.filter(v => v.impact === 'moderate').map(v => v.id)).size,
+  uniqMindre: new Set(alleViolasjonIds.filter(v => v.impact === 'minor').map(v => v.id)).size,
   dødelenker: sideResultater.reduce((s, r) => s + r.lenker.døde.length, 0),
   knapper: sideResultater.reduce((s, r) => s + r.knapper.length, 0),
   knappUtenLabel: sideResultater.reduce((s, r) => s + r.knapper.filter(k => !k.harLabel).length, 0),
@@ -1022,7 +1027,21 @@ function escapeHtml(str) {
 }
 
 function scoreBeregn(t) {
-  return Math.max(0, 100 - t.kritiske * 15 - t.alvorlige * 8 - t.moderate * 3 - t.mindre - t.dødelenker * 5 - t.knappUtenLabel * 4 - t.bilderUtenAlt * 4 - t.feltUtenLabel * 4 - (t.tastaturFeil || 0) * 15 - (t.tastaturAdvarsel || 0) * 5 - (t.reflowFeil || 0) * 10 - (t.reflowAdvarsel || 0) * 3 - (t.tekstmellomromFeil || 0) * 8 - (t.tekstmellomromAdvarsel || 0) * 2 - (t.ekstraFeil || 0) * 10 - (t.ekstraAdvarsel || 0) * 2);
+  // Axe-core: fradrag basert på unike regeltyper (ikke per side-forekomst)
+  const axe = (t.uniqKritiske ?? t.kritiske) * 15
+            + (t.uniqAlvorlige ?? t.alvorlige) * 8
+            + (t.uniqModerate  ?? t.moderate)  * 3
+            + (t.uniqMindre    ?? t.mindre)    * 1;
+  // Øvrige funn: per forekomst, men med tak slik at gjentakelser på mange sider ikke nullstiller alt
+  const lenker  = Math.min(t.dødelenker    * 4, 20);
+  const knapper = Math.min(t.knappUtenLabel * 2, 15);
+  const bilder  = Math.min(t.bilderUtenAlt  * 2, 10);
+  const felt    = Math.min(t.feltUtenLabel  * 2, 10);
+  const tastatur  = (t.tastaturFeil  || 0) * 10 + (t.tastaturAdvarsel  || 0) * 3;
+  const reflow    = (t.reflowFeil    || 0) * 8  + (t.reflowAdvarsel    || 0) * 2;
+  const mellomrom = (t.tekstmellomromFeil || 0) * 5 + (t.tekstmellomromAdvarsel || 0) * 1;
+  const ekstra    = (t.ekstraFeil    || 0) * 8  + (t.ekstraAdvarsel    || 0) * 1;
+  return Math.max(0, 100 - axe - lenker - knapper - bilder - felt - tastatur - reflow - mellomrom - ekstra);
 }
 
 function badge(n, klasse, tekst) {
@@ -1835,22 +1854,25 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
 
   <div class="seksjon" style="margin-top:2rem">
     <div class="seksjon-tittel">Slik beregnes UU-scoren</div>
+    <p style="font-size:.82rem;color:#374151;margin-bottom:.9rem;line-height:1.6">
+      WCAG-brudd telles per <strong>unik regeltype</strong> (ikke per side-forekomst), slik at én feil på ti sider gir samme trekk som én feil på én side. Knapper og lenker har tak på maks 15–20 poengs fradrag.
+    </p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.3rem .8rem;font-size:.82rem;font-family:ui-monospace,monospace;margin-bottom:.9rem">
-      <span style="color:#374151">Kritisk WCAG-brudd</span><span style="color:#c53030;font-weight:700">× 15 poeng</span>
-      <span style="color:#374151">Alvorlig WCAG-brudd</span><span style="color:#9a3412;font-weight:700">× 8 poeng</span>
-      <span style="color:#374151">Moderat WCAG-brudd</span><span style="color:#713f12;font-weight:700">× 3 poeng</span>
-      <span style="color:#374151">Mindre WCAG-brudd</span><span style="color:#6b7280;font-weight:700">× 1 poeng</span>
-      <span style="color:#374151">Død lenke</span><span style="color:#c53030;font-weight:700">× 5 poeng</span>
-      <span style="color:#374151">Knapp uten label</span><span style="color:#9a3412;font-weight:700">× 4 poeng</span>
-      <span style="color:#374151">Bilde uten alt-tekst</span><span style="color:#9a3412;font-weight:700">× 4 poeng</span>
-      <span style="color:#374151">Skjemafelt uten label</span><span style="color:#9a3412;font-weight:700">× 4 poeng</span>
-      <span style="color:#374151">Tastatur-feil (WCAG-brudd)</span><span style="color:#c53030;font-weight:700">× 15 poeng</span>
-      <span style="color:#374151">Tastatur-advarsel</span><span style="color:#9a3412;font-weight:700">× 5 poeng</span>
-      <span style="color:#374151">Reflow-feil (1.4.10)</span><span style="color:#c53030;font-weight:700">× 10 poeng</span>
-      <span style="color:#374151">Reflow-advarsel</span><span style="color:#9a3412;font-weight:700">× 3 poeng</span>
-      <span style="color:#374151">Tekstmellomrom-advarsel (1.4.12)</span><span style="color:#9a3412;font-weight:700">× 2 poeng</span>
-      <span style="color:#374151">Ekstra WCAG-feil</span><span style="color:#c53030;font-weight:700">× 10 poeng</span>
-      <span style="color:#374151">Ekstra WCAG-advarsel</span><span style="color:#9a3412;font-weight:700">× 2 poeng</span>
+      <span style="color:#374151">Kritisk WCAG-regeltype (unik)</span><span style="color:#c53030;font-weight:700">× 15 poeng</span>
+      <span style="color:#374151">Alvorlig WCAG-regeltype (unik)</span><span style="color:#9a3412;font-weight:700">× 8 poeng</span>
+      <span style="color:#374151">Moderat WCAG-regeltype (unik)</span><span style="color:#713f12;font-weight:700">× 3 poeng</span>
+      <span style="color:#374151">Mindre WCAG-regeltype (unik)</span><span style="color:#6b7280;font-weight:700">× 1 poeng</span>
+      <span style="color:#374151">Død lenke (maks 20 p)</span><span style="color:#c53030;font-weight:700">× 4 poeng</span>
+      <span style="color:#374151">Knapp uten label (maks 15 p)</span><span style="color:#9a3412;font-weight:700">× 2 poeng</span>
+      <span style="color:#374151">Bilde uten alt-tekst (maks 10 p)</span><span style="color:#9a3412;font-weight:700">× 2 poeng</span>
+      <span style="color:#374151">Skjemafelt uten label (maks 10 p)</span><span style="color:#9a3412;font-weight:700">× 2 poeng</span>
+      <span style="color:#374151">Tastatur-feil (WCAG-brudd)</span><span style="color:#c53030;font-weight:700">× 10 poeng</span>
+      <span style="color:#374151">Tastatur-advarsel</span><span style="color:#9a3412;font-weight:700">× 3 poeng</span>
+      <span style="color:#374151">Reflow-feil (1.4.10)</span><span style="color:#c53030;font-weight:700">× 8 poeng</span>
+      <span style="color:#374151">Reflow-advarsel</span><span style="color:#9a3412;font-weight:700">× 2 poeng</span>
+      <span style="color:#374151">Tekstmellomrom-feil (1.4.12)</span><span style="color:#9a3412;font-weight:700">× 5 poeng</span>
+      <span style="color:#374151">Ekstra WCAG-feil</span><span style="color:#c53030;font-weight:700">× 8 poeng</span>
+      <span style="color:#374151">Ekstra WCAG-advarsel</span><span style="color:#9a3412;font-weight:700">× 1 poeng</span>
     </div>
     <p style="font-size:.78rem;color:#6b7280;font-family:ui-monospace,monospace">Score = maks(0, 100 − sum av trekk) &nbsp;·&nbsp; <span style="color:#07604f;font-weight:600">Grønn ≥ 80</span> &nbsp;·&nbsp; <span style="color:#b8860b;font-weight:600">Gul 50–79</span> &nbsp;·&nbsp; <span style="color:#c53030;font-weight:600">Rød &lt; 50</span></p>
   </div>
