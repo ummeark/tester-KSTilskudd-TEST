@@ -1,0 +1,192 @@
+{
+  "url": "https://tilskudd.fiks.test.ks.no/",
+  "dato": "2026-06-18",
+  "versjon": "v0.7.0",
+  "nettleser": "147.0.7727.15",
+  "score": 78,
+  "totalt": {
+    "kritiske": 0,
+    "alvorlige": 1,
+    "middels": 0,
+    "lave": 6,
+    "ok": 18,
+    "varighet": 3
+  },
+  "funn": [
+    {
+      "kategori": "hoder",
+      "alvorlighet": "ok",
+      "tittel": "HSTS er satt",
+      "detalj": "Verdi: max-age=31536000; includeSubDomains",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "hoder",
+      "alvorlighet": "ok",
+      "tittel": "Content-Security-Policy er satt",
+      "detalj": "Verdi: default-src *.ks.no min.kommune.no *.skyra.no; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.ks.no min.kommune.no https://survey.skyra.no; object-src 'none'; style-src 'self' 'unsafe-inline' *.ks.no min.kommune.no; img-src 'self' data: *.ks.no min.kommune.no; base-uri 'self';",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "hoder",
+      "alvorlighet": "ok",
+      "tittel": "X-Frame-Options er satt",
+      "detalj": "Verdi: sameorigin",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "hoder",
+      "alvorlighet": "ok",
+      "tittel": "X-Content-Type-Options er satt",
+      "detalj": "Verdi: nosniff",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "hoder",
+      "alvorlighet": "lav",
+      "tittel": "Manglende Referrer-Policy",
+      "detalj": "Kontrollerer referrer-informasjon i forespørsler",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "hoder",
+      "alvorlighet": "lav",
+      "tittel": "Manglende Permissions-Policy",
+      "detalj": "Begrenser tilgang til nettleserfunksjoner (kamera, GPS osv.)",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "hoder",
+      "alvorlighet": "lav",
+      "tittel": "Manglende COOP",
+      "detalj": "Isolerer nettleservinduet mot cross-origin-angrep",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "hoder",
+      "alvorlighet": "lav",
+      "tittel": "Manglende CORP",
+      "detalj": "Begrenser hvem som kan laste inn sidens ressurser",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "https",
+      "alvorlighet": "ok",
+      "tittel": "HTTP omdirigerer til HTTPS",
+      "detalj": "Redirect: https://tilskudd.fiks.test.ks.no/",
+      "url": "http://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "sensitive-stier",
+      "alvorlighet": "alvorlig",
+      "tittel": "Sensitiv sti tilgjengelig: /robots.txt",
+      "detalj": "Robot-eksklusjonsfil – HTTP 200, 67 tegn innhold",
+      "url": "https://tilskudd.fiks.test.ks.no/robots.txt"
+    },
+    {
+      "kategori": "cookies",
+      "alvorlighet": "lav",
+      "tittel": "Cookie \"ingress-csrf\" mangler HttpOnly (akseptert)",
+      "detalj": "Må leses av JavaScript for CSRF-beskyttelse – HttpOnly er ikke mulig. Dette er standarden.",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "cookies",
+      "alvorlighet": "ok",
+      "tittel": "Cookie \"dtCookie\" (.idporten.no) er fra ekstern leverandør – sjekkes ikke",
+      "detalj": "ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "cookies",
+      "alvorlighet": "ok",
+      "tittel": "Cookie \"b01773c48f061e5a6fa15915170117e2\" (login.test.idporten.no) er fra ekstern leverandør – sjekkes ikke",
+      "detalj": "ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "cookies",
+      "alvorlighet": "ok",
+      "tittel": "Cookie \"BIGipServer~DigDir-Test~pool_digdir_test.idporten.no_https\" (login.test.idporten.no) er fra ekstern leverandør – sjekkes ikke",
+      "detalj": "ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "cookies",
+      "alvorlighet": "ok",
+      "tittel": "Cookie \"0260dc82f58fc9f938d67c7fc5f66b20\" (static.idporten.no) er fra ekstern leverandør – sjekkes ikke",
+      "detalj": "ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "cookies",
+      "alvorlighet": "ok",
+      "tittel": "Cookie \"BIGipServer~DigDir~pool_digdir_idporten.no_https\" (static.idporten.no) er fra ekstern leverandør – sjekkes ikke",
+      "detalj": "ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "cookies",
+      "alvorlighet": "ok",
+      "tittel": "Cookie \"JSESSIONID\" (testid.test.idporten.no) er fra ekstern leverandør – sjekkes ikke",
+      "detalj": "ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "cookies",
+      "alvorlighet": "ok",
+      "tittel": "Cookie \"0ba91516c140d36c0e0e98cf9b128957\" (testid.test.idporten.no) er fra ekstern leverandør – sjekkes ikke",
+      "detalj": "ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "cookies",
+      "alvorlighet": "ok",
+      "tittel": "Cookie \"BIGipServer~DigDir-Test~pool_digdir_test.idporten.no_https\" (testid.test.idporten.no) er fra ekstern leverandør – sjekkes ikke",
+      "detalj": "ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "cookies",
+      "alvorlighet": "ok",
+      "tittel": "Cookie \"JSESSIONID\" (login.test.idporten.no) er fra ekstern leverandør – sjekkes ikke",
+      "detalj": "ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "cookies",
+      "alvorlighet": "ok",
+      "tittel": "Cookie \"IDPORTEN_AUTH\" (login.test.idporten.no) er fra ekstern leverandør – sjekkes ikke",
+      "detalj": "ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "cookies",
+      "alvorlighet": "lav",
+      "tittel": "Cookie \"session\" har SameSite=None (avventes – platform-teamet avgjør)",
+      "detalj": "Platform-teamet er kontaktet og avgjør om dette skal utbedres.",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "mixed-content",
+      "alvorlighet": "ok",
+      "tittel": "Ingen mixed content funnet",
+      "detalj": "Alle ressurser lastes over HTTPS",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    },
+    {
+      "kategori": "xss",
+      "alvorlighet": "ok",
+      "tittel": "Søkefelt ser ut til å rense input",
+      "detalj": "Payload ble ikke reflektert urensket",
+      "url": "https://tilskudd.fiks.test.ks.no/utlysinger?searchString=%22%3E%3Cimg+src%3Dx+onerror%3Dalert%281%29%3E&currentPage=1&pageSize=10"
+    },
+    {
+      "kategori": "cors",
+      "alvorlighet": "ok",
+      "tittel": "Ingen CORS-hoder – standard same-origin-policy gjelder",
+      "detalj": "",
+      "url": "https://tilskudd.fiks.test.ks.no/"
+    }
+  ]
+}

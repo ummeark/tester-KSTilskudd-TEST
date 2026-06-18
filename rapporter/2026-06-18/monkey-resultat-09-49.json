@@ -1,0 +1,24 @@
+{
+  "url": "https://tilskudd.fiks.test.ks.no/",
+  "dato": "2026-06-18",
+  "versjon": "v0.7.0",
+  "nettleser": "147.0.7727.15",
+  "totalt": {
+    "iterasjoner": 5,
+    "siderBesøkt": 1,
+    "jsErrors": 0,
+    "konsollFeil": 0,
+    "nettverksFeil": 0,
+    "kritiske": 0,
+    "alvorlige": 0,
+    "varighet": 1
+  },
+  "score": 100,
+  "jsErrors": [],
+  "konsollFeil": [],
+  "nettverksFeil": [],
+  "interaksjoner": [],
+  "besøkte": [
+    "https://tilskudd.fiks.test.ks.no/minside?statusFilter=utkast"
+  ]
+}
