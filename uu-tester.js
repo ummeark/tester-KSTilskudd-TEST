@@ -813,6 +813,34 @@ async function kjørEkstraWcagSjekker(ctx, url) {
   return { tester, bestått, feil, advarsel };
 }
 
+// Helper: aggreger totalt fra en kjøring
+function beregnTotaltFraRun(sr, ta, re, te, ek) {
+  const alleVIds = sr.flatMap(s => (s.wcag?.detaljer ?? []).map(v => ({ id: v.id, impact: v.impact })));
+  return {
+    sider: sr.length,
+    wcagBrudd: sr.reduce((s, r) => s + r.wcag.brudd, 0),
+    kritiske: sr.reduce((s, r) => s + r.wcag.kritiske, 0),
+    alvorlige: sr.reduce((s, r) => s + r.wcag.alvorlige, 0),
+    moderate: sr.reduce((s, r) => s + r.wcag.moderate, 0),
+    mindre: sr.reduce((s, r) => s + r.wcag.mindre, 0),
+    uniqKritiske: new Set(alleVIds.filter(v => v.impact === 'critical').map(v => v.id)).size,
+    uniqAlvorlige: new Set(alleVIds.filter(v => v.impact === 'serious').map(v => v.id)).size,
+    uniqModerate: new Set(alleVIds.filter(v => v.impact === 'moderate').map(v => v.id)).size,
+    uniqMindre: new Set(alleVIds.filter(v => v.impact === 'minor').map(v => v.id)).size,
+    dødelenker: sr.reduce((s, r) => s + r.lenker.døde.length, 0),
+    knapper: sr.reduce((s, r) => s + r.knapper.length, 0),
+    knappUtenLabel: sr.reduce((s, r) => s + r.knapper.filter(k => !k.harLabel).length, 0),
+    bilder: sr.reduce((s, r) => s + r.bilder.length, 0),
+    bilderUtenAlt: sr.reduce((s, r) => s + r.bilder.filter(b => !b.harAlt).length, 0),
+    skjemafelt: sr.reduce((s, r) => s + r.skjemafelt.length, 0),
+    feltUtenLabel: sr.reduce((s, r) => s + r.skjemafelt.filter(f => !f.harLabel).length, 0),
+    tastaturFeil: ta.feil, tastaturAdvarsel: ta.advarsel,
+    reflowFeil: re.feil, reflowAdvarsel: re.advarsel,
+    tekstmellomromFeil: te.feil, tekstmellomromAdvarsel: te.advarsel,
+    ekstraFeil: ek.feil, ekstraAdvarsel: ek.advarsel,
+  };
+}
+
 // Crawl alle sider
 while (kø.length > 0 && besøkte.size < MAX_SIDER) {
   const url = kø.shift();
@@ -918,41 +946,103 @@ if (TEST_EKSTRA_BRUKER) {
   await browser2.close();
 }
 
-// Firefox krysssjekk (axe-core på de samme sidene som Chromium fant)
+// Firefox full test (alle sjekker – samme som Chromium)
 let firefoxRun = null;
 if (FIREFOX_KRYSSSJEKK) {
-  console.log(`\n🦊 Kjører Firefox-krysssjekk (axe-core på ${besøkte.size} sider)...`);
+  console.log('\n🦊 Kjører Firefox full test (fast bruker)...');
   try {
     const ffBrowser = await firefox.launch();
-    const ffCtx = await ffBrowser.newContext({ userAgent: 'Mozilla/5.0 UU-Tester/1.0 Firefox', viewport: VIEWPORT });
-    if (GITHUB_PAGES_AUTH) await ffCtx.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
-    const { url: ffUrl } = await loggInn(ffCtx, START_URL, { modus: TEST_MODUS, testFnr: TEST_FNR });
-    if (ffUrl) {
-      const ffResultater = [];
-      for (const sideUrl of [...besøkte]) {
-        const page = await ffCtx.newPage();
-        try {
-          await page.goto(sideUrl, { waitUntil: 'networkidle', timeout: LAST_TIMEOUT });
-          const axeRå = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice']).analyze();
-          const violations = axeRå.violations.map(v => ({ id: v.id, impact: v.impact, description: v.description, nodeCount: v.nodes.length }));
-          ffResultater.push({ url: sideUrl, violations });
-          const sti = sideUrl.replace(START_URL.replace(/\/$/, ''), '') || '/';
-          console.log(`  🦊 ${sti} – ${violations.length} brudd`);
-        } catch (e) {
-          console.log(`  ⚠️  Firefox: Feil ved ${sideUrl}: ${e.message.slice(0, 50)}`);
-        } finally {
-          await page.close();
+
+    // --- Firefox fast bruker ---
+    const ffCtxFast = await ffBrowser.newContext({ userAgent: 'Mozilla/5.0 UU-Tester/1.0 Firefox', viewport: VIEWPORT });
+    if (GITHUB_PAGES_AUTH) await ffCtxFast.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
+    const { url: ffUrlFast, bruktFnr: ffFnrFast } = await loggInn(ffCtxFast, START_URL, { modus: TEST_MODUS, testFnr: TEST_FNR });
+    if (ffUrlFast) {
+      const ffBesøkteFast = new Set();
+      const ffKøFast = [ffUrlFast];
+      const ffOppdagetFraFast = new Map();
+      ffOppdagetFraFast.set((ffUrlFast ?? START_URL).replace(/\/$/, '') || START_URL, null);
+      const ffSiderFast = [];
+      let ffIndeksFast = 0;
+      while (ffKøFast.length > 0 && ffBesøkteFast.size < MAX_SIDER) {
+        const u = ffKøFast.shift();
+        const norm = u.replace(/\/$/, '') || START_URL;
+        if (ffBesøkteFast.has(norm)) continue;
+        ffBesøkteFast.add(norm);
+        ffIndeksFast++;
+        const sti = norm.replace(START_URL.replace(/\/$/, ''), '') || '/';
+        const res = await analyserSide(norm, ffIndeksFast, ffOppdagetFraFast.get(norm) ?? null, ffCtxFast, false);
+        if (res) {
+          ffSiderFast.push(res);
+          console.log(`  🦊 [${ffBesøkteFast.size}/${MAX_SIDER}] ${sti} – ${res.wcag.brudd} brudd`);
+          for (const l of res.internelenker) {
+            const n = l.replace(/\/$/, '');
+            if (!ffBesøkteFast.has(n) && !ffKøFast.includes(n)) {
+              ffKøFast.push(n);
+              if (!ffOppdagetFraFast.has(n)) ffOppdagetFraFast.set(n, norm);
+            }
+          }
         }
       }
-      firefoxRun = { resultater: ffResultater };
-      const ffTotal = ffResultater.reduce((s, r) => s + r.violations.length, 0);
-      console.log(`  ✅ Firefox: ${ffResultater.length} sider, ${ffTotal} WCAG-brudd`);
+      const ffTastaturFast = await kjørTastaturSjekker(ffCtxFast, START_URL);
+      const ffReflowFast = await kjørReflowSjekk(ffCtxFast, START_URL);
+      const ffTekstmellomromFast = await kjørTekstmellomromSjekk(ffCtxFast, START_URL);
+      const ffEkstraFast = await kjørEkstraWcagSjekker(ffCtxFast, START_URL);
+      const ffTotaltFast = beregnTotaltFraRun(ffSiderFast, ffTastaturFast, ffReflowFast, ffTekstmellomromFast, ffEkstraFast);
+      console.log(`  ✅ Firefox fast bruker (${escapeHtml(ffFnrFast ?? 'ukjent')}): ${ffSiderFast.length} sider, ${ffTotaltFast.wcagBrudd} WCAG-brudd`);
+      firefoxRun = { fast: { bruker: ffFnrFast, sider: ffSiderFast, tastatur: ffTastaturFast, reflow: ffReflowFast, tekstmellomrom: ffTekstmellomromFast, ekstraWcag: ffEkstraFast, totalt: ffTotaltFast } };
+
+      // --- Firefox tilfeldig bruker ---
+      if (TEST_EKSTRA_BRUKER) {
+        console.log('\n🦊 Kjører Firefox full test (tilfeldig bruker)...');
+        const ffCtxTilf = await ffBrowser.newContext({ userAgent: 'Mozilla/5.0 UU-Tester/1.0 Firefox', viewport: VIEWPORT });
+        if (GITHUB_PAGES_AUTH) await ffCtxTilf.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
+        const { url: ffUrlTilf, bruktFnr: ffFnrTilf } = await loggInn(ffCtxTilf, START_URL, { modus: 'tilfeldig', testFnr: TEST_FNR });
+        if (ffUrlTilf) {
+          const ffBesøkteTilf = new Set();
+          const ffKøTilf = [ffUrlTilf];
+          const ffOppdagetFraTilf = new Map();
+          ffOppdagetFraTilf.set((ffUrlTilf ?? START_URL).replace(/\/$/, '') || START_URL, null);
+          const ffSiderTilf = [];
+          let ffIndeksTilf = 0;
+          while (ffKøTilf.length > 0 && ffBesøkteTilf.size < MAX_SIDER) {
+            const u = ffKøTilf.shift();
+            const norm = u.replace(/\/$/, '') || START_URL;
+            if (ffBesøkteTilf.has(norm)) continue;
+            ffBesøkteTilf.add(norm);
+            ffIndeksTilf++;
+            const sti = norm.replace(START_URL.replace(/\/$/, ''), '') || '/';
+            const res = await analyserSide(norm, ffIndeksTilf, ffOppdagetFraTilf.get(norm) ?? null, ffCtxTilf, false);
+            if (res) {
+              ffSiderTilf.push(res);
+              console.log(`  🦊 [Tilfeldig ${ffBesøkteTilf.size}/${MAX_SIDER}] ${sti} – ${res.wcag.brudd} brudd`);
+              for (const l of res.internelenker) {
+                const n = l.replace(/\/$/, '');
+                if (!ffBesøkteTilf.has(n) && !ffKøTilf.includes(n)) {
+                  ffKøTilf.push(n);
+                  if (!ffOppdagetFraTilf.has(n)) ffOppdagetFraTilf.set(n, norm);
+                }
+              }
+            }
+          }
+          const ffTastaturTilf = await kjørTastaturSjekker(ffCtxTilf, START_URL);
+          const ffReflowTilf = await kjørReflowSjekk(ffCtxTilf, START_URL);
+          const ffTekstmellomromTilf = await kjørTekstmellomromSjekk(ffCtxTilf, START_URL);
+          const ffEkstraTilf = await kjørEkstraWcagSjekker(ffCtxTilf, START_URL);
+          const ffTotaltTilf = beregnTotaltFraRun(ffSiderTilf, ffTastaturTilf, ffReflowTilf, ffTekstmellomromTilf, ffEkstraTilf);
+          console.log(`  ✅ Firefox tilfeldig bruker (${escapeHtml(ffFnrTilf ?? 'ukjent')}): ${ffSiderTilf.length} sider, ${ffTotaltTilf.wcagBrudd} WCAG-brudd`);
+          firefoxRun.tilfeldig = { bruker: ffFnrTilf, sider: ffSiderTilf, tastatur: ffTastaturTilf, reflow: ffReflowTilf, tekstmellomrom: ffTekstmellomromTilf, ekstraWcag: ffEkstraTilf, totalt: ffTotaltTilf };
+        } else {
+          console.log('  ⚠️  Firefox tilfeldig bruker-innlogging feilet – hopper over.');
+        }
+        await ffCtxTilf.close();
+      }
     } else {
-      console.log('  ⚠️  Firefox-innlogging feilet – hopper over krysssjekk.');
+      console.log('  ⚠️  Firefox-innlogging feilet – hopper over.');
     }
     await ffBrowser.close();
   } catch (e) {
-    console.log(`  ⚠️  Firefox-krysssjekk feilet: ${e.message.slice(0, 80)}`);
+    console.log(`  ⚠️  Firefox full test feilet: ${e.message.slice(0, 80)}`);
   }
 }
 
@@ -1055,7 +1145,7 @@ function impactFarge(impact) {
 
 function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tastatur = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, nettleser = '', reflow = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, tekstmellomrom = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, innloggingsSteg = [], ekstraWcag = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, testdata = {}, ekstraRun = null, firefoxRun = null) {
   const s = scoreBeregn(totalt);
-  const ffTotalt = firefoxRun ? firefoxRun.resultater.reduce((s, r) => s + r.violations.length, 0) : 0;
+  const ffTotalt = firefoxRun ? (firefoxRun.fast.totalt.wcagBrudd + (firefoxRun.tilfeldig?.totalt.wcagBrudd ?? 0)) : 0;
   const scoreKlasse = s >= 80 ? 'god' : s >= 50 ? 'middels' : 'dårlig';
 
   // WCAG 2.1 – testbare kriterier
@@ -1171,12 +1261,14 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
   </details>`;
   }
 
-  // Kombiner status for begge kjøringer (verste vinner)
+  // Kombiner status for alle kjøringer (verste vinner)
   const kStatus = {};
   for (const [id, info] of Object.entries(WCAG_INFO)) {
     const s1 = kSt(id, info, sider, tastatur, reflow, tekstmellomrom, ekstraWcag);
     const s2 = ekstraRun ? kSt(id, info, ekstraRun.sider ?? [], ekstraRun.tastatur, ekstraRun.reflow, ekstraRun.tekstmellomrom, ekstraRun.ekstraWcag) : 'ok';
-    kStatus[id] = worstSt(s1, s2);
+    const s3 = firefoxRun ? kSt(id, info, firefoxRun.fast.sider, firefoxRun.fast.tastatur, firefoxRun.fast.reflow, firefoxRun.fast.tekstmellomrom, firefoxRun.fast.ekstraWcag) : 'ok';
+    const s4 = firefoxRun?.tilfeldig ? kSt(id, info, firefoxRun.tilfeldig.sider, firefoxRun.tilfeldig.tastatur, firefoxRun.tilfeldig.reflow, firefoxRun.tilfeldig.tekstmellomrom, firefoxRun.tilfeldig.ekstraWcag) : 'ok';
+    kStatus[id] = worstSt(worstSt(s1, s2), worstSt(s3, s4));
   }
 
   const sidenavigasjon = [1, 2, 3, 4].flatMap(p => [
@@ -1215,6 +1307,8 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
         badgeTekst = st === 'feil' ? 'Feil' : 'Advarsel';
       }
       const sp2 = ekstraRun?.sider ?? [];
+      const ffFastSider = firefoxRun?.fast.sider ?? [];
+      const ffTilfSider = firefoxRun?.tilfeldig?.sider ?? [];
       return `<section class="kriterie-seksjon" id="wcag-${id.replace(/\./g, '-')}">
         <div class="kriterie-header">
           <div>
@@ -1227,8 +1321,26 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
           </div>
           <div><span class="status-badge ${badgeKls}">${badgeTekst}</span></div>
         </div>
-        ${kjøringContainerFn(id, info, sider, tastatur, reflow, tekstmellomrom, ekstraWcag, testdata.bruker, false)}
-        ${ekstraRun ? kjøringContainerFn(id, info, sp2, ekstraRun.tastatur, ekstraRun.reflow, ekstraRun.tekstmellomrom, ekstraRun.ekstraWcag, ekstraRun.bruker, true) : ''}
+        <details open style="margin-top:.5rem;border:1px solid #bfdbfe;border-radius:4px;background:#eff6ff">
+          <summary style="cursor:pointer;padding:.6rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#1d4ed8;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+            <span>🌐 Chromium</span>
+            <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
+          </summary>
+          <div style="padding:.5rem .75rem .75rem">
+            ${kjøringContainerFn(id, info, sider, tastatur, reflow, tekstmellomrom, ekstraWcag, testdata.bruker, false)}
+            ${ekstraRun ? kjøringContainerFn(id, info, sp2, ekstraRun.tastatur, ekstraRun.reflow, ekstraRun.tekstmellomrom, ekstraRun.ekstraWcag, ekstraRun.bruker, true) : ''}
+          </div>
+        </details>
+        ${firefoxRun ? `<details open style="margin-top:.4rem;border:1px solid #fde68a;border-radius:4px;background:#fffbeb">
+          <summary style="cursor:pointer;padding:.6rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#92400e;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+            <span>🦊 Firefox</span>
+            <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
+          </summary>
+          <div style="padding:.5rem .75rem .75rem">
+            ${kjøringContainerFn(id, info, ffFastSider, firefoxRun.fast.tastatur, firefoxRun.fast.reflow, firefoxRun.fast.tekstmellomrom, firefoxRun.fast.ekstraWcag, firefoxRun.fast.bruker, false)}
+            ${firefoxRun.tilfeldig ? kjøringContainerFn(id, info, ffTilfSider, firefoxRun.tilfeldig.tastatur, firefoxRun.tilfeldig.reflow, firefoxRun.tilfeldig.tekstmellomrom, firefoxRun.tilfeldig.ekstraWcag, firefoxRun.tilfeldig.bruker, true) : ''}
+          </div>
+        </details>` : ''}
       </section>`;
     }).join('')}
   </div>`;
@@ -1389,58 +1501,6 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
   const sideDetaljer  = genererSideHtml(sider, testdata.bruker, false);
   const sideDetaljer2 = ekstraRun ? genererSideHtml(ekstraRun.sider ?? [], ekstraRun.bruker, true) : '';
 
-  // Firefox krysssjekk-seksjon
-  let firefoxHtml = '';
-  if (firefoxRun) {
-    const chrTotalt = sider.reduce((s, s2) => s + (s2.wcag?.brudd ?? 0), 0);
-    let fellesCount = 0, kunFFCount = 0, kunChrCount = 0;
-    for (const ffSide of firefoxRun.resultater) {
-      const chrSide = sider.find(s => s.url === ffSide.url);
-      const chrIds = new Set((chrSide?.wcag?.detaljer ?? []).map(v => v.id));
-      const ffIds = new Set(ffSide.violations.map(v => v.id));
-      fellesCount += ffSide.violations.filter(v => chrIds.has(v.id)).length;
-      kunFFCount  += ffSide.violations.filter(v => !chrIds.has(v.id)).length;
-      kunChrCount += (chrSide?.wcag?.detaljer ?? []).filter(v => !ffIds.has(v.id)).length;
-    }
-    const ffSiderHtml = firefoxRun.resultater.map(ffSide => {
-      const chrSide = sider.find(s => s.url === ffSide.url);
-      const chrIds = new Set((chrSide?.wcag?.detaljer ?? []).map(v => v.id));
-      const ffIds  = new Set(ffSide.violations.map(v => v.id));
-      const begge     = ffSide.violations.filter(v => chrIds.has(v.id));
-      const kunFFList = ffSide.violations.filter(v => !chrIds.has(v.id));
-      const kunChrList = (chrSide?.wcag?.detaljer ?? []).filter(v => !ffIds.has(v.id));
-      const sti = ffSide.url.replace(url.replace(/\/$/, ''), '') || '/';
-      if (begge.length === 0 && kunFFList.length === 0 && kunChrList.length === 0) {
-        return `<div style="margin-bottom:.4rem;padding:.5rem .9rem;background:#ecfdf5;border-left:3px solid #07604f;font-size:.78rem;color:#065f46">✅ ${escapeHtml(sti)} – ingen avvik mellom nettleserne</div>`;
-      }
-      return `<div style="margin-bottom:.7rem;padding:.7rem .9rem;background:#faf6f0;border-left:3px solid #e5e3de">
-        <div style="font-size:.82rem;font-weight:600;color:#0a1355;margin-bottom:.45rem"><a href="${escapeHtml(ffSide.url)}" target="_blank" style="color:#0a1355;text-decoration:none">${escapeHtml(sti)}</a></div>
-        ${begge.length > 0 ? `<div style="margin:.3rem 0;font-size:.78rem"><span style="color:#92400e;font-weight:600">🔴 Begge nettlesere:</span> ${begge.map(v => `<code style="background:#fee2e2;color:#c53030;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">${escapeHtml(v.id)}</code>`).join('')}</div>` : ''}
-        ${kunFFList.length > 0 ? `<div style="margin:.3rem 0;font-size:.78rem"><span style="color:#9a3412;font-weight:600">🦊 Kun Firefox:</span> ${kunFFList.map(v => `<code style="background:#fde8d4;color:#9a3412;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">${escapeHtml(v.id)}</code>`).join('')}</div>` : ''}
-        ${kunChrList.length > 0 ? `<div style="margin:.3rem 0;font-size:.78rem"><span style="color:#2b3285;font-weight:600">🌐 Kun Chromium:</span> ${kunChrList.map(v => `<code style="background:#eff6ff;color:#1d4ed8;padding:.1rem .3rem;border-radius:3px;font-size:.72rem;margin:.1rem">${escapeHtml(v.id)}</code>`).join('')}</div>` : ''}
-      </div>`;
-    }).join('');
-    firefoxHtml = `
-  <details style="margin-top:1.5rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)" id="firefox-krysssjekk">
-    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🦊 Firefox krysssjekk (${firefoxRun.resultater.length} sider)</span>
-      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å utvide ▼</span>
-    </summary>
-    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
-      <p style="font-size:.83rem;color:#374151;margin-bottom:1rem;line-height:1.6">
-        Sammenligning av WCAG-brudd mellom Chromium og Firefox på de samme sidene. Brudd som finnes i begge nettlesere er høyest prioritert.
-      </p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.8rem;margin-bottom:1.2rem">
-        <div class="kort ${chrTotalt === 0 ? 'ok' : 'advarsel'}"><div class="tall">${chrTotalt}</div><div class="etikett">Chromium brudd</div></div>
-        <div class="kort ${ffTotalt === 0 ? 'ok' : 'advarsel'}"><div class="tall">${ffTotalt}</div><div class="etikett">Firefox brudd</div></div>
-        <div class="kort ${fellesCount === 0 ? 'ok' : 'kritisk'}"><div class="tall">${fellesCount}</div><div class="etikett">Begge nettlesere</div><div class="undertekst">høyest prioritet</div></div>
-        <div class="kort ${kunFFCount === 0 ? 'ok' : 'advarsel'}"><div class="tall">${kunFFCount}</div><div class="etikett">Kun Firefox</div></div>
-        <div class="kort"><div class="tall">${kunChrCount}</div><div class="etikett">Kun Chromium</div></div>
-      </div>
-      ${ffSiderHtml}
-    </div>
-  </details>`;
-  }
 
   return `<!DOCTYPE html>
 <html lang="no">
@@ -1622,11 +1682,7 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
     <div class="env-badge">TEST-MILJØ${versjon ? ` · ${versjon}` : ''}</div>
     <h1>Tilgjengelighetsrapport <span>${dato} ${tidspunkt} · ${totalt.sider} sider</span></h1>
   </div>
-  <ul>${firefoxRun ? `<li><a href="#firefox-krysssjekk" class="sidenav-link ${ffTotalt > 0 ? 'har-brudd' : 'ok'}">
-    <span class="sidenavn">🦊 Firefox krysssjekk</span>
-    <span class="side-url">Nettlesersammenlikning</span>
-    <span class="side-badge">${ffTotalt} brudd</span>
-  </a></li>` : ''}${sidenavigasjon}</ul>
+  <ul>${sidenavigasjon}</ul>
 </nav>
 <div class="hoveddel">
   <div class="rapport-header">
@@ -1706,29 +1762,43 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
     </summary>
     <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem">
-        <div>
-          <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#0a1355;margin-bottom:.7rem">🔐 Fast bruker (${escapeHtml(testdata.bruker ?? 'ukjent')})</div>
+        <div style="border:1px solid #bfdbfe;border-radius:4px;background:#eff6ff;padding:.8rem">
+          <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#1d4ed8;margin-bottom:.6rem">🌐 Chromium</div>
+          <div style="font-size:.72rem;font-weight:600;color:#0a1355;margin-bottom:.5rem">🔐 Fast bruker (${escapeHtml(testdata.bruker ?? 'ukjent')})</div>
           <div class="sider-liste">
             ${sider.map(side => `<div class="side-url-rad">
               <a href="${side.url}" target="_blank">${escapeHtml(side.tittel || side.url)}</a>
               <span class="side-path">${escapeHtml(side.url.replace(url.replace(/\/$/, ''), '') || '/')}</span>
             </div>`).join('')}
           </div>
-        </div>
-        ${ekstraRun ? `<div>
-          <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;margin-bottom:.7rem">🎲 Tilfeldig bruker (${escapeHtml(ekstraRun.bruker ?? 'ukjent')})</div>
+          ${ekstraRun ? `<div style="font-size:.72rem;font-weight:600;color:#065f46;margin:.8rem 0 .5rem">🎲 Tilfeldig bruker (${escapeHtml(ekstraRun.bruker ?? 'ukjent')})</div>
           <div class="sider-liste">
             ${(ekstraRun.sider ?? []).map(side => `<div class="side-url-rad">
               <a href="${side.url}" target="_blank">${escapeHtml(side.tittel || side.url)}</a>
               <span class="side-path">${escapeHtml(side.url.replace(url.replace(/\/$/, ''), '') || '/')}</span>
             </div>`).join('')}
+          </div>` : ''}
+        </div>
+        ${firefoxRun ? `<div style="border:1px solid #fde68a;border-radius:4px;background:#fffbeb;padding:.8rem">
+          <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#92400e;margin-bottom:.6rem">🦊 Firefox</div>
+          <div style="font-size:.72rem;font-weight:600;color:#0a1355;margin-bottom:.5rem">🔐 Fast bruker (${escapeHtml(firefoxRun.fast.bruker ?? 'ukjent')})</div>
+          <div class="sider-liste">
+            ${firefoxRun.fast.sider.map(side => `<div class="side-url-rad">
+              <a href="${side.url}" target="_blank">${escapeHtml(side.tittel || side.url)}</a>
+              <span class="side-path">${escapeHtml(side.url.replace(url.replace(/\/$/, ''), '') || '/')}</span>
+            </div>`).join('')}
           </div>
+          ${firefoxRun.tilfeldig ? `<div style="font-size:.72rem;font-weight:600;color:#065f46;margin:.8rem 0 .5rem">🎲 Tilfeldig bruker (${escapeHtml(firefoxRun.tilfeldig.bruker ?? 'ukjent')})</div>
+          <div class="sider-liste">
+            ${firefoxRun.tilfeldig.sider.map(side => `<div class="side-url-rad">
+              <a href="${side.url}" target="_blank">${escapeHtml(side.tittel || side.url)}</a>
+              <span class="side-path">${escapeHtml(side.url.replace(url.replace(/\/$/, ''), '') || '/')}</span>
+            </div>`).join('')}
+          </div>` : ''}
         </div>` : ''}
       </div>
     </div>
   </details>
-
-  ${firefoxHtml}
 
   ${wcagSeksjonerHtml}
 
