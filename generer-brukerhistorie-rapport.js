@@ -461,6 +461,11 @@ ${sidemenyLinks()}
     </div>
   </div>
 
+  <div style="display:flex;justify-content:flex-end;gap:.5rem;margin-top:1.2rem;margin-bottom:-.2rem">
+    <button onclick="document.querySelectorAll('details').forEach(d=>d.open=true)" style="background:transparent;border:1px solid #d1d5db;color:#374151;font-size:.75rem;padding:.3rem .85rem;border-radius:100px;cursor:pointer;font-family:inherit;transition:background .15s" onmouseover="this.style.background='#f4ecdf'" onmouseout="this.style.background='transparent'">↕ Åpne alle</button>
+    <button onclick="document.querySelectorAll('details').forEach(d=>d.open=false)" style="background:transparent;border:1px solid #d1d5db;color:#374151;font-size:.75rem;padding:.3rem .85rem;border-radius:100px;cursor:pointer;font-family:inherit;transition:background .15s" onmouseover="this.style.background='#f4ecdf'" onmouseout="this.style.background='transparent'">↕ Lukk alle</button>
+  </div>
+
 ${bhSeksjoner()}
 
   <footer>KS Tilskudd · Brukerhistorietester · @playwright/test · ${datotid}</footer>
