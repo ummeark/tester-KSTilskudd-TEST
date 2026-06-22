@@ -1,9 +1,9 @@
-import { chromium, firefox } from 'playwright';
+import { chromium, firefox, webkit } from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { START_URL, MAX_SIDER, VIEWPORT, SIDE_TIMEOUT, IDLE_TIMEOUT, LAST_TIMEOUT, LINK_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER, FIREFOX_KRYSSSJEKK } from './config.js';
+import { START_URL, MAX_SIDER, VIEWPORT, SIDE_TIMEOUT, IDLE_TIMEOUT, LAST_TIMEOUT, LINK_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER, FIREFOX_KRYSSSJEKK, WEBKIT_KRYSSSJEKK } from './config.js';
 import { hentVersjon, loggInn, testdataPanelCss } from './lib/common.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -1046,6 +1046,106 @@ if (FIREFOX_KRYSSSJEKK) {
   }
 }
 
+// WebKit full test (alle sjekker – samme som Chromium og Firefox)
+let webkitRun = null;
+if (WEBKIT_KRYSSSJEKK) {
+  console.log('\n🧭 Kjører WebKit (Safari) full test (fast bruker)...');
+  try {
+    const wkBrowser = await webkit.launch();
+
+    // --- WebKit fast bruker ---
+    const wkCtxFast = await wkBrowser.newContext({ userAgent: 'Mozilla/5.0 UU-Tester/1.0 WebKit', viewport: VIEWPORT });
+    if (GITHUB_PAGES_AUTH) await wkCtxFast.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
+    const { url: wkUrlFast, bruktFnr: wkFnrFast } = await loggInn(wkCtxFast, START_URL, { modus: TEST_MODUS, testFnr: TEST_FNR });
+    if (wkUrlFast) {
+      const wkBesøkteFast = new Set();
+      const wkKøFast = [wkUrlFast];
+      const wkOppdagetFraFast = new Map();
+      wkOppdagetFraFast.set((wkUrlFast ?? START_URL).replace(/\/$/, '') || START_URL, null);
+      const wkSiderFast = [];
+      let wkIndeksFast = 0;
+      while (wkKøFast.length > 0 && wkBesøkteFast.size < MAX_SIDER) {
+        const u = wkKøFast.shift();
+        const norm = u.replace(/\/$/, '') || START_URL;
+        if (wkBesøkteFast.has(norm)) continue;
+        wkBesøkteFast.add(norm);
+        wkIndeksFast++;
+        const sti = norm.replace(START_URL.replace(/\/$/, ''), '') || '/';
+        const res = await analyserSide(norm, wkIndeksFast, wkOppdagetFraFast.get(norm) ?? null, wkCtxFast, false);
+        if (res) {
+          wkSiderFast.push(res);
+          console.log(`  🧭 [${wkBesøkteFast.size}/${MAX_SIDER}] ${sti} – ${res.wcag.brudd} brudd`);
+          for (const l of res.internelenker) {
+            const n = l.replace(/\/$/, '');
+            if (!wkBesøkteFast.has(n) && !wkKøFast.includes(n)) {
+              wkKøFast.push(n);
+              if (!wkOppdagetFraFast.has(n)) wkOppdagetFraFast.set(n, norm);
+            }
+          }
+        }
+      }
+      const wkTastaturFast = await kjørTastaturSjekker(wkCtxFast, START_URL);
+      const wkReflowFast = await kjørReflowSjekk(wkCtxFast, START_URL);
+      const wkTekstmellomromFast = await kjørTekstmellomromSjekk(wkCtxFast, START_URL);
+      const wkEkstraFast = await kjørEkstraWcagSjekker(wkCtxFast, START_URL);
+      const wkTotaltFast = beregnTotaltFraRun(wkSiderFast, wkTastaturFast, wkReflowFast, wkTekstmellomromFast, wkEkstraFast);
+      console.log(`  ✅ WebKit fast bruker (${escapeHtml(wkFnrFast ?? 'ukjent')}): ${wkSiderFast.length} sider, ${wkTotaltFast.wcagBrudd} WCAG-brudd`);
+      webkitRun = { fast: { bruker: wkFnrFast, sider: wkSiderFast, tastatur: wkTastaturFast, reflow: wkReflowFast, tekstmellomrom: wkTekstmellomromFast, ekstraWcag: wkEkstraFast, totalt: wkTotaltFast } };
+
+      // --- WebKit tilfeldig bruker ---
+      if (TEST_EKSTRA_BRUKER) {
+        console.log('\n🧭 Kjører WebKit full test (tilfeldig bruker)...');
+        const wkCtxTilf = await wkBrowser.newContext({ userAgent: 'Mozilla/5.0 UU-Tester/1.0 WebKit', viewport: VIEWPORT });
+        if (GITHUB_PAGES_AUTH) await wkCtxTilf.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
+        const { url: wkUrlTilf, bruktFnr: wkFnrTilf } = await loggInn(wkCtxTilf, START_URL, { modus: 'tilfeldig', testFnr: TEST_FNR });
+        if (wkUrlTilf) {
+          const wkBesøkteTilf = new Set();
+          const wkKøTilf = [wkUrlTilf];
+          const wkOppdagetFraTilf = new Map();
+          wkOppdagetFraTilf.set((wkUrlTilf ?? START_URL).replace(/\/$/, '') || START_URL, null);
+          const wkSiderTilf = [];
+          let wkIndeksTilf = 0;
+          while (wkKøTilf.length > 0 && wkBesøkteTilf.size < MAX_SIDER) {
+            const u = wkKøTilf.shift();
+            const norm = u.replace(/\/$/, '') || START_URL;
+            if (wkBesøkteTilf.has(norm)) continue;
+            wkBesøkteTilf.add(norm);
+            wkIndeksTilf++;
+            const sti = norm.replace(START_URL.replace(/\/$/, ''), '') || '/';
+            const res = await analyserSide(norm, wkIndeksTilf, wkOppdagetFraTilf.get(norm) ?? null, wkCtxTilf, false);
+            if (res) {
+              wkSiderTilf.push(res);
+              console.log(`  🧭 [Tilfeldig ${wkBesøkteTilf.size}/${MAX_SIDER}] ${sti} – ${res.wcag.brudd} brudd`);
+              for (const l of res.internelenker) {
+                const n = l.replace(/\/$/, '');
+                if (!wkBesøkteTilf.has(n) && !wkKøTilf.includes(n)) {
+                  wkKøTilf.push(n);
+                  if (!wkOppdagetFraTilf.has(n)) wkOppdagetFraTilf.set(n, norm);
+                }
+              }
+            }
+          }
+          const wkTastaturTilf = await kjørTastaturSjekker(wkCtxTilf, START_URL);
+          const wkReflowTilf = await kjørReflowSjekk(wkCtxTilf, START_URL);
+          const wkTekstmellomromTilf = await kjørTekstmellomromSjekk(wkCtxTilf, START_URL);
+          const wkEkstraTilf = await kjørEkstraWcagSjekker(wkCtxTilf, START_URL);
+          const wkTotaltTilf = beregnTotaltFraRun(wkSiderTilf, wkTastaturTilf, wkReflowTilf, wkTekstmellomromTilf, wkEkstraTilf);
+          console.log(`  ✅ WebKit tilfeldig bruker (${escapeHtml(wkFnrTilf ?? 'ukjent')}): ${wkSiderTilf.length} sider, ${wkTotaltTilf.wcagBrudd} WCAG-brudd`);
+          webkitRun.tilfeldig = { bruker: wkFnrTilf, sider: wkSiderTilf, tastatur: wkTastaturTilf, reflow: wkReflowTilf, tekstmellomrom: wkTekstmellomromTilf, ekstraWcag: wkEkstraTilf, totalt: wkTotaltTilf };
+        } else {
+          console.log('  ⚠️  WebKit tilfeldig bruker-innlogging feilet – hopper over.');
+        }
+        await wkCtxTilf.close();
+      }
+    } else {
+      console.log('  ⚠️  WebKit-innlogging feilet – hopper over.');
+    }
+    await wkBrowser.close();
+  } catch (e) {
+    console.log(`  ⚠️  WebKit full test feilet: ${e.message.slice(0, 80)}`);
+  }
+}
+
 // Aggregert oppsummering
 const alleViolasjonIds = sideResultater.flatMap(s => (s.wcag?.detaljer ?? []).map(v => ({ id: v.id, impact: v.impact })));
 const totalt = {
@@ -1080,7 +1180,7 @@ const totalt = {
 fs.writeFileSync(path.join(rapportDir, 'resultat.json'), JSON.stringify({ url: START_URL, dato, versjon, nettleser, score: scoreBeregn(totalt), totalt, tastatur, reflow, tekstmellomrom, ekstraWcag, sider: sideResultater.map(s => ({ ...s, wcag: { ...s.wcag, detaljer: s.wcag.detaljer.map(v => ({ ...v, bilder: v.bilder })) } })) }, null, 2));
 
 // Generer HTML
-fs.writeFileSync(path.join(rapportDir, 'uu-rapport.html'), genererRapport(START_URL, dato, tidspunkt, totalt, sideResultater, versjon, tastatur, nettleser, reflow, tekstmellomrom, innloggingsSteg, ekstraWcag, testdata, ekstraRun, firefoxRun));
+fs.writeFileSync(path.join(rapportDir, 'uu-rapport.html'), genererRapport(START_URL, dato, tidspunkt, totalt, sideResultater, versjon, tastatur, nettleser, reflow, tekstmellomrom, innloggingsSteg, ekstraWcag, testdata, ekstraRun, firefoxRun, webkitRun));
 
 // Lagre tidsstemplet kopi for arkiv (bevarer alle kjøringer samme dag)
 const tidFil = tidspunkt.replace(':', '-');
@@ -1143,9 +1243,10 @@ function impactFarge(impact) {
   return { critical: '#c53030', serious: '#9a3412', moderate: '#b8860b', minor: '#6b7280' }[impact] || '#6b7280';
 }
 
-function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tastatur = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, nettleser = '', reflow = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, tekstmellomrom = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, innloggingsSteg = [], ekstraWcag = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, testdata = {}, ekstraRun = null, firefoxRun = null) {
+function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tastatur = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, nettleser = '', reflow = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, tekstmellomrom = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, innloggingsSteg = [], ekstraWcag = { tester: [], bestått: 0, feil: 0, advarsel: 0 }, testdata = {}, ekstraRun = null, firefoxRun = null, webkitRun = null) {
   const s = scoreBeregn(totalt);
   const ffTotalt = firefoxRun ? (firefoxRun.fast.totalt.wcagBrudd + (firefoxRun.tilfeldig?.totalt.wcagBrudd ?? 0)) : 0;
+  const wkTotalt = webkitRun ? (webkitRun.fast.totalt.wcagBrudd + (webkitRun.tilfeldig?.totalt.wcagBrudd ?? 0)) : 0;
   const scoreKlasse = s >= 80 ? 'god' : s >= 50 ? 'middels' : 'dårlig';
 
   // WCAG 2.1 – testbare kriterier
@@ -1268,7 +1369,9 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
     const s2 = ekstraRun ? kSt(id, info, ekstraRun.sider ?? [], ekstraRun.tastatur, ekstraRun.reflow, ekstraRun.tekstmellomrom, ekstraRun.ekstraWcag) : 'ok';
     const s3 = firefoxRun ? kSt(id, info, firefoxRun.fast.sider, firefoxRun.fast.tastatur, firefoxRun.fast.reflow, firefoxRun.fast.tekstmellomrom, firefoxRun.fast.ekstraWcag) : 'ok';
     const s4 = firefoxRun?.tilfeldig ? kSt(id, info, firefoxRun.tilfeldig.sider, firefoxRun.tilfeldig.tastatur, firefoxRun.tilfeldig.reflow, firefoxRun.tilfeldig.tekstmellomrom, firefoxRun.tilfeldig.ekstraWcag) : 'ok';
-    kStatus[id] = worstSt(worstSt(s1, s2), worstSt(s3, s4));
+    const s5 = webkitRun ? kSt(id, info, webkitRun.fast.sider, webkitRun.fast.tastatur, webkitRun.fast.reflow, webkitRun.fast.tekstmellomrom, webkitRun.fast.ekstraWcag) : 'ok';
+    const s6 = webkitRun?.tilfeldig ? kSt(id, info, webkitRun.tilfeldig.sider, webkitRun.tilfeldig.tastatur, webkitRun.tilfeldig.reflow, webkitRun.tilfeldig.tekstmellomrom, webkitRun.tilfeldig.ekstraWcag) : 'ok';
+    kStatus[id] = worstSt(worstSt(worstSt(s1, s2), worstSt(s3, s4)), worstSt(s5, s6));
   }
 
   const sidenavigasjon = [1, 2, 3, 4].flatMap(p => [
@@ -1309,6 +1412,8 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
       const sp2 = ekstraRun?.sider ?? [];
       const ffFastSider = firefoxRun?.fast.sider ?? [];
       const ffTilfSider = firefoxRun?.tilfeldig?.sider ?? [];
+      const wkFastSider = webkitRun?.fast.sider ?? [];
+      const wkTilfSider = webkitRun?.tilfeldig?.sider ?? [];
       return `<section class="kriterie-seksjon" id="wcag-${id.replace(/\./g, '-')}">
         <div class="kriterie-header">
           <div>
@@ -1339,6 +1444,16 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
           <div style="padding:.5rem .75rem .75rem">
             ${kjøringContainerFn(id, info, ffFastSider, firefoxRun.fast.tastatur, firefoxRun.fast.reflow, firefoxRun.fast.tekstmellomrom, firefoxRun.fast.ekstraWcag, firefoxRun.fast.bruker, false)}
             ${firefoxRun.tilfeldig ? kjøringContainerFn(id, info, ffTilfSider, firefoxRun.tilfeldig.tastatur, firefoxRun.tilfeldig.reflow, firefoxRun.tilfeldig.tekstmellomrom, firefoxRun.tilfeldig.ekstraWcag, firefoxRun.tilfeldig.bruker, true) : ''}
+          </div>
+        </details>` : ''}
+        ${webkitRun ? `<details open style="margin-top:.4rem;border:1px solid #d8b4fe;border-radius:4px;background:#faf5ff">
+          <summary style="cursor:pointer;padding:.6rem 1rem;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#7e22ce;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+            <span>🧭 WebKit (Safari)</span>
+            <span style="font-size:.71rem;opacity:.45;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
+          </summary>
+          <div style="padding:.5rem .75rem .75rem">
+            ${kjøringContainerFn(id, info, wkFastSider, webkitRun.fast.tastatur, webkitRun.fast.reflow, webkitRun.fast.tekstmellomrom, webkitRun.fast.ekstraWcag, webkitRun.fast.bruker, false)}
+            ${webkitRun.tilfeldig ? kjøringContainerFn(id, info, wkTilfSider, webkitRun.tilfeldig.tastatur, webkitRun.tilfeldig.reflow, webkitRun.tilfeldig.tekstmellomrom, webkitRun.tilfeldig.ekstraWcag, webkitRun.tilfeldig.bruker, true) : ''}
           </div>
         </details>` : ''}
       </section>`;
@@ -1688,7 +1803,7 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
   <div class="rapport-header">
     <div>
       <h1>Tilgjengelighetsrapport</h1>
-      <div class="meta"><a href="${url}" target="_blank">${url}</a> · ${dato} ${tidspunkt} · ${totalt.sider} sider testet${nettleser ? ` · Chromium ${nettleser.split('.')[0]}` : ''}</div>
+      <div class="meta"><a href="${url}" target="_blank">${url}</a> · ${dato} ${tidspunkt} · ${totalt.sider} sider testet${nettleser ? ` · 🌐 Chromium ${nettleser.split('.')[0]}` : ''}${firefoxRun ? ' · 🦊 Firefox' : ''}${webkitRun ? ' · 🧭 WebKit' : ''}</div>
     </div>
     <div class="nav-knapper">
       <a href="rapport.html" class="knapp sekundær">Forside</a>
@@ -1796,6 +1911,23 @@ function genererRapport(url, dato, tidspunkt, totalt, sider, versjon = null, tas
           ${firefoxRun.tilfeldig ? `<div style="font-size:.72rem;font-weight:600;color:#065f46;margin:.8rem 0 .5rem">🎲 Tilfeldig bruker (${escapeHtml(firefoxRun.tilfeldig.bruker ?? 'ukjent')})</div>
           <div class="sider-liste">
             ${firefoxRun.tilfeldig.sider.map(side => `<div class="side-url-rad">
+              <a href="${side.url}" target="_blank">${escapeHtml(side.tittel || side.url)}</a>
+              <span class="side-path">${escapeHtml(side.url.replace(url.replace(/\/$/, ''), '') || '/')}</span>
+            </div>`).join('')}
+          </div>` : ''}
+        </div>` : ''}
+        ${webkitRun ? `<div style="border:1px solid #d8b4fe;border-radius:4px;background:#faf5ff;padding:.8rem">
+          <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7e22ce;margin-bottom:.6rem">🧭 WebKit (Safari)</div>
+          <div style="font-size:.72rem;font-weight:600;color:#0a1355;margin-bottom:.5rem">🔐 Fast bruker (${escapeHtml(webkitRun.fast.bruker ?? 'ukjent')})</div>
+          <div class="sider-liste">
+            ${webkitRun.fast.sider.map(side => `<div class="side-url-rad">
+              <a href="${side.url}" target="_blank">${escapeHtml(side.tittel || side.url)}</a>
+              <span class="side-path">${escapeHtml(side.url.replace(url.replace(/\/$/, ''), '') || '/')}</span>
+            </div>`).join('')}
+          </div>
+          ${webkitRun.tilfeldig ? `<div style="font-size:.72rem;font-weight:600;color:#065f46;margin:.8rem 0 .5rem">🎲 Tilfeldig bruker (${escapeHtml(webkitRun.tilfeldig.bruker ?? 'ukjent')})</div>
+          <div class="sider-liste">
+            ${webkitRun.tilfeldig.sider.map(side => `<div class="side-url-rad">
               <a href="${side.url}" target="_blank">${escapeHtml(side.tittel || side.url)}</a>
               <span class="side-path">${escapeHtml(side.url.replace(url.replace(/\/$/, ''), '') || '/')}</span>
             </div>`).join('')}

@@ -30,3 +30,4 @@ export const KRASJ_ORD = [
 
 export const TEST_EKSTRA_BRUKER = process.env.TEST_EKSTRA_BRUKER !== 'false'; // true by default – kjør også med tilfeldig bruker
 export const FIREFOX_KRYSSSJEKK = process.env.FIREFOX_KRYSSSJEKK !== 'false'; // true by default – kjør axe-core i Firefox etter Chromium
+export const WEBKIT_KRYSSSJEKK  = process.env.WEBKIT_KRYSSSJEKK  !== 'false'; // true by default – kjør axe-core i WebKit (Safari) etter Firefox
