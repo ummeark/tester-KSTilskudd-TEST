@@ -30790,3 +30790,7 @@ Rapport skrevet til docs/brukerhistorie-rapport.html og rapporter/2026-06-29/bru
 ✅ Arkiv generert → docs/arkiv.html
    Datoer: 61 | UU: 155 | Monkey: 124 | Sikkerhet: 122 | Negativ: 122
 ✅ Dashboard generert → docs/rapport.html
+[2026-06-29 08:40:29] ✅ Ferdig og pushet til GitHub
+=======================================
+[2026-06-30 08:30:05] Starter daglig UU-test
+[2026-06-30 08:30:05] ❌ Nettstedet ikke tilgjengelig – avbryter
