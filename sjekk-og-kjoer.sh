@@ -1,5 +1,5 @@
 #!/bin/bash
-# Kjøres hvert 30. minutt av launchd.
+# Kjøres hvert 10. minutt (08:00–10:50) av launchd via StartCalendarInterval.
 # Starter alle seks tester hvis de ikke allerede er kjørt i dag.
 
 set -euo pipefail
@@ -10,9 +10,12 @@ LOG_FIL="$REPO_DIR/rapporter/kjoring.log"
 
 mkdir -p "$REPO_DIR/rapporter"
 
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] 🔄 sjekk-og-kjoer startet av launchd" >> "$LOG_FIL"
+
 # Bare hverdager (1=Man ... 5=Fre)
 UKEDAG=$(date +%u)
 if [ "$UKEDAG" -gt 5 ]; then
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] 📅 Helg – hopper over" >> "$LOG_FIL"
   exit 0
 fi
 
@@ -23,13 +26,14 @@ if [ -f "$REPO_DIR/rapporter/$DATO/resultat.json" ] && \
    [ -f "$REPO_DIR/rapporter/$DATO/negativ-resultat.json" ] && \
    [ -f "$REPO_DIR/rapporter/$DATO/ytelse-resultat.json" ] && \
    [ -f "$REPO_DIR/brukerhistorie-resultater/brukerhistorie-resultat.json" ]; then
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] ✅ Allerede kjørt i dag – hopper over" >> "$LOG_FIL"
   exit 0
 fi
 
 # Er nettstedet tilgjengelig?
 STATUS=$(curl -s --max-time 10 -o /dev/null -w "%{http_code}" "https://tilskudd.fiks.test.ks.no/" || echo "000")
 if [[ ! "$STATUS" =~ ^[23] ]]; then
-  echo "[$(date '+%Y-%m-%d %H:%M:%S')] ⏳ Nettstedet ikke tilgjengelig (HTTP $STATUS) – prøver igjen om 30 min" >> "$LOG_FIL"
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] ⏳ Nettstedet ikke tilgjengelig (HTTP $STATUS) – prøver igjen om 10 min" >> "$LOG_FIL"
   exit 0
 fi
 
