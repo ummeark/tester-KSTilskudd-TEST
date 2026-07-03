@@ -36,7 +36,7 @@ Call log:
       - link "Tilskuddsordninger" [ref=e5] [cursor=pointer]:
         - /url: /utlysinger
       - link "Logg inn" [ref=e6] [cursor=pointer]:
-        - /url: /minside?statusFilter=utkast
+        - /url: /minside
         - img [ref=e7]
         - text: Logg inn
   - main [ref=e11]:
@@ -54,7 +54,7 @@ Call log:
         - paragraph [ref=e22]: Finn tilskuddsordninger ved å søke etter navn, forvalter eller beskrivelse.
       - generic [ref=e24]:
         - searchbox "Søk" [ref=e26]
-        - paragraph [ref=e27]: Viser 6 treff
+        - paragraph [ref=e27]: Viser 10 treff
         - list [ref=e28]:
           - listitem [ref=e29]:
             - generic [ref=e30] [cursor=pointer]:
@@ -134,16 +134,88 @@ Call log:
                 - paragraph [ref=e120]:
                   - img [ref=e121]
                   - generic [ref=e124]: Skånsom Impulsiv Tiger As
-  - contentinfo [ref=e125]:
-    - generic [ref=e126]:
-      - heading "Om KS Tilskudd" [level=2] [ref=e127]
-      - paragraph [ref=e128]: Nasjonal portal for søknad om offentlige tilskudd levert av KS Digital.
-      - navigation "footer" [ref=e129]:
-        - link "Personvernerklæring" [ref=e130] [cursor=pointer]:
+          - listitem [ref=e125]:
+            - generic [ref=e126] [cursor=pointer]:
+              - heading "Tilskudd til kulturelle arrangementer og aktiviteter 2026" [level=2] [ref=e127]:
+                - link "Tilskudd til kulturelle arrangementer og aktiviteter 2026" [ref=e128]:
+                  - /url: /utlysinger/9e3d5f1a-2b4c-4d6e-8f0a-1b2c3d4e5f6a
+              - paragraph [ref=e129]: Lillehammer kommune tilbyr tilskudd til kulturelle arrangementer, kunstneriske aktiviteter og kulturelle initiativ som styrker og forener lokalsamfunnet.
+              - generic [ref=e130]:
+                - generic [ref=e131]:
+                  - img [ref=e132]
+                  - generic [ref=e135]: Søknadsfrist 31. oktober 2026
+                - paragraph [ref=e136]:
+                  - img [ref=e137]
+                  - generic [ref=e140]: Munter Betydelig Katt Badeand
+          - listitem [ref=e141]:
+            - generic [ref=e142] [cursor=pointer]:
+              - heading "Tilskudd til økologisk jordbruk og kortreist matproduksjon 2026" [level=2] [ref=e143]:
+                - link "Tilskudd til økologisk jordbruk og kortreist matproduksjon 2026" [ref=e144]:
+                  - /url: /utlysinger/550e8400-e29b-41d4-a716-446655440000
+              - paragraph [ref=e145]: Trøndelag fylkeskommune lyser ut midler til jordbruksaktører som ønsker å omstille til økologisk drift eller øke produksjon av lokalt fremstilte matvarer med høy kvalitet.
+              - generic [ref=e146]:
+                - generic [ref=e147]:
+                  - img [ref=e148]
+                  - generic [ref=e151]: Søknadsfrist 31. oktober 2026
+                - paragraph [ref=e152]:
+                  - img [ref=e153]
+                  - generic [ref=e156]: Samlet Aritmetisk Fjellrev
+          - listitem [ref=e157]:
+            - generic [ref=e158] [cursor=pointer]:
+              - heading "Tilskudd til kulturell næring og kreative prosjekter 2026" [level=2] [ref=e159]:
+                - link "Tilskudd til kulturell næring og kreative prosjekter 2026" [ref=e160]:
+                  - /url: /utlysinger/92c4e5d8-1b3a-4c7e-9f2a-8b3c5d6e7f8a
+              - paragraph [ref=e161]: Stavanger kommune lyser ut midler til prosjekter som styrker den kulturelle næringen, kunstnerutvikling og kreativ innovasjon i regionen.
+              - generic [ref=e162]:
+                - generic [ref=e163]:
+                  - img [ref=e164]
+                  - generic [ref=e167]: Søknadsfrist 30. september 2026
+                - paragraph [ref=e168]:
+                  - img [ref=e169]
+                  - generic [ref=e172]: Autorisert Tørr Fjellrev
+          - listitem [ref=e173]:
+            - generic [ref=e174] [cursor=pointer]:
+              - heading "Tilskudd til grønn omstilling i primærnæringene 2026" [level=2] [ref=e175]:
+                - link "Tilskudd til grønn omstilling i primærnæringene 2026" [ref=e176]:
+                  - /url: /utlysinger/7c2d9a1e-4f8b-3c6e-9d1a-b5f7e8c2d3a9
+              - paragraph [ref=e177]: Innlandet fylkeskommune lyser ut midler til tiltak som fremmer bærekraftig og klimavennlig drift i landbruk, skogbruk og fiskeri. Ordningen skal støtte bedrifter i omstilling mot mer ressurseffektive og miljøvennlige produksjonssystemer.
+              - generic [ref=e178]:
+                - generic [ref=e179]:
+                  - img [ref=e180]
+                  - generic [ref=e183]: Søknadsfrist 31. oktober 2026
+                - paragraph [ref=e184]:
+                  - img [ref=e185]
+                  - generic [ref=e188]: Moderne Kulturell Katt Alarm
+        - navigation "Bla i sider" [ref=e189]:
+          - list [ref=e190]:
+            - listitem [ref=e191]:
+              - link "Side 1" [ref=e192] [cursor=pointer]:
+                - /url: "#side-1"
+                - text: "1"
+            - listitem [ref=e193]:
+              - link "Side 2" [ref=e194] [cursor=pointer]:
+                - /url: "#side-2"
+                - text: "2"
+            - listitem [ref=e195]:
+              - link "Side 3" [ref=e196] [cursor=pointer]:
+                - /url: "#side-3"
+                - text: "3"
+            - listitem [ref=e197]:
+              - link "Side 4" [ref=e198] [cursor=pointer]:
+                - /url: "#side-4"
+                - text: "4"
+            - listitem [ref=e199]:
+              - button "Neste side" [ref=e200] [cursor=pointer]: Neste
+  - contentinfo [ref=e201]:
+    - generic [ref=e202]:
+      - heading "Om KS Tilskudd" [level=2] [ref=e203]
+      - paragraph [ref=e204]: Nasjonal portal for søknad om offentlige tilskudd levert av KS Digital.
+      - navigation "footer" [ref=e205]:
+        - link "Personvernerklæring" [ref=e206] [cursor=pointer]:
           - /url: "#"
-        - link "Tilgjengelighetserklæring" [ref=e131] [cursor=pointer]:
+        - link "Tilgjengelighetserklæring" [ref=e207] [cursor=pointer]:
           - /url: "#"
-  - generic [ref=e132]: v0.6.3
+  - generic [ref=e208]: v0.8.0
 ```
 
 # Test source

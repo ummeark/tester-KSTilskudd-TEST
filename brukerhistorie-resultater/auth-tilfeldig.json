@@ -2,7 +2,7 @@
   "cookies": [
     {
       "name": "ingress-csrf",
-      "value": "ejf0zW0naOS+EhktqOmZog==",
+      "value": "tG+an6p9TZHD0fNiOihNHA==",
       "domain": "tilskudd.fiks.test.ks.no",
       "path": "/",
       "expires": -1,
@@ -12,7 +12,7 @@
     },
     {
       "name": "dtCookie",
-      "value": "v_4_srv_70_sn_769E986B2D21E9ABB7514FF9ECDCFE9C_perc_100000_ol_0_mul_1_app-3A0c075c4cdf82efb1_0",
+      "value": "v_4_srv_69_sn_EC044AF666776B40CBBDE0703C5CB8E7_perc_100000_ol_0_mul_1_app-3A0c075c4cdf82efb1_0",
       "domain": ".idporten.no",
       "path": "/",
       "expires": -1,
@@ -22,7 +22,7 @@
     },
     {
       "name": "b01773c48f061e5a6fa15915170117e2",
-      "value": "85aa841ce6308fadd3c5ecfe0bb1cac2",
+      "value": "6a276e764260e6d7fb0d145ab6c64636",
       "domain": "login.test.idporten.no",
       "path": "/",
       "expires": -1,
@@ -32,7 +32,7 @@
     },
     {
       "name": "BIGipServer~DigDir-Test~pool_digdir_test.idporten.no_https",
-      "value": "rd3567o00000000000000000000ffff8b692052o30011",
+      "value": "rd3567o00000000000000000000ffff8b692090o30011",
       "domain": "login.test.idporten.no",
       "path": "/",
       "expires": -1,
@@ -52,7 +52,7 @@
     },
     {
       "name": "BIGipServer~DigDir~pool_digdir_idporten.no_https",
-      "value": "rd3535o00000000000000000000ffff8b69226ao30011",
+      "value": "rd3535o00000000000000000000ffff8b692228o30011",
       "domain": "static.idporten.no",
       "path": "/",
       "expires": -1,
@@ -62,7 +62,7 @@
     },
     {
       "name": "JSESSIONID",
-      "value": "AFF6F2A52CDD61C7933F99D1B22A0314",
+      "value": "AB4838D6BEB928579FB329CBDFFC3375",
       "domain": "testid.test.idporten.no",
       "path": "/",
       "expires": -1,
@@ -72,7 +72,7 @@
     },
     {
       "name": "0ba91516c140d36c0e0e98cf9b128957",
-      "value": "fd77e8cdad9775d76ff28ac3e1620e65",
+      "value": "de0ff5f0e33c1b20b71f92222834c68f",
       "domain": "testid.test.idporten.no",
       "path": "/",
       "expires": -1,
@@ -82,7 +82,7 @@
     },
     {
       "name": "BIGipServer~DigDir-Test~pool_digdir_test.idporten.no_https",
-      "value": "rd3567o00000000000000000000ffff8b692052o30011",
+      "value": "rd3567o00000000000000000000ffff8b692090o30011",
       "domain": "testid.test.idporten.no",
       "path": "/",
       "expires": -1,
@@ -92,7 +92,7 @@
     },
     {
       "name": "JSESSIONID",
-      "value": "B299AA5B297DBD93465B250028E8CD23",
+      "value": "F17AC44BA60FD25352597612B82A5A13",
       "domain": "login.test.idporten.no",
       "path": "/",
       "expires": -1,
@@ -102,7 +102,7 @@
     },
     {
       "name": "IDPORTEN_AUTH",
-      "value": "BMXrLjLPweGjJwciMtEm3A.o4_Mub6dBkM-vEj75SiiuQ",
+      "value": "5STTg3Br7gnS58cXeH9_YA.xNye02fkAguXLWDxq7FDYw",
       "domain": "login.test.idporten.no",
       "path": "/",
       "expires": -1,
@@ -112,7 +112,7 @@
     },
     {
       "name": "session",
-      "value": "tfihJe2mK4srIwLn4ZN-0w..|1781529280|LVpgNKQiDtQ4_sZBIxyny1r-aIM.",
+      "value": "FtTQlCzrrsFGHp4MDcbEtQ..|1783068291|TgfXld72hsa05Ll4ndV92Zq7htY.",
       "domain": "tilskudd.fiks.test.ks.no",
       "path": "/",
       "expires": -1,

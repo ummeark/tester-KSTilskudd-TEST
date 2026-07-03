@@ -31,7 +31,7 @@ Received string:  "/"
       - link "Tilskuddsordninger" [ref=e5] [cursor=pointer]:
         - /url: /utlysinger
       - link "Logg inn" [ref=e6] [cursor=pointer]:
-        - /url: /minside?statusFilter=utkast
+        - /url: /minside
         - img [ref=e7]
         - text: Logg inn
   - main [ref=e11]:
@@ -59,7 +59,7 @@ Received string:  "/"
           - /url: "#"
         - link "Tilgjengelighetserklæring" [ref=e35] [cursor=pointer]:
           - /url: "#"
-  - generic [ref=e36]: v0.6.3
+  - generic [ref=e36]: v0.8.0
 ```
 
 # Test source
