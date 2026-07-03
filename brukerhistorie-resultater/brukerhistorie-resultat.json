@@ -78,7 +78,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne forsiden (/)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Finn søkefelt med placeholder \"Søk etter tilskuddsordning\""
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at søkefeltet er synlig"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -87,13 +100,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 941,
+                      "duration": 834,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:42:53.835Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:42.882Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne forsiden (/)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Finn søkefelt med placeholder \"Søk etter tilskuddsordning\""
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at søkefeltet er synlig"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -112,7 +138,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne forsiden (/)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Finn Søk-knapp ved siden av søkefeltet"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at Søk-knappen er synlig"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -121,13 +160,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 806,
+                      "duration": 772,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:42:54.847Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:43.793Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne forsiden (/)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Finn Søk-knapp ved siden av søkefeltet"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at Søk-knappen er synlig"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -136,7 +188,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-1378264f880daea6354f",
               "file": "brukerhistorie-tester.js",
-              "line": 28,
+              "line": 31,
               "column": 3
             },
             {
@@ -146,7 +198,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne forsiden (/)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Klikke på søkefeltet"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at søkefeltet har tastatur-fokus"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -155,13 +220,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 880,
+                      "duration": 776,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:42:55.662Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:44.572Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne forsiden (/)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Klikke på søkefeltet"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at søkefeltet har tastatur-fokus"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -170,7 +248,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-8fea736832459272f824",
               "file": "brukerhistorie-tester.js",
-              "line": 34,
+              "line": 40,
               "column": 3
             },
             {
@@ -180,7 +258,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne forsiden (/)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Skrive \"tilskudd\" i søkefeltet og trykke Enter"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at URL-en inneholder \"/utlysig\""
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -189,13 +280,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 793,
+                      "duration": 717,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:42:56.547Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:45.353Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne forsiden (/)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Skrive \"tilskudd\" i søkefeltet og trykke Enter"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at URL-en inneholder \"/utlysig\""
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -204,7 +308,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-d04741083e0bfbf5f618",
               "file": "brukerhistorie-tester.js",
-              "line": 42,
+              "line": 51,
               "column": 3
             },
             {
@@ -214,7 +318,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne forsiden (/)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Skrive \"tilskudd\" i søkefeltet og trykke Enter"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at siden ikke viser \"Internal Server Error\" eller \"Uventet feil\""
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -223,13 +340,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 764,
+                      "duration": 742,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:42:57.344Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:46.074Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne forsiden (/)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Skrive \"tilskudd\" i søkefeltet og trykke Enter"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at siden ikke viser \"Internal Server Error\" eller \"Uventet feil\""
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -238,7 +368,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-4dd9baad3d069e1b58cd",
               "file": "brukerhistorie-tester.js",
-              "line": 52,
+              "line": 64,
               "column": 3
             },
             {
@@ -248,7 +378,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne forsiden (/)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at H1 inneholder \"Nasjonal portal\""
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -257,13 +396,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 784,
+                      "duration": 740,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:42:58.113Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:46.821Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne forsiden (/)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at H1 inneholder \"Nasjonal portal\""
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -272,7 +420,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-f7da23278efb4a85a0cc",
               "file": "brukerhistorie-tester.js",
-              "line": 63,
+              "line": 78,
               "column": 3
             },
             {
@@ -282,7 +430,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne forsiden (/)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at sideteksten inneholder ingress om å finne tilskuddsordninger"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -291,13 +448,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 739,
+                      "duration": 758,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:42:58.904Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:47.569Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne forsiden (/)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at sideteksten inneholder ingress om å finne tilskuddsordninger"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -306,7 +472,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-73122b0e6812b590b8fd",
               "file": "brukerhistorie-tester.js",
-              "line": 68,
+              "line": 85,
               "column": 3
             },
             {
@@ -316,7 +482,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne forsiden (/)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at sideteksten forklarer hva portalen er (felles løsning / KS Tilskudd)"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -325,13 +500,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 754,
+                      "duration": 694,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:42:59.649Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:48.333Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne forsiden (/)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at sideteksten forklarer hva portalen er (felles løsning / KS Tilskudd)"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -340,7 +524,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-33a73e74d2425fef2fbc",
               "file": "brukerhistorie-tester.js",
-              "line": 74,
+              "line": 93,
               "column": 3
             },
             {
@@ -350,7 +534,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Skrive \"tilskudd\" i søkefeltet og trykke Enter"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at siden ikke viser feilside"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -359,13 +556,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 351,
+                      "duration": 285,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:00.408Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:49.034Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Skrive \"tilskudd\" i søkefeltet og trykke Enter"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at siden ikke viser feilside"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -374,7 +584,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-355a6241b6eeb196cf6d",
               "file": "brukerhistorie-tester.js",
-              "line": 81,
+              "line": 102,
               "column": 3
             }
           ]
@@ -382,7 +592,7 @@
         {
           "title": "TILSK-543: Som besøker ønsker jeg å finne riktig tilskuddsordning i portalen (uten innlogging)",
           "file": "brukerhistorie-tester.js",
-          "line": 98,
+          "line": 122,
           "column": 6,
           "specs": [
             {
@@ -392,7 +602,76 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger uten å være innlogget"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at utlysningskort er synlige"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at siden ikke krever innlogging"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 274,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-03T08:09:49.323Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger uten å være innlogget"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at utlysningskort er synlige"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at siden ikke krever innlogging"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2d51df8f2a7ee4965639-b055e1a8c4c1a3a3d54c",
+              "file": "brukerhistorie-tester.js",
+              "line": 125,
+              "column": 3
+            },
+            {
+              "title": "AK-1.2 – søkefelt er synlig og tilgjengelig uten innlogging",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at søkefelt er synlig uten innlogging"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -406,42 +685,17 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:00.763Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2d51df8f2a7ee4965639-b055e1a8c4c1a3a3d54c",
-              "file": "brukerhistorie-tester.js",
-              "line": 101,
-              "column": 3
-            },
-            {
-              "title": "AK-1.2 – søkefelt er synlig og tilgjengelig uten innlogging",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "",
-                  "projectName": "",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 287,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-03T07:43:01.061Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:49.602Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at søkefelt er synlig uten innlogging"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -450,7 +704,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-64059ad89eb4bb555baf",
               "file": "brukerhistorie-tester.js",
-              "line": 111,
+              "line": 138,
               "column": 3
             },
             {
@@ -460,7 +714,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger og vente til siden er ferdig lastet"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Sjekke om pagineringsknapp finnes i DOM"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at pagineringsknappen er festet til DOM"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -469,13 +736,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1526,
+                      "duration": 1630,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:01.353Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:49.900Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger og vente til siden er ferdig lastet"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Sjekke om pagineringsknapp finnes i DOM"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at pagineringsknappen er festet til DOM"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -484,7 +764,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-a5d442d60ebaf7d64e03",
               "file": "brukerhistorie-tester.js",
-              "line": 120,
+              "line": 149,
               "column": 3
             },
             {
@@ -494,7 +774,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger og søke på \"xyzabc123nonsens\""
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at siden ikke viser feilside"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at ingen utlysningskort vises eller at en ingen-treff-melding er synlig"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -503,13 +796,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 293,
+                      "duration": 281,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:02.883Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:51.534Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger og søke på \"xyzabc123nonsens\""
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at siden ikke viser feilside"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at ingen utlysningskort vises eller at en ingen-treff-melding er synlig"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -518,7 +824,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-d04505d6648de48bcef7",
               "file": "brukerhistorie-tester.js",
-              "line": 134,
+              "line": 166,
               "column": 3
             }
           ]
@@ -526,7 +832,7 @@
         {
           "title": "TILSK-547: Som innlogget søker vil jeg se mine søknader",
           "file": "brukerhistorie-tester.js",
-          "line": 152,
+          "line": 187,
           "column": 6,
           "specs": [
             {
@@ -536,7 +842,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /minside med innlogget bruker"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at URL inneholder /minside"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -545,13 +860,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 249,
+                      "duration": 263,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:03.181Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:51.819Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /minside med innlogget bruker"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at URL inneholder /minside"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -560,7 +884,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-2e12dbee1962e9bbf0b7",
               "file": "brukerhistorie-tester.js",
-              "line": 154,
+              "line": 189,
               "column": 3
             },
             {
@@ -570,7 +894,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /minside"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at ingen \"Logg inn\"-knapp er synlig"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -579,13 +912,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 299,
+                      "duration": 247,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:03.434Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:52.085Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /minside"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at ingen \"Logg inn\"-knapp er synlig"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -594,7 +936,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-df3cf9cfcbd37c91a387",
               "file": "brukerhistorie-tester.js",
-              "line": 159,
+              "line": 196,
               "column": 3
             },
             {
@@ -604,7 +946,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Registrere lytter på JavaScript-feil fra siden"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /minside og vente til siden er ferdig lastet"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at ingen JavaScript-feil oppstod"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -613,13 +968,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 733,
+                      "duration": 715,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:03.737Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:52.336Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Registrere lytter på JavaScript-feil fra siden"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /minside og vente til siden er ferdig lastet"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at ingen JavaScript-feil oppstod"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -628,7 +996,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-bc1eece5a3980d798a9c",
               "file": "brukerhistorie-tester.js",
-              "line": 165,
+              "line": 204,
               "column": 3
             }
           ]
@@ -636,7 +1004,7 @@
         {
           "title": "TILSK-738: Som søker ønsker jeg å se kontaktinformasjon om ordningen",
           "file": "brukerhistorie-tester.js",
-          "line": 176,
+          "line": 218,
           "column": 6,
           "specs": [
             {
@@ -646,7 +1014,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Søke gjennom utlysninger for å finne en med kontaktinformasjonsseksjon"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at siden ikke viser feilside"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -655,13 +1032,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2503,
+                      "duration": 2413,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:04.475Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:53.056Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Søke gjennom utlysninger for å finne en med kontaktinformasjonsseksjon"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at siden ikke viser feilside"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -670,7 +1056,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-afcc4d5adb4bb092c648",
               "file": "brukerhistorie-tester.js",
-              "line": 247,
+              "line": 289,
               "column": 3
             },
             {
@@ -680,75 +1066,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "",
-                  "projectName": "",
-                  "results": [
+                  "annotations": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 884,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-03T07:43:06.985Z",
-                      "annotations": [],
-                      "attachments": []
+                      "type": "steg",
+                      "description": "Navigere til utlysningsside med kontaktinformasjon"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at kontaktinformasjonsseksjon finnes i DOM"
                     }
                   ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2d51df8f2a7ee4965639-66bec7acd54c3e3b9eed",
-              "file": "brukerhistorie-tester.js",
-              "line": 254,
-              "column": 3
-            },
-            {
-              "title": "AK-1.1 – minst ett kontaktinfokort vises",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "",
-                  "projectName": "",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 948,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-03T07:43:07.874Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2d51df8f2a7ee4965639-8b6d0f965d02a5675bd8",
-              "file": "brukerhistorie-tester.js",
-              "line": 262,
-              "column": 3
-            },
-            {
-              "title": "AK-1.1 – maks tre kontaktinfokort vises totalt",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -762,8 +1089,121 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:08.827Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:55.475Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til utlysningsside med kontaktinformasjon"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at kontaktinformasjonsseksjon finnes i DOM"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2d51df8f2a7ee4965639-66bec7acd54c3e3b9eed",
+              "file": "brukerhistorie-tester.js",
+              "line": 298,
+              "column": 3
+            },
+            {
+              "title": "AK-1.1 – minst ett kontaktinfokort vises",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til utlysningsside med kontaktinformasjon"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at minst ett kontaktinfokort vises (eller e-post/telefon i tekst)"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 934,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-03T08:09:56.366Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til utlysningsside med kontaktinformasjon"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at minst ett kontaktinfokort vises (eller e-post/telefon i tekst)"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2d51df8f2a7ee4965639-8b6d0f965d02a5675bd8",
+              "file": "brukerhistorie-tester.js",
+              "line": 308,
+              "column": 3
+            },
+            {
+              "title": "AK-1.1 – maks tre kontaktinfokort vises totalt",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til utlysningsside med kontaktinformasjon"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at maks tre kontaktinfokort vises"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 889,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-03T08:09:57.304Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til utlysningsside med kontaktinformasjon"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at maks tre kontaktinfokort vises"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -772,7 +1212,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-c1857298eb663bf0e514",
               "file": "brukerhistorie-tester.js",
-              "line": 275,
+              "line": 323,
               "column": 3
             },
             {
@@ -782,7 +1222,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til utlysningsside med kontaktinformasjon"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at maks tre personkort vises"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -791,13 +1240,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 861,
+                      "duration": 920,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:09.715Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:58.197Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til utlysningsside med kontaktinformasjon"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at maks tre personkort vises"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -806,7 +1264,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-3b490a8e98df784689f5",
               "file": "brukerhistorie-tester.js",
-              "line": 283,
+              "line": 333,
               "column": 3
             },
             {
@@ -816,7 +1274,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til utlysningsside med kontaktinformasjon"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at maks ett virksomhetskort vises"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -825,13 +1292,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 972,
+                      "duration": 864,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:10.581Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:59.123Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til utlysningsside med kontaktinformasjon"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at maks ett virksomhetskort vises"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -840,7 +1316,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-de113e0fd9f960180ee4",
               "file": "brukerhistorie-tester.js",
-              "line": 291,
+              "line": 343,
               "column": 3
             },
             {
@@ -850,7 +1326,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til utlysningsside med kontaktinformasjon"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Lese sideinnholdet"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at e-postadresse eller telefonnummer finnes"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -859,13 +1348,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 888,
+                      "duration": 1175,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:11.559Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:09:59.992Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til utlysningsside med kontaktinformasjon"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Lese sideinnholdet"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at e-postadresse eller telefonnummer finnes"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -874,7 +1376,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-7bf4be0dbad07aee8a5a",
               "file": "brukerhistorie-tester.js",
-              "line": 299,
+              "line": 353,
               "column": 3
             },
             {
@@ -884,7 +1386,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til utlysningsside med kontaktinformasjon"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at minst telefon eller e-post finnes i kontaktinfo"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -893,13 +1404,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 866,
+                      "duration": 1088,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:12.451Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:01.171Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til utlysningsside med kontaktinformasjon"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at minst telefon eller e-post finnes i kontaktinfo"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -908,7 +1428,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-3644e6632423517c26e9",
               "file": "brukerhistorie-tester.js",
-              "line": 308,
+              "line": 365,
               "column": 3
             },
             {
@@ -920,11 +1440,15 @@
                   "timeout": 30000,
                   "annotations": [
                     {
+                      "type": "steg",
+                      "description": "Søke etter utlysning med både personkort og virksomhetskort"
+                    },
+                    {
                       "type": "skip",
                       "description": "Ingen utlysning med både person- og virksomhetskort funnet i TEST-miljøet",
                       "location": {
                         "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
-                        "line": 319,
+                        "line": 379,
                         "column": 14
                       }
                     }
@@ -937,19 +1461,23 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "skipped",
-                      "duration": 7910,
+                      "duration": 8515,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:13.322Z",
+                      "startTime": "2026-07-03T08:10:02.263Z",
                       "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Søke etter utlysning med både personkort og virksomhetskort"
+                        },
                         {
                           "type": "skip",
                           "description": "Ingen utlysning med både person- og virksomhetskort funnet i TEST-miljøet",
                           "location": {
                             "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
-                            "line": 319,
+                            "line": 379,
                             "column": 14
                           }
                         }
@@ -962,7 +1490,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-5a1a4fa03ae89613ed5d",
               "file": "brukerhistorie-tester.js",
-              "line": 317,
+              "line": 376,
               "column": 3
             }
           ]
@@ -970,7 +1498,7 @@
         {
           "title": "TILSK-760: Som bruker ønsker jeg å kunne navigere via footer fra alle sidene i tilskuddsportalen",
           "file": "brukerhistorie-tester.js",
-          "line": 328,
+          "line": 390,
           "column": 6,
           "specs": [
             {
@@ -980,7 +1508,24 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne forsiden (/)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at footer er synlig"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at footer er synlig på underside"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -989,13 +1534,30 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2087,
+                      "duration": 2103,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:21.239Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:10.783Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne forsiden (/)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at footer er synlig"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at footer er synlig på underside"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1004,7 +1566,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-6f47d1d3868a3cc67e0e",
               "file": "brukerhistorie-tester.js",
-              "line": 342,
+              "line": 404,
               "column": 3
             },
             {
@@ -1014,7 +1576,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne forsiden (/)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Lese footer-innholdet"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at footer inneholder minst én lenke og tekst om tilskuddsportalen"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1023,13 +1598,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 731,
+                      "duration": 739,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:23.330Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:12.890Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne forsiden (/)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Lese footer-innholdet"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at footer inneholder minst én lenke og tekst om tilskuddsportalen"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1038,7 +1626,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-fbbf29595a1140a27615",
               "file": "brukerhistorie-tester.js",
-              "line": 350,
+              "line": 416,
               "column": 3
             },
             {
@@ -1050,11 +1638,15 @@
                   "timeout": 30000,
                   "annotations": [
                     {
+                      "type": "steg",
+                      "description": "Testen er markert som hoppet over – språkvalg ikke implementert ennå (TILSK-760)"
+                    },
+                    {
                       "type": "skip",
                       "description": "AK-1.2 avventer implementering – språkvalg ikke avklart (TILSK-760)",
                       "location": {
                         "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
-                        "line": 364,
+                        "line": 434,
                         "column": 14
                       }
                     }
@@ -1072,14 +1664,18 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:24.065Z",
+                      "startTime": "2026-07-03T08:10:13.635Z",
                       "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Testen er markert som hoppet over – språkvalg ikke implementert ennå (TILSK-760)"
+                        },
                         {
                           "type": "skip",
                           "description": "AK-1.2 avventer implementering – språkvalg ikke avklart (TILSK-760)",
                           "location": {
                             "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
-                            "line": 364,
+                            "line": 434,
                             "column": 14
                           }
                         }
@@ -1092,7 +1688,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-ff768ad5244fd2a64cc9",
               "file": "brukerhistorie-tester.js",
-              "line": 363,
+              "line": 432,
               "column": 3
             },
             {
@@ -1102,7 +1698,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne forsiden (/)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Finn footer"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at footer inneholder lenke til personvernerklæring"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1111,13 +1720,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 749,
+                      "duration": 705,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:24.136Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:13.705Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne forsiden (/)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Finn footer"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at footer inneholder lenke til personvernerklæring"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1126,7 +1748,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-ca3b59b13c9d2f93f049",
               "file": "brukerhistorie-tester.js",
-              "line": 367,
+              "line": 437,
               "column": 3
             },
             {
@@ -1136,7 +1758,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne forsiden (/)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Finn footer"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at footer inneholder lenke til tilgjengelighetserklæring"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1145,13 +1780,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 730,
+                      "duration": 743,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:24.890Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:14.414Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne forsiden (/)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Finn footer"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at footer inneholder lenke til tilgjengelighetserklæring"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1160,7 +1808,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-7eb616dd10447fa1ef0f",
               "file": "brukerhistorie-tester.js",
-              "line": 377,
+              "line": 450,
               "column": 3
             }
           ]
@@ -1168,7 +1816,7 @@
         {
           "title": "TILSK-767: Organisasjonsvelger ved søknadsopprettelse",
           "file": "brukerhistorie-tester.js",
-          "line": 390,
+          "line": 466,
           "column": 6,
           "specs": [
             {
@@ -1178,7 +1826,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne utlysningslisten og finn utlysning med \"Søk om tilskudd\"-knapp"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Klikke \"Søk om tilskudd\" og laste organisasjonsvelger-siden"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at siden viser \"Hvem søker du på vegne av?\"-skjerm"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1187,13 +1848,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3672,
+                      "duration": 3631,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:25.624Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:15.161Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne utlysningslisten og finn utlysning med \"Søk om tilskudd\"-knapp"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Klikke \"Søk om tilskudd\" og laste organisasjonsvelger-siden"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at siden viser \"Hvem søker du på vegne av?\"-skjerm"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1202,7 +1876,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-a12f41cf886ba10de366",
               "file": "brukerhistorie-tester.js",
-              "line": 425,
+              "line": 501,
               "column": 3
             },
             {
@@ -1212,7 +1886,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne utlysningslisten og finn utlysning med \"Søk om tilskudd\"-knapp"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Navigere til organisasjonsvelger-siden"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at organisasjonsnummerfelt er synlig"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1221,13 +1908,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3676,
+                      "duration": 3724,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:29.301Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:18.796Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne utlysningslisten og finn utlysning med \"Søk om tilskudd\"-knapp"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Navigere til organisasjonsvelger-siden"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at organisasjonsnummerfelt er synlig"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1236,7 +1936,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-8c1f29c6a57335616fb6",
               "file": "brukerhistorie-tester.js",
-              "line": 433,
+              "line": 512,
               "column": 3
             },
             {
@@ -1246,7 +1946,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til organisasjonsvelger-siden"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "La organisasjonsnummerfeltet stå tomt"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Klikke \"Neste\" / \"Opprett søknad\" og verifisere at innsending blokkeres med feilmelding"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1255,13 +1968,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3715,
+                      "duration": 3761,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:32.983Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:22.524Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til organisasjonsvelger-siden"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "La organisasjonsnummerfeltet stå tomt"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Klikke \"Neste\" / \"Opprett søknad\" og verifisere at innsending blokkeres med feilmelding"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1270,7 +1996,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-21c6e24e4f10a3250407",
               "file": "brukerhistorie-tester.js",
-              "line": 445,
+              "line": 527,
               "column": 3
             },
             {
@@ -1280,7 +2006,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til organisasjonsvelger-siden"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Skrive ugyldig org-nummer \"123\" (for kort)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Trykke Tab og verifisere at valideringsfeil vises"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1289,13 +2028,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3737,
+                      "duration": 3750,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:36.703Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:26.290Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til organisasjonsvelger-siden"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Skrive ugyldig org-nummer \"123\" (for kort)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Trykke Tab og verifisere at valideringsfeil vises"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1304,7 +2056,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-7e515d740f2cab599f7a",
               "file": "brukerhistorie-tester.js",
-              "line": 470,
+              "line": 555,
               "column": 3
             },
             {
@@ -1314,7 +2066,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til organisasjonsvelger-siden"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at søknadsnavn-felt er synlig"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1323,13 +2084,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3686,
+                      "duration": 3742,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:40.445Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:30.045Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til organisasjonsvelger-siden"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at søknadsnavn-felt er synlig"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1338,7 +2108,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-0b2bafdb04814c7b93ed",
               "file": "brukerhistorie-tester.js",
-              "line": 492,
+              "line": 580,
               "column": 3
             },
             {
@@ -1348,7 +2118,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til organisasjonsvelger-siden"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at e-postfelt er synlig"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1357,13 +2136,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3963,
+                      "duration": 4093,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:44.136Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:33.792Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til organisasjonsvelger-siden"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at e-postfelt er synlig"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1372,7 +2160,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-0d1c3a2e72f74a83a9ef",
               "file": "brukerhistorie-tester.js",
-              "line": 507,
+              "line": 597,
               "column": 3
             }
           ]
@@ -1380,7 +2168,7 @@
         {
           "title": "TILSK-785 / TILSK-795: Redesign av utlysningsside",
           "file": "brukerhistorie-tester.js",
-          "line": 525,
+          "line": 617,
           "column": 6,
           "specs": [
             {
@@ -1390,7 +2178,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til første utlysningsside"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at breadcrumbs er synlig"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1399,13 +2196,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1791,
+                      "duration": 1800,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:48.104Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:37.892Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til første utlysningsside"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at breadcrumbs er synlig"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1414,7 +2220,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-85f22815425ba602e994",
               "file": "brukerhistorie-tester.js",
-              "line": 542,
+              "line": 634,
               "column": 3
             },
             {
@@ -1424,41 +2230,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "",
-                  "projectName": "",
-                  "results": [
+                  "annotations": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 908,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-07-03T07:43:49.901Z",
-                      "annotations": [],
-                      "attachments": []
+                      "type": "steg",
+                      "description": "Navigere til utlysningsside"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at H1 er synlig og ikke tom"
                     }
                   ],
-                  "status": "expected"
-                }
-              ],
-              "id": "2d51df8f2a7ee4965639-c2f1fb00e3130e37cee2",
-              "file": "brukerhistorie-tester.js",
-              "line": 551,
-              "column": 3
-            },
-            {
-              "title": "AK-1.2 – sist oppdatert dato vises",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1472,8 +2253,69 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:50.814Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:39.696Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til utlysningsside"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at H1 er synlig og ikke tom"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2d51df8f2a7ee4965639-c2f1fb00e3130e37cee2",
+              "file": "brukerhistorie-tester.js",
+              "line": 645,
+              "column": 3
+            },
+            {
+              "title": "AK-1.2 – sist oppdatert dato vises",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til utlysningsside"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at sist-oppdatert-dato vises"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 911,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-03T08:10:40.633Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til utlysningsside"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at sist-oppdatert-dato vises"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1482,7 +2324,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-40e611415faa64873418",
               "file": "brukerhistorie-tester.js",
-              "line": 559,
+              "line": 655,
               "column": 3
             },
             {
@@ -1492,7 +2334,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til utlysningsside"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at forvalternavn vises"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1501,13 +2352,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 883,
+                      "duration": 889,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:51.752Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:41.549Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til utlysningsside"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at forvalternavn vises"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1516,7 +2376,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-ee68ed5c10014a68a687",
               "file": "brukerhistorie-tester.js",
-              "line": 566,
+              "line": 664,
               "column": 3
             },
             {
@@ -1526,7 +2386,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til utlysningsside"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Sjekke om tilskuddsramme vises"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at beløp med tusenskille brukes hvis tilskuddsramme er satt"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1535,13 +2408,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 921,
+                      "duration": 1158,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:52.640Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:42.443Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til utlysningsside"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Sjekke om tilskuddsramme vises"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at beløp med tusenskille brukes hvis tilskuddsramme er satt"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1550,7 +2436,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-8c7bffec1e3d03559195",
               "file": "brukerhistorie-tester.js",
-              "line": 575,
+              "line": 675,
               "column": 3
             },
             {
@@ -1560,7 +2446,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til utlysningsside"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at søknadsfristkort er festet til DOM"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1569,13 +2464,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 886,
+                      "duration": 1100,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:53.566Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:43.606Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til utlysningsside"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at søknadsfristkort er festet til DOM"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1584,7 +2488,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-4138c075be3ef51ee4bf",
               "file": "brukerhistorie-tester.js",
-              "line": 586,
+              "line": 689,
               "column": 3
             },
             {
@@ -1594,7 +2498,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til utlysningsside"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at kontaktinfoseksjon er festet til DOM"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1603,13 +2516,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 897,
+                      "duration": 1058,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:54.458Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:44.710Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til utlysningsside"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at kontaktinfoseksjon er festet til DOM"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1618,7 +2540,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-dc27f73b4adaf69e06e7",
               "file": "brukerhistorie-tester.js",
-              "line": 596,
+              "line": 701,
               "column": 3
             },
             {
@@ -1628,7 +2550,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til utlysningsside"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Lese main-elementets tekstinnhold"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at main inneholder mer enn 50 tegn med tekst"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1637,13 +2572,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 891,
+                      "duration": 978,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:55.360Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:45.772Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til utlysningsside"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Lese main-elementets tekstinnhold"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at main inneholder mer enn 50 tegn med tekst"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1652,7 +2600,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-69aa1c52726df5284dd1",
               "file": "brukerhistorie-tester.js",
-              "line": 605,
+              "line": 712,
               "column": 3
             },
             {
@@ -1662,7 +2610,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til utlysningsside"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at siden ikke viser feilside"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1671,13 +2628,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 895,
+                      "duration": 1146,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:56.256Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:46.755Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til utlysningsside"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at siden ikke viser feilside"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1686,7 +2652,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-5e205816565ae8708e08",
               "file": "brukerhistorie-tester.js",
-              "line": 612,
+              "line": 722,
               "column": 3
             }
           ]
@@ -1694,7 +2660,7 @@
         {
           "title": "TILSK-793: Designsystemet redesign - Forside",
           "file": "brukerhistorie-tester.js",
-          "line": 621,
+          "line": 733,
           "column": 6,
           "specs": [
             {
@@ -1704,7 +2670,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne forsiden (/) og vente til siden er ferdig lastet"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at siden ikke viser feilside"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1713,13 +2688,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 832,
+                      "duration": 811,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:57.156Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:47.906Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne forsiden (/) og vente til siden er ferdig lastet"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at siden ikke viser feilside"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1728,7 +2712,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-35c4609bc2890112c1c1",
               "file": "brukerhistorie-tester.js",
-              "line": 625,
+              "line": 737,
               "column": 3
             },
             {
@@ -1738,7 +2722,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne forsiden (/)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at H1 er synlig"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at teksten forklarer hva portalen er"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1747,13 +2744,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 787,
+                      "duration": 735,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:57.993Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:48.721Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne forsiden (/)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at H1 er synlig"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at teksten forklarer hva portalen er"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1762,7 +2772,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-17709eaaa32480bc9ea3",
               "file": "brukerhistorie-tester.js",
-              "line": 631,
+              "line": 745,
               "column": 3
             },
             {
@@ -1772,7 +2782,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne forsiden (/)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at søkefelt er synlig"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1781,13 +2800,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 908,
+                      "duration": 833,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:58.784Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:49.464Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne forsiden (/)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at søkefelt er synlig"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1796,7 +2824,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-8383e6c5beff1c03e3c2",
               "file": "brukerhistorie-tester.js",
-              "line": 638,
+              "line": 755,
               "column": 3
             },
             {
@@ -1806,7 +2834,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Åpne forsiden (/)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Skrive \"tilskudd\" og trykke Enter"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at URL inneholder \"/utlysinger\""
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1815,13 +2856,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 836,
+                      "duration": 806,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:43:59.698Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:50.303Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Åpne forsiden (/)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Skrive \"tilskudd\" og trykke Enter"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at URL inneholder \"/utlysinger\""
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1830,7 +2884,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-b4ddd2639bf75e9b2aff",
               "file": "brukerhistorie-tester.js",
-              "line": 643,
+              "line": 762,
               "column": 3
             }
           ]
@@ -1838,7 +2892,7 @@
         {
           "title": "TILSK-856: Som søker vil jeg finne tilskuddsordninger med stikkord, halvferdige ord eller flere ord",
           "file": "brukerhistorie-tester.js",
-          "line": 656,
+          "line": 778,
           "column": 6,
           "specs": [
             {
@@ -1848,7 +2902,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger og søke på \"tilskudd\""
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at siden ikke viser feilside"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1857,13 +2920,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 430,
+                      "duration": 457,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:00.538Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:51.114Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger og søke på \"tilskudd\""
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at siden ikke viser feilside"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1872,7 +2944,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-b3403a21d683845cad48",
               "file": "brukerhistorie-tester.js",
-              "line": 668,
+              "line": 790,
               "column": 3
             },
             {
@@ -1882,7 +2954,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger og søke på \"tilskudd\""
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at minst én utlysning vises i resultatene"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1891,13 +2972,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 414,
+                      "duration": 368,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:00.972Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:51.575Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger og søke på \"tilskudd\""
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at minst én utlysning vises i resultatene"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1906,7 +2996,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-3db7db426d9c4a104236",
               "file": "brukerhistorie-tester.js",
-              "line": 674,
+              "line": 798,
               "column": 3
             },
             {
@@ -1916,7 +3006,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger og søke på delstreng \"tilsk\""
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at siden ikke viser feilside og at resultat eller ingen-treff-melding vises"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1925,13 +3024,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 500,
+                      "duration": 264,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:01.389Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:51.946Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger og søke på delstreng \"tilsk\""
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at siden ikke viser feilside og at resultat eller ingen-treff-melding vises"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1940,7 +3048,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-779cca8b11d424840935",
               "file": "brukerhistorie-tester.js",
-              "line": 682,
+              "line": 808,
               "column": 3
             },
             {
@@ -1950,7 +3058,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger og søke på \"barn og unge\""
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at siden ikke viser feilside"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1959,13 +3076,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 327,
+                      "duration": 467,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:01.892Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:52.214Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger og søke på \"barn og unge\""
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at siden ikke viser feilside"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -1974,7 +3100,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-636f6e1d92ca6fc2fad4",
               "file": "brukerhistorie-tester.js",
-              "line": 694,
+              "line": 822,
               "column": 3
             },
             {
@@ -1984,7 +3110,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger og søke på \"xyzabc123nonsens\""
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at siden ikke viser feilside"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -1993,13 +3128,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 324,
+                      "duration": 456,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:02.222Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:52.684Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger og søke på \"xyzabc123nonsens\""
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at siden ikke viser feilside"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -2008,7 +3152,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-e588ed9beddd8b81ab4a",
               "file": "brukerhistorie-tester.js",
-              "line": 701,
+              "line": 831,
               "column": 3
             },
             {
@@ -2018,7 +3162,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger og søke med tomt søkefelt"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at hel utlysningsliste vises igjen"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -2027,13 +3180,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1234,
+                      "duration": 1217,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:02.549Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:53.144Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger og søke med tomt søkefelt"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at hel utlysningsliste vises igjen"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -2042,7 +3204,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-0635ef3a3bea218eca7a",
               "file": "brukerhistorie-tester.js",
-              "line": 708,
+              "line": 840,
               "column": 3
             },
             {
@@ -2054,11 +3216,15 @@
                   "timeout": 30000,
                   "annotations": [
                     {
+                      "type": "steg",
+                      "description": "Testen er markert som hoppet over – fuzzy søk ikke implementert ennå (TILSK-856)"
+                    },
+                    {
                       "type": "skip",
                       "description": "AK-6 ikke implementert ennå – krever fuzzy søkemotor (TILSK-856 i Utviklingskø)",
                       "location": {
                         "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
-                        "line": 717,
+                        "line": 852,
                         "column": 14
                       }
                     }
@@ -2071,19 +3237,23 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "skipped",
-                      "duration": 71,
+                      "duration": 77,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:03.788Z",
+                      "startTime": "2026-07-03T08:10:54.365Z",
                       "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Testen er markert som hoppet over – fuzzy søk ikke implementert ennå (TILSK-856)"
+                        },
                         {
                           "type": "skip",
                           "description": "AK-6 ikke implementert ennå – krever fuzzy søkemotor (TILSK-856 i Utviklingskø)",
                           "location": {
                             "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
-                            "line": 717,
+                            "line": 852,
                             "column": 14
                           }
                         }
@@ -2096,7 +3266,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-54c129e61604bc8265eb",
               "file": "brukerhistorie-tester.js",
-              "line": 716,
+              "line": 850,
               "column": 3
             }
           ]
@@ -2104,7 +3274,7 @@
         {
           "title": "BR.HIST-1: Som søker vil jeg se oversikt over tilskuddsordninger",
           "file": "brukerhistorie-tester.js",
-          "line": 723,
+          "line": 858,
           "column": 6,
           "specs": [
             {
@@ -2114,7 +3284,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at URL inneholder /utlysinger"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -2123,13 +3302,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 417,
+                      "duration": 525,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:03.863Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:54.445Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at URL inneholder /utlysinger"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -2138,7 +3326,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-a75d1edb026f1a92f4ad",
               "file": "brukerhistorie-tester.js",
-              "line": 725,
+              "line": 860,
               "column": 3
             },
             {
@@ -2148,7 +3336,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at minst én utlysning er synlig"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -2157,13 +3354,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 354,
+                      "duration": 344,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:04.283Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:54.974Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at minst én utlysning er synlig"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -2172,7 +3378,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-9c4200f5f819e3bbeb98",
               "file": "brukerhistorie-tester.js",
-              "line": 730,
+              "line": 867,
               "column": 3
             },
             {
@@ -2182,7 +3388,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Klikke på første utlysningslenke"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at URL har endret seg til en utlysningsdetaljside"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -2191,13 +3410,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 375,
+                      "duration": 448,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:04.640Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:55.321Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Klikke på første utlysningslenke"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at URL har endret seg til en utlysningsdetaljside"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -2206,7 +3438,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-ec8cbb7a12d2e4def187",
               "file": "brukerhistorie-tester.js",
-              "line": 736,
+              "line": 875,
               "column": 3
             }
           ]
@@ -2214,7 +3446,7 @@
         {
           "title": "BR.HIST-4: Som søker vil jeg kunne navigere tilbake fra en utlysning",
           "file": "brukerhistorie-tester.js",
-          "line": 748,
+          "line": 890,
           "column": 6,
           "specs": [
             {
@@ -2224,7 +3456,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger og klikke inn på en utlysning"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Trykke nettleserens tilbake-knapp"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at URL er tilbake på /utlysinger"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -2233,13 +3478,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2022,
+                      "duration": 1308,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:05.018Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:55.773Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger og klikke inn på en utlysning"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Trykke nettleserens tilbake-knapp"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at URL er tilbake på /utlysinger"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -2248,7 +3506,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-65bad7dcac1cd49fd49c",
               "file": "brukerhistorie-tester.js",
-              "line": 750,
+              "line": 892,
               "column": 3
             },
             {
@@ -2258,7 +3516,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Laste siden på nytt (reload)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at URL fremdeles er /utlysinger og at siden ikke viser feilside"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -2267,13 +3538,26 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 562,
+                      "duration": 490,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:07.044Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:57.084Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Laste siden på nytt (reload)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at URL fremdeles er /utlysinger og at siden ikke viser feilside"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -2282,7 +3566,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-18e33273997131134a9e",
               "file": "brukerhistorie-tester.js",
-              "line": 760,
+              "line": 905,
               "column": 3
             }
           ]
@@ -2290,7 +3574,7 @@
         {
           "title": "BR.HIST-5: Som søker med hjelpemiddelteknologi vil jeg hoppe over navigasjonen",
           "file": "brukerhistorie-tester.js",
-          "line": 771,
+          "line": 919,
           "column": 6,
           "specs": [
             {
@@ -2300,7 +3584,24 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Ta skjermbilde av siden"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Søke etter skiplink i DOM (a[href=\"#main\"] eller a.skip-link)"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at skiplink er festet til DOM"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -2309,32 +3610,49 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 5419,
+                      "duration": 5414,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeAttached\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\nExpected: attached\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeAttached\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeAttached\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\nExpected: attached\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeAttached\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\u001b[22m\n\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:781:29",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeAttached\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\nExpected: attached\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeAttached\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\u001b[22m\n\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:933:29",
                         "location": {
                           "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
                           "column": 29,
-                          "line": 781
+                          "line": 933
                         },
-                        "snippet": "  779 |       'a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]'\n  780 |     ).first();\n> 781 |     await expect(skipLenke).toBeAttached();\n      |                             ^\n  782 |   });\n  783 |\n  784 |   test('skiplink er første fokuserbare element ved Tab-navigasjon', async ({ page }) => {"
+                        "snippet": "  931 |     ).first();\n  932 |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at skiplink er festet til DOM' });\n> 933 |     await expect(skipLenke).toBeAttached();\n      |                             ^\n  934 |   });\n  935 |\n  936 |   test('skiplink er første fokuserbare element ved Tab-navigasjon', async ({ page }, testInfo) => {"
                       },
                       "errors": [
                         {
                           "location": {
                             "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
                             "column": 29,
-                            "line": 781
+                            "line": 933
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeAttached\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\nExpected: attached\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeAttached\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\u001b[22m\n\n\n  779 |       'a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]'\n  780 |     ).first();\n> 781 |     await expect(skipLenke).toBeAttached();\n      |                             ^\n  782 |   });\n  783 |\n  784 |   test('skiplink er første fokuserbare element ved Tab-navigasjon', async ({ page }) => {\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:781:29"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeAttached\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\nExpected: attached\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeAttached\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\u001b[22m\n\n\n  931 |     ).first();\n  932 |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at skiplink er festet til DOM' });\n> 933 |     await expect(skipLenke).toBeAttached();\n      |                             ^\n  934 |   });\n  935 |\n  936 |   test('skiplink er første fokuserbare element ved Tab-navigasjon', async ({ page }, testInfo) => {\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:933:29"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:07.610Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:10:57.579Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Ta skjermbilde av siden"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Søke etter skiplink i DOM (a[href=\"#main\"] eller a.skip-link)"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at skiplink er festet til DOM"
+                        }
+                      ],
                       "attachments": [
                         {
                           "name": "error-context",
@@ -2345,7 +3663,7 @@
                       "errorLocation": {
                         "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
                         "column": 29,
-                        "line": 781
+                        "line": 933
                       }
                     }
                   ],
@@ -2354,7 +3672,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-0eaae1a56beb3dbfa8a5",
               "file": "brukerhistorie-tester.js",
-              "line": 773,
+              "line": 921,
               "column": 3
             },
             {
@@ -2364,7 +3682,24 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Trykke Tab én gang"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Ta skjermbilde av fokustilstand"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at det fokuserte elementet er en skiplink (href inneholder #main eller #innhold)"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -2373,32 +3708,49 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 470,
+                      "duration": 337,
                       "error": {
                         "message": "Error: Første Tab-stopp bør være en skiplink til #main eller #innhold\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/#main|#innhold|#content|#skip/\u001b[39m\nReceived string:  \u001b[31m\"/\"\u001b[39m",
-                        "stack": "Error: Første Tab-stopp bør være en skiplink til #main eller #innhold\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/#main|#innhold|#content|#skip/\u001b[39m\nReceived string:  \u001b[31m\"/\"\u001b[39m\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:790:84",
+                        "stack": "Error: Første Tab-stopp bør være en skiplink til #main eller #innhold\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/#main|#innhold|#content|#skip/\u001b[39m\nReceived string:  \u001b[31m\"/\"\u001b[39m\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:946:84",
                         "location": {
                           "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
                           "column": 84,
-                          "line": 790
+                          "line": 946
                         },
-                        "snippet": "  788 |     await page.screenshot({ path: `${SKJERMBILDER}/BR.HIST-5-foerste-tab-fokus.png` });\n  789 |     const href = await page.locator(':focus').getAttribute('href').catch(() => '');\n> 790 |     expect(href, 'Første Tab-stopp bør være en skiplink til #main eller #innhold').toMatch(/#main|#innhold|#content|#skip/);\n      |                                                                                    ^\n  791 |   });\n  792 |\n  793 |   test('søkeskjema er merket med role=\"search\" for skjermlesere', async ({ page }) => {"
+                        "snippet": "  944 |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at det fokuserte elementet er en skiplink (href inneholder #main eller #innhold)' });\n  945 |     const href = await page.locator(':focus').getAttribute('href').catch(() => '');\n> 946 |     expect(href, 'Første Tab-stopp bør være en skiplink til #main eller #innhold').toMatch(/#main|#innhold|#content|#skip/);\n      |                                                                                    ^\n  947 |   });\n  948 |\n  949 |   test('søkeskjema er merket med role=\"search\" for skjermlesere', async ({ page }, testInfo) => {"
                       },
                       "errors": [
                         {
                           "location": {
                             "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
                             "column": 84,
-                            "line": 790
+                            "line": 946
                           },
-                          "message": "Error: Første Tab-stopp bør være en skiplink til #main eller #innhold\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/#main|#innhold|#content|#skip/\u001b[39m\nReceived string:  \u001b[31m\"/\"\u001b[39m\n\n  788 |     await page.screenshot({ path: `${SKJERMBILDER}/BR.HIST-5-foerste-tab-fokus.png` });\n  789 |     const href = await page.locator(':focus').getAttribute('href').catch(() => '');\n> 790 |     expect(href, 'Første Tab-stopp bør være en skiplink til #main eller #innhold').toMatch(/#main|#innhold|#content|#skip/);\n      |                                                                                    ^\n  791 |   });\n  792 |\n  793 |   test('søkeskjema er merket med role=\"search\" for skjermlesere', async ({ page }) => {\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:790:84"
+                          "message": "Error: Første Tab-stopp bør være en skiplink til #main eller #innhold\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/#main|#innhold|#content|#skip/\u001b[39m\nReceived string:  \u001b[31m\"/\"\u001b[39m\n\n  944 |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at det fokuserte elementet er en skiplink (href inneholder #main eller #innhold)' });\n  945 |     const href = await page.locator(':focus').getAttribute('href').catch(() => '');\n> 946 |     expect(href, 'Første Tab-stopp bør være en skiplink til #main eller #innhold').toMatch(/#main|#innhold|#content|#skip/);\n      |                                                                                    ^\n  947 |   });\n  948 |\n  949 |   test('søkeskjema er merket med role=\"search\" for skjermlesere', async ({ page }, testInfo) => {\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:946:84"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:13.371Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:11:03.325Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Trykke Tab én gang"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Ta skjermbilde av fokustilstand"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at det fokuserte elementet er en skiplink (href inneholder #main eller #innhold)"
+                        }
+                      ],
                       "attachments": [
                         {
                           "name": "error-context",
@@ -2409,7 +3761,7 @@
                       "errorLocation": {
                         "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
                         "column": 84,
-                        "line": 790
+                        "line": 946
                       }
                     }
                   ],
@@ -2418,7 +3770,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-9119e5e05684088c96ef",
               "file": "brukerhistorie-tester.js",
-              "line": 784,
+              "line": 936,
               "column": 3
             },
             {
@@ -2428,7 +3780,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /utlysinger"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Søke etter element med role=\"search\" i DOM"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at søkeregion er synlig"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -2437,32 +3802,45 @@
                       "workerIndex": 2,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 15305,
+                      "duration": 15299,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"search\"]').first()\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"search\"]').first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"search\"]').first()\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"search\"]').first()\u001b[22m\n\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:796:32",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"search\"]').first()\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"search\"]').first()\u001b[22m\n\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:955:32",
                         "location": {
                           "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
                           "column": 32,
-                          "line": 796
+                          "line": 955
                         },
-                        "snippet": "  794 |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });\n  795 |     const searchRegion = page.locator('[role=\"search\"]').first();\n> 796 |     await expect(searchRegion).toBeVisible({ timeout: SIDE_TIMEOUT });\n      |                                ^\n  797 |   });\n  798 |\n  799 | });"
+                        "snippet": "  953 |     const searchRegion = page.locator('[role=\"search\"]').first();\n  954 |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at søkeregion er synlig' });\n> 955 |     await expect(searchRegion).toBeVisible({ timeout: SIDE_TIMEOUT });\n      |                                ^\n  956 |   });\n  957 |\n  958 | });"
                       },
                       "errors": [
                         {
                           "location": {
                             "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
                             "column": 32,
-                            "line": 796
+                            "line": 955
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"search\"]').first()\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"search\"]').first()\u001b[22m\n\n\n  794 |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });\n  795 |     const searchRegion = page.locator('[role=\"search\"]').first();\n> 796 |     await expect(searchRegion).toBeVisible({ timeout: SIDE_TIMEOUT });\n      |                                ^\n  797 |   });\n  798 |\n  799 | });\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:796:32"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"search\"]').first()\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"search\"]').first()\u001b[22m\n\n\n  953 |     const searchRegion = page.locator('[role=\"search\"]').first();\n  954 |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at søkeregion er synlig' });\n> 955 |     await expect(searchRegion).toBeVisible({ timeout: SIDE_TIMEOUT });\n      |                                ^\n  956 |   });\n  957 |\n  958 | });\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:955:32"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:14.164Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:11:03.978Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /utlysinger"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Søke etter element med role=\"search\" i DOM"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at søkeregion er synlig"
+                        }
+                      ],
                       "attachments": [
                         {
                           "name": "error-context",
@@ -2473,7 +3851,7 @@
                       "errorLocation": {
                         "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
                         "column": 32,
-                        "line": 796
+                        "line": 955
                       }
                     }
                   ],
@@ -2482,7 +3860,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-b3758d1ebc2f79cfead8",
               "file": "brukerhistorie-tester.js",
-              "line": 793,
+              "line": 949,
               "column": 3
             }
           ]
@@ -2490,7 +3868,7 @@
         {
           "title": "TILSK-697: Som søker ønsker jeg å se status på søknaden",
           "file": "brukerhistorie-tester.js",
-          "line": 802,
+          "line": 961,
           "column": 6,
           "specs": [
             {
@@ -2500,7 +3878,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /minside"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Lese sideteksten"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at minst én gyldig søknadsstatus vises (Utkast, Til behandling, o.l.)"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -2514,8 +3905,21 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:29.837Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:11:19.672Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /minside"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Lese sideteksten"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at minst én gyldig søknadsstatus vises (Utkast, Til behandling, o.l.)"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -2524,7 +3928,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-20afffdc23827b8ce766",
               "file": "brukerhistorie-tester.js",
-              "line": 826,
+              "line": 985,
               "column": 3
             },
             {
@@ -2536,11 +3940,15 @@
                   "timeout": 30000,
                   "annotations": [
                     {
+                      "type": "steg",
+                      "description": "Hente liste over søknads-URLer fra /minside/utkast"
+                    },
+                    {
                       "type": "skip",
                       "description": "Ingen søknader funnet i TEST-miljøet",
                       "location": {
                         "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
-                        "line": 835,
+                        "line": 998,
                         "column": 14
                       }
                     }
@@ -2553,19 +3961,23 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "skipped",
-                      "duration": 1303,
+                      "duration": 929,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:30.722Z",
+                      "startTime": "2026-07-03T08:11:20.566Z",
                       "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Hente liste over søknads-URLer fra /minside/utkast"
+                        },
                         {
                           "type": "skip",
                           "description": "Ingen søknader funnet i TEST-miljøet",
                           "location": {
                             "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
-                            "line": 835,
+                            "line": 998,
                             "column": 14
                           }
                         }
@@ -2578,7 +3990,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-160b3632c0ad811872b1",
               "file": "brukerhistorie-tester.js",
-              "line": 833,
+              "line": 995,
               "column": 3
             },
             {
@@ -2588,7 +4000,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /minside/utkast"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at siden ikke viser feilside"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -2597,13 +4018,22 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 863,
+                      "duration": 815,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:32.033Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:11:21.504Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /minside/utkast"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at siden ikke viser feilside"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -2612,7 +4042,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-d9f01bcea8dc520257c7",
               "file": "brukerhistorie-tester.js",
-              "line": 842,
+              "line": 1007,
               "column": 3
             },
             {
@@ -2622,7 +4052,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /minside"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at \"Utkast\"-navigasjon finnes"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -2631,13 +4070,22 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 738,
+                      "duration": 747,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:32.900Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:11:22.325Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /minside"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at \"Utkast\"-navigasjon finnes"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -2646,7 +4094,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-863174f73679d2bfcf66",
               "file": "brukerhistorie-tester.js",
-              "line": 849,
+              "line": 1016,
               "column": 3
             },
             {
@@ -2656,7 +4104,20 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /minside"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Lese alle status-etiketter"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at ingen etikett inneholder teksten \"Avvist\""
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -2665,13 +4126,26 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 776,
+                      "duration": 748,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:33.644Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:11:23.078Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /minside"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Lese alle status-etiketter"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at ingen etikett inneholder teksten \"Avvist\""
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -2680,7 +4154,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-a0edbbe358f4f2272508",
               "file": "brukerhistorie-tester.js",
-              "line": 858,
+              "line": 1027,
               "column": 3
             },
             {
@@ -2690,7 +4164,36 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /minside/utkast, /aktiv og /avsluttet"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Lese alle status-etiketter på hver side"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at ingen etikett inneholder teksten \"Slettet\""
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Lese alle status-etiketter på hver side"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at ingen etikett inneholder teksten \"Slettet\""
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Lese alle status-etiketter på hver side"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at ingen etikett inneholder teksten \"Slettet\""
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -2699,13 +4202,42 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2158,
+                      "duration": 2084,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:34.427Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:11:23.834Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /minside/utkast, /aktiv og /avsluttet"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Lese alle status-etiketter på hver side"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at ingen etikett inneholder teksten \"Slettet\""
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Lese alle status-etiketter på hver side"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at ingen etikett inneholder teksten \"Slettet\""
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Lese alle status-etiketter på hver side"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at ingen etikett inneholder teksten \"Slettet\""
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -2714,7 +4246,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-1f22f6377d3184b49b06",
               "file": "brukerhistorie-tester.js",
-              "line": 866,
+              "line": 1038,
               "column": 3
             },
             {
@@ -2724,7 +4256,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /minside"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at gruppen \"Utkast\" finnes"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -2733,13 +4274,22 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 786,
+                      "duration": 778,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:36.591Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:11:25.924Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /minside"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at gruppen \"Utkast\" finnes"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -2748,7 +4298,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-fe7c46e506c88f9fd3c7",
               "file": "brukerhistorie-tester.js",
-              "line": 877,
+              "line": 1052,
               "column": 3
             },
             {
@@ -2758,7 +4308,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /minside"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at gruppen \"Aktive\" finnes"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -2767,13 +4326,22 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 785,
+                      "duration": 758,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:37.383Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:11:26.707Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /minside"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at gruppen \"Aktive\" finnes"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -2782,7 +4350,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-5d22189f5ad0e49204ba",
               "file": "brukerhistorie-tester.js",
-              "line": 884,
+              "line": 1061,
               "column": 3
             },
             {
@@ -2792,7 +4360,16 @@
               "tests": [
                 {
                   "timeout": 30000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "steg",
+                      "description": "Navigere til /minside"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Verifisere at gruppen \"Avsluttede\" finnes"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "",
                   "projectName": "",
@@ -2801,13 +4378,22 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 771,
+                      "duration": 766,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:38.174Z",
-                      "annotations": [],
+                      "startTime": "2026-07-03T08:11:27.471Z",
+                      "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /minside"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Verifisere at gruppen \"Avsluttede\" finnes"
+                        }
+                      ],
                       "attachments": []
                     }
                   ],
@@ -2816,7 +4402,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-0aa6cdb22daa6e8441c5",
               "file": "brukerhistorie-tester.js",
-              "line": 891,
+              "line": 1070,
               "column": 3
             },
             {
@@ -2828,11 +4414,19 @@
                   "timeout": 30000,
                   "annotations": [
                     {
+                      "type": "steg",
+                      "description": "Navigere til /minside/aktiv"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Sjekke om innvilgede søknader finnes (skip hvis ikke)"
+                    },
+                    {
                       "type": "skip",
                       "description": "Ingen innvilgede søknader i TEST-miljøet",
                       "location": {
                         "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
-                        "line": 903,
+                        "line": 1086,
                         "column": 14
                       }
                     }
@@ -2845,19 +4439,27 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "skipped",
-                      "duration": 786,
+                      "duration": 814,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:38.951Z",
+                      "startTime": "2026-07-03T08:11:28.243Z",
                       "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /minside/aktiv"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Sjekke om innvilgede søknader finnes (skip hvis ikke)"
+                        },
                         {
                           "type": "skip",
                           "description": "Ingen innvilgede søknader i TEST-miljøet",
                           "location": {
                             "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
-                            "line": 903,
+                            "line": 1086,
                             "column": 14
                           }
                         }
@@ -2870,7 +4472,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-bb3db14ad22f27763448",
               "file": "brukerhistorie-tester.js",
-              "line": 899,
+              "line": 1080,
               "column": 3
             },
             {
@@ -2882,11 +4484,19 @@
                   "timeout": 30000,
                   "annotations": [
                     {
+                      "type": "steg",
+                      "description": "Navigere til /minside/avsluttet"
+                    },
+                    {
+                      "type": "steg",
+                      "description": "Sjekke om saker med vedtak finnes (skip hvis ikke)"
+                    },
+                    {
                       "type": "skip",
                       "description": "Ingen saker med vedtak i TEST-miljøet",
                       "location": {
                         "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
-                        "line": 913,
+                        "line": 1099,
                         "column": 14
                       }
                     }
@@ -2899,19 +4509,27 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "skipped",
-                      "duration": 884,
+                      "duration": 814,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:39.743Z",
+                      "startTime": "2026-07-03T08:11:29.062Z",
                       "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Navigere til /minside/avsluttet"
+                        },
+                        {
+                          "type": "steg",
+                          "description": "Sjekke om saker med vedtak finnes (skip hvis ikke)"
+                        },
                         {
                           "type": "skip",
                           "description": "Ingen saker med vedtak i TEST-miljøet",
                           "location": {
                             "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
-                            "line": 913,
+                            "line": 1099,
                             "column": 14
                           }
                         }
@@ -2924,7 +4542,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-bf91fb039c39a8a33f8e",
               "file": "brukerhistorie-tester.js",
-              "line": 909,
+              "line": 1093,
               "column": 3
             },
             {
@@ -2936,11 +4554,15 @@
                   "timeout": 30000,
                   "annotations": [
                     {
+                      "type": "steg",
+                      "description": "Hente søknads-URLer fra /minside/utkast"
+                    },
+                    {
                       "type": "skip",
                       "description": "Ingen søknader i TEST-miljøet",
                       "location": {
                         "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
-                        "line": 920,
+                        "line": 1108,
                         "column": 14
                       }
                     }
@@ -2953,19 +4575,23 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "skipped",
-                      "duration": 844,
+                      "duration": 849,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:40.633Z",
+                      "startTime": "2026-07-03T08:11:29.880Z",
                       "annotations": [
+                        {
+                          "type": "steg",
+                          "description": "Hente søknads-URLer fra /minside/utkast"
+                        },
                         {
                           "type": "skip",
                           "description": "Ingen søknader i TEST-miljøet",
                           "location": {
                             "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
-                            "line": 920,
+                            "line": 1108,
                             "column": 14
                           }
                         }
@@ -2978,7 +4604,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-2ccd43d937acda4b6120",
               "file": "brukerhistorie-tester.js",
-              "line": 918,
+              "line": 1105,
               "column": 3
             }
           ]
@@ -2986,7 +4612,7 @@
         {
           "title": "TILSK-886: Som søker trenger jeg ikke lenger å knytte en organisasjonsrepresentant til søknaden",
           "file": "brukerhistorie-tester.js",
-          "line": 938,
+          "line": 1128,
           "column": 6,
           "specs": [
             {
@@ -3026,12 +4652,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3891,
+                      "duration": 4221,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:41.482Z",
+                      "startTime": "2026-07-03T08:11:30.735Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -3062,7 +4688,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-b9d9799a426a3e2380c5",
               "file": "brukerhistorie-tester.js",
-              "line": 971,
+              "line": 1161,
               "column": 3
             },
             {
@@ -3098,12 +4724,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4551,
+                      "duration": 4459,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-03T07:44:45.379Z",
+                      "startTime": "2026-07-03T08:11:34.961Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -3130,7 +4756,7 @@
               ],
               "id": "2d51df8f2a7ee4965639-5f551f8ab84250be7a6f",
               "file": "brukerhistorie-tester.js",
-              "line": 992,
+              "line": 1182,
               "column": 3
             }
           ]
@@ -3140,8 +4766,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-07-03T07:42:51.152Z",
-    "duration": 118809.62400000001,
+    "startTime": "2026-07-03T08:09:41.081Z",
+    "duration": 118383.872,
     "expected": 68,
     "skipped": 7,
     "unexpected": 3,

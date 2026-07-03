@@ -7,7 +7,7 @@
 # Test info
 
 - Name: brukerhistorie-tester.js >> BR.HIST-5: Som søker med hjelpemiddelteknologi vil jeg hoppe over navigasjonen >> skiplink til hovedinnhold finnes i DOM (WCAG 2.4.1)
-- Location: brukerhistorie-tester.js:773:3
+- Location: brukerhistorie-tester.js:921:3
 
 # Error details
 
@@ -221,206 +221,206 @@ Call log:
 # Test source
 
 ```ts
-  681 |   // AK-2: Halvferdige ord – delstreng gir treff (f.eks. «tilsk» → «tilskudd»)
-  682 |   test('AK-2 – halvferdig ord: delstreng gir relevante treff (ikke feilside)', async ({ page }) => {
-  683 |     await søk(page, 'tilsk');
-  684 |     const body = await page.textContent('body');
-  685 |     expect(body).not.toMatch(/500|Internal Server Error|Uventet feil/);
-  686 |     const kortEllerIngenTreff = page.locator(
-  687 |       'article, [class*="card"], [class*="kort"], li a[href*="utlysing"], ' +
-  688 |       '[class*="ingen"], [class*="empty"], [class*="no-result"]'
-  689 |     );
-  690 |     await expect(kortEllerIngenTreff.first()).toBeAttached({ timeout: SIDE_TIMEOUT });
-  691 |   });
-  692 | 
-  693 |   // AK-3: Flere ord – utlysninger som inneholder alle eller noen av ordene vises
-  694 |   test('AK-3 – flere ord: søk på «barn og unge» gir respons uten feilside', async ({ page }) => {
-  695 |     await søk(page, 'barn og unge');
-  696 |     const body = await page.textContent('body');
-  697 |     expect(body).not.toMatch(/500|Internal Server Error|Uventet feil/);
-  698 |   });
-  699 | 
-  700 |   // AK-4: Ingen treff – tydelig melding forklarer at ingen ordninger matchet
-  701 |   test('AK-4 – ingen treff: nonsens-streng viser ingen-treff-melding, ikke feilside', async ({ page }) => {
-  702 |     await søk(page, 'xyzabc123nonsens');
-  703 |     const body = await page.textContent('body');
-  704 |     expect(body).not.toMatch(/500|Internal Server Error|Uventet feil/);
-  705 |   });
-  706 | 
-  707 |   // AK-5: Tomt søkefelt – hele listen over utlysninger vises igjen
-  708 |   test('AK-5 – tomt søkefelt: hel utlysningsliste vises igjen', async ({ page }) => {
-  709 |     await søk(page, '');
-  710 |     await expect(page).toHaveURL(/utlysinger/);
-  711 |     const kort = page.locator('article, [class*="card"], [class*="kort"], li a[href*="utlysig"]');
-  712 |     await expect(kort.first()).toBeVisible({ timeout: SIDE_TIMEOUT });
-  713 |   });
-  714 | 
-  715 |   // AK-6: Feilstaving håndteres – gjerne med «mente du?»
-  716 |   test('AK-6 – feilstaving: feilstavet søkeord håndteres (f.eks. «mente du?»)', async ({ page }, testInfo) => {
-  717 |     testInfo.skip(true, 'AK-6 ikke implementert ennå – krever fuzzy søkemotor (TILSK-856 i Utviklingskø)');
-  718 |   });
-  719 | 
-  720 | });
-  721 | 
-  722 | // ── BR.HIST-1 ─────────────────────────────────────────────────────────────────────
-  723 | test.describe('BR.HIST-1: Som søker vil jeg se oversikt over tilskuddsordninger', () => {
-  724 | 
-  725 |   test('kan navigere til utlysningslisten', async ({ page }) => {
-  726 |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
-  727 |     await expect(page).toHaveURL(/utlysinger/);
-  728 |   });
-  729 | 
-  730 |   test('utlysningslisten inneholder minst én ordning', async ({ page }) => {
-  731 |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
-  732 |     const kort = page.locator('article, [class*="card"], [class*="kort"], li a[href*="utlysing"]');
-  733 |     await expect(kort.first()).toBeVisible({ timeout: SIDE_TIMEOUT });
-  734 |   });
-  735 | 
-  736 |   test('kan klikke seg inn på en utlysning og se detaljer', async ({ page }) => {
-  737 |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
-  738 |     const forstelenke = page.locator('a[href*="utlysing"]').first();
-  739 |     await expect(forstelenke).toBeVisible({ timeout: SIDE_TIMEOUT });
-  740 |     await forstelenke.click();
-  741 |     await page.waitForLoadState('domcontentloaded');
-  742 |     await expect(page).not.toHaveURL(`${base}/utlysinger`);
-  743 |   });
-  744 | 
-  745 | });
-  746 | 
-  747 | // ── BR.HIST-4 ─────────────────────────────────────────────────────────────────────
-  748 | test.describe('BR.HIST-4: Som søker vil jeg kunne navigere tilbake fra en utlysning', () => {
-  749 | 
-  750 |   test('tilbake-navigasjon fra utlysning fungerer', async ({ page }) => {
-  751 |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
-  752 |     const lenke = page.locator('a[href*="utlysinger/"]').first();
-  753 |     const href = await lenke.getAttribute('href');
-  754 |     const absoluteHref = href.startsWith('http') ? href : `${base}${href}`;
-  755 |     await page.goto(absoluteHref, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
-  756 |     await page.goBack({ waitUntil: 'domcontentloaded' });
-  757 |     await expect(page).toHaveURL(/utlysinger/);
-  758 |   });
-  759 | 
-  760 |   test('F5-refresh på utlysningslisten beholder siden', async ({ page }) => {
-  761 |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
-  762 |     await page.reload({ waitUntil: 'domcontentloaded' });
-  763 |     await expect(page).toHaveURL(/utlysinger/);
-  764 |     const body = await page.textContent('body');
-  765 |     expect(body).not.toMatch(/500|Internal Server Error|Uventet feil/);
-  766 |   });
-  767 | 
-  768 | });
-  769 | 
-  770 | // ── BR.HIST-5 ─────────────────────────────────────────────────────────────────────
-  771 | test.describe('BR.HIST-5: Som søker med hjelpemiddelteknologi vil jeg hoppe over navigasjonen', () => {
-  772 | 
-  773 |   test('skiplink til hovedinnhold finnes i DOM (WCAG 2.4.1)', async ({ page }) => {
-  774 |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
-  775 |     fs.mkdirSync(SKJERMBILDER, { recursive: true });
-  776 |     await page.screenshot({ path: `${SKJERMBILDER}/BR.HIST-5-side-uten-skiplink.png` });
-  777 |     const skipLenke = page.locator(
-  778 |       'a[href="#main"], a[href="#maincontent"], a[href="#main-content"], ' +
-  779 |       'a[href="#innhold"], a.skip-link, a[class*="skip"]'
-  780 |     ).first();
-> 781 |     await expect(skipLenke).toBeAttached();
-      |                             ^ Error: expect(locator).toBeAttached() failed
-  782 |   });
-  783 | 
-  784 |   test('skiplink er første fokuserbare element ved Tab-navigasjon', async ({ page }) => {
-  785 |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
-  786 |     await page.keyboard.press('Tab');
-  787 |     fs.mkdirSync(SKJERMBILDER, { recursive: true });
-  788 |     await page.screenshot({ path: `${SKJERMBILDER}/BR.HIST-5-foerste-tab-fokus.png` });
-  789 |     const href = await page.locator(':focus').getAttribute('href').catch(() => '');
-  790 |     expect(href, 'Første Tab-stopp bør være en skiplink til #main eller #innhold').toMatch(/#main|#innhold|#content|#skip/);
-  791 |   });
-  792 | 
-  793 |   test('søkeskjema er merket med role="search" for skjermlesere', async ({ page }) => {
-  794 |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
-  795 |     const searchRegion = page.locator('[role="search"]').first();
-  796 |     await expect(searchRegion).toBeVisible({ timeout: SIDE_TIMEOUT });
-  797 |   });
-  798 | 
-  799 | });
-  800 | 
-  801 | // ── TILSK-697 ────────────────────────────────────────────────────────────────────
-  802 | test.describe('TILSK-697: Som søker ønsker jeg å se status på søknaden', () => {
-  803 | 
-  804 |   const GYLDIGE_STATUSER = ['Utkast', 'Til behandling', 'Gjenåpnet', 'Innvilget', 'Avslått', 'Avsluttet', 'Trukket'];
-  805 |   const RAPPORT_STATUSER  = ['Ikke innsendt', 'Påbegynt', 'Innsendt', 'Godkjent'];
-  806 | 
-  807 |   const STATUS_SEL =
-  808 |     '[class*="status"], [class*="badge"], [data-testid*="status"], ' +
-  809 |     '[class*="etikett"], [class*="chip"], [class*="tag"]';
-  810 | 
-  811 |   async function gåTilMinSide(page) {
-  812 |     await page.goto(`${base}/minside`, { timeout: IDLE_TIMEOUT });
-  813 |     await page.waitForLoadState('networkidle', { timeout: IDLE_TIMEOUT });
-  814 |   }
-  815 | 
-  816 |   async function hentSøknadsUrler(page) {
-  817 |     await page.goto(`${base}/minside/utkast`, { timeout: IDLE_TIMEOUT });
-  818 |     await page.waitForLoadState('networkidle', { timeout: IDLE_TIMEOUT });
-  819 |     const hrefs = await page.locator('a[href*="soknad/"]').evaluateAll(
-  820 |       els => [...new Set(els.map(el => el.getAttribute('href')).filter(Boolean))]
-  821 |     );
-  822 |     return hrefs.map(h => h.startsWith('http') ? h : `${base}${h}`);
-  823 |   }
-  824 | 
-  825 |   // AK-1 – gyldige statuser vises
-  826 |   test('AK-1 – minst én gyldig søknadsstatus vises på Min side', async ({ page }) => {
-  827 |     await gåTilMinSide(page);
-  828 |     const body = await page.textContent('body');
-  829 |     const harGyldigStatus = GYLDIGE_STATUSER.some(s => body.includes(s));
-  830 |     expect(harGyldigStatus, `Forventet minst én av: ${GYLDIGE_STATUSER.join(', ')}`).toBe(true);
-  831 |   });
-  832 | 
-  833 |   test('AK-1 – søknadssiden viser statusbadge', async ({ page }, testInfo) => {
-  834 |     const urler = await hentSøknadsUrler(page);
-  835 |     testInfo.skip(urler.length === 0, 'Ingen søknader funnet i TEST-miljøet');
-  836 |     await page.goto(urler[0], { timeout: IDLE_TIMEOUT });
-  837 |     await page.waitForLoadState('networkidle', { timeout: IDLE_TIMEOUT });
-  838 |     await expect(page.locator(STATUS_SEL).first()).toBeAttached({ timeout: SIDE_TIMEOUT });
-  839 |   });
-  840 | 
-  841 |   // AK-2 – utkast-siden finnes og laster
-  842 |   test('AK-2 – /minside/utkast laster uten feilside', async ({ page }) => {
-  843 |     await page.goto(`${base}/minside/utkast`, { timeout: IDLE_TIMEOUT });
-  844 |     await page.waitForLoadState('networkidle', { timeout: IDLE_TIMEOUT });
-  845 |     const body = await page.textContent('body');
-  846 |     expect(body).not.toMatch(/500|Internal Server Error|Uventet feil/);
-  847 |   });
-  848 | 
-  849 |   test('AK-2 – Min side har en "Utkast"-navigasjon', async ({ page }) => {
-  850 |     await gåTilMinSide(page);
-  851 |     const utkast = page.locator(
-  852 |       'h2:has-text("Utkast"), h3:has-text("Utkast"), a:has-text("Utkast"), [aria-label*="Utkast"]'
-  853 |     ).first();
-  854 |     await expect(utkast).toBeAttached({ timeout: SIDE_TIMEOUT });
-  855 |   });
-  856 | 
-  857 |   // AK-4 – "Avvist" skal aldri vises, kun "Avslått"
-  858 |   test('AK-4 – statusetiketten "Avvist" vises ikke (portalen bruker "Avslått")', async ({ page }) => {
-  859 |     await gåTilMinSide(page);
-  860 |     const tekster = await page.locator(STATUS_SEL).allTextContents();
-  861 |     const harAvvist = tekster.some(t => /^avvist$/i.test(t.trim()));
-  862 |     expect(harAvvist, '"Avvist" skal aldri vises – bruk "Avslått"').toBe(false);
-  863 |   });
-  864 | 
-  865 |   // AK-5 – "Slettet" skal ikke vises noe sted
-  866 |   test('AK-5 – status "Slettet" vises ikke i noen av listefanene', async ({ page }) => {
-  867 |     for (const sti of ['/minside/utkast', '/minside/aktiv', '/minside/avsluttet']) {
-  868 |       await page.goto(`${base}${sti}`, { timeout: IDLE_TIMEOUT });
-  869 |       await page.waitForLoadState('networkidle', { timeout: IDLE_TIMEOUT });
-  870 |       const tekster = await page.locator(STATUS_SEL).allTextContents();
-  871 |       const harSlettet = tekster.some(t => /^slettet$/i.test(t.trim()));
-  872 |       expect(harSlettet, `"Slettet" skal ikke vises på ${sti}`).toBe(false);
-  873 |     }
-  874 |   });
-  875 | 
-  876 |   // AK-6 – tre grupper på Min side
-  877 |   test('AK-6 – Min side har gruppen "Utkast"', async ({ page }) => {
-  878 |     await gåTilMinSide(page);
-  879 |     await expect(
-  880 |       page.locator('h2:has-text("Utkast"), h3:has-text("Utkast"), a:has-text("Utkast")').first()
-  881 |     ).toBeAttached({ timeout: SIDE_TIMEOUT });
+  833  |     await søk(page, 'xyzabc123nonsens');
+  834  |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at siden ikke viser feilside' });
+  835  |     const body = await page.textContent('body');
+  836  |     expect(body).not.toMatch(/500|Internal Server Error|Uventet feil/);
+  837  |   });
+  838  | 
+  839  |   // AK-5: Tomt søkefelt – hele listen over utlysninger vises igjen
+  840  |   test('AK-5 – tomt søkefelt: hel utlysningsliste vises igjen', async ({ page }, testInfo) => {
+  841  |     testInfo.annotations.push({ type: 'steg', description: 'Navigere til /utlysinger og søke med tomt søkefelt' });
+  842  |     await søk(page, '');
+  843  |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at hel utlysningsliste vises igjen' });
+  844  |     await expect(page).toHaveURL(/utlysinger/);
+  845  |     const kort = page.locator('article, [class*="card"], [class*="kort"], li a[href*="utlysig"]');
+  846  |     await expect(kort.first()).toBeVisible({ timeout: SIDE_TIMEOUT });
+  847  |   });
+  848  | 
+  849  |   // AK-6: Feilstaving håndteres – gjerne med «mente du?»
+  850  |   test('AK-6 – feilstaving: feilstavet søkeord håndteres (f.eks. «mente du?»)', async ({ page }, testInfo) => {
+  851  |     testInfo.annotations.push({ type: 'steg', description: 'Testen er markert som hoppet over – fuzzy søk ikke implementert ennå (TILSK-856)' });
+  852  |     testInfo.skip(true, 'AK-6 ikke implementert ennå – krever fuzzy søkemotor (TILSK-856 i Utviklingskø)');
+  853  |   });
+  854  | 
+  855  | });
+  856  | 
+  857  | // ── BR.HIST-1 ─────────────────────────────────────────────────────────────────────
+  858  | test.describe('BR.HIST-1: Som søker vil jeg se oversikt over tilskuddsordninger', () => {
+  859  | 
+  860  |   test('kan navigere til utlysningslisten', async ({ page }, testInfo) => {
+  861  |     testInfo.annotations.push({ type: 'steg', description: 'Navigere til /utlysinger' });
+  862  |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
+  863  |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at URL inneholder /utlysinger' });
+  864  |     await expect(page).toHaveURL(/utlysinger/);
+  865  |   });
+  866  | 
+  867  |   test('utlysningslisten inneholder minst én ordning', async ({ page }, testInfo) => {
+  868  |     testInfo.annotations.push({ type: 'steg', description: 'Navigere til /utlysinger' });
+  869  |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
+  870  |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at minst én utlysning er synlig' });
+  871  |     const kort = page.locator('article, [class*="card"], [class*="kort"], li a[href*="utlysing"]');
+  872  |     await expect(kort.first()).toBeVisible({ timeout: SIDE_TIMEOUT });
+  873  |   });
+  874  | 
+  875  |   test('kan klikke seg inn på en utlysning og se detaljer', async ({ page }, testInfo) => {
+  876  |     testInfo.annotations.push({ type: 'steg', description: 'Navigere til /utlysinger' });
+  877  |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
+  878  |     testInfo.annotations.push({ type: 'steg', description: 'Klikke på første utlysningslenke' });
+  879  |     const forstelenke = page.locator('a[href*="utlysing"]').first();
+  880  |     await expect(forstelenke).toBeVisible({ timeout: SIDE_TIMEOUT });
+  881  |     await forstelenke.click();
+  882  |     await page.waitForLoadState('domcontentloaded');
+  883  |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at URL har endret seg til en utlysningsdetaljside' });
+  884  |     await expect(page).not.toHaveURL(`${base}/utlysinger`);
+  885  |   });
+  886  | 
+  887  | });
+  888  | 
+  889  | // ── BR.HIST-4 ─────────────────────────────────────────────────────────────────────
+  890  | test.describe('BR.HIST-4: Som søker vil jeg kunne navigere tilbake fra en utlysning', () => {
+  891  | 
+  892  |   test('tilbake-navigasjon fra utlysning fungerer', async ({ page }, testInfo) => {
+  893  |     testInfo.annotations.push({ type: 'steg', description: 'Navigere til /utlysinger og klikke inn på en utlysning' });
+  894  |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
+  895  |     const lenke = page.locator('a[href*="utlysinger/"]').first();
+  896  |     const href = await lenke.getAttribute('href');
+  897  |     const absoluteHref = href.startsWith('http') ? href : `${base}${href}`;
+  898  |     await page.goto(absoluteHref, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT });
+  899  |     testInfo.annotations.push({ type: 'steg', description: 'Trykke nettleserens tilbake-knapp' });
+  900  |     await page.goBack({ waitUntil: 'domcontentloaded' });
+  901  |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at URL er tilbake på /utlysinger' });
+  902  |     await expect(page).toHaveURL(/utlysinger/);
+  903  |   });
+  904  | 
+  905  |   test('F5-refresh på utlysningslisten beholder siden', async ({ page }, testInfo) => {
+  906  |     testInfo.annotations.push({ type: 'steg', description: 'Navigere til /utlysinger' });
+  907  |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
+  908  |     testInfo.annotations.push({ type: 'steg', description: 'Laste siden på nytt (reload)' });
+  909  |     await page.reload({ waitUntil: 'domcontentloaded' });
+  910  |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at URL fremdeles er /utlysinger og at siden ikke viser feilside' });
+  911  |     await expect(page).toHaveURL(/utlysinger/);
+  912  |     const body = await page.textContent('body');
+  913  |     expect(body).not.toMatch(/500|Internal Server Error|Uventet feil/);
+  914  |   });
+  915  | 
+  916  | });
+  917  | 
+  918  | // ── BR.HIST-5 ─────────────────────────────────────────────────────────────────────
+  919  | test.describe('BR.HIST-5: Som søker med hjelpemiddelteknologi vil jeg hoppe over navigasjonen', () => {
+  920  | 
+  921  |   test('skiplink til hovedinnhold finnes i DOM (WCAG 2.4.1)', async ({ page }, testInfo) => {
+  922  |     testInfo.annotations.push({ type: 'steg', description: 'Navigere til /utlysinger' });
+  923  |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
+  924  |     testInfo.annotations.push({ type: 'steg', description: 'Ta skjermbilde av siden' });
+  925  |     fs.mkdirSync(SKJERMBILDER, { recursive: true });
+  926  |     await page.screenshot({ path: `${SKJERMBILDER}/BR.HIST-5-side-uten-skiplink.png` });
+  927  |     testInfo.annotations.push({ type: 'steg', description: 'Søke etter skiplink i DOM (a[href="#main"] eller a.skip-link)' });
+  928  |     const skipLenke = page.locator(
+  929  |       'a[href="#main"], a[href="#maincontent"], a[href="#main-content"], ' +
+  930  |       'a[href="#innhold"], a.skip-link, a[class*="skip"]'
+  931  |     ).first();
+  932  |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at skiplink er festet til DOM' });
+> 933  |     await expect(skipLenke).toBeAttached();
+       |                             ^ Error: expect(locator).toBeAttached() failed
+  934  |   });
+  935  | 
+  936  |   test('skiplink er første fokuserbare element ved Tab-navigasjon', async ({ page }, testInfo) => {
+  937  |     testInfo.annotations.push({ type: 'steg', description: 'Navigere til /utlysinger' });
+  938  |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
+  939  |     testInfo.annotations.push({ type: 'steg', description: 'Trykke Tab én gang' });
+  940  |     await page.keyboard.press('Tab');
+  941  |     testInfo.annotations.push({ type: 'steg', description: 'Ta skjermbilde av fokustilstand' });
+  942  |     fs.mkdirSync(SKJERMBILDER, { recursive: true });
+  943  |     await page.screenshot({ path: `${SKJERMBILDER}/BR.HIST-5-foerste-tab-fokus.png` });
+  944  |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at det fokuserte elementet er en skiplink (href inneholder #main eller #innhold)' });
+  945  |     const href = await page.locator(':focus').getAttribute('href').catch(() => '');
+  946  |     expect(href, 'Første Tab-stopp bør være en skiplink til #main eller #innhold').toMatch(/#main|#innhold|#content|#skip/);
+  947  |   });
+  948  | 
+  949  |   test('søkeskjema er merket med role="search" for skjermlesere', async ({ page }, testInfo) => {
+  950  |     testInfo.annotations.push({ type: 'steg', description: 'Navigere til /utlysinger' });
+  951  |     await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
+  952  |     testInfo.annotations.push({ type: 'steg', description: 'Søke etter element med role="search" i DOM' });
+  953  |     const searchRegion = page.locator('[role="search"]').first();
+  954  |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at søkeregion er synlig' });
+  955  |     await expect(searchRegion).toBeVisible({ timeout: SIDE_TIMEOUT });
+  956  |   });
+  957  | 
+  958  | });
+  959  | 
+  960  | // ── TILSK-697 ────────────────────────────────────────────────────────────────────
+  961  | test.describe('TILSK-697: Som søker ønsker jeg å se status på søknaden', () => {
+  962  | 
+  963  |   const GYLDIGE_STATUSER = ['Utkast', 'Til behandling', 'Gjenåpnet', 'Innvilget', 'Avslått', 'Avsluttet', 'Trukket'];
+  964  |   const RAPPORT_STATUSER  = ['Ikke innsendt', 'Påbegynt', 'Innsendt', 'Godkjent'];
+  965  | 
+  966  |   const STATUS_SEL =
+  967  |     '[class*="status"], [class*="badge"], [data-testid*="status"], ' +
+  968  |     '[class*="etikett"], [class*="chip"], [class*="tag"]';
+  969  | 
+  970  |   async function gåTilMinSide(page) {
+  971  |     await page.goto(`${base}/minside`, { timeout: IDLE_TIMEOUT });
+  972  |     await page.waitForLoadState('networkidle', { timeout: IDLE_TIMEOUT });
+  973  |   }
+  974  | 
+  975  |   async function hentSøknadsUrler(page) {
+  976  |     await page.goto(`${base}/minside/utkast`, { timeout: IDLE_TIMEOUT });
+  977  |     await page.waitForLoadState('networkidle', { timeout: IDLE_TIMEOUT });
+  978  |     const hrefs = await page.locator('a[href*="soknad/"]').evaluateAll(
+  979  |       els => [...new Set(els.map(el => el.getAttribute('href')).filter(Boolean))]
+  980  |     );
+  981  |     return hrefs.map(h => h.startsWith('http') ? h : `${base}${h}`);
+  982  |   }
+  983  | 
+  984  |   // AK-1 – gyldige statuser vises
+  985  |   test('AK-1 – minst én gyldig søknadsstatus vises på Min side', async ({ page }, testInfo) => {
+  986  |     testInfo.annotations.push({ type: 'steg', description: 'Navigere til /minside' });
+  987  |     await gåTilMinSide(page);
+  988  |     testInfo.annotations.push({ type: 'steg', description: 'Lese sideteksten' });
+  989  |     const body = await page.textContent('body');
+  990  |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at minst én gyldig søknadsstatus vises (Utkast, Til behandling, o.l.)' });
+  991  |     const harGyldigStatus = GYLDIGE_STATUSER.some(s => body.includes(s));
+  992  |     expect(harGyldigStatus, `Forventet minst én av: ${GYLDIGE_STATUSER.join(', ')}`).toBe(true);
+  993  |   });
+  994  | 
+  995  |   test('AK-1 – søknadssiden viser statusbadge', async ({ page }, testInfo) => {
+  996  |     testInfo.annotations.push({ type: 'steg', description: 'Hente liste over søknads-URLer fra /minside/utkast' });
+  997  |     const urler = await hentSøknadsUrler(page);
+  998  |     testInfo.skip(urler.length === 0, 'Ingen søknader funnet i TEST-miljøet');
+  999  |     testInfo.annotations.push({ type: 'steg', description: 'Navigere til første søknad' });
+  1000 |     await page.goto(urler[0], { timeout: IDLE_TIMEOUT });
+  1001 |     await page.waitForLoadState('networkidle', { timeout: IDLE_TIMEOUT });
+  1002 |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at statusbadge er festet til DOM' });
+  1003 |     await expect(page.locator(STATUS_SEL).first()).toBeAttached({ timeout: SIDE_TIMEOUT });
+  1004 |   });
+  1005 | 
+  1006 |   // AK-2 – utkast-siden finnes og laster
+  1007 |   test('AK-2 – /minside/utkast laster uten feilside', async ({ page }, testInfo) => {
+  1008 |     testInfo.annotations.push({ type: 'steg', description: 'Navigere til /minside/utkast' });
+  1009 |     await page.goto(`${base}/minside/utkast`, { timeout: IDLE_TIMEOUT });
+  1010 |     await page.waitForLoadState('networkidle', { timeout: IDLE_TIMEOUT });
+  1011 |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at siden ikke viser feilside' });
+  1012 |     const body = await page.textContent('body');
+  1013 |     expect(body).not.toMatch(/500|Internal Server Error|Uventet feil/);
+  1014 |   });
+  1015 | 
+  1016 |   test('AK-2 – Min side har en "Utkast"-navigasjon', async ({ page }, testInfo) => {
+  1017 |     testInfo.annotations.push({ type: 'steg', description: 'Navigere til /minside' });
+  1018 |     await gåTilMinSide(page);
+  1019 |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at "Utkast"-navigasjon finnes' });
+  1020 |     const utkast = page.locator(
+  1021 |       'h2:has-text("Utkast"), h3:has-text("Utkast"), a:has-text("Utkast"), [aria-label*="Utkast"]'
+  1022 |     ).first();
+  1023 |     await expect(utkast).toBeAttached({ timeout: SIDE_TIMEOUT });
+  1024 |   });
+  1025 | 
+  1026 |   // AK-4 – "Avvist" skal aldri vises, kun "Avslått"
+  1027 |   test('AK-4 – statusetiketten "Avvist" vises ikke (portalen bruker "Avslått")', async ({ page }, testInfo) => {
+  1028 |     testInfo.annotations.push({ type: 'steg', description: 'Navigere til /minside' });
+  1029 |     await gåTilMinSide(page);
+  1030 |     testInfo.annotations.push({ type: 'steg', description: 'Lese alle status-etiketter' });
+  1031 |     const tekster = await page.locator(STATUS_SEL).allTextContents();
+  1032 |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at ingen etikett inneholder teksten "Avvist"' });
+  1033 |     const harAvvist = tekster.some(t => /^avvist$/i.test(t.trim()));
 ```
