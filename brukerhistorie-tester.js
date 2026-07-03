@@ -933,3 +933,87 @@ test.describe('TILSK-697: Som søker ønsker jeg å se status på søknaden', ()
   });
 
 });
+
+// ── TILSK-886 ────────────────────────────────────────────────────────────────────
+test.describe('TILSK-886: Som søker trenger jeg ikke lenger å knytte en organisasjonsrepresentant til søknaden', () => {
+
+  const SØK_KNAPP_886 =
+    'a:has-text("Søk om tilskudd"), button:has-text("Søk om tilskudd"), ' +
+    'a:has-text("Start søknad"), button:has-text("Start søknad"), ' +
+    '[data-testid*="sok-tilskudd"], [data-testid*="start-soknad"]';
+
+  const ORG_REP_MØNSTER =
+    /organisasjonsrepresentant|org\.?\s*representant|legg til representant|endre representant|slett representant/i;
+
+  const ORG_REP_FELT =
+    'input[name*="representant"], input[name*="orgRep"], ' +
+    '[data-testid*="representant"], [data-testid*="orgRep"]';
+
+  async function gåTilOpprettSøknad886(page) {
+    await page.goto(`${base}/utlysinger`, { timeout: IDLE_TIMEOUT });
+    await page.locator('a[href*="utlysinger/"]').first().waitFor({ state: 'visible', timeout: SIDE_TIMEOUT });
+    const hrefs = await page.locator('a[href*="utlysinger/"]').evaluateAll(
+      els => [...new Set(els.map(el => el.getAttribute('href')).filter(Boolean))]
+    );
+    const urler = hrefs.map(h => h.startsWith('http') ? h : `${base}${h}`);
+    for (const url of urler.slice(0, 8)) {
+      await page.goto(url, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT });
+      const knapp = page.locator(SØK_KNAPP_886).first();
+      if ((await knapp.count()) === 0) continue;
+      await knapp.click();
+      await page.waitForLoadState('networkidle', { timeout: IDLE_TIMEOUT });
+      return true;
+    }
+    return false;
+  }
+
+  // AK-1: UI inneholder ikke organisasjonsrepresentant-funksjonalitet
+  test('AK-1 – søknadsopprett-siden viser ikke tekst, felt eller knapper for organisasjonsrepresentant', async ({ page }, testInfo) => {
+    testInfo.annotations.push({ type: 'steg', description: 'Åpne utlysningslisten og finn første utlysning med "Søk om tilskudd"-knapp' });
+    const funnet = await gåTilOpprettSøknad886(page);
+    testInfo.skip(!funnet, 'Ingen utlysning med "Søk om tilskudd"-knapp funnet i TEST-miljøet');
+
+    testInfo.annotations.push({ type: 'steg', description: 'Klikke "Søk om tilskudd" og laste /soknad/opprett-siden' });
+    const body = await page.textContent('body');
+
+    testInfo.annotations.push({ type: 'steg', description: 'Verifisere at teksten "organisasjonsrepresentant" (og varianter) ikke forekommer på siden' });
+    expect(body, 'Siden skal ikke nevne organisasjonsrepresentant').not.toMatch(ORG_REP_MØNSTER);
+
+    testInfo.annotations.push({ type: 'steg', description: 'Verifisere at ingen input-felt med name/data-testid for orgRepresentant finnes i DOM' });
+    const felt = page.locator(ORG_REP_FELT);
+    expect(await felt.count(), 'Ingen input-felt for orgRepresentant skal finnes').toBe(0);
+
+    testInfo.annotations.push({ type: 'steg', description: 'Verifisere at ingen knapper eller lenker inneholder teksten "representant"' });
+    const knapper = page.locator('button, a').filter({ hasText: /representant/i });
+    expect(await knapper.count(), 'Ingen knapper/lenker med «representant» skal finnes').toBe(0);
+  });
+
+  // AK-2: API-respons inneholder ikke orgRepresentant-attributtet
+  test('AK-2 – API-responser fra søknad-endepunkter inneholder ikke orgRepresentant-feltet', async ({ page }, testInfo) => {
+    const responsePromises = [];
+
+    testInfo.annotations.push({ type: 'steg', description: 'Registrere lytter på JSON-svar fra endepunkter med "soknad" eller "tilskudd" i URL-en' });
+    page.on('response', response => {
+      const ct = response.headers()['content-type'] ?? '';
+      if (!ct.includes('application/json')) return;
+      if (!/soknad|tilskudd/i.test(response.url())) return;
+      responsePromises.push(response.text().catch(() => ''));
+    });
+
+    testInfo.annotations.push({ type: 'steg', description: 'Navigere til en utlysning og klikke "Søk om tilskudd" for å trigge API-kall mot søknad-endepunkter' });
+    const funnet = await gåTilOpprettSøknad886(page);
+    testInfo.skip(!funnet, 'Ingen utlysning med "Søk om tilskudd"-knapp funnet i TEST-miljøet');
+
+    testInfo.annotations.push({ type: 'steg', description: 'Navigere til /minside/utkast for å hente eventuelle eksisterende søknader fra API' });
+    await page.goto(`${base}/minside/utkast`, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT });
+
+    testInfo.annotations.push({ type: 'steg', description: 'Vente på alle interceptede API-svar og sjekke om "orgRepresentant" forekommer i noen av dem' });
+    const tekster = await Promise.all(responsePromises);
+    const orgRepFunnet = tekster.some(t => t.includes('orgRepresentant'));
+    expect(
+      orgRepFunnet,
+      `"orgRepresentant"-feltet ble funnet blant ${tekster.length} interceptede API-svar – skal ha vært fjernet (TILSK-886)`
+    ).toBe(false);
+  });
+
+});

@@ -112,6 +112,20 @@ function skipArsak(spec) {
   return spec.tests?.[0]?.annotations?.find(a => a.type === 'skip')?.description ?? '';
 }
 
+function stegAnnotasjoner(spec) {
+  return spec.tests?.[0]?.annotations?.filter(a => a.type === 'steg') ?? [];
+}
+
+function renderSteg(steg) {
+  if (!steg.length) return '';
+  return `<div class="test-steg-boks">
+      <div class="test-steg-tittel">Teststeg</div>
+      <ol class="test-steg-liste">
+${steg.map((s, i) => `        <li class="test-steg"><span class="steg-nr">${i + 1}</span><span class="steg-tekst">${esc(s.description)}</span></li>`).join('\n')}
+      </ol>
+    </div>`;
+}
+
 function renderSpecRader(specs, bruker, tilfeldig = false) {
   const chipCls = tilfeldig ? 'td-chip td-tilfeldig' : 'td-chip';
   const ikon    = tilfeldig ? '🎲' : '🔐';
@@ -133,6 +147,8 @@ function renderSpecRader(specs, bruker, tilfeldig = false) {
       ? `<div class="hoppet-arsak">Årsak: ${esc(arsak)}</div>`
       : '';
     const varighet = spec.tests?.[0]?.results?.[0]?.duration ?? 0;
+    const steg     = stegAnnotasjoner(spec);
+    const stegHtml = renderSteg(steg);
 
     if (ok) {
       return `        <details style="border-left:3px solid #064e3b;margin:.4rem 0;background:#ecfdf5;border-radius:0 4px 4px 0;box-shadow:0 1px 3px rgba(10,19,85,.04)">
@@ -142,6 +158,7 @@ function renderSpecRader(specs, bruker, tilfeldig = false) {
             ${varighet > 0 ? `<span class="brudd-teller">${varighet}ms</span>` : ''}
             ${chip}
           </summary>
+          ${stegHtml ? `<div style="padding:.5rem .9rem .8rem;border-top:1px solid #bbf7d0">${stegHtml}</div>` : ''}
         </details>`;
     }
     return `        <div class="brudd-kort" style="border-left-color:${farge};background:${bg};">
@@ -150,6 +167,7 @@ function renderSpecRader(specs, bruker, tilfeldig = false) {
             <span class="brudd-teller">${varighet > 0 ? varighet + 'ms' : '–'}</span>
           </div>
           <div style="margin:.3rem 0 .4rem">${chip}</div>
+          ${stegHtml}
           ${arsakHtml}
           ${errHtml}
         </div>`;
@@ -356,6 +374,13 @@ const html = `<!DOCTYPE html>
   .td-chip code{font-size:.71rem;font-weight:700;color:#2b3285;background:none;padding:0}
   .td-chip.td-tilfeldig{background:#e8f5f0;color:#065f46}
   .td-chip.td-tilfeldig code{color:#065f46}
+
+  .test-steg-boks{margin:.5rem 0 .2rem;padding:.5rem .7rem .6rem;background:rgba(10,19,85,.03);border-radius:4px;border:1px solid rgba(10,19,85,.07)}
+  .test-steg-tittel{font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#6b7280;margin-bottom:.45rem}
+  .test-steg-liste{list-style:none;display:flex;flex-direction:column;gap:.22rem;padding-left:.1rem}
+  .test-steg{display:flex;gap:.55rem;align-items:flex-start;font-size:.79rem;color:#374151;padding:.22rem .3rem}
+  .steg-nr{background:#0a1355;color:white;border-radius:50%;min-width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:700;flex-shrink:0;margin-top:.1rem}
+  .steg-tekst{flex:1;line-height:1.45}
 </style>
 </head>
 <body>
