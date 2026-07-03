@@ -1,11 +1,11 @@
-import { chromium } from 'playwright';
+import { chromium, firefox } from 'playwright';
 import fs from 'fs';
 import path from 'path';
 import https from 'https';
 import http from 'http';
 import { fileURLToPath } from 'url';
 import { exec } from 'child_process';
-import { START_URL, VIEWPORT, SIDE_TIMEOUT, IDLE_TIMEOUT, HTTP_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER } from './config.js';
+import { START_URL, VIEWPORT, SIDE_TIMEOUT, IDLE_TIMEOUT, HTTP_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER, FIREFOX_KRYSSSJEKK } from './config.js';
 import { hentVersjon, loggInn, testdataPanelCss, brukerChipHtml } from './lib/common.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -123,13 +123,15 @@ for (const [header, info] of Object.entries(SIKKERHETSHODER)) {
     leggTilFunn('hoder', info.alvorlighet,
       `Manglende ${info.navn}`,
       info.beskrivelse,
-      START_URL
+      START_URL,
+      { steg: [`Sender HTTP-forespørsel til ${START_URL}`, `Sjekker om respons-hodet "${header}" er satt`, `Hodet mangler – flagges som ${info.alvorlighet}`] }
     );
   } else {
     leggTilFunn('hoder', 'ok',
       `${info.navn} er satt`,
       `Verdi: ${hoved_hoder[header]}`,
-      START_URL
+      START_URL,
+      { steg: [`Sender HTTP-forespørsel til ${START_URL}`, `Sjekker om respons-hodet "${header}" er satt`, `Hodet er satt – verdi: ${hoved_hoder[header]}`] }
     );
   }
 }
@@ -142,7 +144,8 @@ for (const header of INFO_LEKKASJE_HODER) {
     leggTilFunn('informasjonslekkasje', 'middels',
       `Server avslører teknologiinformasjon: ${header}`,
       `Verdi: "${hoved_hoder[header]}" – gir angriper innsikt i teknologistakk`,
-      START_URL
+      START_URL,
+      { steg: [`Sender HTTP-forespørsel til ${START_URL}`, `Sjekker om informasjonshodet "${header}" er til stede i responsen`, `Hodet funnet med verdi "${hoved_hoder[header]}"`] }
     );
   }
 }
@@ -154,16 +157,24 @@ const httpUrl = START_URL.replace('https://', 'http://');
 if (httpUrl !== START_URL) {
   const { status: httpStatus, hoder: httpHoder } = await hentHoder(httpUrl);
   if (httpStatus === 0) {
-    leggTilFunn('https', 'ok', 'HTTP-tilkobling avvist', 'Serveren svarer ikke på HTTP', httpUrl);
+    leggTilFunn('https', 'ok', 'HTTP-tilkobling avvist', 'Serveren svarer ikke på HTTP', httpUrl,
+      { steg: [`Sender HTTP-forespørsel til ${httpUrl}`, 'Sjekker om serveren svarer på HTTP', 'Serveren svarer ikke på HTTP – tilkobling avvist'] }
+    );
   } else if ([301, 302, 307, 308].includes(httpStatus)) {
     const loc = httpHoder['location'] || '';
     if (loc.startsWith('https://')) {
-      leggTilFunn('https', 'ok', 'HTTP omdirigerer til HTTPS', `Redirect: ${loc}`, httpUrl);
+      leggTilFunn('https', 'ok', 'HTTP omdirigerer til HTTPS', `Redirect: ${loc}`, httpUrl,
+        { steg: [`Sender HTTP-forespørsel til ${httpUrl}`, 'Sjekker om serveren omdirigerer til HTTPS', `Videresendes til ${loc}`] }
+      );
     } else {
-      leggTilFunn('https', 'alvorlig', 'HTTP omdirigerer ikke til HTTPS', `Redirect går til: ${loc}`, httpUrl);
+      leggTilFunn('https', 'alvorlig', 'HTTP omdirigerer ikke til HTTPS', `Redirect går til: ${loc}`, httpUrl,
+        { steg: [`Sender HTTP-forespørsel til ${httpUrl}`, 'Sjekker om serveren omdirigerer til HTTPS', `Redirect går IKKE til HTTPS: ${loc}`] }
+      );
     }
   } else if (httpStatus >= 200 && httpStatus < 300) {
-    leggTilFunn('https', 'kritisk', 'Siden er tilgjengelig over usikker HTTP', 'Innhold serveres over HTTP uten omdiriging til HTTPS', httpUrl);
+    leggTilFunn('https', 'kritisk', 'Siden er tilgjengelig over usikker HTTP', 'Innhold serveres over HTTP uten omdiriging til HTTPS', httpUrl,
+      { steg: [`Sender HTTP-forespørsel til ${httpUrl}`, 'Sjekker om siden er tilgjengelig over HTTP uten redirect', 'HTTP-200 uten redirect – kritisk'] }
+    );
   }
 }
 
@@ -179,13 +190,15 @@ for (const { sti, beskrivelse } of SENSITIVE_STIER) {
       sti.startsWith('/.env') || sti.includes('.git') ? 'kritisk' : 'alvorlig',
       `Sensitiv sti tilgjengelig: ${sti}`,
       `${beskrivelse} – HTTP ${status}${harInnhold ? `, ${innhold.length} tegn innhold` : ''}`,
-      url
+      url,
+      { steg: [`Sender forespørsel til ${url}`, 'Sjekker HTTP-statuskode', `Sti returnerte HTTP 200 – innhold tilgjengelig: ${beskrivelse}`] }
     );
   } else if (status === 403) {
     leggTilFunn('sensitive-stier', 'middels',
       `Sti gir 403 Forbidden: ${sti}`,
       `${beskrivelse} – eksisterer men er sperret`,
-      url
+      url,
+      { steg: [`Sender forespørsel til ${url}`, 'Sjekker HTTP-statuskode', 'Sti returnerte 403 Forbidden – eksisterer men sperret'] }
     );
   }
   // 404 = OK, ikke rapport
@@ -232,7 +245,8 @@ for (const cookie of cookies) {
     leggTilFunn('cookies', 'ok',
       `Cookie "${cookie.name}" (${cookie.domain}) er fra ekstern leverandør – sjekkes ikke`,
       'ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen',
-      START_URL
+      START_URL,
+      { steg: ['Logger inn og henter alle cookies fra nettleserkonteksten', 'Identifiserer cookie-domene', 'Cookie tilhører ekstern leverandør – sjekkes ikke'] }
     );
     continue;
   }
@@ -257,25 +271,29 @@ for (const cookie of cookies) {
       !cookie.secure ? 'alvorlig' : 'middels',
       `Cookie "${cookie.name}" har svake sikkerhetsattributter`,
       problemer.join(', '),
-      START_URL
+      START_URL,
+      { steg: ['Logger inn og henter alle cookies', `Sjekker cookie "${cookie.name}" for Secure, HttpOnly og SameSite`, `Problemer funnet: ${problemer.join(', ')}`] }
     );
   } else if (cookie.name === 'ingress-csrf') {
     leggTilFunn('cookies', 'lav',
       `Cookie "ingress-csrf" mangler HttpOnly (akseptert)`,
       'Må leses av JavaScript for CSRF-beskyttelse – HttpOnly er ikke mulig. Dette er standarden.',
-      START_URL
+      START_URL,
+      { steg: ['Logger inn og henter alle cookies', 'Sjekker cookie "ingress-csrf"', 'Mangler HttpOnly – akseptert unntak, nødvendig for CSRF-beskyttelse'] }
     );
   } else if (sessionSamesiteUndtak) {
     leggTilFunn('cookies', 'lav',
       `Cookie "session" har SameSite=None (avventes – platform-teamet avgjør)`,
       'Platform-teamet er kontaktet og avgjør om dette skal utbedres.',
-      START_URL
+      START_URL,
+      { steg: ['Logger inn og henter alle cookies', 'Sjekker cookie "session" for SameSite', 'SameSite=None – avventes platform-teamet'] }
     );
   } else {
     leggTilFunn('cookies', 'ok',
       `Cookie "${cookie.name}" har korrekte sikkerhetsattributter`,
       'Secure + HttpOnly + SameSite er satt',
-      START_URL
+      START_URL,
+      { steg: ['Logger inn og henter alle cookies', `Sjekker cookie "${cookie.name}" for Secure, HttpOnly og SameSite`, 'Alle sikkerhetsattributter korrekt satt'] }
     );
   }
 }
@@ -303,11 +321,14 @@ if (mixedContent.length > 0) {
     leggTilFunn('mixed-content', 'alvorlig',
       'Mixed content – HTTP-ressurs på HTTPS-side',
       `Usikker ressurs lastes inn: ${url}`,
-      page.url()
+      page.url(),
+      { steg: ['Registrerer lytter på alle HTTP-forespørsler under sidelasting', 'Laster siden over HTTPS', `Oppdaget HTTP-ressurs på HTTPS-side: ${url}`] }
     );
   }
 } else {
-  leggTilFunn('mixed-content', 'ok', 'Ingen mixed content funnet', 'Alle ressurser lastes over HTTPS', START_URL);
+  leggTilFunn('mixed-content', 'ok', 'Ingen mixed content funnet', 'Alle ressurser lastes over HTTPS', START_URL,
+    { steg: ['Registrerer lytter på alle HTTP-forespørsler under sidelasting', `Laster ${START_URL} over HTTPS`, 'Ingen HTTP-ressurser lastet – ingen mixed content'] }
+  );
 }
 
 // ── Test 7: Input-refleksjon (XSS) ────────────────────────────────────────────
@@ -336,17 +357,19 @@ if (await søkefelt.count() > 0) {
       leggTilFunn('xss', 'kritisk',
         'XSS-payload kjørte i nettleseren',
         'Skript fra søkefeltet ble utført – kritisk sårbarhet',
-        page.url(), { skjermdump: skjerm }
+        page.url(), { skjermdump: skjerm, steg: [`Navigerer til ${START_URL}`, 'Finner søkefelt og fyller inn XSS-payload', 'Sender skjemaet og sjekker om scriptet kjørte', 'window.__xsstest === 1 – payload ble utført i nettleseren'] }
       );
     } else if (reflektert) {
       const skjerm = await taSkjermdump(page, 'xss-reflektert');
       leggTilFunn('xss', 'alvorlig',
         'Input reflekteres urensket i HTML',
         'Søkepayload finnes uendret i HTML – potensiell XSS',
-        page.url(), { skjermdump: skjerm }
+        page.url(), { skjermdump: skjerm, steg: [`Navigerer til ${START_URL}`, 'Finner søkefelt og fyller inn XSS-payload', 'Sender skjemaet og sjekker HTML-innhold', 'Payload funnet urensket i HTML-kildekoden'] }
       );
     } else {
-      leggTilFunn('xss', 'ok', 'Søkefelt ser ut til å rense input', 'Payload ble ikke reflektert urensket', page.url());
+      leggTilFunn('xss', 'ok', 'Søkefelt ser ut til å rense input', 'Payload ble ikke reflektert urensket', page.url(),
+        { steg: [`Navigerer til ${START_URL}`, 'Finner søkefelt og fyller inn XSS-payload', 'Sender skjemaet', 'Sjekker HTML-innhold og window.__xsstest', 'Payload ikke reflektert urensket'] }
+      );
     }
   } catch (e) {
     console.log(`  ⚠️ Kunne ikke teste XSS: ${e.message}`);
@@ -379,12 +402,17 @@ if (corsOrigin === '*') {
   leggTilFunn('cors', 'alvorlig',
     'CORS tillater alle opphav (wildcard *)',
     'Access-Control-Allow-Origin: * – alle domener kan gjøre cross-origin-forespørsler',
-    START_URL
+    START_URL,
+    { steg: [`Sender OPTIONS-forespørsel til ${START_URL} med Origin: https://ondomain.eksempel.no`, 'Sjekker Access-Control-Allow-Origin i respons', 'Fant wildcard "*" – alle domener tillatt'] }
   );
 } else if (corsOrigin) {
-  leggTilFunn('cors', 'ok', `CORS er begrenset til spesifikt opphav`, `Tillatt: ${corsOrigin}`, START_URL);
+  leggTilFunn('cors', 'ok', `CORS er begrenset til spesifikt opphav`, `Tillatt: ${corsOrigin}`, START_URL,
+    { steg: [`Sender OPTIONS-forespørsel til ${START_URL} med Origin: https://ondomain.eksempel.no`, 'Sjekker Access-Control-Allow-Origin i respons', `Begrenset til: ${corsOrigin}`] }
+  );
 } else {
-  leggTilFunn('cors', 'ok', 'Ingen CORS-hoder – standard same-origin-policy gjelder', '', START_URL);
+  leggTilFunn('cors', 'ok', 'Ingen CORS-hoder – standard same-origin-policy gjelder', '', START_URL,
+    { steg: [`Sender OPTIONS-forespørsel til ${START_URL} med Origin: https://ondomain.eksempel.no`, 'Sjekker Access-Control-Allow-Origin i respons', 'Ingen CORS-hoder – standard same-origin-policy'] }
+  );
 }
 
 await browser.close();
@@ -429,6 +457,100 @@ if (TEST_EKSTRA_BRUKER) {
     console.log('  ⚠️  Innlogging med tilfeldig bruker feilet – hopper over cookie-sjekk.');
   }
   await browser2.close();
+}
+
+// ── Firefox-kjøring (fast bruker) – cookie + mixed content + XSS ─────────────
+let ffCookieFast = null;
+let ffXssFast = null;
+let ffMixedFast = null;
+if (FIREFOX_KRYSSSJEKK) {
+  console.log('\n🦊 Kjører Firefox sikkerhetssjekk (fast bruker – cookies, mixed content, XSS)...');
+  try {
+    const browserFF = await firefox.launch();
+    const contextFF = await browserFF.newContext({ ignoreHTTPSErrors: true });
+    if (GITHUB_PAGES_AUTH) await contextFF.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
+    const { url: innloggetUrlFF } = await loggInn(contextFF, START_URL, { modus: TEST_MODUS, testFnr: TEST_FNR });
+    if (innloggetUrlFF) {
+      const pageFF = await contextFF.newPage();
+      // Mixed content
+      const mixedFF = [];
+      pageFF.on('request', req => {
+        if (START_URL.startsWith('https://') && req.url().startsWith('http://')) mixedFF.push(req.url());
+      });
+      await pageFF.goto(innloggetUrlFF, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT }).catch(() => {});
+      ffMixedFast = mixedFF;
+      // XSS
+      try {
+        await pageFF.goto(START_URL, { waitUntil: 'domcontentloaded', timeout: SIDE_TIMEOUT }).catch(() => {});
+        const søkefeltFF = pageFF.locator('input[type=search], input[name*=søk], input[name*=search]').first();
+        if (await søkefeltFF.count() > 0) {
+          await søkefeltFF.fill(XSS_SØKEFELT_PAYLOAD);
+          await pageFF.keyboard.press('Enter');
+          await pageFF.waitForLoadState('domcontentloaded').catch(() => {});
+          const innholdFF = await pageFF.content();
+          const xssTriggertFF = await pageFF.evaluate(() => window.__xsstest === 1).catch(() => false);
+          ffXssFast = { reflektert: innholdFF.includes(XSS_SØKEFELT_PAYLOAD), xssTriggert: xssTriggertFF };
+        } else {
+          ffXssFast = { reflektert: false, xssTriggert: false, ingenSøkefelt: true };
+        }
+      } catch { ffXssFast = null; }
+      // Cookies
+      const cookiesFF = await contextFF.cookies();
+      ffCookieFast = [];
+      for (const cookie of cookiesFF) {
+        if (!erEgenCookie(cookie)) continue;
+        const problemer = [];
+        if (!cookie.secure) problemer.push('mangler Secure-flagg');
+        if (cookie.name !== 'ingress-csrf' && !cookie.httpOnly) problemer.push('mangler HttpOnly-flagg');
+        const sessionSamesiteUndtak = cookie.name === 'session' && (!cookie.sameSite || cookie.sameSite === 'None');
+        if (!sessionSamesiteUndtak && (!cookie.sameSite || cookie.sameSite === 'None')) problemer.push('SameSite er None eller ikke satt');
+        ffCookieFast.push({ navn: cookie.name, problemer, ok: problemer.length === 0, alvorlighet: problemer.length === 0 ? 'ok' : (!cookie.secure ? 'alvorlig' : 'middels') });
+      }
+      console.log(`  ✅ Firefox fast bruker: ${cookiesFF.length} cookies, ${mixedFF.length} mixed content, XSS ${ffXssFast?.xssTriggert ? '⚠️' : '✅'}`);
+      await pageFF.close();
+    } else {
+      console.log('  ⚠️  Firefox innlogging feilet – hopper over.');
+    }
+    await browserFF.close();
+  } catch (e) {
+    console.log(`  ⚠️  Firefox-kjøring feilet: ${e.message.slice(0, 80)}`);
+  }
+}
+
+// ── Firefox-kjøring (tilfeldig bruker) – cookies ──────────────────────────────
+let ffCookieTilfeldig = null;
+let bruktFnrFF2 = null;
+if (FIREFOX_KRYSSSJEKK && TEST_EKSTRA_BRUKER) {
+  console.log('\n🦊 Kjører Firefox cookie-sjekk (tilfeldig bruker)...');
+  try {
+    const browserFF2 = await firefox.launch();
+    const contextFF2 = await browserFF2.newContext({ ignoreHTTPSErrors: true });
+    if (GITHUB_PAGES_AUTH) await contextFF2.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
+    const { url: innloggetUrlFF2, bruktFnr: fnrFF2 } = await loggInn(contextFF2, START_URL, { modus: 'tilfeldig', testFnr: TEST_FNR });
+    bruktFnrFF2 = fnrFF2;
+    if (innloggetUrlFF2) {
+      const pageFF2 = await contextFF2.newPage();
+      await pageFF2.goto(innloggetUrlFF2, { waitUntil: 'networkidle', timeout: IDLE_TIMEOUT }).catch(() => {});
+      const cookiesFF2 = await contextFF2.cookies();
+      ffCookieTilfeldig = { bruker: bruktFnrFF2, cookies: [] };
+      for (const cookie of cookiesFF2) {
+        if (!erEgenCookie(cookie)) continue;
+        const problemer = [];
+        if (!cookie.secure) problemer.push('mangler Secure-flagg');
+        if (cookie.name !== 'ingress-csrf' && !cookie.httpOnly) problemer.push('mangler HttpOnly-flagg');
+        const sessionSamesiteUndtak2 = cookie.name === 'session' && (!cookie.sameSite || cookie.sameSite === 'None');
+        if (!sessionSamesiteUndtak2 && (!cookie.sameSite || cookie.sameSite === 'None')) problemer.push('SameSite er None eller ikke satt');
+        ffCookieTilfeldig.cookies.push({ navn: cookie.name, problemer, ok: problemer.length === 0, alvorlighet: problemer.length === 0 ? 'ok' : (!cookie.secure ? 'alvorlig' : 'middels') });
+      }
+      console.log(`  ✅ Firefox tilfeldig bruker (${bruktFnrFF2 ?? 'ukjent'}): ${cookiesFF2.length} cookies sjekket`);
+      await pageFF2.close();
+    } else {
+      console.log('  ⚠️  Firefox tilfeldig bruker innlogging feilet – hopper over.');
+    }
+    await browserFF2.close();
+  } catch (e) {
+    console.log(`  ⚠️  Firefox-kjøring (tilfeldig) feilet: ${e.message.slice(0, 80)}`);
+  }
 }
 
 const varighet = Math.round((Date.now() - startTid) / 1000);
@@ -502,6 +624,16 @@ const sidenavigasjon = Object.entries(KATEGORIER).map(([id, { tittel, ikon }]) =
   </a></li>`;
 }).join('');
 
+function renderSteg(steg) {
+  if (!steg?.length) return '';
+  return `<details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      ${steg.map((s, i) => `<li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">${i+1}.</span><span>${s}</span></li>`).join('')}
+    </ol>
+  </details>`;
+}
+
 function funnKort(f, bruker) {
   if (f.alvorlighet === 'ok') return '';
   return `
@@ -514,6 +646,7 @@ function funnKort(f, bruker) {
     </div>
     <div style="margin:.3rem 0 .5rem">${brukerChipHtml(bruker)}</div>
     ${f.detalj ? `<p class="brudd-hjelp">${f.detalj}</p>` : ''}
+    ${renderSteg(f.steg ?? [])}
     ${f.url && f.url !== START_URL ? `<div class="node-info"><span class="node-selector">${f.url}</span></div>` : ''}
     ${f.skjermdump ? `
     <details style="margin:.2rem 0 .5rem 0">
@@ -535,7 +668,7 @@ function okListe(kfunn, bruker) {
   if (bestått.length === 0) return '';
   return `<details style="margin-top:.8rem"><summary style="font-size:.78rem;color:#07604f;cursor:pointer;padding:.4rem 0;display:flex;align-items:center;gap:.5rem;list-style:none">✅ ${bestått.length} sjekk bestått ${brukerChipHtml(bruker)}</summary>
     <ul style="list-style:none;margin-top:.5rem;display:flex;flex-direction:column;gap:.3rem">
-      ${bestått.map(f => `<li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ ${f.tittel}${f.detalj ? ` — <span style="color:#6b7280">${f.detalj}</span>` : ''}</li>`).join('')}
+      ${bestått.map(f => `<li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ ${f.tittel}${f.detalj ? ` — <span style="color:#6b7280">${f.detalj}</span>` : ''}${renderSteg(f.steg ?? [])}</li>`).join('')}
     </ul>
   </details>`;
 }
@@ -723,7 +856,15 @@ const html = `<!DOCTYPE html>
     </div>
   </details>
 
-  <details open style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+  <!-- 🌐 Chromium -->
+  <details open style="margin-top:1.2rem;border:1px solid #c7d2fe;background:#f8f9ff;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🌐 Chromium – Testresultater</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
+    </summary>
+    <div style="padding:.5rem;display:flex;flex-direction:column;gap:.8rem">
+
+  <details open style="border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
     <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
       <span>🔐 Fast bruker – Første kjøring (${bruktFnr ?? 'ukjent'})</span>
       <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
@@ -756,6 +897,82 @@ const html = `<!DOCTYPE html>
           </div>
           ${c.problemer.length > 0 ? `<p class="brudd-hjelp">${c.problemer.join(', ')}</p>` : '<p style="font-size:.82rem;color:#07604f;margin:.4rem 0">Secure + HttpOnly + SameSite er korrekt satt</p>'}
         </div>`).join('')}
+    </div>
+  </details>` : ''}
+
+    </div>
+  </details>
+
+  ${ffCookieFast !== null ? `
+  <!-- 🦊 Firefox -->
+  <details open style="margin-top:1.2rem;border:1px solid #f4e0c8;background:#fffbf5;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🦊 Firefox – Cookie, Mixed Content og XSS</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
+    </summary>
+    <div style="padding:.5rem;display:flex;flex-direction:column;gap:.8rem">
+
+  <details open style="border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🔐 Fast bruker – Firefox (${escapeHtml(bruktFnr ?? 'ukjent')})</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
+    </summary>
+    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+      <p style="font-size:.83rem;color:#374151;margin-bottom:1rem;line-height:1.6">
+        Firefox-kjøring: kun nettleser-avhengige sjekker (cookies, mixed content, XSS). HTTP-hoder, HTTPS og CORS sjekkes kun én gang med Chromium.
+      </p>
+      <div class="seksjon-tittel" style="margin-bottom:.8rem">🍪 Cookie-sikkerhet (Firefox)</div>
+      ${(ffCookieFast ?? []).length === 0
+        ? '<div class="wcag-ok">Ingen egne cookies funnet</div>'
+        : (ffCookieFast ?? []).map(c => `
+        <div class="brudd-kort" style="border-left-color:${c.alvorlighet === 'ok' ? '#07604f' : c.alvorlighet === 'alvorlig' ? '#9a3412' : '#b8860b'}">
+          <div class="brudd-header">
+            <div>
+              <span class="badge ${c.alvorlighet === 'ok' ? '' : c.alvorlighet}" style="${c.alvorlighet === 'ok' ? 'background:#ecfdf5;color:#07604f' : ''}">${c.alvorlighet === 'ok' ? '✅ ok' : c.alvorlighet}</span>
+              <span class="regel-desc">Cookie "${escapeHtml(c.navn)}"</span>
+            </div>
+          </div>
+          ${c.problemer.length > 0 ? `<p class="brudd-hjelp">${escapeHtml(c.problemer.join(', '))}</p>` : '<p style="font-size:.82rem;color:#07604f;margin:.4rem 0">Secure + HttpOnly + SameSite er korrekt satt</p>'}
+        </div>`).join('')}
+      <div class="seksjon-tittel" style="margin:.8rem 0">🔀 Mixed content (Firefox)</div>
+      ${(ffMixedFast ?? []).length === 0
+        ? '<div class="wcag-ok">Ingen mixed content funnet</div>'
+        : (ffMixedFast ?? []).map(u => `<div class="brudd-kort" style="border-left-color:#9a3412"><span class="badge alvorlig">alvorlig</span> HTTP-ressurs: ${escapeHtml(u)}</div>`).join('')}
+      <div class="seksjon-tittel" style="margin:.8rem 0">💉 XSS (Firefox)</div>
+      ${ffXssFast === null
+        ? '<div class="wcag-ok">XSS-test kunne ikke gjennomføres</div>'
+        : ffXssFast.ingenSøkefelt
+          ? '<div class="wcag-ok">Ingen søkefelt funnet</div>'
+          : ffXssFast.xssTriggert
+            ? '<div class="brudd-kort" style="border-left-color:#c53030"><span class="badge kritisk">kritisk</span> XSS-payload kjørte i Firefox</div>'
+            : ffXssFast.reflektert
+              ? '<div class="brudd-kort" style="border-left-color:#9a3412"><span class="badge alvorlig">alvorlig</span> Input reflekteres urensket i Firefox</div>'
+              : '<div class="wcag-ok">Søkefelt ser ut til å rense input</div>'}
+    </div>
+  </details>
+
+  ${ffCookieTilfeldig !== null ? `
+  <details open style="border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🎲 Tilfeldig bruker – Firefox Cookie-sjekk (${escapeHtml(ffCookieTilfeldig.bruker ?? 'ukjent')})</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
+    </summary>
+    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+      ${(ffCookieTilfeldig.cookies ?? []).length === 0
+        ? '<div class="wcag-ok">Ingen egne cookies funnet</div>'
+        : (ffCookieTilfeldig.cookies ?? []).map(c => `
+        <div class="brudd-kort" style="border-left-color:${c.alvorlighet === 'ok' ? '#07604f' : c.alvorlighet === 'alvorlig' ? '#9a3412' : '#b8860b'}">
+          <div class="brudd-header">
+            <div>
+              <span class="badge ${c.alvorlighet === 'ok' ? '' : c.alvorlighet}" style="${c.alvorlighet === 'ok' ? 'background:#ecfdf5;color:#07604f' : ''}">${c.alvorlighet === 'ok' ? '✅ ok' : c.alvorlighet}</span>
+              <span class="regel-desc">Cookie "${escapeHtml(c.navn)}"</span>
+            </div>
+          </div>
+          ${c.problemer.length > 0 ? `<p class="brudd-hjelp">${escapeHtml(c.problemer.join(', '))}</p>` : '<p style="font-size:.82rem;color:#07604f;margin:.4rem 0">Secure + HttpOnly + SameSite er korrekt satt</p>'}
+        </div>`).join('')}
+    </div>
+  </details>` : ''}
+
     </div>
   </details>` : ''}
 

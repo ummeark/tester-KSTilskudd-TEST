@@ -1,9 +1,9 @@
-import { chromium } from 'playwright';
+import { chromium, firefox } from 'playwright';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { exec } from 'child_process';
-import { START_URL, VIEWPORT, SIDE_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER } from './config.js';
+import { START_URL, VIEWPORT, SIDE_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER, FIREFOX_KRYSSSJEKK } from './config.js';
 import { hentVersjon, loggInn, gåTil, sjekkKrasj, sjekkFeilmelding, testdataPanelCss, brukerChipHtml } from './lib/common.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -63,7 +63,7 @@ async function kjørNegativRunde(page, ctx) {
     } catch { return null; }
   }
 
-  async function leggTilTest(kategori, navn, input, forventet, testFn) {
+  async function leggTilTest(kategori, navn, input, forventet, testFn, steg = []) {
     const jsForFør = jsErrors.length;
     let faktisk = '';
     let resultat = 'bestått';
@@ -89,7 +89,7 @@ async function kjørNegativRunde(page, ctx) {
       if (!skjerm) skjerm = await skjermdump('js-feil');
     }
 
-    tester.push({ kategori, navn, input, forventet, faktisk, resultat, detalj, skjerm, url: page.url() });
+    tester.push({ kategori, navn, input, forventet, faktisk, resultat, detalj, skjerm, url: page.url(), steg });
     logg(resultat, navn, detalj);
   }
 
@@ -114,7 +114,7 @@ await leggTilTest('skjema', 'Tom søkeinnsending', '(tomt)', 'Viser feilmelding 
     return { faktisk: 'Siden krasjet', resultat: 'feil', skjerm };
   }
   return { faktisk: 'Siden håndterte tom søk uten krasj', resultat: 'bestått' };
-});
+}, [`Navigerer til ${START_URL}`, 'Finner søkefelt på siden', 'Tømmer feltet og trykker Enter', 'Sjekker at siden ikke krasjer']);
 
 // 1b. Veldig lang søkestreng (2000 tegn)
 await leggTilTest('skjema', 'Søk med ekstremt lang tekst (2000 tegn)', 'a'.repeat(2000), 'Håndteres uten krasj', async () => {
@@ -130,7 +130,7 @@ await leggTilTest('skjema', 'Søk med ekstremt lang tekst (2000 tegn)', 'a'.repe
     return { faktisk: 'Siden krasjet', resultat: 'feil', skjerm };
   }
   return { faktisk: 'Håndterte lang tekst uten krasj', resultat: 'bestått' };
-});
+}, [`Navigerer til ${START_URL}`, 'Finner søkefelt', 'Skriver inn 2000 tegn og trykker Enter', 'Sjekker at siden ikke krasjer']);
 
 // 1c. Spesialtegn i søk
 const spesialtegn = '!@#$%^&*()<>{}[]|\\;:\'",.?/`~';
@@ -147,7 +147,7 @@ await leggTilTest('skjema', 'Søk med spesialtegn', spesialtegn, 'Håndteres ute
     return { faktisk: 'Siden krasjet', resultat: 'feil', skjerm };
   }
   return { faktisk: 'Håndterte spesialtegn uten krasj', resultat: 'bestått' };
-});
+}, [`Navigerer til ${START_URL}`, 'Finner søkefelt', 'Skriver inn spesialtegn og trykker Enter', 'Sjekker at siden ikke krasjer og ingen XSS utføres']);
 
 // 1d. Kun mellomrom i søk
 await leggTilTest('skjema', 'Søk med kun mellomrom', '     ', 'Behandles som tom søk eller gir feilmelding', async () => {
@@ -163,7 +163,7 @@ await leggTilTest('skjema', 'Søk med kun mellomrom', '     ', 'Behandles som to
     return { faktisk: 'Siden krasjet', resultat: 'feil', skjerm };
   }
   return { faktisk: 'Håndterte mellomrom uten krasj', resultat: 'bestått' };
-});
+}, [`Navigerer til ${START_URL}`, 'Finner søkefelt', 'Skriver inn kun mellomrom og trykker Enter', 'Sjekker at siden behandler input som tom søk']);
 
 // 1e. Norske tegn i søk
 await leggTilTest('skjema', 'Søk med norske tegn (æøå)', 'æøå ÆØÅ tilskudd', 'Håndteres korrekt', async () => {
@@ -179,7 +179,7 @@ await leggTilTest('skjema', 'Søk med norske tegn (æøå)', 'æøå ÆØÅ tils
     return { faktisk: 'Siden krasjet', resultat: 'feil', skjerm };
   }
   return { faktisk: 'Håndterte norske tegn uten krasj', resultat: 'bestått' };
-});
+}, [`Navigerer til ${START_URL}`, 'Finner søkefelt', 'Skriver inn "æøå ÆØÅ tilskudd" og trykker Enter', 'Sjekker at tegn håndteres korrekt uten krasj']);
 
 // 1f. SQL-lignende input (ikke angrep, bare validering)
 await leggTilTest('skjema', 'SQL-lignende søketekst', "' OR '1'='1", 'Renses og vises trygt', async () => {
@@ -195,7 +195,7 @@ await leggTilTest('skjema', 'SQL-lignende søketekst', "' OR '1'='1", 'Renses og
     return { faktisk: 'Siden krasjet – mulig SQL-feil i svar', resultat: 'feil', skjerm };
   }
   return { faktisk: 'SQL-lignende input håndtert uten krasj', resultat: 'bestått' };
-});
+}, [`Navigerer til ${START_URL}`, 'Finner søkefelt', 'Skriver inn SQL-lignende streng og trykker Enter', 'Sjekker at siden ikke krasjer (ingen SQL-feil i respons)']);
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // KATEGORI 2: URL-validering
@@ -232,7 +232,7 @@ for (const { sti, beskrivelse } of ugyldigeUrler) {
     }
     const skjerm = await skjermdump('url-ingen-feilside');
     return { faktisk: 'Ingen tydelig feilhåndtering', resultat: 'advarsel', skjerm };
-  });
+  }, [`Navigerer til ${baseOrigin + sti}`, 'Sjekker HTTP-status og sideinnhold', 'Verifiserer at siden viser 404, omdirigerer, eller gir tydelig feilmelding – ikke krasjer']);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -250,7 +250,7 @@ await leggTilTest('navigasjon', 'Direkte tilgang til søknadsskjema uten forside
     return { faktisk: 'Siden krasjet', resultat: 'feil', skjerm };
   }
   return { faktisk: `Lastet uten krasj (URL: ${page.url()})`, resultat: 'bestått' };
-});
+}, [`Navigerer direkte til ${baseOrigin}/soknad/opprett`, 'Sjekker om siden laster uten krasj', 'Kontrollerer at skjema vises eller siden omdirigerer forsvarlig']);
 
 // 3b. Tilbake-knapp etter søknad
 await leggTilTest('navigasjon', 'Browser tilbake fra søknadsskjema', 'goBack()', 'Håndteres uten krasj', async () => {
@@ -264,7 +264,7 @@ await leggTilTest('navigasjon', 'Browser tilbake fra søknadsskjema', 'goBack()'
     return { faktisk: 'Siden krasjet etter tilbake-navigasjon', resultat: 'feil', skjerm };
   }
   return { faktisk: 'Tilbake-navigasjon håndtert uten krasj', resultat: 'bestått' };
-});
+}, ['Navigerer til START_URL', 'Navigerer videre til /soknad/opprett', 'Klikker nettleserens tilbake-knapp', 'Sjekker at siden laster uten krasj']);
 
 // 3c. Rask frem-og-tilbake navigasjon
 await leggTilTest('navigasjon', 'Rask frem-og-tilbake-navigasjon (5x)', '5x goBack/goForward', 'Ingen krasj', async () => {
@@ -282,7 +282,7 @@ await leggTilTest('navigasjon', 'Rask frem-og-tilbake-navigasjon (5x)', '5x goBa
     return { faktisk: 'Krasjet under rask navigasjon', resultat: 'feil', skjerm };
   }
   return { faktisk: 'Rask navigasjon håndtert uten krasj', resultat: 'bestått' };
-});
+}, [`Navigerer til START_URL og /ordninger`, 'Klikker tilbake og frem 5 ganger i rask rekkefølge', 'Sjekker at siden ikke krasjer under rask navigasjon']);
 
 // 3d. Dobbelt-klikk på knapp
 await leggTilTest('navigasjon', 'Dobbelt-klikk på handlingsknapp', 'dblclick', 'Ingen dobbel-innsending eller krasj', async () => {
@@ -297,7 +297,7 @@ await leggTilTest('navigasjon', 'Dobbelt-klikk på handlingsknapp', 'dblclick', 
     return { faktisk: 'Krasjet ved dobbelt-klikk', resultat: 'feil', skjerm };
   }
   return { faktisk: 'Dobbelt-klikk håndtert uten krasj', resultat: 'bestått' };
-});
+}, [`Navigerer til ${START_URL}`, 'Finner første synlige knapp', 'Dobbeltklikker på knappen', 'Sjekker at ingen dobbel-innsending eller krasj skjer']);
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // KATEGORI 4: Nettleserfunksjoner
@@ -315,7 +315,7 @@ await leggTilTest('nettleser', 'Sideoppdatering (F5) under søknad', 'reload()',
     return { faktisk: 'Krasjet etter reload', resultat: 'feil', skjerm };
   }
   return { faktisk: 'Reload håndtert uten krasj', resultat: 'bestått' };
-});
+}, ['Navigerer til /soknad/opprett', 'Laster siden på nytt (F5)', 'Sjekker at siden håndterer reload uten krasj']);
 
 // 4b. JavaScript deaktivert (ny kontekst)
 await leggTilTest('nettleser', 'Siden uten JavaScript', 'noScript', 'Viser innhold eller tydelig feilmelding', async () => {
@@ -335,7 +335,7 @@ await leggTilTest('nettleser', 'Siden uten JavaScript', 'noScript', 'Viser innho
     await noJsCtx.close();
     return { faktisk: `Feil: ${e.message.slice(0, 80)}`, resultat: 'advarsel' };
   }
-});
+}, ['Oppretter ny nettleserkontekst med JavaScript deaktivert', `Navigerer til ${START_URL}`, 'Sjekker om siden viser innhold eller tydelig feilmelding']);
 
 // 4c. Mobilvisning (320px)
 await leggTilTest('nettleser', 'Smal mobilvisning (320px bredde)', '320px viewport', 'Ingen krasj, siden er brukbar', async () => {
@@ -360,7 +360,7 @@ await leggTilTest('nettleser', 'Smal mobilvisning (320px bredde)', '320px viewpo
     await mobilCtx.close();
     return { faktisk: `Feil: ${e.message.slice(0, 80)}`, resultat: 'advarsel' };
   }
-});
+}, ['Oppretter nettleserkontekst med viewport 320×568 px', `Navigerer til ${START_URL}`, 'Sjekker at siden laster uten krasj og tar skjermbilde']);
 
 // 4d. Veldig stor viewport (4K)
 await leggTilTest('nettleser', 'Stor skjerm (3840×2160)', '4K viewport', 'Ingen krasj, layout er stabil', async () => {
@@ -376,7 +376,7 @@ await leggTilTest('nettleser', 'Stor skjerm (3840×2160)', '4K viewport', 'Ingen
     await storCtx.close();
     return { faktisk: `Feil: ${e.message.slice(0, 80)}`, resultat: 'advarsel' };
   }
-});
+}, ['Oppretter nettleserkontekst med viewport 3840×2160 px', `Navigerer til ${START_URL}`, 'Sjekker at layout er stabil og ingen krasj skjer']);
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // KATEGORI 5: Tilstand og sesjon
@@ -395,7 +395,7 @@ await leggTilTest('sesjon', 'Last side etter sletting av alle cookies', 'clearCo
     return { faktisk: 'Krasjet uten cookies', resultat: 'feil', skjerm };
   }
   return { faktisk: `Siden lastet uten cookies (URL: ${page.url()})`, resultat: 'bestått' };
-});
+}, [`Navigerer til ${START_URL}`, 'Sletter alle cookies fra nettleserkonteksten', 'Laster siden på nytt', 'Sjekker at siden laster eller viser innloggingsside – ikke krasjer']);
 
 // 5b. LocalStorage tømt
 await leggTilTest('sesjon', 'Last side etter tømming av localStorage', 'localStorage.clear()', 'Siden laster – ingen krasj', async () => {
@@ -408,7 +408,7 @@ await leggTilTest('sesjon', 'Last side etter tømming av localStorage', 'localSt
     return { faktisk: 'Krasjet etter localStorage.clear()', resultat: 'feil', skjerm };
   }
   return { faktisk: 'Siden lastet uten localStorage uten krasj', resultat: 'bestått' };
-});
+}, [`Navigerer til ${START_URL}`, 'Tømmer localStorage via JavaScript', 'Laster siden på nytt', 'Sjekker at siden laster uten krasj']);
 
 // 5c. Tilgang til beskyttet side uten sesjon
 await leggTilTest('sesjon', 'Direkte tilgang til "Min side" uten innlogging', '/minside', 'Omdirigerer til innlogging – ikke krasj', async () => {
@@ -429,7 +429,7 @@ await leggTilTest('sesjon', 'Direkte tilgang til "Min side" uten innlogging', '/
     await nyCtx.close();
     return { faktisk: `Feil: ${e.message.slice(0, 80)}`, resultat: 'advarsel' };
   }
-});
+}, ['Oppretter ny nettleserkontekst uten autentisering', `Navigerer direkte til /minside`, 'Sjekker at siden omdirigerer til innlogging – ikke viser beskyttet innhold']);
 
   return tester;
 } // end kjørNegativRunde
@@ -463,6 +463,58 @@ if (TEST_EKSTRA_BRUKER) {
     console.log('  ⚠️  Innlogging med tilfeldig bruker feilet – hopper over andre runde.');
   }
   await browser2.close();
+}
+
+// ── Firefox-kjøring (fast bruker) ────────────────────────────────────────────
+let testerFF1 = null;
+if (FIREFOX_KRYSSSJEKK) {
+  console.log('\n🦊 Kjører Firefox negativ-test (fast bruker)...');
+  try {
+    const browserFF = await firefox.launch();
+    const contextFF = await browserFF.newContext({ userAgent: 'Mozilla/5.0 NegativTester/1.0 Firefox', viewport: VIEWPORT });
+    if (GITHUB_PAGES_AUTH) await contextFF.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
+    const { url: innloggetUrlFF } = await loggInn(contextFF, START_URL, { modus: TEST_MODUS, testFnr: TEST_FNR });
+    if (innloggetUrlFF) {
+      const pageFF = await contextFF.newPage();
+      testerFF1 = await kjørNegativRunde(pageFF, contextFF);
+      await pageFF.close();
+      const beståttFF1 = testerFF1.filter(t => t.resultat === 'bestått').length;
+      const feilFF1    = testerFF1.filter(t => t.resultat === 'feil').length;
+      console.log(`  ✅ Firefox fast bruker: ${beståttFF1} bestått, ${feilFF1} feil`);
+    } else {
+      console.log('  ⚠️  Firefox innlogging feilet – hopper over.');
+    }
+    await browserFF.close();
+  } catch (e) {
+    console.log(`  ⚠️  Firefox-kjøring feilet: ${e.message.slice(0, 80)}`);
+  }
+}
+
+// ── Firefox-kjøring (tilfeldig bruker) ───────────────────────────────────────
+let testerFF2 = null;
+let bruktFnrFF2 = null;
+if (FIREFOX_KRYSSSJEKK && TEST_EKSTRA_BRUKER) {
+  console.log('\n🦊 Kjører Firefox negativ-test (tilfeldig bruker)...');
+  try {
+    const browserFF2 = await firefox.launch();
+    const contextFF2 = await browserFF2.newContext({ userAgent: 'Mozilla/5.0 NegativTester/1.0 Firefox', viewport: VIEWPORT });
+    if (GITHUB_PAGES_AUTH) await contextFF2.addInitScript(() => sessionStorage.setItem('ks-auth', '1'));
+    const { url: innloggetUrlFF2, bruktFnr: fnrFF2 } = await loggInn(contextFF2, START_URL, { modus: 'tilfeldig', testFnr: TEST_FNR });
+    bruktFnrFF2 = fnrFF2;
+    if (innloggetUrlFF2) {
+      const pageFF2 = await contextFF2.newPage();
+      testerFF2 = await kjørNegativRunde(pageFF2, contextFF2);
+      await pageFF2.close();
+      const beståttFF2 = testerFF2.filter(t => t.resultat === 'bestått').length;
+      const feilFF2    = testerFF2.filter(t => t.resultat === 'feil').length;
+      console.log(`  ✅ Firefox tilfeldig bruker (${bruktFnrFF2 ?? 'ukjent'}): ${beståttFF2} bestått, ${feilFF2} feil`);
+    } else {
+      console.log('  ⚠️  Firefox tilfeldig bruker innlogging feilet – hopper over.');
+    }
+    await browserFF2.close();
+  } catch (e) {
+    console.log(`  ⚠️  Firefox-kjøring (tilfeldig) feilet: ${e.message.slice(0, 80)}`);
+  }
 }
 
 // ── Oppsummering ──────────────────────────────────────────────────────────────
@@ -521,6 +573,16 @@ const sidenavigasjon = Object.entries(KATEGORIER).map(([id, { tittel, ikon }]) =
   </a></li>`;
 }).join('');
 
+function renderSteg(steg) {
+  if (!steg?.length) return '';
+  return `<details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      ${steg.map((s, i) => `<li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">${i+1}.</span><span>${s}</span></li>`).join('')}
+    </ol>
+  </details>`;
+}
+
 function testKort(t, bruker) {
   const farger = { feil: '#c53030', advarsel: '#b8860b' };
   const ikoner = { bestått: '✅', feil: '❌', advarsel: '⚠️' };
@@ -547,7 +609,7 @@ function testKort(t, bruker) {
       <span style="flex:1;color:#374151">${t.navn}</span>
       ${chip}
     </summary>
-    <div style="padding:.4rem .9rem .8rem;border-top:1px solid #d1fae5">${grid}</div>
+    <div style="padding:.4rem .9rem .8rem;border-top:1px solid #d1fae5">${grid}${renderSteg(t.steg ?? [])}</div>
   </details>`;
   }
 
@@ -561,6 +623,7 @@ function testKort(t, bruker) {
     </div>
     <div style="margin:.3rem 0 .5rem">${chip}</div>
     ${grid}
+    ${renderSteg(t.steg ?? [])}
     ${t.skjerm ? `
     <details style="margin:.2rem 0 .5rem 0">
       <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">📸 Vis skjermdumper ▾</summary>
@@ -765,7 +828,15 @@ const html = `<!DOCTYPE html>
     </div>
   </details>
 
-  <details open style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+  <!-- 🌐 Chromium -->
+  <details open style="margin-top:1.2rem;border:1px solid #c7d2fe;background:#f8f9ff;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🌐 Chromium – Testresultater</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
+    </summary>
+    <div style="padding:.5rem;display:flex;flex-direction:column;gap:.8rem">
+
+  <details open style="border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
     <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
       <span>🔐 Fast bruker – Første kjøring (${bruktFnr ?? 'ukjent'})</span>
       <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
@@ -796,6 +867,70 @@ const html = `<!DOCTYPE html>
       ${tester2.filter(t => t.resultat !== 'bestått').length > 0
         ? tester2.filter(t => t.resultat !== 'bestått').map(t => testKort(t, bruktFnr2)).join('')
         : '<div class="wcag-ok">Alle tester bestått for tilfeldig bruker</div>'}
+    </div>
+  </details>`;
+  })() : ''}
+
+    </div>
+  </details>
+
+  ${testerFF1 ? (() => {
+    const beståttFF1 = testerFF1.filter(t => t.resultat === 'bestått').length;
+    const feilFF1    = testerFF1.filter(t => t.resultat === 'feil').length;
+    const advarselFF1 = testerFF1.filter(t => t.resultat === 'advarsel').length;
+    const scoreFF1 = Math.max(0, 100 - feilFF1 * 15 - advarselFF1 * 5);
+    return `
+  <!-- 🦊 Firefox -->
+  <details open style="margin-top:1.2rem;border:1px solid #f4e0c8;background:#fffbf5;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🦊 Firefox – Testresultater</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
+    </summary>
+    <div style="padding:.5rem;display:flex;flex-direction:column;gap:.8rem">
+
+  <details open style="border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🔐 Fast bruker – Firefox (${bruktFnr ?? 'ukjent'})</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
+    </summary>
+    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.82rem">
+        <span style="background:#ecfdf5;color:#07604f;padding:.2rem .7rem;border-radius:100px;font-weight:600">✅ ${beståttFF1} bestått</span>
+        ${advarselFF1 > 0 ? `<span style="background:#f3dda2;color:#713f12;padding:.2rem .7rem;border-radius:100px;font-weight:600">⚠️ ${advarselFF1} advarsler</span>` : ''}
+        ${feilFF1 > 0 ? `<span style="background:#fee2e2;color:#c53030;padding:.2rem .7rem;border-radius:100px;font-weight:600">❌ ${feilFF1} feil</span>` : ''}
+        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">Score: ${scoreFF1}</span>
+      </div>
+      ${testerFF1.filter(t => t.resultat !== 'bestått').length > 0
+        ? testerFF1.filter(t => t.resultat !== 'bestått').map(t => testKort(t, bruktFnr)).join('')
+        : '<div class="wcag-ok">Alle tester bestått for Firefox fast bruker</div>'}
+    </div>
+  </details>
+
+  ${testerFF2 ? (() => {
+    const beståttFF2 = testerFF2.filter(t => t.resultat === 'bestått').length;
+    const feilFF2    = testerFF2.filter(t => t.resultat === 'feil').length;
+    const advarselFF2 = testerFF2.filter(t => t.resultat === 'advarsel').length;
+    const scoreFF2 = Math.max(0, 100 - feilFF2 * 15 - advarselFF2 * 5);
+    return `
+  <details open style="border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
+    <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
+      <span>🎲 Tilfeldig bruker – Firefox (${bruktFnrFF2 ?? 'ukjent'})</span>
+      <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
+    </summary>
+    <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.82rem">
+        <span style="background:#ecfdf5;color:#07604f;padding:.2rem .7rem;border-radius:100px;font-weight:600">✅ ${beståttFF2} bestått</span>
+        ${advarselFF2 > 0 ? `<span style="background:#f3dda2;color:#713f12;padding:.2rem .7rem;border-radius:100px;font-weight:600">⚠️ ${advarselFF2} advarsler</span>` : ''}
+        ${feilFF2 > 0 ? `<span style="background:#fee2e2;color:#c53030;padding:.2rem .7rem;border-radius:100px;font-weight:600">❌ ${feilFF2} feil</span>` : ''}
+        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">Score: ${scoreFF2}</span>
+      </div>
+      ${testerFF2.filter(t => t.resultat !== 'bestått').length > 0
+        ? testerFF2.filter(t => t.resultat !== 'bestått').map(t => testKort(t, bruktFnrFF2)).join('')
+        : '<div class="wcag-ok">Alle tester bestått for Firefox tilfeldig bruker</div>'}
+    </div>
+  </details>`;
+  })() : ''}
+
     </div>
   </details>`;
   })() : ''}

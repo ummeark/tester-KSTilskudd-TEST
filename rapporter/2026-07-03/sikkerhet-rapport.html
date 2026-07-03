@@ -5,7 +5,7 @@
 <script>if(location.protocol!=='file:'&&!sessionStorage.getItem('ks-auth'))location.replace('logg-inn.html?redir='+encodeURIComponent(location.href))</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sikkerhetsrapport – 2026-07-03 08:26</title>
+<title>Sikkerhetsrapport – 2026-07-03 12:46</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:system-ui,-apple-system,sans-serif;background:#faf6f0;color:#0f0e17;display:flex;min-height:100vh}
@@ -85,7 +85,7 @@
   <div class="sidemeny-header">
     <div class="sidemeny-logo">KS Tilskudd · Sikkerhetstester</div>
     <div class="env-badge">TEST-MILJØ · v0.8.0</div>
-    <h1>Sikkerhetsrapport <span>2026-07-03 08:26</span></h1>
+    <h1>Sikkerhetsrapport <span>2026-07-03 12:46</span></h1>
   </div>
   <ul><li><a href="#hoder" class="sidenav-link ok">
     <span class="sidenavn">📋 HTTP-sikkerhetshoder</span>
@@ -117,7 +117,7 @@
   <div class="rapport-header">
     <div>
       <h1>Sikkerhetsrapport</h1>
-      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-07-03 08:26 · 14s · Chromium 147</div>
+      <div class="meta"><a href="https://tilskudd.fiks.test.ks.no/" target="_blank">https://tilskudd.fiks.test.ks.no/</a> · 2026-07-03 12:46 · 13s · Chromium 147</div>
     </div>
     <div class="nav-knapper">
       <a href="rapport.html" class="knapp sekundær">Forside</a>
@@ -225,6 +225,12 @@
     </div>
     <div style="margin:.3rem 0 .5rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     <p class="brudd-hjelp">Kontrollerer referrer-informasjon i forespørsler</p>
+    <details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Sender HTTP-forespørsel til https://tilskudd.fiks.test.ks.no/</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Sjekker om respons-hodet "referrer-policy" er satt</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Hodet mangler – flagges som lav</span></li>
+    </ol>
+  </details>
     
     
   </div>
@@ -237,6 +243,12 @@
     </div>
     <div style="margin:.3rem 0 .5rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     <p class="brudd-hjelp">Begrenser tilgang til nettleserfunksjoner (kamera, GPS osv.)</p>
+    <details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Sender HTTP-forespørsel til https://tilskudd.fiks.test.ks.no/</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Sjekker om respons-hodet "permissions-policy" er satt</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Hodet mangler – flagges som lav</span></li>
+    </ol>
+  </details>
     
     
   </div>
@@ -249,6 +261,12 @@
     </div>
     <div style="margin:.3rem 0 .5rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     <p class="brudd-hjelp">Isolerer nettleservinduet mot cross-origin-angrep</p>
+    <details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Sender HTTP-forespørsel til https://tilskudd.fiks.test.ks.no/</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Sjekker om respons-hodet "cross-origin-opener-policy" er satt</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Hodet mangler – flagges som lav</span></li>
+    </ol>
+  </details>
     
     
   </div>
@@ -261,12 +279,38 @@
     </div>
     <div style="margin:.3rem 0 .5rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     <p class="brudd-hjelp">Begrenser hvem som kan laste inn sidens ressurser</p>
+    <details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Sender HTTP-forespørsel til https://tilskudd.fiks.test.ks.no/</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Sjekker om respons-hodet "cross-origin-resource-policy" er satt</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Hodet mangler – flagges som lav</span></li>
+    </ol>
+  </details>
     
     
   </div>
     <details style="margin-top:.8rem"><summary style="font-size:.78rem;color:#07604f;cursor:pointer;padding:.4rem 0;display:flex;align-items:center;gap:.5rem;list-style:none">✅ 4 sjekk bestått <span class="td-chip">🔐 Bruker: <code>10895696434</code></span></summary>
     <ul style="list-style:none;margin-top:.5rem;display:flex;flex-direction:column;gap:.3rem">
-      <li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ HSTS er satt — <span style="color:#6b7280">Verdi: max-age=31536000; includeSubDomains</span></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Content-Security-Policy er satt — <span style="color:#6b7280">Verdi: default-src *.ks.no min.kommune.no *.skyra.no; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.ks.no min.kommune.no https://survey.skyra.no; object-src 'none'; style-src 'self' 'unsafe-inline' *.ks.no min.kommune.no; img-src 'self' data: *.ks.no min.kommune.no; base-uri 'self';</span></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ X-Frame-Options er satt — <span style="color:#6b7280">Verdi: sameorigin</span></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ X-Content-Type-Options er satt — <span style="color:#6b7280">Verdi: nosniff</span></li>
+      <li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ HSTS er satt — <span style="color:#6b7280">Verdi: max-age=31536000; includeSubDomains</span><details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Sender HTTP-forespørsel til https://tilskudd.fiks.test.ks.no/</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Sjekker om respons-hodet "strict-transport-security" er satt</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Hodet er satt – verdi: max-age=31536000; includeSubDomains</span></li>
+    </ol>
+  </details></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Content-Security-Policy er satt — <span style="color:#6b7280">Verdi: default-src *.ks.no min.kommune.no *.skyra.no; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.ks.no min.kommune.no https://survey.skyra.no; object-src 'none'; style-src 'self' 'unsafe-inline' *.ks.no min.kommune.no; img-src 'self' data: *.ks.no min.kommune.no; base-uri 'self';</span><details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Sender HTTP-forespørsel til https://tilskudd.fiks.test.ks.no/</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Sjekker om respons-hodet "content-security-policy" er satt</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Hodet er satt – verdi: default-src *.ks.no min.kommune.no *.skyra.no; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.ks.no min.kommune.no https://survey.skyra.no; object-src 'none'; style-src 'self' 'unsafe-inline' *.ks.no min.kommune.no; img-src 'self' data: *.ks.no min.kommune.no; base-uri 'self';</span></li>
+    </ol>
+  </details></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ X-Frame-Options er satt — <span style="color:#6b7280">Verdi: sameorigin</span><details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Sender HTTP-forespørsel til https://tilskudd.fiks.test.ks.no/</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Sjekker om respons-hodet "x-frame-options" er satt</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Hodet er satt – verdi: sameorigin</span></li>
+    </ol>
+  </details></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ X-Content-Type-Options er satt — <span style="color:#6b7280">Verdi: nosniff</span><details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Sender HTTP-forespørsel til https://tilskudd.fiks.test.ks.no/</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Sjekker om respons-hodet "x-content-type-options" er satt</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Hodet er satt – verdi: nosniff</span></li>
+    </ol>
+  </details></li>
     </ul>
   </details>
   </div>
@@ -280,7 +324,12 @@
     <div class="wcag-ok">Ingen funn i denne kategorien</div>
     <details style="margin-top:.8rem"><summary style="font-size:.78rem;color:#07604f;cursor:pointer;padding:.4rem 0;display:flex;align-items:center;gap:.5rem;list-style:none">✅ 1 sjekk bestått <span class="td-chip">🔐 Bruker: <code>10895696434</code></span></summary>
     <ul style="list-style:none;margin-top:.5rem;display:flex;flex-direction:column;gap:.3rem">
-      <li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ HTTP omdirigerer til HTTPS — <span style="color:#6b7280">Redirect: https://tilskudd.fiks.test.ks.no/</span></li>
+      <li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ HTTP omdirigerer til HTTPS — <span style="color:#6b7280">Redirect: https://tilskudd.fiks.test.ks.no/</span><details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Sender HTTP-forespørsel til http://tilskudd.fiks.test.ks.no/</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Sjekker om serveren omdirigerer til HTTPS</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Videresendes til https://tilskudd.fiks.test.ks.no/</span></li>
+    </ol>
+  </details></li>
     </ul>
   </details>
   </div>
@@ -296,6 +345,12 @@
     </div>
     <div style="margin:.3rem 0 .5rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     <p class="brudd-hjelp">Robot-eksklusjonsfil – HTTP 200, 67 tegn innhold</p>
+    <details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Sender forespørsel til https://tilskudd.fiks.test.ks.no/robots.txt</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Sjekker HTTP-statuskode</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Sti returnerte HTTP 200 – innhold tilgjengelig: Robot-eksklusjonsfil</span></li>
+    </ol>
+  </details>
     <div class="node-info"><span class="node-selector">https://tilskudd.fiks.test.ks.no/robots.txt</span></div>
     
   </div>
@@ -313,6 +368,12 @@
     </div>
     <div style="margin:.3rem 0 .5rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     <p class="brudd-hjelp">Må leses av JavaScript for CSRF-beskyttelse – HttpOnly er ikke mulig. Dette er standarden.</p>
+    <details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Logger inn og henter alle cookies</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Sjekker cookie "ingress-csrf"</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Mangler HttpOnly – akseptert unntak, nødvendig for CSRF-beskyttelse</span></li>
+    </ol>
+  </details>
     
     
   </div>
@@ -325,12 +386,68 @@
     </div>
     <div style="margin:.3rem 0 .5rem"><span class="td-chip">🔐 Bruker: <code>10895696434</code></span></div>
     <p class="brudd-hjelp">Platform-teamet er kontaktet og avgjør om dette skal utbedres.</p>
+    <details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Logger inn og henter alle cookies</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Sjekker cookie "session" for SameSite</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>SameSite=None – avventes platform-teamet</span></li>
+    </ol>
+  </details>
     
     
   </div>
     <details style="margin-top:.8rem"><summary style="font-size:.78rem;color:#07604f;cursor:pointer;padding:.4rem 0;display:flex;align-items:center;gap:.5rem;list-style:none">✅ 10 sjekk bestått <span class="td-chip">🔐 Bruker: <code>10895696434</code></span></summary>
     <ul style="list-style:none;margin-top:.5rem;display:flex;flex-direction:column;gap:.3rem">
-      <li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "dtCookie" (.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "b01773c48f061e5a6fa15915170117e2" (login.test.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "BIGipServer~DigDir-Test~pool_digdir_test.idporten.no_https" (login.test.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "0260dc82f58fc9f938d67c7fc5f66b20" (static.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "BIGipServer~DigDir~pool_digdir_idporten.no_https" (static.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "JSESSIONID" (testid.test.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "0ba91516c140d36c0e0e98cf9b128957" (testid.test.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "BIGipServer~DigDir-Test~pool_digdir_test.idporten.no_https" (testid.test.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "JSESSIONID" (login.test.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "IDPORTEN_AUTH" (login.test.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span></li>
+      <li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "dtCookie" (.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span><details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Logger inn og henter alle cookies fra nettleserkonteksten</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Identifiserer cookie-domene</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Cookie tilhører ekstern leverandør – sjekkes ikke</span></li>
+    </ol>
+  </details></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "b01773c48f061e5a6fa15915170117e2" (login.test.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span><details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Logger inn og henter alle cookies fra nettleserkonteksten</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Identifiserer cookie-domene</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Cookie tilhører ekstern leverandør – sjekkes ikke</span></li>
+    </ol>
+  </details></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "BIGipServer~DigDir-Test~pool_digdir_test.idporten.no_https" (login.test.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span><details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Logger inn og henter alle cookies fra nettleserkonteksten</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Identifiserer cookie-domene</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Cookie tilhører ekstern leverandør – sjekkes ikke</span></li>
+    </ol>
+  </details></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "0260dc82f58fc9f938d67c7fc5f66b20" (static.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span><details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Logger inn og henter alle cookies fra nettleserkonteksten</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Identifiserer cookie-domene</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Cookie tilhører ekstern leverandør – sjekkes ikke</span></li>
+    </ol>
+  </details></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "BIGipServer~DigDir~pool_digdir_idporten.no_https" (static.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span><details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Logger inn og henter alle cookies fra nettleserkonteksten</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Identifiserer cookie-domene</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Cookie tilhører ekstern leverandør – sjekkes ikke</span></li>
+    </ol>
+  </details></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "JSESSIONID" (testid.test.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span><details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Logger inn og henter alle cookies fra nettleserkonteksten</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Identifiserer cookie-domene</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Cookie tilhører ekstern leverandør – sjekkes ikke</span></li>
+    </ol>
+  </details></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "0ba91516c140d36c0e0e98cf9b128957" (testid.test.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span><details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Logger inn og henter alle cookies fra nettleserkonteksten</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Identifiserer cookie-domene</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Cookie tilhører ekstern leverandør – sjekkes ikke</span></li>
+    </ol>
+  </details></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "BIGipServer~DigDir-Test~pool_digdir_test.idporten.no_https" (testid.test.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span><details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Logger inn og henter alle cookies fra nettleserkonteksten</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Identifiserer cookie-domene</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Cookie tilhører ekstern leverandør – sjekkes ikke</span></li>
+    </ol>
+  </details></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "JSESSIONID" (login.test.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span><details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Logger inn og henter alle cookies fra nettleserkonteksten</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Identifiserer cookie-domene</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Cookie tilhører ekstern leverandør – sjekkes ikke</span></li>
+    </ol>
+  </details></li><li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Cookie "IDPORTEN_AUTH" (login.test.idporten.no) er fra ekstern leverandør – sjekkes ikke — <span style="color:#6b7280">ID-porten og andre tredjeparts-cookies er ikke i bruk i portalen</span><details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Logger inn og henter alle cookies fra nettleserkonteksten</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Identifiserer cookie-domene</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Cookie tilhører ekstern leverandør – sjekkes ikke</span></li>
+    </ol>
+  </details></li>
     </ul>
   </details>
   </div>
@@ -339,7 +456,12 @@
     <div class="wcag-ok">Ingen funn i denne kategorien</div>
     <details style="margin-top:.8rem"><summary style="font-size:.78rem;color:#07604f;cursor:pointer;padding:.4rem 0;display:flex;align-items:center;gap:.5rem;list-style:none">✅ 1 sjekk bestått <span class="td-chip">🔐 Bruker: <code>10895696434</code></span></summary>
     <ul style="list-style:none;margin-top:.5rem;display:flex;flex-direction:column;gap:.3rem">
-      <li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Ingen mixed content funnet — <span style="color:#6b7280">Alle ressurser lastes over HTTPS</span></li>
+      <li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Ingen mixed content funnet — <span style="color:#6b7280">Alle ressurser lastes over HTTPS</span><details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Registrerer lytter på alle HTTP-forespørsler under sidelasting</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Laster https://tilskudd.fiks.test.ks.no/ over HTTPS</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Ingen HTTP-ressurser lastet – ingen mixed content</span></li>
+    </ol>
+  </details></li>
     </ul>
   </details>
   </div>
@@ -348,7 +470,12 @@
     <div class="wcag-ok">Ingen funn i denne kategorien</div>
     <details style="margin-top:.8rem"><summary style="font-size:.78rem;color:#07604f;cursor:pointer;padding:.4rem 0;display:flex;align-items:center;gap:.5rem;list-style:none">✅ 1 sjekk bestått <span class="td-chip">🔐 Bruker: <code>10895696434</code></span></summary>
     <ul style="list-style:none;margin-top:.5rem;display:flex;flex-direction:column;gap:.3rem">
-      <li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Søkefelt ser ut til å rense input — <span style="color:#6b7280">Payload ble ikke reflektert urensket</span></li>
+      <li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Søkefelt ser ut til å rense input — <span style="color:#6b7280">Payload ble ikke reflektert urensket</span><details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Navigerer til https://tilskudd.fiks.test.ks.no/</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Finner søkefelt og fyller inn XSS-payload</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Sender skjemaet</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">4.</span><span>Sjekker HTML-innhold og window.__xsstest</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">5.</span><span>Payload ikke reflektert urensket</span></li>
+    </ol>
+  </details></li>
     </ul>
   </details>
   </div>
@@ -357,7 +484,12 @@
     <div class="wcag-ok">Ingen funn i denne kategorien</div>
     <details style="margin-top:.8rem"><summary style="font-size:.78rem;color:#07604f;cursor:pointer;padding:.4rem 0;display:flex;align-items:center;gap:.5rem;list-style:none">✅ 1 sjekk bestått <span class="td-chip">🔐 Bruker: <code>10895696434</code></span></summary>
     <ul style="list-style:none;margin-top:.5rem;display:flex;flex-direction:column;gap:.3rem">
-      <li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Ingen CORS-hoder – standard same-origin-policy gjelder</li>
+      <li style="font-size:.78rem;color:#374151;padding:.3rem .6rem;background:#ecfdf5;border-left:3px solid #07604f">✅ Ingen CORS-hoder – standard same-origin-policy gjelder<details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Sender OPTIONS-forespørsel til https://tilskudd.fiks.test.ks.no/ med Origin: https://ondomain.eksempel.no</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Sjekker Access-Control-Allow-Origin i respons</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Ingen CORS-hoder – standard same-origin-policy</span></li>
+    </ol>
+  </details></li>
     </ul>
   </details>
   </div>
@@ -367,12 +499,12 @@
   
   <details open style="margin-top:1.2rem;border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
     <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker – Cookie-sjekk (18905598364)</span>
+      <span>🎲 Tilfeldig bruker – Cookie-sjekk (63916602113)</span>
       <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
       <p style="font-size:.83rem;color:#374151;margin-bottom:1rem;line-height:1.6">
-        Cookie-sjekk utført med tilfeldig TestID-bruker (<code style="color:#2b3285">18905598364</code>).
+        Cookie-sjekk utført med tilfeldig TestID-bruker (<code style="color:#2b3285">63916602113</code>).
         Brukeruavhengige sjekker (HTTP-hoder, HTTPS, CORS osv.) ble ikke gjentatt.
       </p>
       
@@ -448,29 +580,11 @@
   
   <details open style="border:1px solid #e5e3de;background:white;box-shadow:0 1px 4px rgba(10,19,85,.06)">
     <summary style="cursor:pointer;padding:1rem 1.5rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0a1355;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center">
-      <span>🎲 Tilfeldig bruker – Firefox Cookie-sjekk (02864199162)</span>
+      <span>🎲 Tilfeldig bruker – Firefox Cookie-sjekk (ukjent)</span>
       <span style="font-size:.75rem;opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">klikk for å lukke ▲</span>
     </summary>
     <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
-      
-        <div class="brudd-kort" style="border-left-color:#07604f">
-          <div class="brudd-header">
-            <div>
-              <span class="badge " style="background:#ecfdf5;color:#07604f">✅ ok</span>
-              <span class="regel-desc">Cookie "ingress-csrf"</span>
-            </div>
-          </div>
-          <p style="font-size:.82rem;color:#07604f;margin:.4rem 0">Secure + HttpOnly + SameSite er korrekt satt</p>
-        </div>
-        <div class="brudd-kort" style="border-left-color:#07604f">
-          <div class="brudd-header">
-            <div>
-              <span class="badge " style="background:#ecfdf5;color:#07604f">✅ ok</span>
-              <span class="regel-desc">Cookie "session"</span>
-            </div>
-          </div>
-          <p style="font-size:.82rem;color:#07604f;margin:.4rem 0">Secure + HttpOnly + SameSite er korrekt satt</p>
-        </div>
+      <div class="wcag-ok">Ingen egne cookies funnet</div>
     </div>
   </details>
 
@@ -510,7 +624,7 @@
       </div>
     </div>
   </details>
-  <footer>KS Tilskudd · Sikkerhetstester · Playwright · 2026-07-03 08:26</footer>
+  <footer>KS Tilskudd · Sikkerhetstester · Playwright · 2026-07-03 12:46</footer>
 </div>
 </body>
 </html>
