@@ -1,0 +1,75 @@
+{
+  "url": "https://tilskudd.fiks.test.ks.no/",
+  "dato": "2026-07-20",
+  "versjon": "v0.8.2",
+  "nettleser": "147.0.7727.15",
+  "totalt": {
+    "iterasjoner": 60,
+    "siderBesøkt": 6,
+    "jsErrors": 0,
+    "konsollFeil": 4,
+    "nettverksFeil": 4,
+    "kritiske": 0,
+    "alvorlige": 0,
+    "varighet": 1273
+  },
+  "score": 68,
+  "jsErrors": [],
+  "konsollFeil": [
+    {
+      "melding": "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+      "url": "https://tilskudd.fiks.test.ks.no/",
+      "tid": "2026-07-20T07:02:53.613Z"
+    },
+    {
+      "melding": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "https://tilskudd.fiks.test.ks.no/minside/aktiv/Aktive%20s%C3%B8knader",
+      "tid": "2026-07-20T07:03:12.296Z"
+    },
+    {
+      "melding": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "https://tilskudd.fiks.test.ks.no/minside/aktiv/Aktive%20s%C3%B8knader",
+      "tid": "2026-07-20T07:03:12.542Z"
+    },
+    {
+      "melding": "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+      "url": "https://tilskudd.fiks.test.ks.no/minside/aktiv",
+      "tid": "2026-07-20T07:03:12.585Z"
+    }
+  ],
+  "nettverksFeil": [
+    {
+      "status": 401,
+      "url": "https://tilskudd.fiks.test.ks.no/session/ping",
+      "side": "https://tilskudd.fiks.test.ks.no/",
+      "tid": "2026-07-20T07:02:53.613Z"
+    },
+    {
+      "status": 404,
+      "url": "https://tilskudd.fiks.test.ks.no/minside/aktiv/Aktive%20s%C3%B8knader",
+      "side": "https://tilskudd.fiks.test.ks.no/minside/aktiv",
+      "tid": "2026-07-20T07:03:12.295Z"
+    },
+    {
+      "status": 404,
+      "url": "https://tilskudd.fiks.test.ks.no/minside/aktiv/Aktive%20s%C3%B8knader",
+      "side": "https://tilskudd.fiks.test.ks.no/minside",
+      "tid": "2026-07-20T07:03:12.542Z"
+    },
+    {
+      "status": 401,
+      "url": "https://tilskudd.fiks.test.ks.no/api/bff/innlogget.soknader.getList?batch=1&input=%7B%220%22%3A%7B%22json%22%3A%7B%22statusFilter%22%3A%22AKTIV%22%7D%7D%7D",
+      "side": "https://tilskudd.fiks.test.ks.no/minside/aktiv",
+      "tid": "2026-07-20T07:03:12.585Z"
+    }
+  ],
+  "interaksjoner": [],
+  "besøkte": [
+    "https://tilskudd.fiks.test.ks.no/minside",
+    "https://tilskudd.fiks.test.ks.no/minside/avsluttet",
+    "https://tilskudd.fiks.test.ks.no/minside/aktiv",
+    "https://tilskudd.fiks.test.ks.no/",
+    "https://tilskudd.fiks.test.ks.no/minside/aktiv/Aktive%20s%C3%B8knader",
+    "https://tilskudd.fiks.test.ks.no/utlogget"
+  ]
+}
