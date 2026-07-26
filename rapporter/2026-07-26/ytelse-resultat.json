@@ -1,0 +1,94 @@
+{
+  "url": "https://tilskudd.fiks.test.ks.no/",
+  "dato": "2026-07-26",
+  "tidspunkt": "21:01",
+  "score": 100,
+  "totalt": {
+    "sider": 7,
+    "snittLCP": 215,
+    "snittFCP": 215,
+    "snittTTFB": 77,
+    "snittLoad": 228,
+    "totalSizeKB": 3,
+    "totalRequests": 87
+  },
+  "sider": [
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/minside",
+      "tittel": "KS Tilskudd - Min side",
+      "score": 100,
+      "ttfb": 39,
+      "load": 83,
+      "sizeKB": 0,
+      "requests": 11,
+      "lcp": 60,
+      "fcp": 60
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/",
+      "tittel": "KS Tilskudd - Hjem",
+      "score": 100,
+      "ttfb": 59,
+      "load": 106,
+      "sizeKB": 0,
+      "requests": 11,
+      "lcp": 84,
+      "fcp": 84
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/logout",
+      "tittel": "KS Tilskudd",
+      "score": 100,
+      "ttfb": 138,
+      "load": 687,
+      "sizeKB": 1,
+      "requests": 11,
+      "lcp": 660,
+      "fcp": 660
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/minside/utkast",
+      "tittel": "ID-porten",
+      "score": 100,
+      "ttfb": 149,
+      "load": 244,
+      "sizeKB": 0,
+      "requests": 14,
+      "lcp": 248,
+      "fcp": 248
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/minside/aktiv",
+      "tittel": "ID-porten",
+      "score": 100,
+      "ttfb": 100,
+      "load": 286,
+      "sizeKB": 0,
+      "requests": 14,
+      "lcp": 284,
+      "fcp": 284
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/minside/avsluttet",
+      "tittel": "ID-porten",
+      "score": 100,
+      "ttfb": 15,
+      "load": 98,
+      "sizeKB": 0,
+      "requests": 14,
+      "lcp": 100,
+      "fcp": 100
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/om",
+      "tittel": "KS Tilskudd",
+      "score": 100,
+      "ttfb": 38,
+      "load": 95,
+      "sizeKB": 2,
+      "requests": 12,
+      "lcp": 72,
+      "fcp": 72
+    }
+  ]
+}
