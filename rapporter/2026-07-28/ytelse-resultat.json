@@ -1,0 +1,94 @@
+{
+  "url": "https://tilskudd.fiks.test.ks.no/",
+  "dato": "2026-07-28",
+  "tidspunkt": "08:34",
+  "score": 100,
+  "totalt": {
+    "sider": 7,
+    "snittLCP": 85,
+    "snittFCP": 85,
+    "snittTTFB": 35,
+    "snittLoad": 101,
+    "totalSizeKB": 3,
+    "totalRequests": 87
+  },
+  "sider": [
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/minside",
+      "tittel": "KS Tilskudd - Min side",
+      "score": 100,
+      "ttfb": 74,
+      "load": 123,
+      "sizeKB": 0,
+      "requests": 11,
+      "lcp": 96,
+      "fcp": 96
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/",
+      "tittel": "KS Tilskudd - Hjem",
+      "score": 100,
+      "ttfb": 32,
+      "load": 77,
+      "sizeKB": 0,
+      "requests": 11,
+      "lcp": 52,
+      "fcp": 52
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/logout",
+      "tittel": "KS Tilskudd",
+      "score": 100,
+      "ttfb": 61,
+      "load": 157,
+      "sizeKB": 1,
+      "requests": 11,
+      "lcp": 132,
+      "fcp": 132
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/minside/utkast",
+      "tittel": "ID-porten",
+      "score": 100,
+      "ttfb": 13,
+      "load": 107,
+      "sizeKB": 0,
+      "requests": 14,
+      "lcp": 84,
+      "fcp": 84
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/minside/aktiv",
+      "tittel": "ID-porten",
+      "score": 100,
+      "ttfb": 12,
+      "load": 80,
+      "sizeKB": 0,
+      "requests": 14,
+      "lcp": 84,
+      "fcp": 84
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/minside/avsluttet",
+      "tittel": "ID-porten",
+      "score": 100,
+      "ttfb": 12,
+      "load": 75,
+      "sizeKB": 0,
+      "requests": 14,
+      "lcp": 80,
+      "fcp": 80
+    },
+    {
+      "url": "https://tilskudd.fiks.test.ks.no/om",
+      "tittel": "KS Tilskudd",
+      "score": 100,
+      "ttfb": 39,
+      "load": 88,
+      "sizeKB": 2,
+      "requests": 12,
+      "lcp": 64,
+      "fcp": 64
+    }
+  ]
+}
