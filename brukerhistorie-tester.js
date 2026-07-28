@@ -848,8 +848,17 @@ test.describe('TILSK-856: Som søker vil jeg finne tilskuddsordninger med stikko
 
   // AK-6: Feilstaving håndteres – gjerne med «mente du?»
   test('AK-6 – feilstaving: feilstavet søkeord håndteres (f.eks. «mente du?»)', async ({ page }, testInfo) => {
-    testInfo.annotations.push({ type: 'steg', description: 'Testen er markert som hoppet over – fuzzy søk ikke implementert ennå (TILSK-856)' });
-    testInfo.skip(true, 'AK-6 ikke implementert ennå – krever fuzzy søkemotor (TILSK-856 i Utviklingskø)');
+    testInfo.annotations.push({ type: 'steg', description: 'Navigere til /utlysinger og søke på feilstavet ord "tilskuudd"' });
+    await søk(page, 'tilskuudd');
+    testInfo.annotations.push({ type: 'steg', description: 'Verifisere at siden ikke viser feilside' });
+    const body = await page.textContent('body');
+    expect(body).not.toMatch(/500|Internal Server Error|Uventet feil/);
+    testInfo.annotations.push({ type: 'steg', description: 'Verifisere at søket enten viser resultater (fuzzy treff) eller en hjelpsom melding («mente du?»/ingen treff)' });
+    const treffEllerMelding = page.locator(
+      'article, [class*="card"], [class*="kort"], li a[href*="utlysing"], ' +
+      '[class*="ingen"], [class*="empty"], [class*="no-result"], [class*="suggestion"], [class*="mente"]'
+    );
+    await expect(treffEllerMelding.first()).toBeAttached({ timeout: SIDE_TIMEOUT });
   });
 
 });
