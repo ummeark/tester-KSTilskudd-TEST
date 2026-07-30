@@ -1,4 +1,5 @@
 # tester-KSTilskudd-TEST
+<!-- Repo også tilgjengelig på ks-no/tilskuddsportal-testverktoy-TEST -->
 
 Automatiserte tester av testmiljøet [tilskudd.fiks.test.ks.no](https://tilskudd.fiks.test.ks.no/) med Playwright og axe-core.
 
