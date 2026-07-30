@@ -70,12 +70,13 @@ npm run testdata     # Regenerer tilskudd-testdata.json og injiser i testdata-hu
 
 ## Automatisk kjøring (macOS launchd)
 
-Testene kjøres automatisk på hverdager via to launchd-jobber:
+Testene kjøres automatisk på hverdager via én launchd-jobb:
 
 | Jobb | Tidspunkt | Beskrivelse |
 |------|-----------|-------------|
-| `no.ks.uu-tester.plist` | 08:30 | Planlagt daglig kjøring |
-| `no.ks.uu-tester-vakt.plist` | Hvert 30. min | Starter testene hvis de ikke er kjørt (fanger opp at Mac var avslått) |
+| `no.ks.tilskudd-daglig-TEST-vakt.plist` | Hvert 10. min, 08:00–10:50 | Starter alle tester hvis de ikke er kjørt i dag (fanger opp at Mac var avslått) |
+
+Jobben kaller `sjekk-og-kjoer.sh` som hopper over helger og allerede gjennomførte kjøringer.
 
 Logg: `rapporter/kjoring.log`
 
