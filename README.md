@@ -35,11 +35,12 @@ npm run valider
 ## Kjør tester manuelt
 
 ```bash
-npm run rapport      # WCAG/UU-analyse (axe-core, opptil 20 sider)
-npm run monkey       # Monkey-testing (60 tilfeldige handlinger)
-npm run sikkerhet    # Sikkerhetstest (hoder, cookies, HTTPS, CORS)
-npm run negativ      # Negativ testing (ugyldig input, grenseverdier)
-npm run ytelse       # Ytelsesmåling
+npm run rapport         # WCAG/UU-analyse (axe-core, opptil 20 sider)
+npm run monkey          # Monkey-testing (60 tilfeldige handlinger)
+npm run sikkerhet       # Sikkerhetstest (hoder, cookies, HTTPS, CORS)
+npm run negativ         # Negativ testing (ugyldig input, grenseverdier)
+npm run ytelse          # Ytelsesmåling
+npm run brukerhistorie  # Brukerhistorietester (fast bruker + tilfeldig bruker)
 ```
 
 Rapporter genereres i `rapporter/YYYY-MM-DD/` og åpnes i nettleseren automatisk.
