@@ -1,10 +1,10 @@
 {
   "config": {
-    "configFile": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie.playwright.config.js",
-    "rootDir": "/Users/ummearkhan/tester-KSTilskudd",
+    "configFile": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie.playwright.config.js",
+    "rootDir": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST",
     "forbidOnly": false,
     "fullyParallel": false,
-    "globalSetup": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie.setup.js",
+    "globalSetup": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie.setup.js",
     "globalTeardown": null,
     "globalTimeout": 0,
     "grep": {},
@@ -16,7 +16,7 @@
     "preserveOutput": "always",
     "projects": [
       {
-        "outputDir": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-resultater/traces",
+        "outputDir": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-resultater/traces",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -24,7 +24,7 @@
         },
         "id": "",
         "name": "",
-        "testDir": "/Users/ummearkhan/tester-KSTilskudd",
+        "testDir": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST",
         "testIgnore": [],
         "testMatch": [
           "brukerhistorie-tester.js"
@@ -100,12 +100,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 749,
+                      "duration": 701,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:08.343Z",
+                      "startTime": "2026-07-30T11:20:54.999Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -160,12 +160,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 814,
+                      "duration": 667,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:09.163Z",
+                      "startTime": "2026-07-30T11:20:55.767Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -220,12 +220,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 805,
+                      "duration": 695,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:09.985Z",
+                      "startTime": "2026-07-30T11:20:56.444Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -280,12 +280,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 746,
+                      "duration": 700,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:10.796Z",
+                      "startTime": "2026-07-30T11:20:57.144Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -340,12 +340,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 729,
+                      "duration": 678,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:11.546Z",
+                      "startTime": "2026-07-30T11:20:57.849Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -396,12 +396,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2750,
+                      "duration": 664,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:12.280Z",
+                      "startTime": "2026-07-30T11:20:58.532Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -448,12 +448,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2763,
+                      "duration": 675,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:15.038Z",
+                      "startTime": "2026-07-30T11:20:59.204Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -500,12 +500,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 723,
+                      "duration": 679,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:17.807Z",
+                      "startTime": "2026-07-30T11:20:59.885Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -556,12 +556,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 279,
+                      "duration": 296,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:18.535Z",
+                      "startTime": "2026-07-30T11:21:00.569Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -624,12 +624,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 307,
+                      "duration": 265,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:18.818Z",
+                      "startTime": "2026-07-30T11:21:00.869Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -680,12 +680,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 266,
+                      "duration": 226,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:19.130Z",
+                      "startTime": "2026-07-30T11:21:01.138Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -736,12 +736,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 826,
+                      "duration": 793,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:19.400Z",
+                      "startTime": "2026-07-30T11:21:01.368Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -796,12 +796,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 414,
+                      "duration": 238,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:20.230Z",
+                      "startTime": "2026-07-30T11:21:02.164Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -860,12 +860,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 274,
+                      "duration": 194,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:20.647Z",
+                      "startTime": "2026-07-30T11:21:02.406Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -912,12 +912,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 282,
+                      "duration": 188,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:20.925Z",
+                      "startTime": "2026-07-30T11:21:02.603Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -968,12 +968,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 725,
+                      "duration": 661,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:21.210Z",
+                      "startTime": "2026-07-30T11:21:02.795Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -1032,12 +1032,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1670,
+                      "duration": 2293,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:21.941Z",
+                      "startTime": "2026-07-30T11:21:03.461Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -1084,12 +1084,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1961,
+                      "duration": 786,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:23.618Z",
+                      "startTime": "2026-07-30T11:21:05.761Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -1136,12 +1136,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 806,
+                      "duration": 763,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:25.586Z",
+                      "startTime": "2026-07-30T11:21:06.555Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -1188,12 +1188,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 858,
+                      "duration": 740,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:26.397Z",
+                      "startTime": "2026-07-30T11:21:07.324Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -1240,12 +1240,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1200,
+                      "duration": 762,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:27.260Z",
+                      "startTime": "2026-07-30T11:21:08.069Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -1292,12 +1292,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 822,
+                      "duration": 743,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:28.465Z",
+                      "startTime": "2026-07-30T11:21:08.836Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -1348,12 +1348,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 821,
+                      "duration": 1787,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:29.291Z",
+                      "startTime": "2026-07-30T11:21:09.585Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -1404,12 +1404,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 900,
+                      "duration": 767,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:30.117Z",
+                      "startTime": "2026-07-30T11:21:11.377Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -1447,7 +1447,7 @@
                       "type": "skip",
                       "description": "Ingen utlysning med både person- og virksomhetskort funnet i TEST-miljøet",
                       "location": {
-                        "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                        "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                         "line": 379,
                         "column": 14
                       }
@@ -1461,12 +1461,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "skipped",
-                      "duration": 6426,
+                      "duration": 8223,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:31.023Z",
+                      "startTime": "2026-07-30T11:21:12.149Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -1476,7 +1476,7 @@
                           "type": "skip",
                           "description": "Ingen utlysning med både person- og virksomhetskort funnet i TEST-miljøet",
                           "location": {
-                            "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                            "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                             "line": 379,
                             "column": 14
                           }
@@ -1534,12 +1534,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1424,
+                      "duration": 1412,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:37.454Z",
+                      "startTime": "2026-07-30T11:21:20.378Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -1598,12 +1598,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 744,
+                      "duration": 679,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:38.883Z",
+                      "startTime": "2026-07-30T11:21:21.795Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -1645,7 +1645,7 @@
                       "type": "skip",
                       "description": "AK-1.2 avventer implementering – språkvalg ikke avklart (TILSK-760)",
                       "location": {
-                        "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                        "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                         "line": 434,
                         "column": 14
                       }
@@ -1659,12 +1659,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "skipped",
-                      "duration": 66,
+                      "duration": 64,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:39.633Z",
+                      "startTime": "2026-07-30T11:21:22.478Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -1674,7 +1674,7 @@
                           "type": "skip",
                           "description": "AK-1.2 avventer implementering – språkvalg ikke avklart (TILSK-760)",
                           "location": {
-                            "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                            "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                             "line": 434,
                             "column": 14
                           }
@@ -1720,12 +1720,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 697,
+                      "duration": 658,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:39.702Z",
+                      "startTime": "2026-07-30T11:21:22.546Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -1780,12 +1780,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 754,
+                      "duration": 670,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:40.403Z",
+                      "startTime": "2026-07-30T11:21:23.208Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -1848,12 +1848,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2828,
+                      "duration": 2719,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:41.162Z",
+                      "startTime": "2026-07-30T11:21:23.882Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -1908,12 +1908,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2812,
+                      "duration": 4670,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:43.995Z",
+                      "startTime": "2026-07-30T11:21:26.605Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -1968,12 +1968,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3218,
+                      "duration": 2710,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:46.812Z",
+                      "startTime": "2026-07-30T11:21:31.279Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2028,12 +2028,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2826,
+                      "duration": 2701,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:50.035Z",
+                      "startTime": "2026-07-30T11:21:33.993Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2084,12 +2084,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3105,
+                      "duration": 2701,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:52.865Z",
+                      "startTime": "2026-07-30T11:21:36.699Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2136,12 +2136,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3081,
+                      "duration": 4745,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:55.975Z",
+                      "startTime": "2026-07-30T11:21:39.409Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2196,12 +2196,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1290,
+                      "duration": 942,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:49:59.061Z",
+                      "startTime": "2026-07-30T11:21:44.160Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2248,12 +2248,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1863,
+                      "duration": 767,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:00.356Z",
+                      "startTime": "2026-07-30T11:21:45.107Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2300,12 +2300,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1006,
+                      "duration": 742,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:02.224Z",
+                      "startTime": "2026-07-30T11:21:45.880Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2352,12 +2352,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 898,
+                      "duration": 754,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:03.235Z",
+                      "startTime": "2026-07-30T11:21:46.628Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2408,12 +2408,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1010,
+                      "duration": 753,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:04.137Z",
+                      "startTime": "2026-07-30T11:21:47.387Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2464,12 +2464,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1082,
+                      "duration": 742,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:05.153Z",
+                      "startTime": "2026-07-30T11:21:48.147Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2516,12 +2516,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1041,
+                      "duration": 758,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:06.239Z",
+                      "startTime": "2026-07-30T11:21:48.894Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2572,12 +2572,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 994,
+                      "duration": 751,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:07.285Z",
+                      "startTime": "2026-07-30T11:21:49.658Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2628,12 +2628,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1073,
+                      "duration": 1747,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:08.284Z",
+                      "startTime": "2026-07-30T11:21:50.413Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2688,12 +2688,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 849,
+                      "duration": 676,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:09.362Z",
+                      "startTime": "2026-07-30T11:21:52.166Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2744,12 +2744,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 755,
+                      "duration": 689,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:10.217Z",
+                      "startTime": "2026-07-30T11:21:52.847Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2800,12 +2800,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 832,
+                      "duration": 673,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:10.978Z",
+                      "startTime": "2026-07-30T11:21:53.542Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2856,12 +2856,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 768,
+                      "duration": 687,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:11.815Z",
+                      "startTime": "2026-07-30T11:21:54.219Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2920,12 +2920,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 287,
+                      "duration": 224,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:12.588Z",
+                      "startTime": "2026-07-30T11:21:54.910Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -2972,12 +2972,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 309,
+                      "duration": 292,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:12.879Z",
+                      "startTime": "2026-07-30T11:21:55.138Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -3024,12 +3024,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 258,
+                      "duration": 1234,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:13.193Z",
+                      "startTime": "2026-07-30T11:21:55.433Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -3076,12 +3076,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 312,
+                      "duration": 216,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:13.454Z",
+                      "startTime": "2026-07-30T11:21:56.671Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -3128,12 +3128,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 352,
+                      "duration": 222,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:13.769Z",
+                      "startTime": "2026-07-30T11:21:56.890Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -3180,12 +3180,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 373,
+                      "duration": 315,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:14.124Z",
+                      "startTime": "2026-07-30T11:21:57.115Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -3236,12 +3236,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 264,
+                      "duration": 226,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:14.501Z",
+                      "startTime": "2026-07-30T11:21:57.434Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -3300,12 +3300,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 294,
+                      "duration": 204,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:14.768Z",
+                      "startTime": "2026-07-30T11:21:57.663Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -3352,12 +3352,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 301,
+                      "duration": 218,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:15.064Z",
+                      "startTime": "2026-07-30T11:21:57.870Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -3408,12 +3408,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2391,
+                      "duration": 265,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:15.368Z",
+                      "startTime": "2026-07-30T11:21:58.091Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -3476,12 +3476,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 441,
+                      "duration": 371,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:17.763Z",
+                      "startTime": "2026-07-30T11:21:58.360Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -3536,12 +3536,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1367,
+                      "duration": 298,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:18.207Z",
+                      "startTime": "2026-07-30T11:21:58.735Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -3608,12 +3608,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 6307,
+                      "duration": 5247,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeAttached\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\nExpected: attached\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeAttached\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeAttached\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\nExpected: attached\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeAttached\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\u001b[22m\n\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:942:29",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeAttached\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\nExpected: attached\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeAttached\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\u001b[22m\n\n    at /Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js:942:29",
                         "location": {
-                          "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                          "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                           "column": 29,
                           "line": 942
                         },
@@ -3622,17 +3622,17 @@
                       "errors": [
                         {
                           "location": {
-                            "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                            "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                             "column": 29,
                             "line": 942
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeAttached\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\nExpected: attached\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeAttached\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\u001b[22m\n\n\n  940 |     ).first();\n  941 |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at skiplink er festet til DOM' });\n> 942 |     await expect(skipLenke).toBeAttached();\n      |                             ^\n  943 |   });\n  944 |\n  945 |   test('skiplink er første fokuserbare element ved Tab-navigasjon', async ({ page }, testInfo) => {\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:942:29"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeAttached\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\nExpected: attached\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeAttached\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('a[href=\"#main\"], a[href=\"#maincontent\"], a[href=\"#main-content\"], a[href=\"#innhold\"], a.skip-link, a[class*=\"skip\"]').first()\u001b[22m\n\n\n  940 |     ).first();\n  941 |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at skiplink er festet til DOM' });\n> 942 |     await expect(skipLenke).toBeAttached();\n      |                             ^\n  943 |   });\n  944 |\n  945 |   test('skiplink er første fokuserbare element ved Tab-navigasjon', async ({ page }, testInfo) => {\n    at /Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js:942:29"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:19.577Z",
+                      "startTime": "2026-07-30T11:21:59.036Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -3655,11 +3655,11 @@
                         {
                           "name": "error-context",
                           "contentType": "text/markdown",
-                          "path": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-resultater/traces/brukerhistorie-tester.js-B-13c5d-ld-finnes-i-DOM-WCAG-2-4-1-/error-context.md"
+                          "path": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-resultater/traces/brukerhistorie-tester.js-B-13c5d-ld-finnes-i-DOM-WCAG-2-4-1-/error-context.md"
                         }
                       ],
                       "errorLocation": {
-                        "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                        "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                         "column": 29,
                         "line": 942
                       }
@@ -3706,12 +3706,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 416,
+                      "duration": 281,
                       "error": {
                         "message": "Error: Første Tab-stopp bør være en skiplink til #main eller #innhold\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/#main|#innhold|#content|#skip/\u001b[39m\nReceived string:  \u001b[31m\"/\"\u001b[39m",
-                        "stack": "Error: Første Tab-stopp bør være en skiplink til #main eller #innhold\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/#main|#innhold|#content|#skip/\u001b[39m\nReceived string:  \u001b[31m\"/\"\u001b[39m\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:955:84",
+                        "stack": "Error: Første Tab-stopp bør være en skiplink til #main eller #innhold\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/#main|#innhold|#content|#skip/\u001b[39m\nReceived string:  \u001b[31m\"/\"\u001b[39m\n    at /Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js:955:84",
                         "location": {
-                          "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                          "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                           "column": 84,
                           "line": 955
                         },
@@ -3720,17 +3720,17 @@
                       "errors": [
                         {
                           "location": {
-                            "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                            "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                             "column": 84,
                             "line": 955
                           },
-                          "message": "Error: Første Tab-stopp bør være en skiplink til #main eller #innhold\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/#main|#innhold|#content|#skip/\u001b[39m\nReceived string:  \u001b[31m\"/\"\u001b[39m\n\n  953 |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at det fokuserte elementet er en skiplink (href inneholder #main eller #innhold)' });\n  954 |     const href = await page.locator(':focus').getAttribute('href').catch(() => '');\n> 955 |     expect(href, 'Første Tab-stopp bør være en skiplink til #main eller #innhold').toMatch(/#main|#innhold|#content|#skip/);\n      |                                                                                    ^\n  956 |   });\n  957 |\n  958 |   test('søkeskjema er merket med role=\"search\" for skjermlesere', async ({ page }, testInfo) => {\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:955:84"
+                          "message": "Error: Første Tab-stopp bør være en skiplink til #main eller #innhold\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/#main|#innhold|#content|#skip/\u001b[39m\nReceived string:  \u001b[31m\"/\"\u001b[39m\n\n  953 |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at det fokuserte elementet er en skiplink (href inneholder #main eller #innhold)' });\n  954 |     const href = await page.locator(':focus').getAttribute('href').catch(() => '');\n> 955 |     expect(href, 'Første Tab-stopp bør være en skiplink til #main eller #innhold').toMatch(/#main|#innhold|#content|#skip/);\n      |                                                                                    ^\n  956 |   });\n  957 |\n  958 |   test('søkeskjema er merket med role=\"search\" for skjermlesere', async ({ page }, testInfo) => {\n    at /Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js:955:84"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:26.201Z",
+                      "startTime": "2026-07-30T11:22:04.594Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -3753,11 +3753,11 @@
                         {
                           "name": "error-context",
                           "contentType": "text/markdown",
-                          "path": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-resultater/traces/brukerhistorie-tester.js-B-39735--element-ved-Tab-navigasjon/error-context.md"
+                          "path": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-resultater/traces/brukerhistorie-tester.js-B-39735--element-ved-Tab-navigasjon/error-context.md"
                         }
                       ],
                       "errorLocation": {
-                        "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                        "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                         "column": 84,
                         "line": 955
                       }
@@ -3800,12 +3800,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 15385,
+                      "duration": 15326,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"search\"]').first()\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"search\"]').first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"search\"]').first()\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"search\"]').first()\u001b[22m\n\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:964:32",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"search\"]').first()\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"search\"]').first()\u001b[22m\n\n    at /Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js:964:32",
                         "location": {
-                          "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                          "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                           "column": 32,
                           "line": 964
                         },
@@ -3814,17 +3814,17 @@
                       "errors": [
                         {
                           "location": {
-                            "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                            "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                             "column": 32,
                             "line": 964
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"search\"]').first()\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"search\"]').first()\u001b[22m\n\n\n  962 |     const searchRegion = page.locator('[role=\"search\"]').first();\n  963 |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at søkeregion er synlig' });\n> 964 |     await expect(searchRegion).toBeVisible({ timeout: SIDE_TIMEOUT });\n      |                                ^\n  965 |   });\n  966 |\n  967 | });\n    at /Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js:964:32"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"search\"]').first()\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"search\"]').first()\u001b[22m\n\n\n  962 |     const searchRegion = page.locator('[role=\"search\"]').first();\n  963 |     testInfo.annotations.push({ type: 'steg', description: 'Verifisere at søkeregion er synlig' });\n> 964 |     await expect(searchRegion).toBeVisible({ timeout: SIDE_TIMEOUT });\n      |                                ^\n  965 |   });\n  966 |\n  967 | });\n    at /Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js:964:32"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:26.929Z",
+                      "startTime": "2026-07-30T11:22:05.190Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -3843,11 +3843,11 @@
                         {
                           "name": "error-context",
                           "contentType": "text/markdown",
-                          "path": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-resultater/traces/brukerhistorie-tester.js-B-7f1e5-ole-search-for-skjermlesere/error-context.md"
+                          "path": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-resultater/traces/brukerhistorie-tester.js-B-7f1e5-ole-search-for-skjermlesere/error-context.md"
                         }
                       ],
                       "errorLocation": {
-                        "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                        "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                         "column": 32,
                         "line": 964
                       }
@@ -3898,12 +3898,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2806,
+                      "duration": 733,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:42.679Z",
+                      "startTime": "2026-07-30T11:22:20.877Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -3958,12 +3958,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1724,
+                      "duration": 1907,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:45.558Z",
+                      "startTime": "2026-07-30T11:22:21.681Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -4014,12 +4014,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2992,
+                      "duration": 883,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:47.290Z",
+                      "startTime": "2026-07-30T11:22:23.597Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -4066,12 +4066,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 806,
+                      "duration": 1690,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:50.288Z",
+                      "startTime": "2026-07-30T11:22:24.489Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -4122,12 +4122,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 774,
+                      "duration": 708,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:51.101Z",
+                      "startTime": "2026-07-30T11:22:26.186Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -4198,12 +4198,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4245,
+                      "duration": 2032,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:51.884Z",
+                      "startTime": "2026-07-30T11:22:26.900Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -4270,12 +4270,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2942,
+                      "duration": 710,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:56.135Z",
+                      "startTime": "2026-07-30T11:22:28.938Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -4322,12 +4322,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 945,
+                      "duration": 674,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:50:59.083Z",
+                      "startTime": "2026-07-30T11:22:29.653Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -4374,12 +4374,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1060,
+                      "duration": 767,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:51:00.033Z",
+                      "startTime": "2026-07-30T11:22:30.333Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -4421,7 +4421,7 @@
                       "type": "skip",
                       "description": "Ingen innvilgede søknader i TEST-miljøet",
                       "location": {
-                        "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                        "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                         "line": 1095,
                         "column": 14
                       }
@@ -4435,12 +4435,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "skipped",
-                      "duration": 969,
+                      "duration": 789,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:51:01.098Z",
+                      "startTime": "2026-07-30T11:22:31.105Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -4454,7 +4454,7 @@
                           "type": "skip",
                           "description": "Ingen innvilgede søknader i TEST-miljøet",
                           "location": {
-                            "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                            "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                             "line": 1095,
                             "column": 14
                           }
@@ -4491,7 +4491,7 @@
                       "type": "skip",
                       "description": "Ingen saker med vedtak i TEST-miljøet",
                       "location": {
-                        "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                        "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                         "line": 1108,
                         "column": 14
                       }
@@ -4505,12 +4505,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "skipped",
-                      "duration": 1006,
+                      "duration": 777,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:51:02.073Z",
+                      "startTime": "2026-07-30T11:22:31.901Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -4524,7 +4524,7 @@
                           "type": "skip",
                           "description": "Ingen saker med vedtak i TEST-miljøet",
                           "location": {
-                            "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                            "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                             "line": 1108,
                             "column": 14
                           }
@@ -4561,7 +4561,7 @@
                       "type": "skip",
                       "description": "Ingen saker med vedtak blant de første 8 søknadene",
                       "location": {
-                        "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                        "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                         "line": 1131,
                         "column": 14
                       }
@@ -4575,12 +4575,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "skipped",
-                      "duration": 1839,
+                      "duration": 1356,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:51:03.085Z",
+                      "startTime": "2026-07-30T11:22:32.683Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -4594,7 +4594,7 @@
                           "type": "skip",
                           "description": "Ingen saker med vedtak blant de første 8 søknadene",
                           "location": {
-                            "file": "/Users/ummearkhan/tester-KSTilskudd/brukerhistorie-tester.js",
+                            "file": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/brukerhistorie-tester.js",
                             "line": 1131,
                             "column": 14
                           }
@@ -4656,12 +4656,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2993,
+                      "duration": 2682,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:51:04.929Z",
+                      "startTime": "2026-07-30T11:22:34.044Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -4728,12 +4728,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 6164,
+                      "duration": 3377,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-28T11:51:07.927Z",
+                      "startTime": "2026-07-30T11:22:36.732Z",
                       "annotations": [
                         {
                           "type": "steg",
@@ -4770,8 +4770,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-07-28T11:49:06.183Z",
-    "duration": 127947.381,
+    "startTime": "2026-07-30T11:20:53.775Z",
+    "duration": 106374.008,
     "expected": 70,
     "skipped": 5,
     "unexpected": 3,
