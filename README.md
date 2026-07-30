@@ -84,32 +84,52 @@ Logg: `rapporter/kjoring.log`
 ## Mappestruktur
 
 ```
-rapporter/YYYY-MM-DD/       Genererte rapporter per dato
-  rapport.html              UU-rapport
-  monkey-rapport.html       Monkey-rapport
-  sikkerhet-rapport.html    Sikkerhetsrapport
-  negativ-rapport.html      Negativ testrapport
-  resultat.json             UU-resultater (maskinlesbart)
-  monkey-resultat.json      Monkey-resultater
-  sikkerhet-resultat.json   Sikkerhetsresultater
-  negativ-resultat.json     Negative testresultater
-  skjermbilder/             Skjermbilder fra UU-test
-  skjermbilder-monkey/      Skjermbilder fra monkey-test
-  skjermbilder-negativ/     Skjermbilder fra negativ test
-  skjermbilder-sikkerhet/   Skjermbilder fra sikkerhetstest
+rapporter/YYYY-MM-DD/           Genererte rapporter per dato
+  uu-rapport.html               UU-rapport
+  monkey-rapport.html           Monkey-rapport
+  sikkerhet-rapport.html        Sikkerhetsrapport
+  negativ-rapport.html          Negativ testrapport
+  ytelse-rapport.html           Ytelsesrapport
+  brukerhistorie-rapport.html   Brukerhistorierapport
+  resultat.json                 UU-resultater (maskinlesbart)
+  monkey-resultat.json          Monkey-resultater
+  sikkerhet-resultat.json       Sikkerhetsresultater
+  negativ-resultat.json         Negative testresultater
+  ytelse-resultat.json          Ytelsesresultater
+  brukerhistorie-resultat.json  Brukerhistorieresultater
+  skjermbilder/                 Skjermbilder fra UU-test
+  skjermbilder-monkey/          Skjermbilder fra monkey-test
+  skjermbilder-negativ/         Skjermbilder fra negativ test
+  skjermbilder-sikkerhet/       Skjermbilder fra sikkerhetstest
+  skjermbilder-tilfeldig/       Skjermbilder fra tilfeldig bruker (UU)
 
-docs/                       GitHub Pages
-  rapport.html              Siste UU-rapport
-  monkey-rapport.html       Siste monkey-rapport
-  sikkerhet-rapport.html    Siste sikkerhetsrapport
-  negativ-rapport.html      Siste negativ testrapport
-  arkiv.html                Arkivside med historikk
-  arkiv/YYYY-MM-DD/         Arkiverte rapporter
-  testdata-hub.html         Testdatahub (40 ordninger)
+brukerhistorie-resultater/      Mellomlagring for brukerhistorietester
+  auth.json                     Innloggingstilstand (fast bruker)
+  auth-tilfeldig.json           Innloggingstilstand (tilfeldig bruker)
+  brukerhistorie-resultat.json  Resultat fast bruker
+  brukerhistorie-resultat-tilfeldig.json  Resultat tilfeldig bruker
+  testdata.json                 Testdata hentet fra appens API (fast bruker)
+  testdata-tilfeldig.json       Testdata hentet fra appens API (tilfeldig bruker)
+  traces/                       Playwright-traces (fast bruker)
+  traces-tilfeldig/             Playwright-traces (tilfeldig bruker)
+  skjermbilder/                 Skjermbilder fra feilede tester
+
+docs/                           GitHub Pages
+  rapport.html                  Testdashboard (samlet oversikt)
+  uu-rapport.html               Siste UU-rapport
+  monkey-rapport.html           Siste monkey-rapport
+  sikkerhet-rapport.html        Siste sikkerhetsrapport
+  negativ-rapport.html          Siste negativ testrapport
+  ytelse-rapport.html           Siste ytelsesrapport
+  brukerhistorie-rapport.html   Siste brukerhistorierapport
+  arkiv.html                    Arkivside med historikk per testtype
+  arkiv/YYYY-MM-DD/             Arkiverte rapporter
+  testdata-hub.html             Testdatahub (40 ordninger)
+  admin.html                    Adminside for testdataoversikt
 
 testdata/
-  generer-testdata.js       Genereringsskript
-  tilskudd-testdata.json    Generert output (committes)
+  generer-testdata.js           Genereringsskript
+  tilskudd-testdata.json        Generert output (committes)
 ```
 
 ---
