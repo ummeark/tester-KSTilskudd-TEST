@@ -20,8 +20,8 @@ Testene kjøres daglig på hverdager og publiseres til GitHub Pages:
 
 ```bash
 # 1. Klon repoet
-git clone https://github.com/ummeark/tester-KSTilskudd-TEST.git
-cd tester-KSTilskudd-TEST
+git clone https://github.com/ks-no/tilskuddsportal-testverktoy-TEST.git
+cd tilskuddsportal-testverktoy-TEST
 
 # 2. Installer avhengigheter (inkludert Playwright Chromium – tar litt tid)
 npm install

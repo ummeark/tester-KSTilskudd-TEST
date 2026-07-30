@@ -78,7 +78,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/ummeark/tester-KSTilskudd-TEST.git"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/ks-no/tilskuddsportal-testverktoy-TEST.git"
           git add rapporter/ docs/ brukerhistorie-resultater/
           DATO=$(date '+%Y-%m-%d %H:%M')
           if git diff --staged --quiet; then

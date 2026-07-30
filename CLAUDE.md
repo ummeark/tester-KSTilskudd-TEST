@@ -29,7 +29,7 @@ rapporter/YYYY-MM-DD/       Genererte rapporter per dato
   skjermbilder-negativ/     Skjermbilder fra negativ test
   skjermbilder-sikkerhet/   Skjermbilder fra sikkerhetstest
 
-docs/                       GitHub Pages (ummeark.github.io/tester-KSTilskudd-TEST/)
+docs/                       GitHub Pages (ks-no.github.io/tilskuddsportal-testverktoy-TEST/)
   rapport.html              Siste UU-rapport
   monkey-rapport.html       Siste monkey-rapport
   sikkerhet-rapport.html    Siste sikkerhetsrapport
