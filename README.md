@@ -1,5 +1,4 @@
-# tester-KSTilskudd-TEST
-<!-- Repo også tilgjengelig på ks-no/tilskuddsportal-testverktoy-TEST -->
+# tilskuddsportal-testverktoy-TEST
 
 Automatiserte tester av testmiljøet [tilskudd.fiks.test.ks.no](https://tilskudd.fiks.test.ks.no/) med Playwright og axe-core.
 
@@ -132,6 +131,18 @@ docs/                           GitHub Pages
 testdata/
   generer-testdata.js           Genereringsskript
   tilskudd-testdata.json        Generert output (committes)
+
+lib/
+  common.js                     Delte hjelpefunksjoner
+
+poc-resultater/                 POC-testresultater
+  poc-sider.json                Crawlede sider
+  poc-uu-resultat.json          POC UU-resultater
+
+testverktøy-rapporter/          Rapporter fra test av testverktøy
+  YYYY-MM-DD/                   Resultater per dato
+
+test-results/                   Playwright interne testresultater
 ```
 
 ---
