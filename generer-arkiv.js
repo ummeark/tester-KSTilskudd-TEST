@@ -619,7 +619,7 @@ const arkivHTML = `<!DOCTYPE html>
   ${seksjonHTML('Brukerhistorietest', '📖', brukerhistorie, 'brukerhistorie-rapport.html', brukerhistorieNøkkel)}
 
 </div>
-<footer>KS Tilskudd · Testrapporter · axe-core + Playwright · <a href="https://ummeark.github.io/tester-KSTilskudd-TEST/testdata-hub.html" style="color:inherit">🗂️ Testdatahub</a> · <a href="https://ummeark.github.io/tester-KSTilskudd-TEST/testdata-generator.html" style="color:inherit">🤖 Testdatagenerator</a> · <a href="https://ummeark.github.io/tester-KSTilskudd-TEST/admin.html" style="color:inherit">⚙️ Admin</a> · <a href="https://github.com/ummeark/tester-KSTilskudd-TEST/blob/main/brukerhistorie-tester.js" style="color:inherit">📖 Brukerhistorietester</a> · <a href="testverktøy-rapport.html" style="color:inherit">🔬 Test av testverktøy</a></footer>
+<footer>KS Tilskudd · Testrapporter · axe-core + Playwright · <a href="https://ks-no.github.io/tilskuddsportal-testverktoy-TEST/testdata-hub.html" style="color:inherit">🗂️ Testdatahub</a> · <a href="https://ks-no.github.io/tilskuddsportal-testverktoy-TEST/testdata-generator.html" style="color:inherit">🤖 Testdatagenerator</a> · <a href="https://ks-no.github.io/tilskuddsportal-testverktoy-TEST/admin.html" style="color:inherit">⚙️ Admin</a> · <a href="https://github.com/ummeark/tester-KSTilskudd-TEST/blob/main/brukerhistorie-tester.js" style="color:inherit">📖 Brukerhistorietester</a> · <a href="testverktøy-rapport.html" style="color:inherit">🔬 Test av testverktøy</a></footer>
 </body>
 </html>`;
 
@@ -857,7 +857,7 @@ const dashboardHTML = `<!DOCTYPE html>
   </details>
 
 </div>
-<footer>KS Tilskudd · Testdashboard · axe-core + Playwright · <a href="https://ummeark.github.io/tester-KSTilskudd-TEST/testdata-hub.html" style="color:inherit">🗂️ Testdatahub</a> · <a href="https://ummeark.github.io/tester-KSTilskudd-TEST/testdata-generator.html" style="color:inherit">🤖 Testdatagenerator</a> · <a href="https://ummeark.github.io/tester-KSTilskudd-TEST/admin.html" style="color:inherit">⚙️ Admin</a> · <a href="https://github.com/ummeark/tester-KSTilskudd-TEST/blob/main/brukerhistorie-tester.js" style="color:inherit">📖 Brukerhistorietester</a> · <a href="testverktøy-rapport.html" style="color:inherit">🔬 Test av testverktøy</a></footer>
+<footer>KS Tilskudd · Testdashboard · axe-core + Playwright · <a href="https://ks-no.github.io/tilskuddsportal-testverktoy-TEST/testdata-hub.html" style="color:inherit">🗂️ Testdatahub</a> · <a href="https://ks-no.github.io/tilskuddsportal-testverktoy-TEST/testdata-generator.html" style="color:inherit">🤖 Testdatagenerator</a> · <a href="https://ks-no.github.io/tilskuddsportal-testverktoy-TEST/admin.html" style="color:inherit">⚙️ Admin</a> · <a href="https://github.com/ummeark/tester-KSTilskudd-TEST/blob/main/brukerhistorie-tester.js" style="color:inherit">📖 Brukerhistorietester</a> · <a href="testverktøy-rapport.html" style="color:inherit">🔬 Test av testverktøy</a></footer>
 </body>
 </html>`;
 

@@ -4,7 +4,7 @@
 Automatiserte tester av testmiljøet [tilskudd.fiks.test.ks.no](https://tilskudd.fiks.test.ks.no/) med Playwright og axe-core.
 
 Testene kjøres daglig på hverdager og publiseres til GitHub Pages:
-**https://ummeark.github.io/tester-KSTilskudd-TEST/**
+**https://ks-no.github.io/tilskuddsportal-testverktoy-TEST/**
 
 ---
 
@@ -59,7 +59,7 @@ git add docs/ && git commit -m "Oppdater rapporter" && git push
 
 Testdatahuben inneholder 40 testordninger (10 fra Excel-fil + 30 deterministisk genererte):
 
-**https://ummeark.github.io/tester-KSTilskudd-TEST/testdata-hub.html**
+**https://ks-no.github.io/tilskuddsportal-testverktoy-TEST/testdata-hub.html**
 
 For å regenerere testdata:
 
