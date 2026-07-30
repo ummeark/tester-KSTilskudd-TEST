@@ -1,6 +1,9 @@
 node_modules/
 poc-resultater/traces/
+# Sesjonstoken fra TestID-innlogging – sensitiv, utløper
 brukerhistorie-resultater/auth.json
 brukerhistorie-resultater/auth-tilfeldig.json
+
+# Store binærfiler fra Playwright – uegnet for versjonskontroll
 brukerhistorie-resultater/traces/
 .claude/
