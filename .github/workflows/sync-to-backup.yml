@@ -1,0 +1,20 @@
+name: Sync to backup repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to backup repo
+        run: |
+          git remote add backup https://x-access-token:${{ secrets.PERSONAL_REPO_TOKEN }}@github.com/ummeark/tester-KSTilskudd-TEST.git
+          git push backup main
