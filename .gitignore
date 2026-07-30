@@ -1,5 +1,6 @@
 node_modules/
 poc-resultater/traces/
 brukerhistorie-resultater/auth.json
+brukerhistorie-resultater/auth-tilfeldig.json
 brukerhistorie-resultater/traces/
 .claude/
