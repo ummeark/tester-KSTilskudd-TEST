@@ -1,15 +1,107 @@
 [
   {
+    "dato": "2026-07-30",
+    "type": "automatisering",
+    "tittel": "Omdøp launchd-jobb til no.ks.tilskudd-daglig-TEST-vakt",
+    "beskrivelse": "Launchd-jobben het no.ks.uu-tester-vakt, men trigget alle seks tester. Omdøpt til no.ks.tilskudd-daglig-TEST-vakt for å reflektere faktisk ansvarsområde. README oppdatert med korrekt navn og intervall (hvert 10. min, ikke 30.).",
+    "filer": ["~/Library/LaunchAgents/no.ks.tilskudd-daglig-TEST-vakt.plist", "README.md"],
+    "status": "ferdig"
+  },
+  {
+    "dato": "2026-07-30",
+    "type": "dokumentasjon",
+    "tittel": "README: fullstendig oppdatering med brukerhistorie, mappestruktur og skills",
+    "beskrivelse": "Lagt til npm run brukerhistorie i 'Kjør tester manuelt'. Mappestrukturen oppdatert med ytelse, brukerhistorie-rapport, brukerhistorie-resultater/ og alle nye underkataloger. Ny seksjon 'Claude Code-skills' med komplett oversikt over alle 17 skills for TEST og PROD.",
+    "filer": ["README.md"],
+    "status": "ferdig"
+  },
+  {
+    "dato": "2026-07-28",
+    "type": "ny-funksjonalitet",
+    "tittel": "TILSK-856 AK-6: aktiver feilstavingstest",
+    "beskrivelse": "Feilstavingstesten (AK-6) var merket som hoppet over fordi fuzzy søk ikke var implementert. Nå som søkemotoren er forbedret er testen aktivert: søk på «tilskuudd» skal ikke gi 500-feil og enten returnere treff (fuzzy) eller en hjelpsom ingen-treff-melding.",
+    "filer": ["brukerhistorie-tester.js"],
+    "status": "ferdig"
+  },
+  {
+    "dato": "2026-06-22",
+    "type": "ny-funksjonalitet",
+    "tittel": "WebKit (Safari) krysssjekk i UU-rapport",
+    "beskrivelse": "UU-rapporten kjører nå en tredje parallell analyse i WebKit (Safari) i tillegg til Chromium og Firefox. Fanger opp Safari-spesifikke WCAG-avvik. Resultatene vises i en egen seksjon i rapporten.",
+    "filer": ["uu-tester.js"],
+    "status": "ferdig"
+  },
+  {
+    "dato": "2026-06-19",
+    "type": "ny-funksjonalitet",
+    "tittel": "Firefox krysssjekk i UU-rapport",
+    "beskrivelse": "UU-rapporten kjører nå en parallell analyse i Firefox i tillegg til Chromium. Avvik som kun opptrer i Firefox fanges opp og vises i en egen seksjon. Gir bredere nettleserdekking og styrker funnenes gyldighet.",
+    "filer": ["uu-tester.js"],
+    "status": "ferdig"
+  },
+  {
+    "dato": "2026-06-18",
+    "type": "bugfix",
+    "tittel": "Fiks score-avvik mellom dashboard og individuelle rapporter",
+    "beskrivelse": "Dashboard viste 0/100 for UU mens rapporten viste 28/100. Rotårsak: scoreBeregn() i uu-tester.js ble oppdatert med ny formel (uniqKritiske, tak på fradrag), men scoren ble ikke lagret i JSON, og generer-arkiv.js hadde en gammel divergert formel. Fikset ved å lagre score i JSON og lese den direkte i dashboardet. Brukerhistorie-avvik fikset ved å bruke arkivert resultat i stedet for lokal live-fil.",
+    "filer": ["uu-tester.js", "generer-arkiv.js"],
+    "status": "ferdig"
+  },
+  {
+    "dato": "2026-06-18",
+    "type": "refaktorering",
+    "tittel": "UU-score: bruk unike regeltyper og tak på fradrag",
+    "beskrivelse": "scoreBeregn() i uu-tester.js bruker nå uniqKritiske/uniqAlvorlige (unike regeltyper på tvers av sider) i stedet for totalt antall forekomster. Tak innført på fradrag for lenker (maks 20p), knapper (maks 15p), bilder og felt (maks 10p hver). Hindrer at mange sider med samme feil nullstiller scoren.",
+    "filer": ["uu-tester.js"],
+    "status": "ferdig"
+  },
+  {
+    "dato": "2026-06-15",
+    "type": "ny-funksjonalitet",
+    "tittel": "Dual-bruker-kjøring i brukerhistorietester",
+    "beskrivelse": "Brukerhistorietestene kjøres nå to ganger: først med fast TestID-bruker, deretter med en tilfeldig TestID-bruker. Resultater fra begge kjøringer vises i rapporten i kollapsbare containere. Sikrer at tester ikke er avhengige av én spesifikk brukers testdata.",
+    "filer": ["brukerhistorie-tester.js", "brukerhistorie-tilfeldig.playwright.config.js", "brukerhistorie.setup.js", "generer-brukerhistorie-rapport.js"],
+    "status": "ferdig"
+  },
+  {
+    "dato": "2026-05-13",
+    "type": "ny-funksjonalitet",
+    "tittel": "Passordinnlogging for GitHub Pages-rapportene",
+    "beskrivelse": "Rapportsidene på GitHub Pages er nå beskyttet med passord via logg-inn.html og sessionStorage. Hindrer at testresultater er offentlig tilgjengelige. Passord kan byttes med /kstilskudd-bytt-passord-skillsen.",
+    "filer": ["docs/logg-inn.html", "generer-arkiv.js"],
+    "status": "ferdig"
+  },
+  {
+    "dato": "2026-05-11",
+    "type": "automatisering",
+    "tittel": "GitHub Actions workflow og kjor-tester.html",
+    "beskrivelse": "Ny GitHub Actions workflow (run-tests.yml) kjører alle tester i CI. kjor-tester.html gir en live statusside som viser steg-for-steg-fremdrift under kjøring. Gjør det mulig å trigge tester manuelt fra nettleseren.",
+    "filer": [".github/workflows/run-tests.yml", "docs/kjor-tester.html"],
+    "status": "ferdig"
+  },
+  {
+    "dato": "2026-05-06",
+    "type": "ny-funksjonalitet",
+    "tittel": "Brukerhistorietester med @playwright/test",
+    "beskrivelse": "Ny testtype: brukerhistorie-tester.js med Playwright Test-rammeverket (test()/describe()/expect()). Dekker brukerhistorier knyttet til konkrete Jira-saker (TILSK-481, TILSK-543, TILSK-697, TILSK-760, TILSK-785, TILSK-856, TILSK-886 m.fl.). Rapport genereres av generer-brukerhistorie-rapport.js og inkluderes i dashboardet.",
+    "filer": ["brukerhistorie-tester.js", "brukerhistorie.playwright.config.js", "brukerhistorie.setup.js", "generer-brukerhistorie-rapport.js"],
+    "status": "ferdig"
+  },
+  {
+    "dato": "2026-05-04",
+    "type": "ny-funksjonalitet",
+    "tittel": "ID-porten TestID-innlogging i alle testere",
+    "beskrivelse": "Alle fire testere (UU, monkey, negativ, sikkerhet) logger nå inn via ID-porten TestID før kjøring. Innloggingsflyten dokumenteres i UU-rapporten. /authorize/-sider ekskluderes fra crawl og lenkesjekk.",
+    "filer": ["uu-tester.js", "monkey-tester.js", "negativ-tester.js", "sikkerhet-tester.js"],
+    "status": "ferdig"
+  },
+  {
     "dato": "2026-04-24",
     "type": "refaktorering",
     "tittel": "Migrer til @playwright/test med test()/expect()-blokker",
-    "beskrivelse": "Alle 5 testfiler skrives om til å bruke @playwright/test-rammeverket i stedet for rått playwright-bibliotek. Gir test()/describe()/expect()-blokker, automatisk side- og kontekstisolasjon per test, beforeEach/afterEach-hooks og parallelkjøring. HTML-rapportgenereringen må tilpasses siden @playwright/test har sin egen rapporteringsmodell.",
-    "filer": ["uu-tester.js", "monkey-tester.js", "sikkerhet-tester.js", "negativ-tester.js", "ytelse-tester.js", "package.json"],
-    "status": "planlagt",
-    "risiko": {
-      "nivå": "høy",
-      "beskrivelse": "Krever full omskriving av alle 5 testfiler og tilpasning av rapportgenereringen. Eksisterende JSON/HTML-output-format må bevares for at generer-arkiv.js og dashboardet skal fungere. Bør gjøres i én dedikert branch med grundig testing."
-    }
+    "beskrivelse": "Brukerhistorie-tester.js er skrevet med @playwright/test-rammeverket (test()/describe()/expect()). De fem opprinnelige testfilene (uu, monkey, sikkerhet, negativ, ytelse) bruker fortsatt rått playwright-bibliotek. Migrering av disse er ikke prioritert da de har sin egen rapportgenerering.",
+    "filer": ["brukerhistorie-tester.js", "package.json"],
+    "status": "pågår"
   },
   {
     "dato": "2026-04-24",
@@ -28,28 +120,20 @@
     "status": "ferdig"
   },
   {
-    "dato": "2026-04-23",
+    "dato": "2026-04-24",
     "type": "refaktorering",
     "tittel": "Extraher lib/common.js med felles initialisering og hentVersjon()",
-    "beskrivelse": "De fire testfilene inneholder identisk kode for initialisering (__dirname, dato, rapportDir) og hentVersjon()-funksjonen. Disse ekstraheres til lib/common.js slik at alle testfiler importerer fra én felles kilde. Eliminerer halvparten av all duplisert kode.",
+    "beskrivelse": "De fire testfilene inneholdt identisk kode for initialisering og hentVersjon()-funksjonen. Disse er ekstrahert til lib/common.js og importeres av alle testfiler. Eliminerer duplisert kode og gir ett sted å oppdatere felles logikk.",
     "filer": ["lib/common.js", "uu-tester.js", "monkey-tester.js", "sikkerhet-tester.js", "negativ-tester.js", "ytelse-tester.js"],
-    "status": "planlagt",
-    "risiko": {
-      "nivå": "middels",
-      "beskrivelse": "Berører alle 5 testfiler samtidig. En bug i common.js stopper alle tester. Krever at alle testtyper kjøres manuelt etter endringen for å verifisere at ingenting er brutt."
-    }
+    "status": "ferdig"
   },
   {
     "dato": "2026-04-23",
     "type": "refaktorering",
     "tittel": "Feilhåndtering i shell-skriptene (exit-kode-sjekk)",
-    "beskrivelse": "run-rapport-lokalt.sh mangler sjekk av exit-kode per test, noe som gjør at neste test kjøres selv om forrige feilet – og at git push skjer med ufullstendige resultater. Legge til exit-kode-sjekk slik at skriptet stopper ved første feil.",
-    "filer": ["run-rapport-lokalt.sh"],
-    "status": "planlagt",
-    "risiko": {
-      "nivå": "lav",
-      "beskrivelse": "Avgrenset endring i ett shell-skript. Endringen gjør skriptet strengere, ikke løsere. Enkelt å isolere og rulle tilbake."
-    }
+    "beskrivelse": "sjekk-og-kjoer.sh og run-rapport-lokalt.sh bruker nå set -euo pipefail som stopper kjøringen ved første feil. Hindrer at git push skjer med ufullstendige resultater.",
+    "filer": ["run-rapport-lokalt.sh", "sjekk-og-kjoer.sh"],
+    "status": "ferdig"
   },
   {
     "dato": "2026-04-23",
@@ -100,14 +184,6 @@
     "status": "ferdig"
   },
   {
-    "dato": "2026-04-23",
-    "type": "ny-funksjonalitet",
-    "tittel": "Favicon for Testdatahub (lilla H)",
-    "beskrivelse": "SVG-favicon med lilla bakgrunn (#7c3aed) og hvit H lagt til i testdata-hub.html.",
-    "filer": ["docs/favicon-testdata.svg", "docs/testdata-hub.html"],
-    "status": "ferdig"
-  },
-  {
     "dato": "2026-04-22",
     "type": "automatisering",
     "tittel": "Miljøvalideringsskript og pre-commit hook",
@@ -119,8 +195,8 @@
     "dato": "2026-04-22",
     "type": "automatisering",
     "tittel": "Launchd-vakt: kjør tester selv om Mac var avslått",
-    "beskrivelse": "Ny launchd-jobb (no.ks.uu-tester-vakt.plist) kjører sjekk-og-kjoer.sh hvert 30. minutt. Skriptet er idempotent: avbryter stille hvis alle fire resultatfiler allerede finnes for dagen, og starter run-rapport-lokalt.sh ellers.",
-    "filer": ["sjekk-og-kjoer.sh"],
+    "beskrivelse": "Launchd-jobb (no.ks.tilskudd-daglig-TEST-vakt.plist, tidl. no.ks.uu-tester-vakt.plist) kjører sjekk-og-kjoer.sh hvert 10. minutt (08:00–10:50). Skriptet er idempotent: avbryter stille hvis alle seks resultatfiler allerede finnes for dagen, og starter run-rapport-lokalt.sh ellers. Jobben ble omdøpt 2026-07-30.",
+    "filer": ["sjekk-og-kjoer.sh", "~/Library/LaunchAgents/no.ks.tilskudd-daglig-TEST-vakt.plist"],
     "status": "ferdig"
   },
   {
