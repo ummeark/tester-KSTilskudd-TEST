@@ -1,0 +1,56 @@
+{
+  "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+  "dato": "2026-07-31",
+  "versjon": null,
+  "nettleser": "147.0.7727.15",
+  "totalt": {
+    "iterasjoner": 60,
+    "siderBesøkt": 2,
+    "jsErrors": 5,
+    "konsollFeil": 0,
+    "nettverksFeil": 0,
+    "kritiske": 0,
+    "alvorlige": 0,
+    "varighet": 1
+  },
+  "score": 60,
+  "jsErrors": [
+    {
+      "melding": "Failed to read the 'sessionStorage' property from 'Window': Access is denied for this document.",
+      "stack": "SecurityError: Failed to read the 'sessionStorage' property from 'Window': Access is denied for this document.\n    at <anonymous>:2:53\n    at <anonymous>:3:7",
+      "url": "about:blank",
+      "tid": "2026-07-31T07:46:27.677Z"
+    },
+    {
+      "melding": "Failed to read the 'sessionStorage' property from 'Window': Access is denied for this document.",
+      "stack": "SecurityError: Failed to read the 'sessionStorage' property from 'Window': Access is denied for this document.\n    at <anonymous>:2:53\n    at <anonymous>:3:7",
+      "url": "about:blank",
+      "tid": "2026-07-31T07:46:27.740Z"
+    },
+    {
+      "melding": "Failed to read the 'sessionStorage' property from 'Window': Access is denied for this document.",
+      "stack": "SecurityError: Failed to read the 'sessionStorage' property from 'Window': Access is denied for this document.\n    at <anonymous>:2:53\n    at <anonymous>:3:7",
+      "url": "about:blank",
+      "tid": "2026-07-31T07:46:27.757Z"
+    },
+    {
+      "melding": "Failed to read the 'sessionStorage' property from 'Window': Access is denied for this document.",
+      "stack": "SecurityError: Failed to read the 'sessionStorage' property from 'Window': Access is denied for this document.\n    at <anonymous>:2:53\n    at <anonymous>:3:7",
+      "url": "about:blank",
+      "tid": "2026-07-31T07:46:27.781Z"
+    },
+    {
+      "melding": "Failed to read the 'sessionStorage' property from 'Window': Access is denied for this document.",
+      "stack": "SecurityError: Failed to read the 'sessionStorage' property from 'Window': Access is denied for this document.\n    at <anonymous>:2:53\n    at <anonymous>:3:7",
+      "url": "about:blank",
+      "tid": "2026-07-31T07:46:27.813Z"
+    }
+  ],
+  "konsollFeil": [],
+  "nettverksFeil": [],
+  "interaksjoner": [],
+  "besøkte": [
+    "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/rapport.html",
+    "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/"
+  ]
+}

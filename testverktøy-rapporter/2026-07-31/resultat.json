@@ -1,0 +1,1373 @@
+{
+  "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+  "dato": "2026-07-31",
+  "versjon": null,
+  "nettleser": "147.0.7727.15",
+  "score": 66,
+  "totalt": {
+    "sider": 1,
+    "wcagBrudd": 3,
+    "kritiske": 0,
+    "alvorlige": 1,
+    "moderate": 2,
+    "mindre": 0,
+    "uniqKritiske": 0,
+    "uniqAlvorlige": 1,
+    "uniqModerate": 2,
+    "uniqMindre": 0,
+    "dødelenker": 16,
+    "knapper": 0,
+    "knappUtenLabel": 0,
+    "bilder": 0,
+    "bilderUtenAlt": 0,
+    "skjemafelt": 0,
+    "feltUtenLabel": 0,
+    "tastaturFeil": 0,
+    "tastaturAdvarsel": 0,
+    "reflowFeil": 0,
+    "reflowAdvarsel": 0,
+    "tekstmellomromFeil": 0,
+    "tekstmellomromAdvarsel": 0,
+    "ekstraFeil": 0,
+    "ekstraAdvarsel": 0
+  },
+  "tastatur": {
+    "tester": [
+      {
+        "kategori": "synligfokus",
+        "wcag": "2.4.7",
+        "navn": "Synlig fokus på interaktive elementer",
+        "resultat": "bestått",
+        "detalj": ""
+      }
+    ],
+    "bestått": 1,
+    "feil": 0,
+    "advarsel": 0
+  },
+  "reflow": {
+    "tester": [
+      {
+        "kategori": "reflow",
+        "wcag": "1.4.10",
+        "navn": "Ingen horisontal rulling ved 320px (400 % zoom)",
+        "resultat": "bestått",
+        "detalj": "Ingen horisontal rulling ved 320px bredde"
+      },
+      {
+        "kategori": "klipping",
+        "wcag": "1.4.10",
+        "navn": "Innhold ikke avskåret ved 320px",
+        "resultat": "bestått",
+        "detalj": ""
+      }
+    ],
+    "bestått": 2,
+    "feil": 0,
+    "advarsel": 0
+  },
+  "tekstmellomrom": {
+    "tester": [
+      {
+        "kategori": "klipping",
+        "wcag": "1.4.12",
+        "navn": "Ingen tekstklipping ved økt linjehøyde og bokstavmellomrom",
+        "resultat": "bestått",
+        "detalj": ""
+      },
+      {
+        "kategori": "overflyt",
+        "wcag": "1.4.12",
+        "navn": "Ingen horisontal overflyt etter økt tekstmellomrom",
+        "resultat": "bestått",
+        "detalj": ""
+      }
+    ],
+    "bestått": 2,
+    "feil": 0,
+    "advarsel": 0
+  },
+  "ekstraWcag": {
+    "tester": [],
+    "bestått": 0,
+    "feil": 0,
+    "advarsel": 0
+  },
+  "sider": [
+    {
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/rapport.html",
+      "tittel": "KS Tilskudd – Testdashboard",
+      "oppdagetFra": null,
+      "orgnr": null,
+      "wcag": {
+        "brudd": 3,
+        "bestått": 22,
+        "kritiske": 0,
+        "alvorlige": 1,
+        "moderate": 2,
+        "mindre": 0,
+        "detaljer": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "tags": [
+              "cat.color",
+              "wcag2aa",
+              "wcag143",
+              "TTv5",
+              "TT13.c",
+              "EN-301-549",
+              "EN-9.1.4.3",
+              "ACT",
+              "RGAAv4",
+              "RGAA-3.2.1"
+            ],
+            "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=playwright",
+            "nodes": [
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#787da2",
+                      "bgColor": "#0a1355",
+                      "contrastRatio": 4.24,
+                      "fontSize": "8.6pt (11.52px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<header>\n  <div class=\"header-inner\">\n    <div class=\"header-merkevare\">KS Tilskudd</div>\n    <div class=\"env-badge\">TEST-MILJØ · v0.8.2</div>\n    <h1>Testdashboard</h1>\n    <p>torsdag 30. juli 2026</p>\n  </div>\n</header>",
+                        "target": [
+                          "header"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 4.24 (foreground color: #787da2, background color: #0a1355, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<div class=\"header-merkevare\">KS Tilskudd</div>",
+                "target": [
+                  ".header-merkevare"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #787da2, background color: #0a1355, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#9cbfb9",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.98,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<a class=\"dash-kort god\" href=\"uu-rapport.html\">",
+                        "target": [
+                          ".dash-kort.god[href$=\"uu-rapport.html\"]"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 1.98 (foreground color: #9cbfb9, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<span class=\"dash-score-enhet\">/100</span>",
+                "target": [
+                  ".dash-kort.god[href$=\"uu-rapport.html\"] > .dash-score.god > .dash-score-enhet"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.98 (foreground color: #9cbfb9, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#9ca3af",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 2.53,
+                      "fontSize": "9.0pt (12px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<a class=\"dash-kort god\" href=\"uu-rapport.html\">",
+                        "target": [
+                          ".dash-kort.god[href$=\"uu-rapport.html\"]"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 2.53 (foreground color: #9ca3af, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<div class=\"dash-dato\">torsdag 30. juli 2026</div>",
+                "target": [
+                  ".dash-kort.god[href$=\"uu-rapport.html\"] > .dash-dato"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.53 (foreground color: #9ca3af, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#9cbfb9",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.98,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<a class=\"dash-kort god\" href=\"monkey-rapport.html\">",
+                        "target": [
+                          ".dash-kort.god[href$=\"monkey-rapport.html\"]"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 1.98 (foreground color: #9cbfb9, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<span class=\"dash-score-enhet\">/100</span>",
+                "target": [
+                  ".dash-kort.god[href$=\"monkey-rapport.html\"] > .dash-score.god > .dash-score-enhet"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.98 (foreground color: #9cbfb9, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#9ca3af",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 2.53,
+                      "fontSize": "9.0pt (12px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<a class=\"dash-kort god\" href=\"monkey-rapport.html\">",
+                        "target": [
+                          ".dash-kort.god[href$=\"monkey-rapport.html\"]"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 2.53 (foreground color: #9ca3af, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<div class=\"dash-dato\">torsdag 30. juli 2026</div>",
+                "target": [
+                  ".dash-kort.god[href$=\"monkey-rapport.html\"] > .dash-dato"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.53 (foreground color: #9ca3af, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#e3cf9d",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.53,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<a class=\"dash-kort middels\" href=\"sikkerhet-rapport.html\">",
+                        "target": [
+                          ".middels.dash-kort[href$=\"sikkerhet-rapport.html\"]"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 1.53 (foreground color: #e3cf9d, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<span class=\"dash-score-enhet\">/100</span>",
+                "target": [
+                  ".middels.dash-kort[href$=\"sikkerhet-rapport.html\"] > .middels.dash-score > .dash-score-enhet"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.53 (foreground color: #e3cf9d, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#9ca3af",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 2.53,
+                      "fontSize": "9.0pt (12px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<a class=\"dash-kort middels\" href=\"sikkerhet-rapport.html\">",
+                        "target": [
+                          ".middels.dash-kort[href$=\"sikkerhet-rapport.html\"]"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 2.53 (foreground color: #9ca3af, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<div class=\"dash-dato\">torsdag 30. juli 2026</div>",
+                "target": [
+                  ".middels.dash-kort[href$=\"sikkerhet-rapport.html\"] > .dash-dato"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.53 (foreground color: #9ca3af, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#e3cf9d",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.53,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<a class=\"dash-kort middels\" href=\"negativ-rapport.html\">",
+                        "target": [
+                          ".middels.dash-kort[href$=\"negativ-rapport.html\"]"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 1.53 (foreground color: #e3cf9d, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<span class=\"dash-score-enhet\">/100</span>",
+                "target": [
+                  ".middels.dash-kort[href$=\"negativ-rapport.html\"] > .middels.dash-score > .dash-score-enhet"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.53 (foreground color: #e3cf9d, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#9ca3af",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 2.53,
+                      "fontSize": "9.0pt (12px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<a class=\"dash-kort middels\" href=\"negativ-rapport.html\">",
+                        "target": [
+                          ".middels.dash-kort[href$=\"negativ-rapport.html\"]"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 2.53 (foreground color: #9ca3af, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<div class=\"dash-dato\">torsdag 30. juli 2026</div>",
+                "target": [
+                  ".middels.dash-kort[href$=\"negativ-rapport.html\"] > .dash-dato"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.53 (foreground color: #9ca3af, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#9cbfb9",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.98,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<a class=\"dash-kort god\" href=\"ytelse-rapport.html\">",
+                        "target": [
+                          ".dash-kort.god[href$=\"ytelse-rapport.html\"]"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 1.98 (foreground color: #9cbfb9, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<span class=\"dash-score-enhet\">/100</span>",
+                "target": [
+                  ".dash-kort.god[href$=\"ytelse-rapport.html\"] > .dash-score.god > .dash-score-enhet"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.98 (foreground color: #9cbfb9, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#9ca3af",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 2.53,
+                      "fontSize": "9.0pt (12px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<a class=\"dash-kort god\" href=\"ytelse-rapport.html\">",
+                        "target": [
+                          ".dash-kort.god[href$=\"ytelse-rapport.html\"]"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 2.53 (foreground color: #9ca3af, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<div class=\"dash-dato\">torsdag 30. juli 2026</div>",
+                "target": [
+                  ".dash-kort.god[href$=\"ytelse-rapport.html\"] > .dash-dato"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.53 (foreground color: #9ca3af, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#9cbfb9",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 1.98,
+                      "fontSize": "12.0pt (16px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<a class=\"dash-kort god\" href=\"brukerhistorie-rapport.html\">",
+                        "target": [
+                          ".dash-kort.god[href=\"brukerhistorie-rapport.html\"]"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 1.98 (foreground color: #9cbfb9, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<span class=\"dash-score-enhet\">/100</span>",
+                "target": [
+                  ".dash-kort.god[href=\"brukerhistorie-rapport.html\"] > .dash-score.god > .dash-score-enhet"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.98 (foreground color: #9cbfb9, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#9ca3af",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 2.53,
+                      "fontSize": "9.0pt (12px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<a class=\"dash-kort god\" href=\"brukerhistorie-rapport.html\">",
+                        "target": [
+                          ".dash-kort.god[href=\"brukerhistorie-rapport.html\"]"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 2.53 (foreground color: #9ca3af, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<div class=\"dash-dato\">torsdag 30. juli 2026</div>",
+                "target": [
+                  ".dash-kort.god[href=\"brukerhistorie-rapport.html\"] > .dash-dato"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.53 (foreground color: #9ca3af, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#9ca3af",
+                      "bgColor": "#faf6f0",
+                      "contrastRatio": 2.35,
+                      "fontSize": "9.4pt (12.48px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<body>",
+                        "target": [
+                          "body"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 2.35 (foreground color: #9ca3af, background color: #faf6f0, font size: 9.4pt (12.48px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<footer>",
+                "target": [
+                  "footer"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.35 (foreground color: #9ca3af, background color: #faf6f0, font size: 9.4pt (12.48px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#9ca3af",
+                      "bgColor": "#faf6f0",
+                      "contrastRatio": 2.35,
+                      "fontSize": "9.4pt (12.48px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<body>",
+                        "target": [
+                          "body"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 2.35 (foreground color: #9ca3af, background color: #faf6f0, font size: 9.4pt (12.48px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<a href=\"https://ks-no.github.io/tilskuddsportal-testverktoy-TEST/testdata-hub.html\" style=\"color:inherit\">🗂️ Testdatahub</a>",
+                "target": [
+                  "footer > a:nth-child(1)"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.35 (foreground color: #9ca3af, background color: #faf6f0, font size: 9.4pt (12.48px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#9ca3af",
+                      "bgColor": "#faf6f0",
+                      "contrastRatio": 2.35,
+                      "fontSize": "9.4pt (12.48px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<body>",
+                        "target": [
+                          "body"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 2.35 (foreground color: #9ca3af, background color: #faf6f0, font size: 9.4pt (12.48px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<a href=\"https://ks-no.github.io/tilskuddsportal-testverktoy-TEST/testdata-generator.html\" style=\"color:inherit\">🤖 Testdatagenerator</a>",
+                "target": [
+                  "footer > a:nth-child(2)"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.35 (foreground color: #9ca3af, background color: #faf6f0, font size: 9.4pt (12.48px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#9ca3af",
+                      "bgColor": "#faf6f0",
+                      "contrastRatio": 2.35,
+                      "fontSize": "9.4pt (12.48px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<body>",
+                        "target": [
+                          "body"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 2.35 (foreground color: #9ca3af, background color: #faf6f0, font size: 9.4pt (12.48px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<a href=\"https://ks-no.github.io/tilskuddsportal-testverktoy-TEST/admin.html\" style=\"color:inherit\">⚙️ Admin</a>",
+                "target": [
+                  "footer > a:nth-child(3)"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.35 (foreground color: #9ca3af, background color: #faf6f0, font size: 9.4pt (12.48px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#9ca3af",
+                      "bgColor": "#faf6f0",
+                      "contrastRatio": 2.35,
+                      "fontSize": "9.4pt (12.48px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<body>",
+                        "target": [
+                          "body"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 2.35 (foreground color: #9ca3af, background color: #faf6f0, font size: 9.4pt (12.48px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<a href=\"https://github.com/ummeark/tester-KSTilskudd-TEST/blob/main/brukerhistorie-tester.js\" style=\"color:inherit\">📖 Brukerhistorietester</a>",
+                "target": [
+                  "footer > a:nth-child(4)"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.35 (foreground color: #9ca3af, background color: #faf6f0, font size: 9.4pt (12.48px), font weight: normal). Expected contrast ratio of 4.5:1"
+              },
+              {
+                "any": [
+                  {
+                    "id": "color-contrast",
+                    "data": {
+                      "fgColor": "#9ca3af",
+                      "bgColor": "#faf6f0",
+                      "contrastRatio": 2.35,
+                      "fontSize": "9.4pt (12.48px)",
+                      "fontWeight": "normal",
+                      "messageKey": null,
+                      "expectedContrastRatio": "4.5:1"
+                    },
+                    "relatedNodes": [
+                      {
+                        "html": "<body>",
+                        "target": [
+                          "body"
+                        ]
+                      }
+                    ],
+                    "impact": "serious",
+                    "message": "Element has insufficient color contrast of 2.35 (foreground color: #9ca3af, background color: #faf6f0, font size: 9.4pt (12.48px), font weight: normal). Expected contrast ratio of 4.5:1"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "serious",
+                "html": "<a href=\"testverktoy-rapport.html\" style=\"color:inherit\">🔬 Test av testverktøy</a>",
+                "target": [
+                  "a[href$=\"testverktoy-rapport.html\"]"
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.35 (foreground color: #9ca3af, background color: #faf6f0, font size: 9.4pt (12.48px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-color-contrast-0-element.png",
+              "helside": "skjermbilder/s1-color-contrast-0-side.png"
+            }
+          },
+          {
+            "id": "landmark-one-main",
+            "impact": "moderate",
+            "tags": [
+              "cat.semantics",
+              "best-practice"
+            ],
+            "description": "Ensure the document has a main landmark",
+            "help": "Document should have one main landmark",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/landmark-one-main?application=playwright",
+            "nodes": [
+              {
+                "any": [],
+                "all": [
+                  {
+                    "id": "page-has-main",
+                    "data": null,
+                    "relatedNodes": [],
+                    "impact": "moderate",
+                    "message": "Document does not have a main landmark"
+                  }
+                ],
+                "none": [],
+                "impact": "moderate",
+                "html": "<html lang=\"no\">",
+                "target": [
+                  "html"
+                ],
+                "failureSummary": "Fix all of the following:\n  Document does not have a main landmark"
+              }
+            ],
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-landmark-one-main-1-element.png",
+              "helside": "skjermbilder/s1-landmark-one-main-1-side.png"
+            }
+          },
+          {
+            "id": "region",
+            "impact": "moderate",
+            "tags": [
+              "cat.keyboard",
+              "best-practice",
+              "RGAAv4",
+              "RGAA-9.2.1"
+            ],
+            "description": "Ensure all page content is contained by landmarks",
+            "help": "All page content should be contained by landmarks",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=playwright",
+            "nodes": [
+              {
+                "any": [
+                  {
+                    "id": "region",
+                    "data": {
+                      "isIframe": false
+                    },
+                    "relatedNodes": [],
+                    "impact": "moderate",
+                    "message": "Some page content is not contained by landmarks"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "moderate",
+                "html": "<div class=\"rapport-header\">",
+                "target": [
+                  ".rapport-header"
+                ],
+                "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+              },
+              {
+                "any": [
+                  {
+                    "id": "region",
+                    "data": {
+                      "isIframe": false
+                    },
+                    "relatedNodes": [],
+                    "impact": "moderate",
+                    "message": "Some page content is not contained by landmarks"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "moderate",
+                "html": "<div class=\"samlet-seksjon\">",
+                "target": [
+                  ".samlet-seksjon"
+                ],
+                "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+              },
+              {
+                "any": [
+                  {
+                    "id": "region",
+                    "data": {
+                      "isIframe": false
+                    },
+                    "relatedNodes": [],
+                    "impact": "moderate",
+                    "message": "Some page content is not contained by landmarks"
+                  }
+                ],
+                "all": [],
+                "none": [],
+                "impact": "moderate",
+                "html": "<div class=\"total-rad\">",
+                "target": [
+                  ".total-rad"
+                ],
+                "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+              }
+            ],
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-region-2-element.png",
+              "helside": "skjermbilder/s1-region-2-side.png"
+            }
+          }
+        ]
+      },
+      "lenker": {
+        "totalt": 21,
+        "døde": [
+          {
+            "tekst": "Forside",
+            "href": "rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "UU-rapport",
+            "href": "uu-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "Monkey-test",
+            "href": "monkey-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "Sikkerhetstest",
+            "href": "sikkerhet-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "Negativ test",
+            "href": "negativ-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "Ytelsestest",
+            "href": "ytelse-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "Brukerhistorier",
+            "href": "brukerhistorie-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "Arkiv",
+            "href": "arkiv.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "▶ Kjør tester",
+            "href": "kjor-tester.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "♿\nUU-TEST\n83/100\ntorsdag 30. juli 2026\n2 WCAG-brudd\nIngen døde lenker\n7 sider analysert\nSe full rapport →",
+            "href": "uu-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "🐒\nMONKEY-TEST\n100/100\ntorsdag 30. juli 2026\nIngen JS-feil\nIngen kritiske funn\n60 iterasjoner\nSe full rapport →",
+            "href": "monkey-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "🔐\nSIKKERHETS-TEST\n78/100\ntorsdag 30. juli 2026\nIngen kritiske\n1 alvorlige\n18 sjekker bestått\nSe full rapport →",
+            "href": "sikkerhet-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "🧪\nNEGATIV TEST\n50/100\ntorsdag 30. juli 2026\n17 bestått\n4 advarsler\n2 feil\nSe full rapport →",
+            "href": "negativ-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "🚀\nYTELSES-TEST\n100/100\ntorsdag 30. juli 2026\nLCP: 69 ms\nFCP: 69 ms\n7 sider\nSe full rapport →",
+            "href": "ytelse-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "📖\nBRUKERHISTORIE\n89/100\ntorsdag 30. juli 2026\nBestått 139\n6 feilet\n156 tester totalt\nSe full rapport →",
+            "href": "brukerhistorie-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "🔬 Test av testverktøy",
+            "href": "testverktoy-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          }
+        ],
+        "tomTekst": [],
+        "alle": [
+          {
+            "tekst": "Forside",
+            "href": "rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "UU-rapport",
+            "href": "uu-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "Monkey-test",
+            "href": "monkey-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "Sikkerhetstest",
+            "href": "sikkerhet-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "Negativ test",
+            "href": "negativ-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "Ytelsestest",
+            "href": "ytelse-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "Brukerhistorier",
+            "href": "brukerhistorie-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "Arkiv",
+            "href": "arkiv.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "▶ Kjør tester",
+            "href": "kjor-tester.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "https://tilskudd.fiks.test.ks.no/",
+            "href": "https://tilskudd.fiks.test.ks.no/",
+            "intern": false,
+            "harTekst": true,
+            "status": 200,
+            "ok": true
+          },
+          {
+            "tekst": "♿\nUU-TEST\n83/100\ntorsdag 30. juli 2026\n2 WCAG-brudd\nIngen døde lenker\n7 sider analysert\nSe full rapport →",
+            "href": "uu-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "🐒\nMONKEY-TEST\n100/100\ntorsdag 30. juli 2026\nIngen JS-feil\nIngen kritiske funn\n60 iterasjoner\nSe full rapport →",
+            "href": "monkey-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "🔐\nSIKKERHETS-TEST\n78/100\ntorsdag 30. juli 2026\nIngen kritiske\n1 alvorlige\n18 sjekker bestått\nSe full rapport →",
+            "href": "sikkerhet-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "🧪\nNEGATIV TEST\n50/100\ntorsdag 30. juli 2026\n17 bestått\n4 advarsler\n2 feil\nSe full rapport →",
+            "href": "negativ-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "🚀\nYTELSES-TEST\n100/100\ntorsdag 30. juli 2026\nLCP: 69 ms\nFCP: 69 ms\n7 sider\nSe full rapport →",
+            "href": "ytelse-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "📖\nBRUKERHISTORIE\n89/100\ntorsdag 30. juli 2026\nBestått 139\n6 feilet\n156 tester totalt\nSe full rapport →",
+            "href": "brukerhistorie-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          },
+          {
+            "tekst": "🗂️ Testdatahub",
+            "href": "https://ks-no.github.io/tilskuddsportal-testverktoy-TEST/testdata-hub.html",
+            "intern": false,
+            "harTekst": true,
+            "status": 200,
+            "ok": true
+          },
+          {
+            "tekst": "🤖 Testdatagenerator",
+            "href": "https://ks-no.github.io/tilskuddsportal-testverktoy-TEST/testdata-generator.html",
+            "intern": false,
+            "harTekst": true,
+            "status": 200,
+            "ok": true
+          },
+          {
+            "tekst": "⚙️ Admin",
+            "href": "https://ks-no.github.io/tilskuddsportal-testverktoy-TEST/admin.html",
+            "intern": false,
+            "harTekst": true,
+            "status": 200,
+            "ok": true
+          },
+          {
+            "tekst": "📖 Brukerhistorietester",
+            "href": "https://github.com/ummeark/tester-KSTilskudd-TEST/blob/main/brukerhistorie-tester.js",
+            "intern": false,
+            "harTekst": true,
+            "status": 200,
+            "ok": true
+          },
+          {
+            "tekst": "🔬 Test av testverktøy",
+            "href": "testverktoy-rapport.html",
+            "intern": false,
+            "harTekst": true,
+            "status": "feil",
+            "ok": false,
+            "bilder": {
+              "nærbilde": "skjermbilder/s1-doede-lenker-element.png",
+              "helside": "skjermbilder/s1-doede-lenker-side.png"
+            }
+          }
+        ]
+      },
+      "knapper": [],
+      "bilder": [],
+      "skjemafelt": [],
+      "struktur": {
+        "overskrifter": [
+          {
+            "nivå": 1,
+            "tekst": "Testdashboard"
+          },
+          {
+            "nivå": 2,
+            "tekst": "Samlet gjennomsnittsscore på TEST: https://tilskudd.fiks.test.ks.no/"
+          },
+          {
+            "nivå": 3,
+            "tekst": ""
+          },
+          {
+            "nivå": 3,
+            "tekst": ""
+          }
+        ],
+        "landmarks": [
+          {
+            "tag": "header",
+            "rolle": "header",
+            "label": ""
+          },
+          {
+            "tag": "footer",
+            "rolle": "footer",
+            "label": ""
+          }
+        ],
+        "harSkipLink": false,
+        "langAttr": "no"
+      },
+      "internelenker": []
+    }
+  ]
+}

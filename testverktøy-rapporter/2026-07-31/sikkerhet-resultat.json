@@ -1,0 +1,173 @@
+{
+  "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+  "dato": "2026-07-31",
+  "versjon": null,
+  "nettleser": "147.0.7727.15",
+  "score": 12,
+  "totalt": {
+    "kritiske": 2,
+    "alvorlige": 3,
+    "middels": 2,
+    "lave": 4,
+    "ok": 2,
+    "varighet": 9
+  },
+  "funn": [
+    {
+      "kategori": "hoder",
+      "alvorlighet": "kritisk",
+      "tittel": "Manglende HSTS",
+      "detalj": "Tvinger HTTPS og beskytter mot downgrade-angrep",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+      "steg": [
+        "Sender HTTP-forespørsel til https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+        "Sjekker om respons-hodet \"strict-transport-security\" er satt",
+        "Hodet mangler – flagges som kritisk"
+      ]
+    },
+    {
+      "kategori": "hoder",
+      "alvorlighet": "alvorlig",
+      "tittel": "Manglende Content-Security-Policy",
+      "detalj": "Begrenser hvilke ressurser siden kan laste og kjøre",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+      "steg": [
+        "Sender HTTP-forespørsel til https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+        "Sjekker om respons-hodet \"content-security-policy\" er satt",
+        "Hodet mangler – flagges som alvorlig"
+      ]
+    },
+    {
+      "kategori": "hoder",
+      "alvorlighet": "alvorlig",
+      "tittel": "Manglende X-Frame-Options",
+      "detalj": "Beskytter mot clickjacking via iframe-innramming",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+      "steg": [
+        "Sender HTTP-forespørsel til https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+        "Sjekker om respons-hodet \"x-frame-options\" er satt",
+        "Hodet mangler – flagges som alvorlig"
+      ]
+    },
+    {
+      "kategori": "hoder",
+      "alvorlighet": "middels",
+      "tittel": "Manglende X-Content-Type-Options",
+      "detalj": "Hindrer MIME-type sniffing i nettleseren",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+      "steg": [
+        "Sender HTTP-forespørsel til https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+        "Sjekker om respons-hodet \"x-content-type-options\" er satt",
+        "Hodet mangler – flagges som middels"
+      ]
+    },
+    {
+      "kategori": "hoder",
+      "alvorlighet": "lav",
+      "tittel": "Manglende Referrer-Policy",
+      "detalj": "Kontrollerer referrer-informasjon i forespørsler",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+      "steg": [
+        "Sender HTTP-forespørsel til https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+        "Sjekker om respons-hodet \"referrer-policy\" er satt",
+        "Hodet mangler – flagges som lav"
+      ]
+    },
+    {
+      "kategori": "hoder",
+      "alvorlighet": "lav",
+      "tittel": "Manglende Permissions-Policy",
+      "detalj": "Begrenser tilgang til nettleserfunksjoner (kamera, GPS osv.)",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+      "steg": [
+        "Sender HTTP-forespørsel til https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+        "Sjekker om respons-hodet \"permissions-policy\" er satt",
+        "Hodet mangler – flagges som lav"
+      ]
+    },
+    {
+      "kategori": "hoder",
+      "alvorlighet": "lav",
+      "tittel": "Manglende COOP",
+      "detalj": "Isolerer nettleservinduet mot cross-origin-angrep",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+      "steg": [
+        "Sender HTTP-forespørsel til https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+        "Sjekker om respons-hodet \"cross-origin-opener-policy\" er satt",
+        "Hodet mangler – flagges som lav"
+      ]
+    },
+    {
+      "kategori": "hoder",
+      "alvorlighet": "lav",
+      "tittel": "Manglende CORP",
+      "detalj": "Begrenser hvem som kan laste inn sidens ressurser",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+      "steg": [
+        "Sender HTTP-forespørsel til https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+        "Sjekker om respons-hodet \"cross-origin-resource-policy\" er satt",
+        "Hodet mangler – flagges som lav"
+      ]
+    },
+    {
+      "kategori": "informasjonslekkasje",
+      "alvorlighet": "middels",
+      "tittel": "Server avslører teknologiinformasjon: server",
+      "detalj": "Verdi: \"GitHub.com\" – gir angriper innsikt i teknologistakk",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+      "steg": [
+        "Sender HTTP-forespørsel til https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+        "Sjekker om informasjonshodet \"server\" er til stede i responsen",
+        "Hodet funnet med verdi \"GitHub.com\""
+      ]
+    },
+    {
+      "kategori": "https",
+      "alvorlighet": "kritisk",
+      "tittel": "Siden er tilgjengelig over usikker HTTP",
+      "detalj": "Innhold serveres over HTTP uten omdiriging til HTTPS",
+      "url": "http://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+      "steg": [
+        "Sender HTTP-forespørsel til http://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+        "Sjekker om siden er tilgjengelig over HTTP uten redirect",
+        "HTTP-200 uten redirect – kritisk"
+      ]
+    },
+    {
+      "kategori": "sensitive-stier",
+      "alvorlighet": "alvorlig",
+      "tittel": "Sensitiv sti tilgjengelig: /sitemap.xml",
+      "detalj": "Sitemap (informasjonslekkasje) – HTTP 200, 12547 tegn innhold",
+      "url": "https://developers.fiks.ks.no/sitemap.xml",
+      "steg": [
+        "Sender forespørsel til https://developers.fiks.ks.no/sitemap.xml",
+        "Sjekker HTTP-statuskode",
+        "Sti returnerte HTTP 200 – innhold tilgjengelig: Sitemap (informasjonslekkasje)"
+      ]
+    },
+    {
+      "kategori": "mixed-content",
+      "alvorlighet": "ok",
+      "tittel": "Ingen mixed content funnet",
+      "detalj": "Alle ressurser lastes over HTTPS",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+      "steg": [
+        "Registrerer lytter på alle HTTP-forespørsler under sidelasting",
+        "Laster https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/ over HTTPS",
+        "Ingen HTTP-ressurser lastet – ingen mixed content"
+      ]
+    },
+    {
+      "kategori": "cors",
+      "alvorlighet": "ok",
+      "tittel": "Ingen CORS-hoder – standard same-origin-policy gjelder",
+      "detalj": "",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+      "steg": [
+        "Sender OPTIONS-forespørsel til https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/ med Origin: https://ondomain.eksempel.no",
+        "Sjekker Access-Control-Allow-Origin i respons",
+        "Ingen CORS-hoder – standard same-origin-policy"
+      ]
+    }
+  ]
+}
