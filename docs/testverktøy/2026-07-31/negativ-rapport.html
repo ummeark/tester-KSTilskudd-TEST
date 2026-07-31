@@ -5,7 +5,7 @@
 <script>if(location.protocol!=='file:'&&!sessionStorage.getItem('ks-auth'))location.replace('../../logg-inn.html?redir='+encodeURIComponent(location.href))</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Negativ testrapport – 2026-07-31 09:48</title>
+<title>Negativ testrapport – 2026-07-31 10:48</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:system-ui,-apple-system,sans-serif;background:#faf6f0;color:#0f0e17;display:flex;min-height:100vh}
@@ -84,7 +84,7 @@
   <div class="sidemeny-header">
     <div class="sidemeny-logo">KS Tilskudd · Negativ testing</div>
     <div class="env-badge">TEST-MILJØ</div>
-    <h1>Negativ testrapport <span>2026-07-31 09:48 · 23 tester</span></h1>
+    <h1>Negativ testrapport <span>2026-07-31 10:48 · 23 tester</span></h1>
   </div>
   <ul><li><a href="#skjema" class="sidenav-link har-brudd">
     <span class="sidenavn">📝 Skjema-validering</span>
@@ -107,7 +107,7 @@
   <div class="rapport-header">
     <div>
       <h1>Negativ testrapport</h1>
-      <div class="meta"><a href="https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/" target="_blank">https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/</a> · 2026-07-31 09:48 · 23 tester · 78s · Chromium 147</div>
+      <div class="meta"><a href="https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/" target="_blank">https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/</a> · 2026-07-31 10:48 · 23 tester · 79s · Chromium 147</div>
     </div>
     <div class="nav-knapper">
       <a href="../../rapport.html" class="knapp sekundær">Forside</a>
@@ -1373,10 +1373,10 @@
     </summary>
     <div style="padding:1.2rem 1.5rem 1.5rem;border-top:1px solid #f4ecdf">
       <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.82rem">
-        <span style="background:#ecfdf5;color:#07604f;padding:.2rem .7rem;border-radius:100px;font-weight:600">✅ 11 bestått</span>
+        <span style="background:#ecfdf5;color:#07604f;padding:.2rem .7rem;border-radius:100px;font-weight:600">✅ 10 bestått</span>
         <span style="background:#f3dda2;color:#713f12;padding:.2rem .7rem;border-radius:100px;font-weight:600">⚠️ 12 advarsler</span>
-        
-        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">Score: 40</span>
+        <span style="background:#fee2e2;color:#c53030;padding:.2rem .7rem;border-radius:100px;font-weight:600">❌ 1 feil</span>
+        <span style="background:#f4ecdf;color:#0a1355;padding:.2rem .7rem;border-radius:100px;font-weight:600">Score: 25</span>
       </div>
       
   <div class="brudd-kort" style="border-left-color:#b8860b">
@@ -1731,6 +1731,45 @@
   </details>
     
   </div>
+  <div class="brudd-kort" style="border-left-color:#c53030">
+    <div class="brudd-header">
+      <div>
+        <span class="badge feil">❌ feil</span>
+        <span class="regel-desc">Last side etter tømming av localStorage</span>
+      </div>
+    </div>
+    <div style="margin:.3rem 0 .5rem"><span class="td-chip">🔐 Bruker: <code>—</code></span></div>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.5rem 0;font-size:.8rem">
+      <div style="background:#f4ecdf;padding:.4rem .6rem">
+        <div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin-bottom:.2rem">Input</div>
+        <div style="color:#374151;word-break:break-all">localStorage.clear()</div>
+      </div>
+      <div style="background:#fee2e2;padding:.4rem .6rem">
+        <div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin-bottom:.2rem">Faktisk oppførsel</div>
+        <div style="color:#374151;word-break:break-all">Unntak: page.evaluate: Execution context was destroyed, most likely because of a navigation</div>
+      </div>
+    </div>
+    
+    <details style="margin:.5rem 0 .3rem 0">
+    <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">🔍 Teststeg ▾</summary>
+    <ol style="margin:.5rem 0 0 .5rem;padding:0;list-style:none;display:flex;flex-direction:column;gap:.2rem">
+      <li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">1.</span><span>Navigerer til https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">2.</span><span>Tømmer localStorage via JavaScript</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">3.</span><span>Laster siden på nytt</span></li><li style="font-size:.76rem;color:#374151;display:flex;gap:.5rem"><span style="font-weight:700;min-width:1.2rem;color:#2b3285">4.</span><span>Sjekker at siden laster uten krasj</span></li>
+    </ol>
+  </details>
+    
+    <details style="margin:.2rem 0 .5rem 0">
+      <summary style="cursor:pointer;font-size:.72rem;color:#2b3285;user-select:none;list-style:none;display:inline-flex;align-items:center;gap:.3rem">📸 Vis skjermdumper ▾</summary>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem;margin-top:.5rem;padding:.6rem .7rem;background:#f8f7f5;border:1px solid #ede9e3">
+        <div>
+          <p style="font-size:.67rem;color:#6b7280;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.05em">🖥️ Skjermdump</p>
+          <a href="skjermbilder-negativ/negativ-unntak-20.png" target="_blank">
+            <img src="skjermbilder-negativ/negativ-unntak-20.png" loading="lazy" alt="Skjermdump" style="width:100%;max-height:180px;object-fit:cover;object-position:top;border:1px solid #e5e3de;cursor:zoom-in;display:block">
+          </a>
+        </div>
+      </div>
+    </details>
+  </div>
   <div class="brudd-kort" style="border-left-color:#b8860b">
     <div class="brudd-header">
       <div>
@@ -1763,8 +1802,8 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem;margin-top:.5rem;padding:.6rem .7rem;background:#f8f7f5;border:1px solid #ede9e3">
         <div>
           <p style="font-size:.67rem;color:#6b7280;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.05em">🖥️ Skjermdump</p>
-          <a href="skjermbilder-negativ/negativ-minside-uten-auth-20.png" target="_blank">
-            <img src="skjermbilder-negativ/negativ-minside-uten-auth-20.png" loading="lazy" alt="Skjermdump" style="width:100%;max-height:180px;object-fit:cover;object-position:top;border:1px solid #e5e3de;cursor:zoom-in;display:block">
+          <a href="skjermbilder-negativ/negativ-minside-uten-auth-21.png" target="_blank">
+            <img src="skjermbilder-negativ/negativ-minside-uten-auth-21.png" loading="lazy" alt="Skjermdump" style="width:100%;max-height:180px;object-fit:cover;object-position:top;border:1px solid #e5e3de;cursor:zoom-in;display:block">
           </a>
         </div>
       </div>
@@ -1987,8 +2026,8 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem;margin-top:.5rem;padding:.6rem .7rem;background:#f8f7f5;border:1px solid #ede9e3">
         <div>
           <p style="font-size:.67rem;color:#6b7280;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.05em">🖥️ Skjermdump</p>
-          <a href="skjermbilder-negativ/negativ-url-ingen-feilside-21.png" target="_blank">
-            <img src="skjermbilder-negativ/negativ-url-ingen-feilside-21.png" loading="lazy" alt="Skjermdump" style="width:100%;max-height:180px;object-fit:cover;object-position:top;border:1px solid #e5e3de;cursor:zoom-in;display:block">
+          <a href="skjermbilder-negativ/negativ-url-ingen-feilside-22.png" target="_blank">
+            <img src="skjermbilder-negativ/negativ-url-ingen-feilside-22.png" loading="lazy" alt="Skjermdump" style="width:100%;max-height:180px;object-fit:cover;object-position:top;border:1px solid #e5e3de;cursor:zoom-in;display:block">
           </a>
         </div>
       </div>
@@ -2026,8 +2065,8 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem;margin-top:.5rem;padding:.6rem .7rem;background:#f8f7f5;border:1px solid #ede9e3">
         <div>
           <p style="font-size:.67rem;color:#6b7280;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.05em">🖥️ Skjermdump</p>
-          <a href="skjermbilder-negativ/negativ-url-ingen-feilside-22.png" target="_blank">
-            <img src="skjermbilder-negativ/negativ-url-ingen-feilside-22.png" loading="lazy" alt="Skjermdump" style="width:100%;max-height:180px;object-fit:cover;object-position:top;border:1px solid #e5e3de;cursor:zoom-in;display:block">
+          <a href="skjermbilder-negativ/negativ-url-ingen-feilside-23.png" target="_blank">
+            <img src="skjermbilder-negativ/negativ-url-ingen-feilside-23.png" loading="lazy" alt="Skjermdump" style="width:100%;max-height:180px;object-fit:cover;object-position:top;border:1px solid #e5e3de;cursor:zoom-in;display:block">
           </a>
         </div>
       </div>
@@ -2065,8 +2104,8 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem;margin-top:.5rem;padding:.6rem .7rem;background:#f8f7f5;border:1px solid #ede9e3">
         <div>
           <p style="font-size:.67rem;color:#6b7280;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.05em">🖥️ Skjermdump</p>
-          <a href="skjermbilder-negativ/negativ-url-ingen-feilside-23.png" target="_blank">
-            <img src="skjermbilder-negativ/negativ-url-ingen-feilside-23.png" loading="lazy" alt="Skjermdump" style="width:100%;max-height:180px;object-fit:cover;object-position:top;border:1px solid #e5e3de;cursor:zoom-in;display:block">
+          <a href="skjermbilder-negativ/negativ-url-ingen-feilside-24.png" target="_blank">
+            <img src="skjermbilder-negativ/negativ-url-ingen-feilside-24.png" loading="lazy" alt="Skjermdump" style="width:100%;max-height:180px;object-fit:cover;object-position:top;border:1px solid #e5e3de;cursor:zoom-in;display:block">
           </a>
         </div>
       </div>
@@ -2104,8 +2143,8 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem;margin-top:.5rem;padding:.6rem .7rem;background:#f8f7f5;border:1px solid #ede9e3">
         <div>
           <p style="font-size:.67rem;color:#6b7280;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.05em">🖥️ Skjermdump</p>
-          <a href="skjermbilder-negativ/negativ-url-ingen-feilside-24.png" target="_blank">
-            <img src="skjermbilder-negativ/negativ-url-ingen-feilside-24.png" loading="lazy" alt="Skjermdump" style="width:100%;max-height:180px;object-fit:cover;object-position:top;border:1px solid #e5e3de;cursor:zoom-in;display:block">
+          <a href="skjermbilder-negativ/negativ-url-ingen-feilside-25.png" target="_blank">
+            <img src="skjermbilder-negativ/negativ-url-ingen-feilside-25.png" loading="lazy" alt="Skjermdump" style="width:100%;max-height:180px;object-fit:cover;object-position:top;border:1px solid #e5e3de;cursor:zoom-in;display:block">
           </a>
         </div>
       </div>
@@ -2171,8 +2210,8 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem;margin-top:.5rem;padding:.6rem .7rem;background:#f8f7f5;border:1px solid #ede9e3">
         <div>
           <p style="font-size:.67rem;color:#6b7280;margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.05em">🖥️ Skjermdump</p>
-          <a href="skjermbilder-negativ/negativ-minside-uten-auth-26.png" target="_blank">
-            <img src="skjermbilder-negativ/negativ-minside-uten-auth-26.png" loading="lazy" alt="Skjermdump" style="width:100%;max-height:180px;object-fit:cover;object-position:top;border:1px solid #e5e3de;cursor:zoom-in;display:block">
+          <a href="skjermbilder-negativ/negativ-minside-uten-auth-27.png" target="_blank">
+            <img src="skjermbilder-negativ/negativ-minside-uten-auth-27.png" loading="lazy" alt="Skjermdump" style="width:100%;max-height:180px;object-fit:cover;object-position:top;border:1px solid #e5e3de;cursor:zoom-in;display:block">
           </a>
         </div>
       </div>
@@ -2228,7 +2267,7 @@
           </div>
     </div>
   </details>
-  <footer>KS Tilskudd · Negativ testing · Playwright · 2026-07-31 09:48</footer>
+  <footer>KS Tilskudd · Negativ testing · Playwright · 2026-07-31 10:48</footer>
 </div>
 </body>
 </html>
