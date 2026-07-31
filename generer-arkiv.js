@@ -210,15 +210,6 @@ for (const dato of datoer) {
     fs.writeFileSync(path.join(måldir, fil), html);
   });
 
-  // Kopier skjermbilder
-  for (const skjermNavn of ['skjermbilder', 'skjermbilder-monkey', 'skjermbilder-negativ', 'skjermbilder-sikkerhet']) {
-    const src = path.join(kildedir, skjermNavn);
-    const mål = path.join(arkivDir, dato, skjermNavn);
-    if (fs.existsSync(src)) {
-      fs.mkdirSync(mål, { recursive: true });
-      fs.readdirSync(src).forEach(f => fs.copyFileSync(path.join(src, f), path.join(mål, f)));
-    }
-  }
 }
 
 // --- Kopier siste rapporter og skjermdumper til docs/ ---
