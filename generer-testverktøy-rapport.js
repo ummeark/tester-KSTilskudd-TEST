@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const kildeDir  = path.join(__dirname, 'testverktøy-rapporter');
 const docsDir   = path.join(__dirname, 'docs');
-const utPath    = path.join(docsDir, 'testverktøy-rapport.html');
+const utPath    = path.join(docsDir, 'testverkto-rapport.html');
 const GITHUB_PAGES_URL = 'https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/';
 
 if (!fs.existsSync(kildeDir)) {
@@ -173,7 +173,7 @@ const html = `<!DOCTYPE html>
     <div class="nav-knapper">
       <a href="rapport.html" class="knapp sekundær">Forside</a>
       <a href="arkiv.html" class="knapp sekundær">Arkiv</a>
-      <a href="testverktøy-rapport.html" class="knapp aktiv">Test av testverktøy</a>
+      <a href="testverkto-rapport.html" class="knapp aktiv">Test av testverktøy</a>
     </div>
   </div>
 
@@ -213,7 +213,7 @@ const html = `<!DOCTYPE html>
 </html>`;
 
 fs.writeFileSync(utPath, html);
-console.log(`✅ testverktøy-rapport.html generert → ${utPath}`);
+console.log(`✅ testverkto-rapport.html generert → ${utPath}`);
 
 // Kopier også eldre datoer til docs/testverktøy/
 for (const dato of datoer.slice(1)) {
