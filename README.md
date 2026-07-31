@@ -190,18 +190,6 @@ Testene kan også kjøres direkte fra Claude Code med følgende skills:
 | `/kstilskudd-brukerhistorie-testing` | Brukerhistorietester |
 | `/kstilskudd-alle-tester-TEST` | Alle seks tester + publisering til GitHub Pages |
 
-**PROD-miljø (tilskudd.fiks.ks.no)**
-
-| Skill | Beskrivelse |
-|-------|-------------|
-| `/kstilskudd-uu-testing-PROD` | UU/WCAG-analyse |
-| `/kstilskudd-monkey-testing-PROD` | Monkey-testing |
-| `/kstilskudd-sikkerhet-testing-PROD` | Sikkerhetstest |
-| `/kstilskudd-negativ-testing-PROD` | Negativ testing |
-| `/kstilskudd-ytelse-testing-PROD` | Ytelsestest |
-| `/kstilskudd-brukerhistorie-testing-PROD` | Brukerhistorietester |
-| `/kstilskudd-alle-tester-PROD` | Alle seks tester + publisering til GitHub Pages |
-
 **Andre**
 
 | Skill | Beskrivelse |
