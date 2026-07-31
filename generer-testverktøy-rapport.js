@@ -9,10 +9,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const kildeDir  = path.join(__dirname, 'testverktøy-rapporter');
 const docsDir   = path.join(__dirname, 'docs');
 const utPath    = path.join(docsDir, 'testverktøy-rapport.html');
-const GITHUB_PAGES_URL = 'https://ks-no.github.io/tilskuddsportal-testverktoy-TEST/';
+const GITHUB_PAGES_URL = 'https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/';
 
 if (!fs.existsSync(kildeDir)) {
-  console.error('❌ Ingen testverktøy-rapporter/ funnet. Kjør skillen KSTilskudd-test-av-testverktøy-githubpages-TEST først.');
+  console.error('❌ Ingen testverktøy-rapporter/ funnet. Kjør skillen tilskuddsportal-test-av-testverktoy-TEST først.');
   process.exit(1);
 }
 
