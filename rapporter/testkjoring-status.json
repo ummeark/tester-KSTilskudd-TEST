@@ -1,0 +1,55 @@
+{
+  "dato": "2026-08-03",
+  "startet": "14:07",
+  "tester": [
+    {
+      "id": "rapport",
+      "navn": "UU-rapport",
+      "fil": "uu-rapport.html",
+      "status": "ferdig",
+      "info": "WCAG-brudd: 2 (kritiske: 0, alvorlige: 1)",
+      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-03/uu-rapport.html"
+    },
+    {
+      "id": "monkey",
+      "navn": "Monkey-test",
+      "fil": "monkey-rapport.html",
+      "status": "ferdig",
+      "info": "Kritiske funn: 1",
+      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-03/monkey-rapport.html"
+    },
+    {
+      "id": "sikkerhet",
+      "navn": "Sikkerhetstest",
+      "fil": "sikkerhet-rapport.html",
+      "status": "ferdig",
+      "info": "Score: 78/100",
+      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-03/sikkerhet-rapport.html"
+    },
+    {
+      "id": "negativ",
+      "navn": "Negativ test",
+      "fil": "negativ-rapport.html",
+      "status": "ferdig",
+      "info": "Score: 50/100",
+      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-03/negativ-rapport.html"
+    },
+    {
+      "id": "ytelse",
+      "navn": "Ytelsestest",
+      "fil": "ytelse-rapport.html",
+      "status": "ferdig",
+      "info": "Score: 100 | LCP: 52ms | FCP: 52ms | TTFB: 29ms | Last: 72ms | 0KB | 16 req",
+      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-03/ytelse-rapport.html"
+    },
+    {
+      "id": "brukerhistorie",
+      "navn": "Brukerhistorier",
+      "fil": "brukerhistorie-rapport.html",
+      "status": "ferdig",
+      "info": "70 passed · 3 failed",
+      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-03/brukerhistorie-rapport.html"
+    }
+  ],
+  "avsluttet": "14:33"
+}

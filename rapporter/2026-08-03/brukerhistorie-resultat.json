@@ -1,11 +1,11 @@
 {
   "url": "https://tilskudd.fiks.test.ks.no/",
   "dato": "2026-08-03",
-  "score": 89,
+  "score": 90,
   "totalt": {
-    "bestått": 139,
-    "feilet": 6,
-    "totalt": 156,
+    "bestått": 70,
+    "feilet": 3,
+    "totalt": 78,
     "suites": 14
   }
 }

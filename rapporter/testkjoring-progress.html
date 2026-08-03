@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Testkjøring 2026-08-03</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #faf6f0; color: #0f0e17; min-height: 100vh; }
+
+    header { background: #0a1355; color: white; padding: 1.6rem 2.5rem; }
+    .header-inner { max-width: 760px; margin: 0 auto; }
+    .header-merkevare { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .45; margin-bottom: .4rem; }
+    .env-badge { display: inline-block; font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: rgba(255,255,255,.18); color: white; padding: .25rem .7rem; border-radius: 100px; margin-bottom: .4rem; }
+    header h1 { font-size: 1.4rem; font-weight: 700; }
+    header p { opacity: .5; font-size: .82rem; margin-top: .3rem; }
+
+    .container { max-width: 760px; margin: 2.5rem auto; padding: 0 1.5rem; }
+
+    .samlet-seksjon { background: white; border: 1px solid #f1f0ee; padding: 1.4rem 1.8rem; margin-bottom: 2rem; box-shadow: 0 1px 4px rgba(10,19,85,.06); display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+    .samlet-score { font-size: 3rem; font-weight: 800; color: #0a1355; line-height: 1; }
+    .samlet-score.god     { color: #07604f; }
+    .samlet-score.middels { color: #b8860b; }
+    .samlet-tekst h2 { font-size: 1rem; font-weight: 700; color: #0a1355; }
+    .samlet-tekst p  { font-size: .82rem; color: #6b7280; margin-top: .3rem; }
+
+    .test-liste { display: flex; flex-direction: column; gap: 1rem; }
+
+    .dash-kort { background: white; border: 1px solid #f1f0ee; border-top: 5px solid #e5e3de; padding: 1.4rem 1.6rem; box-shadow: 0 1px 4px rgba(10,19,85,.06); display: flex; flex-direction: column; gap: .6rem; transition: box-shadow .15s, transform .15s; }
+    .dash-kort.god    { border-top-color: #07604f; }
+    .dash-kort.darlig { border-top-color: #c53030; }
+    .dash-topp  { display: flex; align-items: flex-start; gap: .6rem; }
+    .dash-ikon  { font-size: 1.3rem; line-height: 1.15rem; }
+    .dash-tittel { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #6b7280; }
+    .dash-nøkkel { font-size: .82rem; color: #6b7280; padding-top: .5rem; border-top: 1px solid #f4f3f1; }
+    .dash-lenke { color: #07604f; font-weight: 600; text-decoration: none; }
+    .dash-lenke:hover { text-decoration: underline; }
+    .dash-ingen { color: #9ca3af; }
+
+    footer { text-align: center; padding: 2.5rem; color: #9ca3af; font-size: .78rem; border-top: 1px solid #f1f0ee; margin-top: 2rem; }
+
+    .spin { display: inline-block; animation: spin 1.5s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="header-merkevare">KS Tilskudd</div>
+    <div class="env-badge">TEST-MILJØ</div>
+    <h1>Testkjøring</h1>
+    <p>Startet 14:07 · Ferdig 14:33 · 2026-08-03</p>
+  </div>
+</header>
+<div class="container">
+
+  <div class="samlet-seksjon">
+    <div class="samlet-score god">6<span style="font-size:1.2rem;font-weight:400;opacity:.5">/6</span></div>
+    <div class="samlet-tekst">
+      <h2>Alle 6 tester fullført – 14:33</h2>
+      <p>Alle tester er fullført.</p>
+    </div>
+  </div>
+
+  <div class="test-liste">
+    <div class="dash-kort god" style="border-top-color:#07604f">
+  <div class="dash-topp">
+    <span class="dash-ikon">♿</span>
+    <div style="flex:1">
+      <div class="dash-tittel">UU-rapport</div>
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#07604f;margin-top:2px">FERDIG</div>
+    </div>
+  </div>
+  <div class="dash-nøkkel"><a class="dash-lenke" href="file:///Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-03/uu-rapport.html">WCAG-brudd: 2 (kritiske: 0, alvorlige: 1) →</a></div>
+</div><div class="dash-kort god" style="border-top-color:#07604f">
+  <div class="dash-topp">
+    <span class="dash-ikon">🐒</span>
+    <div style="flex:1">
+      <div class="dash-tittel">Monkey-test</div>
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#07604f;margin-top:2px">FERDIG</div>
+    </div>
+  </div>
+  <div class="dash-nøkkel"><a class="dash-lenke" href="file:///Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-03/monkey-rapport.html">Kritiske funn: 1 →</a></div>
+</div><div class="dash-kort god" style="border-top-color:#07604f">
+  <div class="dash-topp">
+    <span class="dash-ikon">🔐</span>
+    <div style="flex:1">
+      <div class="dash-tittel">Sikkerhetstest</div>
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#07604f;margin-top:2px">FERDIG</div>
+    </div>
+  </div>
+  <div class="dash-nøkkel"><a class="dash-lenke" href="file:///Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-03/sikkerhet-rapport.html">Score: 78/100 →</a></div>
+</div><div class="dash-kort god" style="border-top-color:#07604f">
+  <div class="dash-topp">
+    <span class="dash-ikon">🧪</span>
+    <div style="flex:1">
+      <div class="dash-tittel">Negativ test</div>
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#07604f;margin-top:2px">FERDIG</div>
+    </div>
+  </div>
+  <div class="dash-nøkkel"><a class="dash-lenke" href="file:///Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-03/negativ-rapport.html">Score: 50/100 →</a></div>
+</div><div class="dash-kort god" style="border-top-color:#07604f">
+  <div class="dash-topp">
+    <span class="dash-ikon">🚀</span>
+    <div style="flex:1">
+      <div class="dash-tittel">Ytelsestest</div>
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#07604f;margin-top:2px">FERDIG</div>
+    </div>
+  </div>
+  <div class="dash-nøkkel"><a class="dash-lenke" href="file:///Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-03/ytelse-rapport.html">Score: 100 | LCP: 52ms | FCP: 52ms | TTFB: 29ms | Last: 72ms | 0KB | 16 req →</a></div>
+</div><div class="dash-kort god" style="border-top-color:#07604f">
+  <div class="dash-topp">
+    <span class="dash-ikon">📖</span>
+    <div style="flex:1">
+      <div class="dash-tittel">Brukerhistorier</div>
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#07604f;margin-top:2px">FERDIG</div>
+    </div>
+  </div>
+  <div class="dash-nøkkel"><a class="dash-lenke" href="file:///Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-03/brukerhistorie-rapport.html">70 passed · 3 failed →</a></div>
+</div>
+  </div>
+
+</div>
+<footer>tilskuddsportal-testverktoy-TEST · 2026-08-03</footer>
+</body>
+</html>
