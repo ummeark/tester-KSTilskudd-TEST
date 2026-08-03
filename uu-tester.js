@@ -1203,8 +1203,6 @@ console.log(`📐 Tekstmellomrom:   ${tekstmellomrom.bestått} bestått · ${far
 console.log(`🔎 Ekstra WCAG:      ${ekstraWcag.bestått} bestått · ${farge(ekstraWcag.advarsel, 0, 0, 2)} adv. · ${farge(ekstraWcag.feil, 0, 0, 1)} feil`);
 console.log('━'.repeat(60));
 console.log(`\n📁 HTML-rapport: ${path.join(rapportDir, 'uu-rapport.html')}\n`);
-const { exec } = await import('child_process');
-exec(`open "${path.join(rapportDir, 'uu-rapport.html')}"`);
 
 function farge(n, grønn, gul, rød) {
   if (n <= grønn) return `\x1b[32m${n}\x1b[0m`;

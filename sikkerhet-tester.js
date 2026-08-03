@@ -4,7 +4,6 @@ import path from 'path';
 import https from 'https';
 import http from 'http';
 import { fileURLToPath } from 'url';
-import { exec } from 'child_process';
 import { START_URL, VIEWPORT, SIDE_TIMEOUT, IDLE_TIMEOUT, HTTP_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER, FIREFOX_KRYSSSJEKK } from './config.js';
 import { hentVersjon, loggInn, testdataPanelCss, brukerChipHtml } from './lib/common.js';
 
@@ -1022,4 +1021,3 @@ fs.copyFileSync(path.join(rapportDir, 'sikkerhet-resultat.json'), path.join(rapp
 fs.copyFileSync(path.join(rapportDir, 'sikkerhet-rapport.html'), path.join(rapportDir, `sikkerhet-rapport-${tidFil}.html`));
 
 console.log(`\n📁 Sikkerhetsrapport: ${path.join(rapportDir, 'sikkerhet-rapport.html')}`);
-exec(`open "${path.join(rapportDir, 'sikkerhet-rapport.html')}"`);

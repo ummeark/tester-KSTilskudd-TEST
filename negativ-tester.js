@@ -2,7 +2,6 @@ import { chromium, firefox } from 'playwright';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { exec } from 'child_process';
 import { START_URL, VIEWPORT, SIDE_TIMEOUT, TEST_FNR, TEST_MODUS, RAPPORTDIR, GITHUB_PAGES_AUTH, TEST_EKSTRA_BRUKER, FIREFOX_KRYSSSJEKK } from './config.js';
 import { hentVersjon, loggInn, gåTil, sjekkKrasj, sjekkFeilmelding, testdataPanelCss, brukerChipHtml } from './lib/common.js';
 
@@ -972,4 +971,3 @@ fs.copyFileSync(path.join(rapportDir, 'negativ-resultat.json'), path.join(rappor
 fs.copyFileSync(path.join(rapportDir, 'negativ-rapport.html'), path.join(rapportDir, `negativ-rapport-${tidFil}.html`));
 
 console.log(`\n📁 Negativ-rapport: ${path.join(rapportDir, 'negativ-rapport.html')}`);
-exec(`open "${path.join(rapportDir, 'negativ-rapport.html')}"`);

@@ -699,6 +699,3 @@ fs.copyFileSync(path.join(rapportDir, 'monkey-rapport.html'), path.join(rapportD
 
 console.log(`\n📁 Monkey-rapport: ${path.join(rapportDir, 'monkey-rapport.html')}`);
 
-// Åpne rapporten
-import { exec } from 'child_process';
-exec(`open "${path.join(rapportDir, 'monkey-rapport.html')}"`);
