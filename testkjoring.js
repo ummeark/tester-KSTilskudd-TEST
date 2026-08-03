@@ -29,75 +29,118 @@ function skrivOgGenerer(status) {
   fs.writeFileSync(HTML_FIL, genererHTML(status));
 }
 
+const TEST_IKONER = { rapport: '♿', monkey: '🐒', sikkerhet: '🔐', negativ: '🧪', ytelse: '🚀', brukerhistorie: '📖' };
+
 function genererHTML(status) {
   const alleFerdig = status.tester.every(t => t.status === 'ferdig' || t.status === 'feil');
   const antallFerdig = status.tester.filter(t => t.status === 'ferdig' || t.status === 'feil').length;
 
-  const farge = { venter: '#aaa', kjorer: '#0055cc', ferdig: '#2a7a2a', feil: '#cc0000' };
-  const ikon  = { venter: '⏳', kjorer: '🔄', ferdig: '✅', feil: '❌' };
+  const borderFarge = { venter: '#e5e3de', kjorer: '#0a1355', ferdig: '#07604f', feil: '#c53030' };
+  const scoreFarge  = { venter: '#9ca3af', kjorer: '#0a1355', ferdig: '#07604f', feil: '#c53030' };
 
-  const rader = status.tester.map(t => {
-    const spinning = t.status === 'kjorer';
-    const ikonHtml = spinning ? '<span class="spin">🔄</span>' : ikon[t.status] ?? '?';
-    const detalj = t.status === 'venter' ? '<span class="graa">Venter...</span>'
-      : t.status === 'kjorer'  ? '<span class="bla">Kjøres nå...</span>'
-      : t.rapport               ? `<a href="file://${t.rapport}">${t.info ?? 'Åpne rapport'} →</a>`
-      : `<span style="color:${farge[t.status]}">${t.info ?? (t.status === 'feil' ? 'Feilet' : 'Ferdig')}</span>`;
+  const kortKlasse = (s) => ({ venter: '', kjorer: '', ferdig: 'god', feil: 'darlig' })[s] ?? '';
 
-    return `<div class="rad">
-      <span class="ikon">${ikonHtml}</span>
-      <div>
-        <div class="navn" style="color:${farge[t.status] ?? '#333'}">${t.navn}</div>
-        <div class="detalj">${detalj}</div>
-      </div>
-    </div>`;
+  const kort = status.tester.map(t => {
+    const ikonHtml = t.status === 'kjorer'
+      ? `<span class="spin">${TEST_IKONER[t.id] ?? '🔄'}</span>`
+      : (TEST_IKONER[t.id] ?? '🔬');
+
+    const statusTekst = t.status === 'venter'  ? '<span class="dash-ingen">Venter...</span>'
+      : t.status === 'kjorer'                  ? '<span style="color:#0a1355;font-weight:600">Kjøres nå...</span>'
+      : t.rapport                               ? `<a class="dash-lenke" href="file://${t.rapport}">${t.info ?? 'Se rapport'} →</a>`
+      : `<span style="color:${scoreFarge[t.status]}">${t.info ?? (t.status === 'feil' ? 'Feilet' : 'Ferdig')}</span>`;
+
+    const statusLabel = { venter: 'VENTER', kjorer: 'KJØRES NÅ', ferdig: 'FERDIG', feil: 'FEIL' }[t.status] ?? '';
+
+    return `<div class="dash-kort ${kortKlasse(t.status)}" style="border-top-color:${borderFarge[t.status]}">
+  <div class="dash-topp">
+    <span class="dash-ikon">${ikonHtml}</span>
+    <div style="flex:1">
+      <div class="dash-tittel">${t.navn}</div>
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:${scoreFarge[t.status]};margin-top:2px">${statusLabel}</div>
+    </div>
+  </div>
+  <div class="dash-nøkkel">${statusTekst}</div>
+</div>`;
   }).join('');
 
-  const banner = alleFerdig
-    ? `<div class="banner ok">✅ Alle tester fullført – ${status.avsluttet}</div>`
-    : `<div class="banner loper">${antallFerdig} av ${status.tester.length} fullført</div>`;
+  const samletTekst = alleFerdig
+    ? `Alle ${status.tester.length} tester fullført – ${status.avsluttet}`
+    : `${antallFerdig} av ${status.tester.length} tester fullført`;
+
+  const samletKlasse = alleFerdig ? 'god' : (antallFerdig > 0 ? 'middels' : '');
 
   return `<!DOCTYPE html>
 <html lang="no">
 <head>
   <meta charset="UTF-8">
   ${alleFerdig ? '' : '<meta http-equiv="refresh" content="2">'}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Testkjøring ${status.dato}</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-           background: #f0f2f5; min-height: 100vh; padding: 48px 20px; }
-    .kort { background: white; border-radius: 14px; max-width: 500px; margin: 0 auto;
-            box-shadow: 0 2px 18px rgba(0,0,0,.1); overflow: hidden; }
-    .hdr  { padding: 20px 24px; border-bottom: 1px solid #eee; }
-    h1    { font-size: 1.1rem; color: #111; }
-    .meta { font-size: .8rem; color: #aaa; margin-top: 4px; }
-    .banner { padding: 10px 24px; font-size: .88rem; font-weight: 600; }
-    .banner.ok    { background: #e8f5e9; color: #2a7a2a; border-bottom: 1px solid #c8e6c9; }
-    .banner.loper { background: #e8f0fe; color: #1a56cc; border-bottom: 1px solid #c5d8fd; }
-    .rad   { display: flex; align-items: flex-start; gap: 14px;
-             padding: 13px 24px; border-bottom: 1px solid #f3f3f3; }
-    .rad:last-child { border-bottom: none; }
-    .ikon  { font-size: 1.2rem; width: 22px; text-align: center; flex-shrink: 0; padding-top: 1px; }
-    .navn  { font-weight: 600; font-size: .93rem; }
-    .detalj { font-size: .8rem; margin-top: 2px; }
-    .graa  { color: #bbb; }
-    .bla   { color: #0055cc; }
-    a      { color: #0055cc; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .spin  { display: inline-block; animation: spin 1.2s linear infinite; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #faf6f0; color: #0f0e17; min-height: 100vh; }
+
+    header { background: #0a1355; color: white; padding: 1.6rem 2.5rem; }
+    .header-inner { max-width: 760px; margin: 0 auto; }
+    .header-merkevare { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .45; margin-bottom: .4rem; }
+    .env-badge { display: inline-block; font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: rgba(255,255,255,.18); color: white; padding: .25rem .7rem; border-radius: 100px; margin-bottom: .4rem; }
+    header h1 { font-size: 1.4rem; font-weight: 700; }
+    header p { opacity: .5; font-size: .82rem; margin-top: .3rem; }
+
+    .container { max-width: 760px; margin: 2.5rem auto; padding: 0 1.5rem; }
+
+    .samlet-seksjon { background: white; border: 1px solid #f1f0ee; padding: 1.4rem 1.8rem; margin-bottom: 2rem; box-shadow: 0 1px 4px rgba(10,19,85,.06); display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+    .samlet-score { font-size: 3rem; font-weight: 800; color: #0a1355; line-height: 1; }
+    .samlet-score.god     { color: #07604f; }
+    .samlet-score.middels { color: #b8860b; }
+    .samlet-tekst h2 { font-size: 1rem; font-weight: 700; color: #0a1355; }
+    .samlet-tekst p  { font-size: .82rem; color: #6b7280; margin-top: .3rem; }
+
+    .test-liste { display: flex; flex-direction: column; gap: 1rem; }
+
+    .dash-kort { background: white; border: 1px solid #f1f0ee; border-top: 5px solid #e5e3de; padding: 1.4rem 1.6rem; box-shadow: 0 1px 4px rgba(10,19,85,.06); display: flex; flex-direction: column; gap: .6rem; transition: box-shadow .15s, transform .15s; }
+    .dash-kort.god    { border-top-color: #07604f; }
+    .dash-kort.darlig { border-top-color: #c53030; }
+    .dash-topp  { display: flex; align-items: flex-start; gap: .6rem; }
+    .dash-ikon  { font-size: 1.3rem; line-height: 1.15rem; }
+    .dash-tittel { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #6b7280; }
+    .dash-nøkkel { font-size: .82rem; color: #6b7280; padding-top: .5rem; border-top: 1px solid #f4f3f1; }
+    .dash-lenke { color: #07604f; font-weight: 600; text-decoration: none; }
+    .dash-lenke:hover { text-decoration: underline; }
+    .dash-ingen { color: #9ca3af; }
+
+    footer { text-align: center; padding: 2.5rem; color: #9ca3af; font-size: .78rem; border-top: 1px solid #f1f0ee; margin-top: 2rem; }
+
+    .spin { display: inline-block; animation: spin 1.5s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
-  <div class="kort">
-    <div class="hdr">
-      <h1>Testkjøring ${status.dato}</h1>
-      <div class="meta">Startet ${status.startet}${status.avsluttet ? ' · Ferdig ' + status.avsluttet : ''}</div>
-    </div>
-    ${banner}
-    ${rader}
+<header>
+  <div class="header-inner">
+    <div class="header-merkevare">KS Tilskudd</div>
+    <div class="env-badge">TEST-MILJØ</div>
+    <h1>Testkjøring</h1>
+    <p>Startet ${status.startet}${status.avsluttet ? ` · Ferdig ${status.avsluttet}` : ''} · ${status.dato}</p>
   </div>
+</header>
+<div class="container">
+
+  <div class="samlet-seksjon">
+    <div class="samlet-score ${samletKlasse}">${antallFerdig}<span style="font-size:1.2rem;font-weight:400;opacity:.5">/${status.tester.length}</span></div>
+    <div class="samlet-tekst">
+      <h2>${samletTekst}</h2>
+      <p>${alleFerdig ? 'Alle tester er fullført.' : 'Siden oppdateres automatisk hvert 2. sekund.'}</p>
+    </div>
+  </div>
+
+  <div class="test-liste">
+    ${kort}
+  </div>
+
+</div>
+<footer>tilskuddsportal-testverktoy-TEST · ${status.dato}</footer>
 </body>
 </html>`;
 }
