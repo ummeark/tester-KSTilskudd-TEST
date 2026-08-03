@@ -213,7 +213,7 @@ Call log:
           - /url: "#"
         - link "Tilgjengelighetserklæring" [ref=e205] [cursor=pointer]:
           - /url: "#"
-  - generic [ref=e206]: v0.8.2
+  - generic [ref=e206]: v0.8.3
 ```
 
 # Test source
