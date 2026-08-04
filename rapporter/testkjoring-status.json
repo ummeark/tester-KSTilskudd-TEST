@@ -1,6 +1,6 @@
 {
   "dato": "2026-08-04",
-  "startet": "09:37",
+  "startet": "09:56",
   "tester": [
     {
       "id": "rapport",
@@ -8,7 +8,8 @@
       "fil": "uu-rapport.html",
       "status": "ferdig",
       "info": "WCAG-brudd: 2 (kritiske: 0, alvorlige: 1)",
-      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-04/uu-rapport.html"
+      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-04/uu-rapport.html",
+      "varighet": "8m 4s"
     },
     {
       "id": "monkey",
@@ -16,7 +17,8 @@
       "fil": "monkey-rapport.html",
       "status": "ferdig",
       "info": "Kritiske funn: 0",
-      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-04/monkey-rapport.html"
+      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-04/monkey-rapport.html",
+      "varighet": "4m 22s"
     },
     {
       "id": "sikkerhet",
@@ -24,7 +26,8 @@
       "fil": "sikkerhet-rapport.html",
       "status": "ferdig",
       "info": "Score: 78/100",
-      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-04/sikkerhet-rapport.html"
+      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-04/sikkerhet-rapport.html",
+      "varighet": "40s"
     },
     {
       "id": "negativ",
@@ -32,15 +35,17 @@
       "fil": "negativ-rapport.html",
       "status": "ferdig",
       "info": "Score: 50/100",
-      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-04/negativ-rapport.html"
+      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-04/negativ-rapport.html",
+      "varighet": "27s"
     },
     {
       "id": "ytelse",
       "navn": "Ytelsestest",
       "fil": "ytelse-rapport.html",
       "status": "ferdig",
-      "info": "Score: 100 | LCP: 56ms | FCP: 56ms | TTFB: 34ms | Last: 77ms | 0KB | 16 req",
-      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-04/ytelse-rapport.html"
+      "info": "Ferdig",
+      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-04/ytelse-rapport.html",
+      "varighet": "28s"
     },
     {
       "id": "brukerhistorie",
@@ -48,8 +53,9 @@
       "fil": "brukerhistorie-rapport.html",
       "status": "ferdig",
       "info": "69 passed · 3 failed",
-      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-04/brukerhistorie-rapport.html"
+      "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-04/brukerhistorie-rapport.html",
+      "varighet": "4m 21s"
     }
   ],
-  "avsluttet": "09:52"
+  "avsluttet": "10:14"
 }
