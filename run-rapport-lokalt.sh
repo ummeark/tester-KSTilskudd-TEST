@@ -25,29 +25,12 @@ export PATH="/usr/local/bin:/opt/homebrew/bin:$HOME/.nvm/versions/node/$(ls $HOM
 
 echo "[$DATO $(date +%H:%M:%S)] Node: $(node --version 2>&1)" >> "$LOG_FIL"
 
-# Kjør UU-analyse
-echo "[$DATO $(date +%H:%M:%S)] Kjører npm run rapport..." >> "$LOG_FIL"
-npm run rapport >> "$LOG_FIL" 2>&1
+# Initialiser progress-sporing
+node testkjoring.js init >> "$LOG_FIL" 2>&1
 
-# Kjør monkey-testing
-echo "[$DATO $(date +%H:%M:%S)] Kjører npm run monkey..." >> "$LOG_FIL"
-npm run monkey >> "$LOG_FIL" 2>&1
-
-# Kjør sikkerhetstest
-echo "[$DATO $(date +%H:%M:%S)] Kjører npm run sikkerhet..." >> "$LOG_FIL"
-npm run sikkerhet >> "$LOG_FIL" 2>&1
-
-# Kjør negativ testing
-echo "[$DATO $(date +%H:%M:%S)] Kjører npm run negativ..." >> "$LOG_FIL"
-npm run negativ >> "$LOG_FIL" 2>&1
-
-# Kjør ytelsestest
-echo "[$DATO $(date +%H:%M:%S)] Kjører npm run ytelse..." >> "$LOG_FIL"
-npm run ytelse >> "$LOG_FIL" 2>&1
-
-# Kjør brukerhistorietester
-echo "[$DATO $(date +%H:%M:%S)] Kjører npm run brukerhistorie..." >> "$LOG_FIL"
-npm run brukerhistorie >> "$LOG_FIL" 2>&1
+# Kjør alle seks tester parallelt
+echo "[$DATO $(date +%H:%M:%S)] Kjører alle tester parallelt..." >> "$LOG_FIL"
+"$REPO_DIR/kjoer-alle-parallelt.sh" >> "$LOG_FIL" 2>&1
 
 # Generer arkiv
 echo "[$DATO $(date +%H:%M:%S)] Kjører npm run arkiv..." >> "$LOG_FIL"

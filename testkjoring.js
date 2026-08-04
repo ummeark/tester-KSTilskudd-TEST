@@ -1,5 +1,8 @@
 // Sporer testkjøring og genererer én lokal progress-side som oppdateres underveis.
 // Bruk: node testkjoring.js init|kjorer|ferdig|feil [testId] [info]
+//
+// Statusdata lagres i én fil per test (testkjoring-status-<id>.json) slik at
+// parallelle prosesser ikke overskriver hverandres data.
 
 import fs from 'fs';
 import path from 'path';
@@ -7,7 +10,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const RAPPORT_DIR = path.join(__dirname, 'rapporter');
-const STATUS_FIL = path.join(RAPPORT_DIR, 'testkjoring-status.json');
+const META_FIL = path.join(RAPPORT_DIR, 'testkjoring-meta.json');
 const HTML_FIL = path.join(RAPPORT_DIR, 'testkjoring-progress.html');
 
 const TESTER = [
@@ -21,7 +24,7 @@ const TESTER = [
 
 const lesTid = () => new Date().toTimeString().slice(0, 5);
 const lesDato = () => new Date().toISOString().slice(0, 10);
-const lesStatus = () => JSON.parse(fs.readFileSync(STATUS_FIL, 'utf8'));
+const statusFil = (id) => path.join(RAPPORT_DIR, `testkjoring-status-${id}.json`);
 
 function formaterVarighet(ms) {
   const sek = Math.round(ms / 1000);
@@ -29,24 +32,39 @@ function formaterVarighet(ms) {
   return min > 0 ? `${min}m ${sek % 60}s` : `${sek}s`;
 }
 
-function skrivOgGenerer(status) {
-  fs.mkdirSync(RAPPORT_DIR, { recursive: true });
-  fs.writeFileSync(STATUS_FIL, JSON.stringify(status, null, 2));
-  fs.writeFileSync(HTML_FIL, genererHTML(status));
+function lesMeta() {
+  try { return JSON.parse(fs.readFileSync(META_FIL, 'utf8')); }
+  catch { return { dato: lesDato(), startet: lesTid() }; }
+}
+
+function lesTestStatus(id) {
+  const meta = TESTER.find(t => t.id === id);
+  try { return JSON.parse(fs.readFileSync(statusFil(id), 'utf8')); }
+  catch { return { id, navn: meta?.navn ?? id, status: 'venter' }; }
+}
+
+function lesAlleTester() {
+  return TESTER.map(t => lesTestStatus(t.id));
+}
+
+function skrivHTML() {
+  const meta = lesMeta();
+  const tester = lesAlleTester();
+  fs.writeFileSync(HTML_FIL, genererHTML(meta, tester));
 }
 
 const TEST_IKONER = { rapport: '♿', monkey: '🐒', sikkerhet: '🔐', negativ: '🧪', ytelse: '🚀', brukerhistorie: '📖' };
 
-function genererHTML(status) {
-  const alleFerdig = status.tester.every(t => t.status === 'ferdig' || t.status === 'feil');
-  const antallFerdig = status.tester.filter(t => t.status === 'ferdig' || t.status === 'feil').length;
+function genererHTML(meta, tester) {
+  const alleFerdig = tester.every(t => t.status === 'ferdig' || t.status === 'feil');
+  const antallFerdig = tester.filter(t => t.status === 'ferdig' || t.status === 'feil').length;
 
   const borderFarge = { venter: '#e5e3de', kjorer: '#0a1355', ferdig: '#07604f', feil: '#c53030' };
   const scoreFarge  = { venter: '#9ca3af', kjorer: '#0a1355', ferdig: '#07604f', feil: '#c53030' };
 
   const kortKlasse = (s) => ({ venter: '', kjorer: '', ferdig: 'god', feil: 'darlig' })[s] ?? '';
 
-  const kort = status.tester.map(t => {
+  const kort = tester.map(t => {
     const ikonHtml = t.status === 'kjorer'
       ? `<span class="spin">${TEST_IKONER[t.id] ?? '🔄'}</span>`
       : (TEST_IKONER[t.id] ?? '🔬');
@@ -74,8 +92,8 @@ function genererHTML(status) {
   }).join('');
 
   const samletTekst = alleFerdig
-    ? `Alle ${status.tester.length} tester fullført – ${status.avsluttet}`
-    : `${antallFerdig} av ${status.tester.length} tester fullført`;
+    ? `Alle ${tester.length} tester fullført – ${meta.avsluttet}`
+    : `${antallFerdig} av ${tester.length} tester fullført`;
 
   const samletKlasse = alleFerdig ? 'god' : (antallFerdig > 0 ? 'middels' : '');
 
@@ -85,7 +103,7 @@ function genererHTML(status) {
   <meta charset="UTF-8">
   ${alleFerdig ? '' : '<meta http-equiv="refresh" content="2">'}
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Testkjøring ${status.dato}</title>
+  <title>Testkjøring ${meta.dato}</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: system-ui, -apple-system, sans-serif; background: #faf6f0; color: #0f0e17; min-height: 100vh; }
@@ -131,13 +149,13 @@ function genererHTML(status) {
     <div class="header-merkevare">KS Tilskudd</div>
     <div class="env-badge">TEST-MILJØ</div>
     <h1>Testkjøring</h1>
-    <p>Startet ${status.startet}${status.avsluttet ? ` · Ferdig ${status.avsluttet}` : ''} · ${status.dato}</p>
+    <p>Startet ${meta.startet}${meta.avsluttet ? ` · Ferdig ${meta.avsluttet}` : ''} · ${meta.dato}</p>
   </div>
 </header>
 <div class="container">
 
   <div class="samlet-seksjon">
-    <div class="samlet-score ${samletKlasse}">${antallFerdig}<span style="font-size:1.2rem;font-weight:400;opacity:.5">/${status.tester.length}</span></div>
+    <div class="samlet-score ${samletKlasse}">${antallFerdig}<span style="font-size:1.2rem;font-weight:400;opacity:.5">/${tester.length}</span></div>
     <div class="samlet-tekst">
       <h2>${samletTekst}</h2>
       <p>${alleFerdig ? 'Alle tester er fullført.' : 'Siden oppdateres automatisk hvert 2. sekund.'}</p>
@@ -149,7 +167,7 @@ function genererHTML(status) {
   </div>
 
 </div>
-<footer>tilskuddsportal-testverktoy-TEST · ${status.dato}</footer>
+<footer>tilskuddsportal-testverktoy-TEST · ${meta.dato}</footer>
 </body>
 </html>`;
 }
@@ -157,53 +175,73 @@ function genererHTML(status) {
 const [kommando, testId, ...infoArr] = process.argv.slice(2);
 const info = infoArr.join(' ') || undefined;
 
+fs.mkdirSync(RAPPORT_DIR, { recursive: true });
+
 switch (kommando) {
   case 'init': {
-    const status = {
-      dato: lesDato(),
-      startet: lesTid(),
-      tester: TESTER.map(t => ({ id: t.id, navn: t.navn, fil: t.fil, status: 'venter' })),
-    };
-    skrivOgGenerer(status);
+    const meta = { dato: lesDato(), startet: lesTid() };
+    fs.writeFileSync(META_FIL, JSON.stringify(meta, null, 2));
+    for (const t of TESTER) {
+      fs.writeFileSync(statusFil(t.id), JSON.stringify({ id: t.id, navn: t.navn, status: 'venter' }, null, 2));
+    }
+    skrivHTML();
     console.log(HTML_FIL);
     break;
   }
 
   case 'kjorer': {
-    const status = lesStatus();
-    const test = status.tester.find(t => t.id === testId);
-    if (test) { test.status = 'kjorer'; test._startMs = Date.now(); }
-    skrivOgGenerer(status);
+    const metaDef = TESTER.find(t => t.id === testId);
+    if (!metaDef) { console.error(`Ukjent test: ${testId}`); process.exit(1); }
+    const testStatus = { id: testId, navn: metaDef.navn, status: 'kjorer', _startMs: Date.now() };
+    fs.writeFileSync(statusFil(testId), JSON.stringify(testStatus, null, 2));
+    skrivHTML();
     break;
   }
 
   case 'ferdig': {
     const dato = lesDato();
-    const status = lesStatus();
-    const meta = TESTER.find(t => t.id === testId);
-    const test = status.tester.find(t => t.id === testId);
-    if (test) {
-      test.status = 'ferdig';
-      if (info) test.info = info;
-      if (meta?.fil) test.rapport = path.join(RAPPORT_DIR, dato, meta.fil);
-      if (test._startMs) { test.varighet = formaterVarighet(Date.now() - test._startMs); delete test._startMs; }
+    const metaDef = TESTER.find(t => t.id === testId);
+    const testStatus = lesTestStatus(testId);
+    testStatus.status = 'ferdig';
+    if (info) testStatus.info = info;
+    if (metaDef?.fil) testStatus.rapport = path.join(RAPPORT_DIR, dato, metaDef.fil);
+    if (testStatus._startMs) {
+      testStatus.varighet = formaterVarighet(Date.now() - testStatus._startMs);
+      delete testStatus._startMs;
     }
-    if (status.tester.every(t => t.status === 'ferdig' || t.status === 'feil')) {
-      status.avsluttet = lesTid();
+    fs.writeFileSync(statusFil(testId), JSON.stringify(testStatus, null, 2));
+
+    const alleTester = lesAlleTester();
+    if (alleTester.every(t => t.status === 'ferdig' || t.status === 'feil')) {
+      const runMeta = lesMeta();
+      if (!runMeta.avsluttet) {
+        runMeta.avsluttet = lesTid();
+        fs.writeFileSync(META_FIL, JSON.stringify(runMeta, null, 2));
+      }
     }
-    skrivOgGenerer(status);
+    skrivHTML();
     break;
   }
 
   case 'feil': {
-    const status = lesStatus();
-    const test = status.tester.find(t => t.id === testId);
-    if (test) {
-      test.status = 'feil';
-      if (info) test.info = info;
-      if (test._startMs) { test.varighet = formaterVarighet(Date.now() - test._startMs); delete test._startMs; }
+    const testStatus = lesTestStatus(testId);
+    testStatus.status = 'feil';
+    if (info) testStatus.info = info;
+    if (testStatus._startMs) {
+      testStatus.varighet = formaterVarighet(Date.now() - testStatus._startMs);
+      delete testStatus._startMs;
     }
-    skrivOgGenerer(status);
+    fs.writeFileSync(statusFil(testId), JSON.stringify(testStatus, null, 2));
+
+    const alleTester = lesAlleTester();
+    if (alleTester.every(t => t.status === 'ferdig' || t.status === 'feil')) {
+      const runMeta = lesMeta();
+      if (!runMeta.avsluttet) {
+        runMeta.avsluttet = lesTid();
+        fs.writeFileSync(META_FIL, JSON.stringify(runMeta, null, 2));
+      }
+    }
+    skrivHTML();
     break;
   }
 
