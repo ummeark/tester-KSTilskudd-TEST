@@ -9,9 +9,10 @@ Testene kjøres daglig på hverdager og publiseres til GitHub Pages:
 
 ## Systemkrav
 
-- **Node.js** v18 eller nyere (testet med v22)
-- **macOS** (launchd-automatisering er macOS-spesifikk)
-- Internettilgang til tilskudd.fiks.test.ks.no
+- **Node.js** v20 eller nyere
+- Internettilgang til tilskudd.fiks.test.ks.no (åpent, ingen VPN nødvendig)
+
+> Automatisk daglig kjøring via launchd er macOS-spesifikk. Manuelle testkjøringer fungerer på macOS, Linux og Windows.
 
 ---
 
@@ -23,8 +24,8 @@ git clone https://github.com/ks-no/tilskuddsportal-testverktoy-TEST.git
 cd tilskuddsportal-testverktoy-TEST
 
 # 2. Installer avhengigheter (inkludert Playwright Chromium – tar litt tid)
-npm install
-npx playwright install chromium
+npm ci
+npx playwright install chromium --with-deps
 
 # 3. Verifiser at du er i riktig miljø
 npm run valider
@@ -33,6 +34,18 @@ npm run valider
 ---
 
 ## Kjør tester manuelt
+
+### Alle seks tester parallelt (anbefalt)
+
+```bash
+node testkjoring.js init
+open rapporter/testkjoring-progress.html   # macOS – åpner progress-siden
+./kjoer-alle-parallelt.sh
+```
+
+Progress-siden oppdateres automatisk underveis og viser status og varighet per test. Alle seks tester kjøres parallelt — typisk ferdig på 5–10 minutter.
+
+### Én og én test
 
 ```bash
 npm run rapport         # WCAG/UU-analyse (axe-core, opptil 20 sider)
@@ -43,13 +56,13 @@ npm run ytelse          # Ytelsesmåling
 npm run brukerhistorie  # Brukerhistorietester (fast bruker + tilfeldig bruker)
 ```
 
-Rapporter genereres i `rapporter/YYYY-MM-DD/` og åpnes i nettleseren automatisk.
+Rapporter genereres i `rapporter/YYYY-MM-DD/`.
 
-Vil du publisere til arkivsiden på GitHub Pages:
+### Publiser til GitHub Pages
 
 ```bash
 npm run arkiv        # Kopier rapporter til docs/ og regenerer arkivsiden
-git add docs/ && git commit -m "Oppdater rapporter" && git push
+git add rapporter/ docs/ brukerhistorie-resultater/ && git commit -m "Testrapport $(date +%Y-%m-%d)" && git push
 ```
 
 ---
@@ -188,7 +201,7 @@ Testene kan også kjøres direkte fra Claude Code med følgende skills:
 | `/kstilskudd-negativ-testing` | Negativ testing |
 | `/kstilskudd-ytelse-testing` | Ytelsestest |
 | `/kstilskudd-brukerhistorie-testing` | Brukerhistorietester |
-| `/kstilskudd-alle-tester-TEST` | Alle seks tester + publisering til GitHub Pages |
+| `/tilskuddsportal-alle-tester-TEST` | Alle seks tester parallelt + publisering til GitHub Pages |
 
 **Andre**
 
