@@ -23,6 +23,12 @@ const lesTid = () => new Date().toTimeString().slice(0, 5);
 const lesDato = () => new Date().toISOString().slice(0, 10);
 const lesStatus = () => JSON.parse(fs.readFileSync(STATUS_FIL, 'utf8'));
 
+function formaterVarighet(ms) {
+  const sek = Math.round(ms / 1000);
+  const min = Math.floor(sek / 60);
+  return min > 0 ? `${min}m ${sek % 60}s` : `${sek}s`;
+}
+
 function skrivOgGenerer(status) {
   fs.mkdirSync(RAPPORT_DIR, { recursive: true });
   fs.writeFileSync(STATUS_FIL, JSON.stringify(status, null, 2));
@@ -51,13 +57,16 @@ function genererHTML(status) {
       : `<span style="color:${scoreFarge[t.status]}">${t.info ?? (t.status === 'feil' ? 'Feilet' : 'Ferdig')}</span>`;
 
     const statusLabel = { venter: 'VENTER', kjorer: 'KJØRES NÅ', ferdig: 'FERDIG', feil: 'FEIL' }[t.status] ?? '';
+    const varighetHtml = t.varighet
+      ? `<span style="font-size:.68rem;color:#9ca3af;font-weight:400;margin-left:.5rem">⏱ ${t.varighet}</span>`
+      : '';
 
     return `<div class="dash-kort ${kortKlasse(t.status)}" style="border-top-color:${borderFarge[t.status]}">
   <div class="dash-topp">
     <span class="dash-ikon">${ikonHtml}</span>
     <div style="flex:1">
       <div class="dash-tittel">${t.navn}</div>
-      <div style="font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:${scoreFarge[t.status]};margin-top:2px">${statusLabel}</div>
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:${scoreFarge[t.status]};margin-top:2px">${statusLabel}${varighetHtml}</div>
     </div>
   </div>
   <div class="dash-nøkkel">${statusTekst}</div>
@@ -163,7 +172,7 @@ switch (kommando) {
   case 'kjorer': {
     const status = lesStatus();
     const test = status.tester.find(t => t.id === testId);
-    if (test) test.status = 'kjorer';
+    if (test) { test.status = 'kjorer'; test._startMs = Date.now(); }
     skrivOgGenerer(status);
     break;
   }
@@ -177,6 +186,7 @@ switch (kommando) {
       test.status = 'ferdig';
       if (info) test.info = info;
       if (meta?.fil) test.rapport = path.join(RAPPORT_DIR, dato, meta.fil);
+      if (test._startMs) { test.varighet = formaterVarighet(Date.now() - test._startMs); delete test._startMs; }
     }
     if (status.tester.every(t => t.status === 'ferdig' || t.status === 'feil')) {
       status.avsluttet = lesTid();
@@ -191,6 +201,7 @@ switch (kommando) {
     if (test) {
       test.status = 'feil';
       if (info) test.info = info;
+      if (test._startMs) { test.varighet = formaterVarighet(Date.now() - test._startMs); delete test._startMs; }
     }
     skrivOgGenerer(status);
     break;
