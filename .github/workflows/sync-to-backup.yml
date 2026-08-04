@@ -13,8 +13,9 @@ jobs:
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Push to backup repo
         run: |
           git remote add backup https://x-access-token:${{ secrets.PERSONAL_REPO_TOKEN }}@github.com/ummeark/tester-KSTilskudd-TEST.git
-          git -c http.https://github.com/.extraheader="" push backup main
+          git push backup main
