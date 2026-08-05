@@ -167,7 +167,7 @@ function genererHTML(meta, tester) {
   </div>
 
 </div>
-<footer>tilskuddsportal-testverktoy-TEST · ${meta.dato}</footer>
+<footer>tilskuddsportal-testverktoy-TEST · ${meta.dato} · <a href="https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/rapport.html" style="color:#9ca3af" target="_blank">GitHub Pages-rapport →</a></footer>
 </body>
 </html>`;
 }
