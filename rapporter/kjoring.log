@@ -42500,3 +42500,38 @@ Rapport skrevet til docs/brukerhistorie-rapport.html og rapporter/2026-08-04/bru
 [2026-08-04 10:40:04] ✅ Allerede kjørt i dag – hopper over
 [2026-08-04 10:50:03] 🔄 sjekk-og-kjoer startet av launchd
 [2026-08-04 10:50:03] ✅ Allerede kjørt i dag – hopper over
+[2026-08-05 08:07:45] 🔄 sjekk-og-kjoer startet av launchd
+[2026-08-05 08:07:45] ⏳ Nettstedet ikke tilgjengelig (HTTP 000000) – prøver igjen om 10 min
+[2026-08-05 08:14:38] 🔄 sjekk-og-kjoer startet av launchd
+[2026-08-05 08:14:38] ⏳ Nettstedet ikke tilgjengelig (HTTP 000000) – prøver igjen om 10 min
+[2026-08-05 08:29:20] 🔄 sjekk-og-kjoer startet av launchd
+[2026-08-05 08:29:20] ⏳ Nettstedet ikke tilgjengelig (HTTP 000000) – prøver igjen om 10 min
+[2026-08-05 08:30:05] 🔄 sjekk-og-kjoer startet av launchd
+[2026-08-05 08:30:05] 🚀 Starter tester (ikke kjørt i dag)
+=======================================
+[2026-08-05 08:30:06] Starter daglig UU-test
+[2026-08-05 08:31:19] ❌ Nettstedet ikke tilgjengelig – avbryter
+[2026-08-05 08:40:05] 🔄 sjekk-og-kjoer startet av launchd
+[2026-08-05 08:40:05] 🚀 Starter tester (ikke kjørt i dag)
+=======================================
+[2026-08-05 08:40:05] Starter daglig UU-test
+[2026-08-05 08:40:05] Node: v24.12.0
+/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/testkjoring-progress.html
+[2026-08-05 08:40:05] Kjører alle tester parallelt...
+✅ ytelse ferdig
+✅ sikkerhet ferdig
+✅ negativ ferdig
+✅ monkey ferdig
+✅ rapport ferdig
+✅ brukerhistorie ferdig
+
+Alle tester fullført.
+[2026-08-05 08:44:39] Kjører npm run arkiv...
+
+> uu-tester@1.0.0 arkiv
+> node generer-arkiv.js
+
+✅ Siste rapporter og skjermdumper kopiert til docs/ (2026-08-05)
+✅ Arkiv generert → docs/arkiv.html
+   Datoer: 78 | UU: 183 | Monkey: 150 | Sikkerhet: 149 | Negativ: 149
+✅ Dashboard generert → docs/rapport.html
