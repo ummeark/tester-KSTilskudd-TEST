@@ -95,5 +95,5 @@ jobs:
         run: |
           echo ""
           echo "Testresultater publisert til GitHub Pages:"
-          echo "  https://ks-no.github.io/tilskuddsportal-testverktoy-TEST/rapport.html"
-          echo "  https://ks-no.github.io/tilskuddsportal-testverktoy-TEST/kjor-tester.html"
+          echo "  https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/rapport.html"
+          echo "  https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/kjor-tester.html"

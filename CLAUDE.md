@@ -48,7 +48,7 @@ brukerhistorie-resultater/      Mellomlagring for brukerhistorietester
   traces-tilfeldig/             Playwright-traces tilfeldig bruker
   skjermbilder/                 Skjermbilder fra feilede tester
 
-docs/                           GitHub Pages (ks-no.github.io/tilskuddsportal-testverktoy-TEST/)
+docs/                           GitHub Pages (developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/)
   rapport.html                  Testdashboard (samlet oversikt)
   uu-rapport.html               Siste UU-rapport
   monkey-rapport.html           Siste monkey-rapport

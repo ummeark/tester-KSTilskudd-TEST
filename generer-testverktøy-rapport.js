@@ -97,7 +97,7 @@ const html = `<!DOCTYPE html>
 <script>if(location.protocol!=='file:'&&!sessionStorage.getItem('ks-auth'))location.replace('logg-inn.html?redir='+encodeURIComponent(location.href))</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Test av Testdashboard – tester-KSTilskudd-TEST</title>
+<title>Test av Testdashboard – tilskuddsportal-testverktoy-TEST</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: system-ui, -apple-system, sans-serif; background: #faf6f0; color: #0f0e17; min-height: 100vh; }
@@ -157,7 +157,7 @@ const html = `<!DOCTYPE html>
   <div class="header-inner">
     <div class="header-merkevare">KS · Tilskudd · Testverktøy</div>
     <div class="env-badge">⚙ Test av testverktøy</div>
-    <h1>Test av Testdashboard – tester-KSTilskudd-TEST</h1>
+    <h1>Test av Testdashboard – tilskuddsportal-testverktoy-TEST</h1>
     <p>Automatiserte tester av selve testverktøyet (GitHub Pages-rapportsiden)</p>
   </div>
 </header>
