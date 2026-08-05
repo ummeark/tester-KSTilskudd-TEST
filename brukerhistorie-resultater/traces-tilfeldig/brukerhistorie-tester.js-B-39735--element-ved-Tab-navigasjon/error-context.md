@@ -57,7 +57,7 @@ Received string:  "/"
           - /url: "#"
         - link "Tilgjengelighetserklæring" [ref=e33] [cursor=pointer]:
           - /url: "#"
-  - generic [ref=e34]: v0.8.3
+  - generic [ref=e34]: v0.8.4
 ```
 
 # Test source

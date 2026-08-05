@@ -2,7 +2,7 @@
   "id": "monkey",
   "navn": "Monkey-test",
   "status": "ferdig",
-  "info": "Kritiske funn: 1",
+  "info": "Kritiske funn: 0",
   "rapport": "/Users/ummearkhan/tilskuddsportal-testverktoy-TEST/rapporter/2026-08-05/monkey-rapport.html",
-  "varighet": "1m 42s"
+  "varighet": "14s"
 }
