@@ -1,15 +1,15 @@
 {
   "url": "https://tilskudd.fiks.test.ks.no/",
   "dato": "2026-08-05",
-  "tidspunkt": "08:40",
+  "tidspunkt": "09:15",
   "score": 100,
   "totalt": {
     "sider": 7,
-    "snittLCP": 77,
-    "snittFCP": 77,
-    "snittTTFB": 21,
-    "snittLoad": 91,
-    "totalSizeKB": 41,
+    "snittLCP": 79,
+    "snittFCP": 79,
+    "snittTTFB": 25,
+    "snittLoad": 96,
+    "totalSizeKB": 3,
     "totalRequests": 107
   },
   "sider": [
@@ -17,63 +17,63 @@
       "url": "https://tilskudd.fiks.test.ks.no/minside",
       "tittel": "KS Tilskudd - Min side",
       "score": 100,
-      "ttfb": 39,
-      "load": 88,
+      "ttfb": 62,
+      "load": 110,
       "sizeKB": 0,
       "requests": 16,
-      "lcp": 60,
-      "fcp": 60
+      "lcp": 88,
+      "fcp": 88
     },
     {
       "url": "https://tilskudd.fiks.test.ks.no/",
       "tittel": "KS Tilskudd - Hjem",
       "score": 100,
-      "ttfb": 20,
-      "load": 89,
+      "ttfb": 26,
+      "load": 71,
       "sizeKB": 0,
       "requests": 16,
-      "lcp": 64,
-      "fcp": 64
+      "lcp": 48,
+      "fcp": 48
     },
     {
       "url": "https://tilskudd.fiks.test.ks.no/logout",
       "tittel": "KS Tilskudd",
       "score": 100,
-      "ttfb": 23,
-      "load": 128,
+      "ttfb": 22,
+      "load": 121,
       "sizeKB": 1,
       "requests": 16,
-      "lcp": 104,
-      "fcp": 104
+      "lcp": 96,
+      "fcp": 96
     },
     {
       "url": "https://tilskudd.fiks.test.ks.no/minside/utkast",
       "tittel": "ID-porten",
       "score": 100,
-      "ttfb": 18,
-      "load": 112,
-      "sizeKB": 38,
+      "ttfb": 14,
+      "load": 130,
+      "sizeKB": 0,
       "requests": 14,
-      "lcp": 96,
-      "fcp": 96
+      "lcp": 92,
+      "fcp": 92
     },
     {
       "url": "https://tilskudd.fiks.test.ks.no/minside/aktiv",
       "tittel": "ID-porten",
       "score": 100,
-      "ttfb": 12,
-      "load": 80,
+      "ttfb": 19,
+      "load": 92,
       "sizeKB": 0,
       "requests": 14,
-      "lcp": 84,
-      "fcp": 84
+      "lcp": 96,
+      "fcp": 96
     },
     {
       "url": "https://tilskudd.fiks.test.ks.no/minside/avsluttet",
       "tittel": "ID-porten",
       "score": 100,
-      "ttfb": 12,
-      "load": 79,
+      "ttfb": 11,
+      "load": 80,
       "sizeKB": 0,
       "requests": 14,
       "lcp": 84,
@@ -83,12 +83,12 @@
       "url": "https://tilskudd.fiks.test.ks.no/om",
       "tittel": "KS Tilskudd",
       "score": 100,
-      "ttfb": 20,
-      "load": 64,
+      "ttfb": 18,
+      "load": 69,
       "sizeKB": 2,
       "requests": 17,
-      "lcp": 44,
-      "fcp": 44
+      "lcp": 48,
+      "fcp": 48
     }
   ]
 }
