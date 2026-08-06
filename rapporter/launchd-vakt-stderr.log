@@ -107,3 +107,7 @@ To https://github.com/ks-no/tilskuddsportal-testverktoy-TEST.git
 [0;32m✅ Miljøvalidering OK – ingen PROD-kontaminering i TEST-repo[0m
 To https://github.com/ks-no/tilskuddsportal-testverktoy-TEST.git
    5bcbd7d..c7fedc5  main -> main
+🔍 Validerer miljøseparasjon (TEST – tilskudd.fiks.test.ks.no)...
+[0;32m✅ Miljøvalidering OK – ingen PROD-kontaminering i TEST-repo[0m
+To https://github.com/ks-no/tilskuddsportal-testverktoy-TEST.git
+   4e69cec..469b36a  main -> main
