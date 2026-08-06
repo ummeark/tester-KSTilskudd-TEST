@@ -814,13 +814,13 @@ const html = `<!DOCTYPE html>
         <div>
           <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#0a1355;margin-bottom:.7rem">🔐 Fast bruker (${bruktFnr ?? 'ukjent'})</div>
           <div class="sider-liste">
-            ${besøkteNegativ.map(u => `<div class="side-url-rad"><a href="${u}" target="_blank">${u.replace(START_URL.replace(/\/$/, ''), '') || '/'}</a></div>`).join('')}
+            ${besøkteNegativ.map(u => `<div class="side-url-rad"><a href="${u}" target="_blank" data-testurl="true">${u.replace(START_URL.replace(/\/$/, ''), '') || '/'}</a></div>`).join('')}
           </div>
         </div>
         ${besøkteNegativ2 ? `<div>
           <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#065f46;margin-bottom:.7rem">🎲 Tilfeldig bruker (${bruktFnr2 ?? 'ukjent'})</div>
           <div class="sider-liste">
-            ${besøkteNegativ2.map(u => `<div class="side-url-rad"><a href="${u}" target="_blank">${u.replace(START_URL.replace(/\/$/, ''), '') || '/'}</a></div>`).join('')}
+            ${besøkteNegativ2.map(u => `<div class="side-url-rad"><a href="${u}" target="_blank" data-testurl="true">${u.replace(START_URL.replace(/\/$/, ''), '') || '/'}</a></div>`).join('')}
           </div>
         </div>` : ''}
       </div>

@@ -198,22 +198,25 @@ async function analyserSide(url, indeks, oppdagetFra = null, ctx = context, tarS
     // Finn interne lenker
     const aLenkerLoc = page.locator('a[href]');
     const aLenkerCount = await aLenkerLoc.count();
+    const pageUrl = page.url();
     const internelenker = [];
     for (let li = 0; li < aLenkerCount; li++) {
       const href = await aLenkerLoc.nth(li).getAttribute('href') ?? '';
-      const fullHref = href.startsWith('http') ? href : (href.startsWith('/') ? baseOrigin + href : '');
+      let fullHref;
+      try { fullHref = href ? new URL(href, pageUrl).href : ''; } catch { fullHref = ''; }
       if (fullHref.startsWith(baseOrigin) && !fullHref.includes('#') && !fullHref.includes('/authorize/')) {
         internelenker.push(fullHref.split('?')[0].replace(/\/$/, '') || '/');
       }
     }
 
-    // Lenkesjekk
+    // Lenkesjekk – bruk pageUrl (etter redirect) for korrekt relativ URL-resolving
     const allelenker = [];
     for (let li = 0; li < aLenkerCount; li++) {
       const a = aLenkerLoc.nth(li);
       const href = await a.getAttribute('href') ?? '';
+      const dataTesturl = await a.getAttribute('data-testurl') ?? '';
       let fullHref;
-      try { fullHref = href ? new URL(href, url).href : ''; } catch { fullHref = href; }
+      try { fullHref = href ? new URL(href, pageUrl).href : ''; } catch { fullHref = href; }
       const innerTekst = (await a.innerText().catch(() => '')).trim();
       const ariaLabel = await a.getAttribute('aria-label') ?? '';
       const tekst = innerTekst || ariaLabel || '(ingen tekst)';
@@ -222,13 +225,18 @@ async function analyserSide(url, indeks, oppdagetFra = null, ctx = context, tarS
         tekst,
         href: fullHref,
         intern: fullHref.startsWith(baseOrigin),
-        harTekst
+        harTekst,
+        erTestUrl: dataTesturl === 'true',
       });
     }
 
     const lenkeSjekk = await Promise.all(
       allelenker.map(async (l) => {
         if (!l.href || l.href.startsWith('mailto:') || l.href.startsWith('tel:') || l.href.startsWith('javascript:') || l.href.includes('/authorize/')) {
+          return { ...l, status: 'skip', ok: true };
+        }
+        // Lenker markert som test-URLer i rapporten (data-testurl) eller til github.com (krever innlogging)
+        if (l.erTestUrl || l.href.startsWith('https://github.com/')) {
           return { ...l, status: 'skip', ok: true };
         }
         // Personvernerklæring og Tilgjengelighetserklæring er ikke implementert ennå – hopp over når href er plassholder
@@ -238,10 +246,13 @@ async function analyserSide(url, indeks, oppdagetFra = null, ctx = context, tarS
         }
         try {
           const r = await fetch(l.href, { method: 'HEAD', signal: AbortSignal.timeout(LINK_TIMEOUT) });
+          // 5xx = serverfeil, ikke død lenke (blokkering, midlertidig nede osv.)
+          if (r.status >= 500) return { ...l, status: 'skip', ok: true };
           return { ...l, status: r.status, ok: r.ok };
         } catch {
           try {
             const r = await fetch(l.href, { method: 'GET', signal: AbortSignal.timeout(LINK_TIMEOUT) });
+            if (r.status >= 500) return { ...l, status: 'skip', ok: true };
             return { ...l, status: r.status, ok: r.ok };
           } catch {
             return { ...l, status: 'feil', ok: false };
