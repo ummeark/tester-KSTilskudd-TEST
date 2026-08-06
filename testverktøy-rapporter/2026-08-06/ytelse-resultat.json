@@ -1,14 +1,14 @@
 {
   "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
   "dato": "2026-08-06",
-  "tidspunkt": "08:29",
+  "tidspunkt": "08:40",
   "score": 100,
   "totalt": {
     "sider": 20,
-    "snittLCP": 108,
-    "snittFCP": 152,
-    "snittTTFB": 110,
-    "snittLoad": 150,
+    "snittLCP": 155,
+    "snittFCP": 185,
+    "snittTTFB": 139,
+    "snittLoad": 193,
     "totalSizeKB": 8,
     "totalRequests": 6
   },
@@ -21,15 +21,15 @@
       "load": 4,
       "sizeKB": 0,
       "requests": 0,
-      "lcp": 16,
-      "fcp": 16
+      "lcp": 20,
+      "fcp": 20
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/rapport.html",
       "tittel": "KS Tilskudd – Testdashboard",
       "score": 100,
       "ttfb": 0,
-      "load": 5,
+      "load": 19,
       "sizeKB": 0,
       "requests": 0,
       "lcp": 28,
@@ -37,64 +37,64 @@
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/uu-rapport.html",
-      "tittel": "UU-rapport – 2026-08-05 14:53",
+      "tittel": "UU-rapport – 2026-08-06 08:30",
       "score": 100,
-      "ttfb": 161,
-      "load": 218,
+      "ttfb": 179,
+      "load": 239,
       "sizeKB": 0,
       "requests": 0,
-      "lcp": 228,
-      "fcp": 228
+      "lcp": 248,
+      "fcp": 248
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/monkey-rapport.html",
-      "tittel": "Monkey-testrapport – 2026-08-05 14:53",
+      "tittel": "Monkey-testrapport – 2026-08-06 08:30",
       "score": 100,
-      "ttfb": 149,
-      "load": 184,
+      "ttfb": 141,
+      "load": 171,
       "sizeKB": 0,
       "requests": 0,
-      "lcp": 192,
-      "fcp": 192
+      "lcp": 180,
+      "fcp": 180
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/sikkerhet-rapport.html",
-      "tittel": "Sikkerhetsrapport – 2026-08-05 14:53",
+      "tittel": "Sikkerhetsrapport – 2026-08-06 08:30",
       "score": 100,
-      "ttfb": 136,
-      "load": 169,
+      "ttfb": 131,
+      "load": 161,
       "sizeKB": 0,
       "requests": 0,
-      "lcp": 176,
-      "fcp": 176
+      "lcp": 168,
+      "fcp": 168
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/negativ-rapport.html",
-      "tittel": "Negativ testrapport – 2026-08-05 14:53",
+      "tittel": "Negativ testrapport – 2026-08-06 08:30",
       "score": 100,
-      "ttfb": 134,
-      "load": 175,
+      "ttfb": 126,
+      "load": 162,
       "sizeKB": 0,
       "requests": 0,
-      "lcp": 184,
-      "fcp": 184
+      "lcp": 168,
+      "fcp": 168
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/ytelse-rapport.html",
-      "tittel": "Ytelsesrapport – 2026-08-05 14:53",
+      "tittel": "Ytelsesrapport – 2026-08-06 08:30",
       "score": 100,
-      "ttfb": 129,
-      "load": 170,
+      "ttfb": 279,
+      "load": 323,
       "sizeKB": 0,
       "requests": 0,
-      "lcp": 176,
-      "fcp": 176
+      "lcp": 332,
+      "fcp": 332
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/brukerhistorie-rapport.html",
-      "tittel": "Brukerhistorietester – 2026-08-05 14:53",
+      "tittel": "Brukerhistorietester – 2026-08-06 08:30",
       "score": 100,
-      "ttfb": 139,
+      "ttfb": 140,
       "load": 192,
       "sizeKB": 0,
       "requests": 0,
@@ -105,133 +105,133 @@
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/arkiv.html",
       "tittel": "Testrapporter – Arkiv – KS Tilskudd",
       "score": 100,
-      "ttfb": 146,
-      "load": 214,
+      "ttfb": 235,
+      "load": 306,
       "sizeKB": 0,
       "requests": 0,
-      "lcp": 204,
-      "fcp": 204
+      "lcp": 296,
+      "fcp": 296
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/kjor-tester.html",
       "tittel": "Kjør tester – KS Tilskudd TEST",
       "score": 100,
-      "ttfb": 126,
-      "load": 157,
+      "ttfb": 123,
+      "load": 129,
       "sizeKB": 0,
       "requests": 2,
-      "lcp": 164,
-      "fcp": 164
+      "lcp": 156,
+      "fcp": 156
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-hub.html",
       "tittel": "Testdatahub – KS Tilskudd",
       "score": 100,
-      "ttfb": 10,
-      "load": 271,
+      "ttfb": 131,
+      "load": 584,
       "sizeKB": 1,
       "requests": 1,
-      "lcp": 148,
-      "fcp": 148
+      "lcp": 364,
+      "fcp": 364
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-generator.html",
       "tittel": "Testdatagenerator – KS Tilskudd",
       "score": 100,
-      "ttfb": 8,
-      "load": 101,
+      "ttfb": 201,
+      "load": 400,
       "sizeKB": 2,
       "requests": 1,
-      "lcp": 80,
-      "fcp": 80
+      "lcp": 284,
+      "fcp": 284
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
       "tittel": "Admin – KS Tilskudd Tester",
       "score": 100,
-      "ttfb": 11,
-      "load": 26,
+      "ttfb": 112,
+      "load": 132,
       "sizeKB": 5,
       "requests": 2,
-      "lcp": 44,
-      "fcp": 32
+      "lcp": 316,
+      "fcp": 140
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testverktoy-rapport.html",
       "tittel": "Test av Testdashboard – tilskuddsportal-testverktoy-TEST",
       "score": 100,
-      "ttfb": 139,
-      "load": 171,
+      "ttfb": 163,
+      "load": 189,
       "sizeKB": 0,
       "requests": 0,
-      "lcp": 180,
-      "fcp": 180
+      "lcp": 196,
+      "fcp": 196
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/skjermbilder/s1-link-name-0-element.png",
       "tittel": "s1-link-name-0-element.png (108×88)",
       "score": 100,
-      "ttfb": 130,
-      "load": 137,
+      "ttfb": 121,
+      "load": 127,
       "sizeKB": 0,
       "requests": 0,
-      "lcp": 148,
-      "fcp": 148
+      "lcp": 136,
+      "fcp": 136
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/skjermbilder/s1-link-name-0-side.png",
       "tittel": "s1-link-name-0-side.png (1280×900)",
       "score": 100,
-      "ttfb": 167,
-      "load": 173,
+      "ttfb": 137,
+      "load": 145,
       "sizeKB": 0,
       "requests": 0,
       "lcp": 0,
-      "fcp": 188
+      "fcp": 160
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/skjermbilder/innlogging-steg-1.png",
       "tittel": "innlogging-steg-1.png (1280×900)",
       "score": 100,
-      "ttfb": 173,
-      "load": 183,
+      "ttfb": 136,
+      "load": 141,
       "sizeKB": 0,
       "requests": 0,
       "lcp": 0,
-      "fcp": 200
+      "fcp": 152
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/skjermbilder/innlogging-steg-2.png",
       "tittel": "innlogging-steg-2.png (1280×900)",
       "score": 100,
-      "ttfb": 130,
-      "load": 136,
+      "ttfb": 131,
+      "load": 138,
       "sizeKB": 0,
       "requests": 0,
       "lcp": 0,
-      "fcp": 148
+      "fcp": 156
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/skjermbilder/innlogging-steg-3.png",
       "tittel": "innlogging-steg-3.png (1280×900)",
       "score": 100,
-      "ttfb": 157,
-      "load": 163,
+      "ttfb": 144,
+      "load": 149,
       "sizeKB": 0,
       "requests": 0,
       "lcp": 0,
-      "fcp": 176
+      "fcp": 164
     },
     {
       "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/skjermbilder/innlogging-steg-4.png",
       "tittel": "innlogging-steg-4.png (1280×900)",
       "score": 100,
-      "ttfb": 147,
-      "load": 153,
+      "ttfb": 145,
+      "load": 150,
       "sizeKB": 0,
       "requests": 0,
       "lcp": 0,
-      "fcp": 172
+      "fcp": 160
     }
   ]
 }
