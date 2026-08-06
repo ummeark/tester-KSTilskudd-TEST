@@ -1,0 +1,322 @@
+{
+  "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+  "dato": "2026-08-06",
+  "versjon": null,
+  "nettleser": "147.0.7727.15",
+  "totalt": {
+    "iterasjoner": 60,
+    "siderBesøkt": 3,
+    "jsErrors": 0,
+    "konsollFeil": 7,
+    "nettverksFeil": 7,
+    "kritiske": 24,
+    "alvorlige": 0,
+    "varighet": 3
+  },
+  "score": 0,
+  "jsErrors": [],
+  "konsollFeil": [
+    {
+      "melding": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "tid": "2026-08-06T06:27:42.162Z"
+    },
+    {
+      "melding": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "tid": "2026-08-06T06:27:42.453Z"
+    },
+    {
+      "melding": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "tid": "2026-08-06T06:27:42.594Z"
+    },
+    {
+      "melding": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "tid": "2026-08-06T06:27:42.835Z"
+    },
+    {
+      "melding": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "tid": "2026-08-06T06:27:42.848Z"
+    },
+    {
+      "melding": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "tid": "2026-08-06T06:27:42.904Z"
+    },
+    {
+      "melding": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "tid": "2026-08-06T06:27:43.085Z"
+    }
+  ],
+  "nettverksFeil": [
+    {
+      "status": 404,
+      "url": "https://api.github.com/repos/ks-no/tilskuddsportal-testverktoy-TEST/commits?per_page=100",
+      "side": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "tid": "2026-08-06T06:27:42.162Z"
+    },
+    {
+      "status": 404,
+      "url": "https://api.github.com/repos/ks-no/tilskuddsportal-testverktoy-TEST/commits?per_page=100",
+      "side": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "tid": "2026-08-06T06:27:42.453Z"
+    },
+    {
+      "status": 404,
+      "url": "https://api.github.com/repos/ks-no/tilskuddsportal-testverktoy-TEST/commits?per_page=100",
+      "side": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "tid": "2026-08-06T06:27:42.594Z"
+    },
+    {
+      "status": 404,
+      "url": "https://api.github.com/repos/ks-no/tilskuddsportal-testverktoy-TEST/commits?per_page=100",
+      "side": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "tid": "2026-08-06T06:27:42.835Z"
+    },
+    {
+      "status": 404,
+      "url": "https://api.github.com/repos/ks-no/tilskuddsportal-testverktoy-TEST/commits?per_page=100",
+      "side": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "tid": "2026-08-06T06:27:42.848Z"
+    },
+    {
+      "status": 404,
+      "url": "https://api.github.com/repos/ks-no/tilskuddsportal-testverktoy-TEST/commits?per_page=100",
+      "side": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "tid": "2026-08-06T06:27:42.904Z"
+    },
+    {
+      "status": 404,
+      "url": "https://api.github.com/repos/ks-no/tilskuddsportal-testverktoy-TEST/commits?per_page=100",
+      "side": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "tid": "2026-08-06T06:27:43.085Z"
+    }
+  ],
+  "interaksjoner": [
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-hub.html",
+      "handling": "Klikket lenke: \"🗂️ Testdatahub\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-1.png",
+      "tid": "2026-08-06T06:27:41.380Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-generator.html",
+      "handling": "Klikket lenke: \"🤖 Testdatagenerator\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-2.png",
+      "tid": "2026-08-06T06:27:41.526Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-hub.html",
+      "handling": "Klikket lenke: \"🗂️ Testdatahub\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-3.png",
+      "tid": "2026-08-06T06:27:41.614Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-hub.html",
+      "handling": "Klikket lenke: \"🗂️ Testdatahub\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-4.png",
+      "tid": "2026-08-06T06:27:41.697Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-hub.html",
+      "handling": "Klikket lenke: \"🗂️ Testdatahub\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-5.png",
+      "tid": "2026-08-06T06:27:41.806Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "handling": "Klikket lenke: \"⚙️ Admin\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-6.png",
+      "tid": "2026-08-06T06:27:41.944Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-hub.html",
+      "handling": "Klikket lenke: \"🗂️ Testdatahub\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-7.png",
+      "tid": "2026-08-06T06:27:42.022Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-generator.html",
+      "handling": "Klikket lenke: \"🤖 Testdatagenerator\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-8.png",
+      "tid": "2026-08-06T06:27:42.091Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "handling": "Klikket lenke: \"⚙️ Admin\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-9.png",
+      "tid": "2026-08-06T06:27:42.160Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-generator.html",
+      "handling": "Klikket lenke: \"🤖 Testdatagenerator\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-10.png",
+      "tid": "2026-08-06T06:27:42.233Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-generator.html",
+      "handling": "Klikket lenke: \"🤖 Testdatagenerator\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-11.png",
+      "tid": "2026-08-06T06:27:42.299Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-hub.html",
+      "handling": "Klikket lenke: \"🗂️ Testdatahub\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-12.png",
+      "tid": "2026-08-06T06:27:42.380Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "handling": "Klikket lenke: \"⚙️ Admin\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-13.png",
+      "tid": "2026-08-06T06:27:42.452Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-generator.html",
+      "handling": "Klikket lenke: \"🤖 Testdatagenerator\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-14.png",
+      "tid": "2026-08-06T06:27:42.524Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "handling": "Klikket lenke: \"⚙️ Admin\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-15.png",
+      "tid": "2026-08-06T06:27:42.594Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-hub.html",
+      "handling": "Klikket lenke: \"🗂️ Testdatahub\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-16.png",
+      "tid": "2026-08-06T06:27:42.672Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-generator.html",
+      "handling": "Klikket lenke: \"🤖 Testdatagenerator\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-17.png",
+      "tid": "2026-08-06T06:27:42.766Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "handling": "Klikket lenke: \"⚙️ Admin\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-18.png",
+      "tid": "2026-08-06T06:27:42.834Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter navigasjon: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "handling": "Gikk tilbake (browser back)",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-19.png",
+      "tid": "2026-08-06T06:27:42.885Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter navigasjon: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "handling": "Gikk tilbake (browser back)",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-20.png",
+      "tid": "2026-08-06T06:27:42.935Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-hub.html",
+      "handling": "Klikket lenke: \"🗂️ Testdatahub\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-21.png",
+      "tid": "2026-08-06T06:27:43.014Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html",
+      "handling": "Klikket lenke: \"⚙️ Admin\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-22.png",
+      "tid": "2026-08-06T06:27:43.086Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-generator.html",
+      "handling": "Klikket lenke: \"🤖 Testdatagenerator\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-23.png",
+      "tid": "2026-08-06T06:27:43.158Z"
+    },
+    {
+      "type": "feilside",
+      "alvorlighet": "kritisk",
+      "melding": "Feilside etter klikk: inneholder \"500\"",
+      "url": "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/testdata-hub.html",
+      "handling": "Klikket lenke: \"🗂️ Testdatahub\"",
+      "skjermdump": "skjermbilder-monkey/monkey-feilside-24.png",
+      "tid": "2026-08-06T06:27:43.246Z"
+    }
+  ],
+  "besøkte": [
+    "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/rapport.html",
+    "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/",
+    "https://developers.fiks.ks.no/tilskuddsportal-testverktoy-TEST/admin.html"
+  ]
+}
