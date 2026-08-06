@@ -212,7 +212,8 @@ async function analyserSide(url, indeks, oppdagetFra = null, ctx = context, tarS
     for (let li = 0; li < aLenkerCount; li++) {
       const a = aLenkerLoc.nth(li);
       const href = await a.getAttribute('href') ?? '';
-      const fullHref = href.startsWith('http') ? href : (href.startsWith('/') ? baseOrigin + href : href);
+      let fullHref;
+      try { fullHref = href ? new URL(href, url).href : ''; } catch { fullHref = href; }
       const innerTekst = (await a.innerText().catch(() => '')).trim();
       const ariaLabel = await a.getAttribute('aria-label') ?? '';
       const tekst = innerTekst || ariaLabel || '(ingen tekst)';
